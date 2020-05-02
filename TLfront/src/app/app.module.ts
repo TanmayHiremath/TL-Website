@@ -1,14 +1,44 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { AboutComponent } from './about/about.component';
+import { EventsComponent } from './events/events.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { ContactComponent } from './contact/contact.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AboutComponent,
+    EventsComponent,
+    InventoryComponent,
+    ContactComponent,
+    HomeComponent,
   ],
   imports: [
-    BrowserModule
+      FormsModule,
+      BrowserModule,
+      RouterModule,
+      HttpClientModule,
+      ReactiveFormsModule,
+
+      ///////////////////////////////////////////////////////
+      RouterModule.forRoot([
+
+          {path:'home',component:HomeComponent},
+          { path:'',   redirectTo: '/home', pathMatch: 'full' }, 
+          {path:'about',component:AboutComponent},
+          {path:'events',component:EventsComponent},
+          {path:'inventory',component:InventoryComponent},
+          {path:'contact',component:ContactComponent},
+
+      ]),
+      ///////////////////////////////////////////////////////
   ],
   providers: [],
   bootstrap: [AppComponent]
