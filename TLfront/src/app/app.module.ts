@@ -31,11 +31,12 @@ import { HomeComponent } from './home/home.component';
       RouterModule.forRoot([
 
           {path:'home',component:HomeComponent},
-          { path:'',   redirectTo: '/home', pathMatch: 'full' }, 
+          
           {path:'about',component:AboutComponent},
           {path:'events',component:EventsComponent},
           {path:'inventory',component:InventoryComponent},
           {path:'contact',component:ContactComponent},
+          { path:'**',   redirectTo: '/home' }, 
 
       ]),
       ///////////////////////////////////////////////////////
