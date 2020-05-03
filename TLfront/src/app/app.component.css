@@ -1,0 +1,38 @@
+
+ 
+
+#footer {
+    background-color: #24bdc9;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#footer a{
+    text-decoration: none;
+    color: white;
+}
+
+#footer ul {
+    list-style-type: none;
+}
+
+#footer ul li {
+    padding: 1vw;
+}
+
+#footer .btn {
+    color: #24bdc9;
+    background-color: white;
+    border-radius: 20px;
+    border-width: 0;
+ }
+
+ #footer a:hover {
+   
+    color:grey;
+}
