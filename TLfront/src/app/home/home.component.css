@@ -1,0 +1,37 @@
+  .slideshow {
+    background: lighten(black, 15);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    position: relative;
+}  
+ .slideshow-item {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition: all 0.2s ease-in-out;
+    }  
+      .slideshow-item>img {
+        display: block;
+        margin: auto;
+        }
+.item-1 {
+  opacity: 1;
+}
+ 
+.item-1 { animation: slideshow 16s ease 0s infinite; }
+.item-2 { animation: slideshow 16s ease 4s infinite; }
+.item-3 { animation: slideshow 16s ease 8s infinite; }
+.item-4 { animation: slideshow 16s ease 12s infinite; }
+
+@keyframes slideshow {
+  0%, 30%, 100% { opacity: 0; }  
+  5%, 25% { opacity: 1; }
+}
+
+#intro
+{
+    margin-left: 3vw;
+}
