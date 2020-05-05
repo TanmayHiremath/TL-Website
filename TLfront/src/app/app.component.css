@@ -1,4 +1,6 @@
-
+#topbar {
+    margin-bottom: 3vw;
+}
 #topButton {
    
     position: fixed;
