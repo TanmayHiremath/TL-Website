@@ -11,5 +11,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  disp=[" ", " ", " "];
 
+  expand(x) {
+    if(this.disp[x]==' ')
+      this.disp[x]='overlay';
+    else
+      this.disp[x]=' ';
+  }
 }

@@ -3,16 +3,19 @@
     height: auto;
     
   }
-
+.card{
+  overflow: hidden;
+}
 .card-footer {
     background-color: #24bdc9;
-    height: auto;
+    height: 3vw;
     color: white;
 }
 
+
 #overlay {
     position: fixed;
-    display: none;
+    display: block;
     width: 100%;
     height: 100%;
     top: 0;
@@ -20,9 +23,21 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.5);
-    z-index: 2;
+    text-align: center;
+    z-index: 10;
     cursor: pointer;
   }
+
+#overlay>.card-footer{
+  height: auto;
+}
+#overlay>.card-body{
+  margin-top: 20vh;
+  background-color: white;
+}
+#overlay>div>img{
+  width: 15vw;
+}
   
   .slideshow {
     background: lighten(black, 15);
