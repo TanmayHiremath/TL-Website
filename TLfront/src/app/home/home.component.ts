@@ -32,11 +32,11 @@ export class HomeComponent implements OnInit {
 
 
 
-      // $(function(){
-      //   $('.count-num').rCounter({
-      //     duration: 30
-      //   });
-      // });
+      $(function(){
+        $('.count-num').rCounter({
+          duration: 30
+        });
+      });
 
 
     });
