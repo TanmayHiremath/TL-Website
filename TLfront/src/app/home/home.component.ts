@@ -18,12 +18,12 @@ export class HomeComponent implements OnInit {
       });
 
       $(".card-body").click(function () {
-        $(this).siblings(".overlay").show(600)
+        $(this).siblings(".overlay").slideDown(400)
 
       });
 
       $(".overlay").click(function () {
-        $(".overlay").hide(600)
+        $(".overlay").slideUp(400)
       });
 
     });
