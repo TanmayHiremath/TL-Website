@@ -1,0 +1,102 @@
+#initial
+{
+    margin-bottom: 50px;
+}
+#tools>.heading{
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+.card img {
+    width: 80px;
+    height: auto;
+}
+.card
+{
+    margin-bottom: 3vh;
+}
+
+.card-footer {
+    background-color: #24bdc9;
+    height: auto;
+    color: white;
+}
+
+.expanded>img {
+    width: 15vw;
+}
+
+.slideshow {
+    background: lighten(black, 15);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.slideshow-item {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.slideshow-item>img {
+    display: block;
+    margin: auto;
+}
+
+.item-1 {
+    animation: slideshow 16s ease 0s infinite;
+}
+
+.item-2 {
+    animation: slideshow 16s ease 4s infinite;
+}
+
+.item-3 {
+    animation: slideshow 16s ease 8s infinite;
+}
+
+.item-4 {
+    animation: slideshow 16s ease 12s infinite;
+}
+
+@keyframes slideshow {
+    0%, 30%, 100% {
+        opacity: 0;
+    }
+    5%, 25% {
+        opacity: 1;
+    }
+}
+
+#intro {
+    margin-left: 3vw;
+}
+
+.overlay {
+    position: fixed;
+    display: none;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 5;
+    backdrop-filter: blur(5px);
+}
+
+.expanded {
+    background-color: black;
+    color: white;
+    position: absolute;
+    top: 20%;
+    width: 50%;
+    left: 25%;
+    text-align: center;
+    padding: 10px;
+    border-radius: 15px;
+}
