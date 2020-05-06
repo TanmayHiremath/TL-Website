@@ -21,11 +21,9 @@ export class HomeComponent implements OnInit {
         $(this).siblings(".overlay").show(600)
 
       });
-      $(".card-footer").click(function () {
-        $(this).siblings(".card-body").click()
-      });
 
-      $(".closeOverlay").click(function () {
+
+      $(".overlay").click(function () {
         $(".overlay").hide(600)
       });
 
