@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
 
       });
 
-
       $(".overlay").click(function () {
         $(".overlay").hide(600)
       });
