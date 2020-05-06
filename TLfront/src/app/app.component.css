@@ -1,8 +1,8 @@
 #topbar {
     margin-bottom: 3vw;
 }
+
 #topButton {
-   
     position: fixed;
     bottom: 20px;
     right: 30px;
@@ -15,7 +15,7 @@
     cursor: pointer;
     padding: 15px;
     border-radius: 4px;
-  } 
+}
 
 #footer {
     background-color: #24bdc9;
@@ -24,7 +24,7 @@
     padding-bottom: 0;
 }
 
-#footer a{
+#footer a {
     text-decoration: none;
     color: white;
 }
@@ -42,13 +42,12 @@
     background-color: white;
     border-radius: 20px;
     border-width: 0;
- }
+}
 
- #contact-info a:hover{
-   font-size: 103%;
-   line-height: 90%;
-   text-shadow: 2px 1px 3px grey;
-    
+#contact-info a:hover {
+    font-size: 103%;
+    line-height: 90%;
+    text-shadow: 2px 1px 3px grey;
 }
 
 #linkedin i:hover {
@@ -56,13 +55,13 @@
 }
 
 #facebook i:hover {
-    color: rgb(0,120,255);
+    color: rgb(0, 120, 255);
 }
 
 #instagram i:hover {
     color: transparent;
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-  background-clip: text;
-  -webkit-background-clip: text;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background-clip: text;
+    -webkit-background-clip: text;
 }

@@ -6,28 +6,29 @@ import * as $ from 'jquery'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  
+
 
   constructor() { }
 
   ngOnInit(): void {
-    
-    $(document).ready(function(){
-      $(".card").mouseover(function(){
-        $(".card").css("cursor","pointer")
-      });
-    
-      $(".card-body").click(function(){
-        $(this).siblings(".overlay").show(600)
-      });
-      $(".card-footer").click(function(){
-        $(this).siblings(".overlay").show(600)
+
+    $(document).ready(function () {
+      $(".card").mouseover(function () {
+        $(".card").css("cursor", "pointer")
       });
 
-      $(".closeOverlay").click(function(){
+      $(".card-body").click(function () {
+        $(this).siblings(".overlay").show(600)
+
+      });
+      $(".card-footer").click(function () {
+        $(this).siblings(".card-body").click()
+      });
+
+      $(".closeOverlay").click(function () {
         $(".overlay").hide(600)
       });
-     
+
     });
   }
 }
