@@ -16,22 +16,18 @@ export class HomeComponent implements OnInit {
       $(".card").mouseover(function(){
         $(".card").css("cursor","pointer")
       });
+    
       $(".card-body").click(function(){
-        $(this).siblings(".overlay").show()
-        
+        $(this).siblings(".overlay").show(600)
       });
+      $(".card-footer").click(function(){
+        $(this).siblings(".overlay").show(600)
+      });
+
       $(".closeOverlay").click(function(){
-        $(".overlay").hide()
+        $(".overlay").hide(600)
       });
      
     });
-  }
-  disp=[" ", " ", " "];
-
-  expand(x) {
-    if(this.disp[x]==' ')
-      this.disp[x]='overlay';
-    else
-      this.disp[x]=' ';
   }
 }
