@@ -1,6 +1,19 @@
+#initial
+{
+    margin-bottom: 50px;
+}
+#tools>.heading{
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
 .card img {
     width: 80px;
     height: auto;
+}
+.card
+{
+    margin-bottom: 3vh;
 }
 
 .card-footer {
