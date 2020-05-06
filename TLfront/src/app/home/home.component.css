@@ -1,18 +1,19 @@
-#initial
-{
+#initial {
     margin-bottom: 50px;
 }
-#tools>.heading{
+
+#tools>.heading {
     text-align: center;
     margin-bottom: 50px;
     margin-top: 50px;
 }
+
 .card img {
     width: 80px;
     height: auto;
 }
-.card
-{
+
+.card {
     margin-bottom: 3vh;
 }
 
@@ -99,4 +100,16 @@
     text-align: center;
     padding: 10px;
     border-radius: 15px;
+}
+
+#funFacts {
+    background-image: url("../../assets/Images/bg_1.jpg");
+}
+
+
+@media screen and (max-width:800px) {
+    .expanded {
+        width: 100%;
+        left:0;
+    }
 }

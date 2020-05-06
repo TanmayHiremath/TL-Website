@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery'
+
+declare var rCounter :any;
 @Component({
+
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
@@ -13,6 +15,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     $(document).ready(function () {
+
+      //  overlay
       $(".card").mouseover(function () {
         $(".card").css("cursor", "pointer")
       });
@@ -25,6 +29,15 @@ export class HomeComponent implements OnInit {
       $(".overlay").click(function () {
         $(".overlay").slideUp(400)
       });
+
+
+
+      // $(function(){
+      //   $('.count-num').rCounter({
+      //     duration: 30
+      //   });
+      // });
+
 
     });
   }
