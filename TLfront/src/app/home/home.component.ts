@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
       });
 
       $(".card-body").click(function () {
-        $(this).siblings(".overlay").show(600)
+        $(this).siblings(".overlay").show(400)
 
       });
       $(".card-footer").click(function () {
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
       });
 
       $(".closeOverlay").click(function () {
-        $(".overlay").hide(600)
+        $(".overlay").hide(400)
       });
 
     });
