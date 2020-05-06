@@ -71,16 +71,19 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: transparent;
     z-index: 5;
     backdrop-filter: blur(5px);
 }
 
 .expanded {
-    position: absolute;
-    margin-top: 20vh;
+    background-color: black;
     color: white;
-    left: 10vw;
-    right: 10vw;
+    position: absolute;
+    top: 20%;
+    width: 50%;
+    left: 25%;
     text-align: center;
+    padding: 10px;
+    border-radius: 15px;
 }
