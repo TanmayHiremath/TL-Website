@@ -1,8 +1,17 @@
+<script>
+  function on() {
+    document.getElementById("overlay").style.display = "block";
+  }
+  
+  function off() {
+    document.getElementById("overlay").style.display = "none";
+  }
+</script>  
 
 <div class="row">
   <div class="col-sm-1 col-2"></div>
   <div class="col-sm-3 col-8" style="margin-bottom: 3vw; ">
-    <h1>
+    <h1 class="introtext">
      Think.<br>
      Tinker.<br>
      Transform.<br>
@@ -32,10 +41,13 @@
     </div>
 </div>
 </div>
+<h1>Resources</h1>
+<br>
+<h2>Automated Machines</h2>
 
 
 
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-sm">
       <div class="card">
@@ -49,28 +61,37 @@
                 <div><h2>A process for making a physical object from a three-dimensional digital model, typically by laying down many successive thin layers of a material.</h2></div>
               </div>
             </div>
-        </div>
+        </div> -->
+      <div class="card" id="{{disp[0]}}"> <!-- To implement the overlay using event binding -->
+        <div class="card-body mx-auto"><img class="ml-4" src="../../assets/Images/3dprint.png" alt="Couldn't load"><p></p><h4>3D Printer</h4></div>
+        <div class="card-footer">A process for making a physical object ...</div>
+        <a (click)="expand(0)" class="stretched-link"></a>
       </div>
-    </div>
+    <!-- </div> -->
     <div class="col-sm">
-      <div class="card">
-        <div class="card-body mx-auto"><img class="ml-4" src="../../assets/Images/lasercut.png" alt="Couldn't load"><p></p><h4>Laser Cutter</h4></div>
+      <div class="card" id="{{disp[1]}}">
+        <!-- <div class="card-body mx-auto"><img class="ml-4" src="../../assets/Images/lasercut.png" alt="Couldn't load"><p></p><h4>Laser Cutter</h4></div>
         <div class="card-footer pb-3">A prototyping and manufacturing tool ...</div>
         <div class="overlay">
           <button class="closeOverlay"><span aria-hidden="true">&times;</span></button>
           <div class="text">A prototyping and manufacturing tool used primarily by engineers, designers, and artists to cut and etch into flat material.</div>
+        </div> -->
+        <div class="card-footer pb-3">A prototyping and manufacturing tool
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pellentesque lorem dolor. Integer odio nibh, imperdiet ut convallis ut, condimentum in urna. Fusce id ullamcorper metus. Duis id dolor a nisl mollis laoreet porta accumsan erat. Nullam ornare lacus libero, quis  
         </div>
+        <a class="stretched-link" (click)="expand(1)"></a>
       </div>
     </div>
-    <div class="col-sm">
-      <div class="card">
+    <!-- <div class="col-sm">
+      <div class="card" id="{{disp[2]}}">
         <div class="card-body mx-auto"><img class="ml-4" src="../../assets/Images/cnc.png" alt="Couldn't load"><p></p><h4>CNC Machines</h4></div>
         <div class="card-footer">CNC machines rely on a system of three ...</div>
         <div class="overlay">
           <button class="closeOverlay"><span aria-hidden="true">&times;</span></button>
           <div class="text">Computer numerical control(CNC) Machine uses numerical data to control a machine. CNC machines rely on a system of three linear and three rotational axes in order to calculate the motion and position of machine components and workpieces.</div>
-        </div>
-      </div>
+        </div> -->
+        <a (click)="expand(2)" class="stretched-link"></a>
+      <!-- </div>
     </div>
   </div>
-</div>
+</div> -->

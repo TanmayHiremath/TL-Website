@@ -3,10 +3,12 @@
     height: auto;
     
   }
-
+.card{
+  overflow: hidden;
+}
 .card-footer {
     background-color: #24bdc9;
-    height: auto;
+    height: 3vw;
     color: white;
 }
 
@@ -32,6 +34,17 @@
   .closeOverlay {
     float: right;
   }
+
+#overlay>.card-footer{
+  height: auto;
+}
+#overlay>.card-body{
+  margin-top: 20vh;
+  background-color: white;
+}
+#overlay>div>img{
+  width: 15vw;
+}
   
 .slideshow {
     background: lighten(black, 15);
