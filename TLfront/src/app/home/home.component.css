@@ -10,27 +10,36 @@
     color: white;
 }
 
-#overlay {
+.overlay {
     position: fixed;
     display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    left: 10vw;
+    right: 10vw;
+    top: 10%;
+    bottom: 10%;
     background-color: rgba(0,0,0,0.5);
-    z-index: 2;
-    cursor: pointer;
+    z-index: 20;
+    
+  }
+.text{
+    position: absolute;
+    color: white;
+    left:10vw;
+    right:10vw;
+    
+  }
+
+  .closeOverlay {
+    float: right;
   }
   
-  .slideshow {
+.slideshow {
     background: lighten(black, 15);
     border-radius: 4px;
     margin-bottom: 20px;
     position: relative;
 }  
- .slideshow-item {
+.slideshow-item {
       position: absolute;
       top: 0;
       bottom: 0;
