@@ -1,6 +1,14 @@
 #topbar {
     margin-bottom: 3vw;
 }
+#topbar .navbar-brand{
+    font-family: 'Cormorant';
+    font-weight: bold;
+}
+#topbar .nav-link
+{
+    font-family: 'Poppins';
+}
 
 #topButton {
     position: fixed;
