@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
                 duration: 2000,
                 easing: 'swing',
                 step: function () {
-                  $this.text(Math.floor(this.countNum));
+                  $this.text(Math.floor(parseInt(this.countNum)));
                 },
                 complete: function () {
                   $this.text(numberWithCommas(this.countNum) + "+");
