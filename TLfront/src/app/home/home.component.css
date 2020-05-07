@@ -104,18 +104,22 @@
 
 #funFacts {
     background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)),url("../../assets/Images/bg_1.jpg");
-  
-    
+   
+}
+
+#funFacts>h1{
+    font-size: 5vw;
 }
 
 
-
-@media screen and (max-width:800px) {
+@media screen and (max-width:992px) {
     .expanded {
         width: 100%;
         left: 0;
     }
-
+    #funFacts>h1{
+        font-size: 10vw;
+    }
     
 }
 
