@@ -8,22 +8,22 @@
     margin-top: 50px;
 }
 
-.card img {
+#tools .card img {
     width: 80px;
     height: auto;
 }
 
-.card {
+#tools .card {
     margin-bottom: 3vh;
 }
 
-.card-footer {
+#tools .card-footer {
     background-color: #24bdc9;
     height: auto;
     color: white;
 }
 
-.expanded>img {
+#tools .expanded>img {
     width: 15vw;
 }
 
