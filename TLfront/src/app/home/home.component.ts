@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-declare var rCounter :any;
+import * as custom from "src/assets/js/jquery.rcounterup.js"
+declare var rCounter: any;
 @Component({
 
   selector: 'app-home',
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
     $(document).ready(function () {
 
-      //  overlay
+//  overlay start
       $(".card").mouseover(function () {
         $(".card").css("cursor", "pointer")
       });
@@ -29,14 +29,53 @@ export class HomeComponent implements OnInit {
       $(".overlay").click(function () {
         $(".overlay").slideUp(400)
       });
+// overlay end
+
+// funFacts start
+
+      function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 
 
+      var a = 0;
+      $(window).scroll(function () {
 
-      $(function(){
-        $('.count-num').rCounter({
-          duration: 30
-        });
+        var oTop = $('#counter').offset().top - window.innerHeight;
+        if (a == 0 && $(window).scrollTop() > oTop) {
+          $('.counter-value').each(function () {
+            var $this = $(this),
+              countTo = $this.attr('data-count');
+            $({
+              countNum: $this.text()
+            }).animate({
+              countNum: countTo
+            },
+
+              {
+
+                duration: 2000,
+                easing: 'swing',
+                step: function () {
+                  $this.text(Math.floor(this.countNum));
+                },
+                complete: function () {
+                  $this.text(numberWithCommas(this.countNum) + "+");
+                  //alert('finished');
+                }
+
+              });
+          });
+          a = 1;
+        }
+
       });
+
+// funFacts end
+
+        
+
+
 
 
     });
