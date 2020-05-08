@@ -10,6 +10,9 @@ import { EventsComponent } from './events/events.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
+import { OwlModule } from 'ngx-owl-carousel'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { HomeComponent } from './home/home.component';
       RouterModule,
       HttpClientModule,
       ReactiveFormsModule,
+      OwlModule,
+      BrowserAnimationsModule,
+      CarouselModule ,
 
       ///////////////////////////////////////////////////////
       RouterModule.forRoot([
