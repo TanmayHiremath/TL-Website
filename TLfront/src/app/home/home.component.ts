@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as custom from "src/assets/js/jquery.rcounterup.js"
+import { OwlOptions } from 'ngx-owl-carousel-o';
+
+
 declare var rCounter: any;
 @Component({
 
@@ -8,6 +11,11 @@ declare var rCounter: any;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+
+
+
+
 
 
   constructor() { }
@@ -79,5 +87,8 @@ export class HomeComponent implements OnInit {
 
 
     });
+
+
+    
   }
 }
