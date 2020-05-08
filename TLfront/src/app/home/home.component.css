@@ -1,29 +1,46 @@
 #initial {
     margin-bottom: 50px;
 }
+#initial h1{
+    Font-Family: 'Roboto Condensed', Sans-Serif;
+    font-weight: bold;
+}
+#initial p, #initial a
+{
+    Font-Family: 'Cabin', Sans-Serif;
+}
 
 #tools>.heading {
     text-align: center;
     margin-bottom: 50px;
     margin-top: 50px;
 }
+#tools h2
+{
+    font-family: Lato;
+}
 
-.card img {
+#tools h4
+{
+    font-family: Alegreya;
+}
+
+#tools .card img {
     width: 80px;
     height: auto;
 }
 
-.card {
+#tools .card {
     margin-bottom: 3vh;
 }
 
-.card-footer {
+#tools .card-footer {
     background-color: #24bdc9;
     height: auto;
     color: white;
 }
 
-.expanded>img {
+#tools .expanded>img {
     width: 15vw;
 }
 
@@ -104,18 +121,22 @@
 
 #funFacts {
     background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)),url("../../assets/Images/bg_1.jpg");
-  
-    
+   
+}
+
+#funFacts>h1{
+    font-size: 5vw;
 }
 
 
-
-@media screen and (max-width:800px) {
+@media screen and (max-width:992px) {
     .expanded {
         width: 100%;
         left: 0;
     }
-
+    #funFacts>h1{
+        font-size: 10vw;
+    }
     
 }
 
