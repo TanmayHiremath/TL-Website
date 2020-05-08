@@ -23,6 +23,7 @@
     "bootstrap": "^4.4.1",
     "jquery": "^3.5.1",
     "ngx-owl-carousel": "^2.0.7",
+    "ngx-owl-carousel-o": "^3.0.0",
     "owl.carousel": "^2.3.4",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
