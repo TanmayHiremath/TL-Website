@@ -158,7 +158,14 @@ PROJECTS   starts
 }
 
 #project .service-item {
-	text-align: center;
+    text-align: center;
+    
+    margin-left: 20vw;
+    margin-right: 20vw;
+        height:70vh;
+        width: 20vw;
+		
+	 
 }
 
 
@@ -206,19 +213,13 @@ PROJECTS   starts
 
 
 
-	#project .service-item {
-		margin-bottom: 80px;
+	#project  {
+        height: 50vh;
+        width: 50vw;
 		
 	} 
 
-	.service-item{
-		margin-left: 100px;
-	}
-
 }
-
-
-
 
 /*p
 PROJECTS   ends
