@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { OwlModule } from 'ngx-owl-carousel'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
       OwlModule,
       BrowserAnimationsModule,
       CarouselModule ,
+      MDBBootstrapModule.forRoot(),
 
       ///////////////////////////////////////////////////////
       RouterModule.forRoot([
