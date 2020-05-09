@@ -219,12 +219,7 @@ PROJECTS   starts
 
 /* RESPONSIVE */
 
-@media (max-width: 991px) {
-    #project {
-        height: 50vh;
-        width: 50vw;
-    }
-}
+
 
 /*p
 PROJECTS   ends
