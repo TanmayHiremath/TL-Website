@@ -140,7 +140,9 @@
 /*p
 PROJECTS   starts
 */
-
+.carousel-inner{
+    width: 100%;
+}
 .primary-blue-button a {
     display: inline-block;
     background-color: #33c1cf;
@@ -162,15 +164,23 @@ PROJECTS   starts
     background-size: cover;
     background-attachment: fixed;
 }
+#project .container{
+    width: 100%;
+    margin: 0%;
+    padding-left: 5%;
+}
 
 #project .service-item {
     text-align: center;
     margin-left: 20vw;
     margin-right: 20vw;
     height: 70vh;
-    width: 20vw;
+    width: 50vw;
+    display: flex;
 }
-
+.horizontal{
+    width: 30vw;
+}
 #project .service-item .icon {
     width: 110px;
     height: 110px;
