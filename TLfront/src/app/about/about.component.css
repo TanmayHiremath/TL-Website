@@ -29,6 +29,7 @@ body{
   transform: rotateY(180deg);
 }
 
+
 /* THE FRONT FACE OF THE CARD, WHICH SHOWS BY DEFAULT */
  .thefront{
   position: absolute;
