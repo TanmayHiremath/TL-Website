@@ -1,19 +1,27 @@
-<nav class="navbar navbar-expand-md bg-dark navbar-dark" style="position: sticky; top: 0; z-index: 10;" id="topbar">
-    <img src="..\..\assets\Images\TL1.jpg" width="40" height="40" alt=""><a class="navbar-brand"
-        routerLink="home">&nbsp; Tinkerers' Lab</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a routerLink="home" class="nav-link">Home</a></li>
-            <li class="nav-item"><a routerLink="about" class="nav-link">About</a></li>
-            <li class="nav-item"><a routerLink="events" class="nav-link">Events</a></li>
-            <li class="nav-item"><a routerLink="inventory" class="nav-link">Machine Status</a></li>
-            <li class="nav-item"><a routerLink="contact" class="nav-link">Contact</a></li>
-        </ul>
+  <div class="nav">
+    <input type="checkbox" id="nav-check">
+    <div class="nav-header">
+      <div class="nav-title">
+        <img src="..\..\assets\Images\TL1.jpg" width="35" height="35" alt=""><a class="navbar-brand"
+        routerLink="home" style="color: white;">&nbsp; Tinkerers' Lab</a>
+      </div>
     </div>
-</nav>
+    <div class="nav-btn">
+        <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </div>
+    
+    <div class="nav-links ml-auto">
+      <a routerLink="home">Home</a>
+      <a routerLink="about">About</a>
+      <a routerLink="events">Events</a>
+      <a routerLink="inventory">Machine Status</a>
+      <a routerLink="contact">Contact</a>
+    </div>
+  </div>
 
 <router-outlet></router-outlet>
 
