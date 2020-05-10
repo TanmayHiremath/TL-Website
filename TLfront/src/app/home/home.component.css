@@ -140,6 +140,7 @@
 /*p
 PROJECTS   starts
 */
+
 .carousel-inner{
     width: 100%;
 }
@@ -215,7 +216,9 @@ PROJECTS   starts
 #project .service-item .primary-blue-button {
     margin-top: 35px;
 }
-
+.carousel-indicators{
+        margin-bottom: 0%;
+}
 
 /* RESPONSIVE */
 
