@@ -54,7 +54,7 @@
       position: absolute;
       right: 0px;
       top: 5px;
-      height: 60px;
+      height: 50px;
     }
     .nav > .nav-header > .nav-title>a {
         left: 30vw;
@@ -63,7 +63,7 @@
 
     .nav > .nav-btn > label {
       display: inline-block;
-      width: 50px;
+      width: 60px;
       height: 50px;
       padding: 13px;
     }
@@ -87,7 +87,7 @@
       transition-duration:0.5s;
       transition-timing-function:ease-in;
       overflow-y: hidden;
-      top: 50px;
+      top: 60px;
       left: 100%;
       z-index: 3;
     }
