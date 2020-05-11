@@ -78,3 +78,96 @@ body{
   text-align: center;
 }
 /*This block (ends here) is merely styling for the flip card, and is NOT an essential part of the flip code */
+
+#heading
+    {
+        color: blue;
+        text-decoration: underline ;
+        text-shadow: 4px 4px black;
+        text-align: center;
+        font-family: "Trebuchet MS";
+        font-size: 50pt;
+    }
+
+
+#sub1
+    {
+        color: maroon;
+        text-align: left;
+        padding-left: 30%;
+        font-family: cursive;
+        font-size: 35pt;
+    }
+#sub2
+    {
+        color: maroon;
+        text-align: right;
+        padding-right: 30%;
+        font-family: cursive;
+        font-size: 35pt;
+    }
+#sub3
+    {
+        color: maroon;
+        text-align: left;
+        padding-left: 40%;
+        font-family: cursive;
+        font-size: 35pt;
+    }
+
+
+#one
+    {
+        left: 0;
+        float:left;
+        padding-top: 100px;
+        padding-bottom: 10px;
+        padding-right: 30px;
+        width: 30vw;
+        height: auto;
+        top: 40%;
+        
+    }
+#two
+    {
+        right: 0;
+        float: right;
+        width: 30vw;
+        height: auto;
+        
+        padding-bottom: 10px;
+        padding-left: 30px;
+    }
+
+
+#e1
+    {
+        text-align: left;
+        font-family: "Trebuchet MS";
+        margin: 100px 10% 10px 25% ;
+        font-size: 2vw;
+    }
+#e2
+    {
+        text-align: left;
+        font-family: "Trebuchet MS";
+        margin: 2% 13% 10px 10% ;
+        font-size: 2vw;
+    }
+
+#three
+    {
+        margin-top: 0px;
+        float: left;
+        width: 37%;
+        height: auto; 
+    }
+
+#e3
+    {
+        text-align: left;
+        font-family: "Trebuchet MS";
+        margin: 10px 10% 10px 35% ;
+        font-size: 2vw;
+        padding-left: 5%;
+    }
