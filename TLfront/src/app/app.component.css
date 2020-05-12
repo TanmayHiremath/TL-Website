@@ -5,8 +5,10 @@
 .nav {
   height: 60px;
   width: 100%;
-  background-color: #333232;
-  position: relative;
+  background: #20c9c3;
+  
+  
+  z-index: 100;
   margin-bottom: 7vw;
 }
 
@@ -152,4 +154,25 @@
   background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
   background-clip: text;
   -webkit-background-clip: text;
+}
+
+#scrollBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 15;
+  width: 4vw;
+  height: 4vw;
+  border: none;
+  outline: none;
+  background-color: #20c9c3;
+  cursor: pointer;
+  
+  border-radius: 50%;
+}
+
+#scrollBtn:hover {
+  background-color: black;
+  color: white;
 }
