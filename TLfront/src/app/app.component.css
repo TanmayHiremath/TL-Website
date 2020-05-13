@@ -67,7 +67,7 @@
     padding: 13px;
   }
   .nav>.nav-btn>label:hover, .nav #nav-check:checked~.nav-btn>label {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(160, 145, 145, 0.3);
   }
   .nav>.nav-btn>label>span {
     display: block;
@@ -92,6 +92,9 @@
   }
   .nav>.nav-links>a {
     display: block;
+  }
+  .nav>.nav-links>a:hover {
+    transform: scale(2);
   }
   .nav>#nav-check:not(:checked)~.nav-links {
     left: 100%;
