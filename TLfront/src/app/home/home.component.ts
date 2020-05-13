@@ -12,8 +12,6 @@ declare var rCounter: any;
 })
 export class HomeComponent implements OnInit {
 
-
-
   cards = [
     {
       title: 'Card Title 1',
@@ -84,7 +82,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.slides = this.chunk(this.cards, 3);
-
     $(document).ready(function () {
 
 //  overlay start
@@ -143,9 +140,7 @@ export class HomeComponent implements OnInit {
       });
 
 // funFacts end
-
         
-
 
 
 
