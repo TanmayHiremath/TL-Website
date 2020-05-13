@@ -11,7 +11,6 @@
     Font-Family: 'Cabin', Sans-Serif;
     color: white;
     opacity: 0.7;
-    
 }
 
 #initial .btn {
@@ -146,7 +145,7 @@
     #funFacts>h1 {
         font-size: 10vw;
     }
-    .slideshow-item>img{
+    .slideshow-item>img {
         width: 50vw;
         position: absolute;
         top: 10px;
@@ -154,31 +153,19 @@
         margin-right: 5px;
         margin-left: 5px;
         justify-content: center;
-
     }
     #tools>.heading>div {
         font-size: 12vw;
     }
-    
 }
 
-
-
-
-
 .area {
-    background: #20c9c3;    
+    background: #20c9c3;
     width: 100vw;
-    height: 90vh;
-    position: absolute;
 }
 
 .circles {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100vw;
-    height: 90vh;
     overflow: hidden;
 }
 
