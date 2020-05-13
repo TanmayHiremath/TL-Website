@@ -8,6 +8,7 @@
   background-color: #333232;
   position: relative;
   margin-bottom: 7vw;
+  z-index: 15;
 }
 
 .nav>.nav-header {
@@ -158,7 +159,7 @@
   position: fixed;
   bottom: 20px;
   right: 30px;
-  z-index: 15;
+  z-index: 150;
   width: 4vw;
   height: 4vw;
   border: none;
