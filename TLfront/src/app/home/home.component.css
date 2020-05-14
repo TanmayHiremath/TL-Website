@@ -46,7 +46,7 @@
 
 #tools .card-footer {
     background-color: #24bdc9;
-    height: auto;
+    height: 10vh;
     color: white;
 }
 
@@ -129,6 +129,20 @@
     border-radius: 15px;
 }
 
+#myCarousel .card-header {
+    background-color: white;
+    text-align: center;
+}
+
+#myCarousel .card-header h3 {
+    background-color: #24bdc9;
+    color: white;
+}
+
+#myCarousel .card-footer {
+    height: 10vw;
+}
+
 #funFacts {
     background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url("../../assets/Images/bg_1.jpg");
 }
@@ -162,6 +176,7 @@
 .area {
     background: #20c9c3;
     width: 100vw;
+    height: auto;
 }
 
 .circles {

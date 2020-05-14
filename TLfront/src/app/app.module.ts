@@ -10,10 +10,10 @@ import { EventsComponent } from './events/events.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
-import { OwlModule } from 'ngx-owl-carousel'; 
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CarouselModule } from 'ngx-owl-carousel-o';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
+
 
 @NgModule({
   declarations: [
@@ -30,10 +30,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
       RouterModule,
       HttpClientModule,
       ReactiveFormsModule,
-      OwlModule,
+      
       BrowserAnimationsModule,
-      CarouselModule ,
-      MDBBootstrapModule.forRoot(),
+      
 
       ///////////////////////////////////////////////////////
       RouterModule.forRoot([
@@ -47,6 +46,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
           { path:'**',   redirectTo: '/home' }, 
 
       ]),
+      
+
+      
       ///////////////////////////////////////////////////////
   ],
   providers: [],

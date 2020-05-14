@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $:any;
 import * as custom from "src/assets/js/jquery.rcounterup.js"
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
@@ -12,65 +13,6 @@ declare var rCounter: any;
 })
 export class HomeComponent implements OnInit {
 
-
-
-  cards = [
-    {
-      title: 'Card Title 1',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 2',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 3',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 4',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 5',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 6',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 7',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 8',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 9',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-  ];
-  slides: any = [[]];
   chunk(arr, chunkSize) {
     let R = [];
     for (let i = 0, len = arr.length; i < len; i += chunkSize) {
@@ -78,16 +20,15 @@ export class HomeComponent implements OnInit {
     }
     return R;
   }
- 
+
 
   constructor() { }
 
   ngOnInit(): void {
-    this.slides = this.chunk(this.cards, 3);
-
+    
     $(document).ready(function () {
 
-//  overlay start
+      //  overlay start
       $(".card").mouseover(function () {
         $(".card").css("cursor", "pointer")
       });
@@ -100,13 +41,13 @@ export class HomeComponent implements OnInit {
       $(".overlay").click(function () {
         $(".overlay").slideUp(400)
       });
-// overlay end
+      // overlay end
 
-// funFacts start
+      // funFacts start
 
       function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+      }
 
 
       var a = 0;
@@ -142,16 +83,34 @@ export class HomeComponent implements OnInit {
 
       });
 
-// funFacts end
-
-        
+      // funFacts end
 
 
+      $("#myCarousel").carousel({
+        interval:2500
+      });
 
+      // Enable Carousel Indicators
+      $(".item1").click(function () {
+        $("#myCarousel").carousel(0);
+      });
+      $(".item2").click(function () {
+        $("#myCarousel").carousel(1);
+      });
+      $(".item3").click(function () {
+        $("#myCarousel").carousel(2);
+      });
 
+      // Enable Carousel Controls
+      $(".carousel-control-prev").click(function () {
+        $("#myCarousel").carousel("prev");
+      });
+      $(".carousel-control-next").click(function () {
+        $("#myCarousel").carousel("next");
+      });
     });
 
 
-    
+
   }
 }
