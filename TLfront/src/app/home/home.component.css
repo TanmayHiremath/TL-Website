@@ -21,10 +21,9 @@
     border-width: 0;
 }
 
-#tools>.heading {
+.heading {
     text-align: center;
-    margin-bottom: 50px;
-    margin-top: 10vw;
+    
 }
 
 #tools h2 {
@@ -140,7 +139,7 @@
 }
 
 #myCarousel .card-footer {
-    height: 10vw;
+    height: 150px;
 }
 
 #myCarousel .carousel-indicators li {
