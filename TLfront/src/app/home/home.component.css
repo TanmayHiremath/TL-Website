@@ -21,10 +21,9 @@
     border-width: 0;
 }
 
-#tools>.heading {
+.heading {
     text-align: center;
-    margin-bottom: 50px;
-    margin-top: 10vw;
+    
 }
 
 #tools h2 {
