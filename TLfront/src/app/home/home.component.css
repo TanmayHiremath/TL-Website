@@ -21,10 +21,9 @@
     border-width: 0;
 }
 
-#tools>.heading {
+.heading {
     text-align: center;
-    margin-bottom: 50px;
-    margin-top: 10vw;
+    
 }
 
 #tools h2 {
@@ -129,18 +128,29 @@
     border-radius: 15px;
 }
 
+#myCarousel .card {
+    border-radius: 10px;
+}
+
 #myCarousel .card-header {
-    background-color: white;
+    background-color: #24bdc9;
+    color: white;
     text-align: center;
 }
 
-#myCarousel .card-header h3 {
-    background-color: #24bdc9;
-    color: white;
+#myCarousel .card-footer {
+    height: 150px;
 }
 
-#myCarousel .card-footer {
-    height: 10vw;
+#myCarousel .carousel-indicators li {
+    background-color: black;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+}
+
+#myCarousel .carousel-indicators .active {
+    background-color: blue;
 }
 
 #funFacts {
