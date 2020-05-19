@@ -158,7 +158,7 @@ img {margin-bottom: -8px;}
   border: none;
   color: #FFFFFF;
   text-align: center;
-  font-size: 28px;
+  font-size: 24px;
   padding: 20px;
   width: 200px;
   transition: all 0.5s;
@@ -190,4 +190,5 @@ img {margin-bottom: -8px;}
   opacity: 1;
   right: 0;
 }
+
 
