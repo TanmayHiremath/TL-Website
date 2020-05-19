@@ -100,9 +100,6 @@ export class HomeComponent implements OnInit {
       $(".item3").click(function () {
         $("#myCarousel").carousel(2);
       });
-      $(".item4").click(function () {
-        $("#myCarousel").carousel(3);
-      });
 
       // Enable Carousel Controls
       $(".carousel-control-prev").click(function () {
