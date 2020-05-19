@@ -3,7 +3,9 @@ from django.db import models
 class Item(models.Model):
     
     name = models.CharField(max_length=200)
-    category = models.CharField(max_length=30)
+    category = models.CharField(max_length=50)
+    level1 = models.CharField(max_length=50)
+    level2 = models.CharField(max_length=50)
     description = models.CharField(max_length=2000)
     keywords = models.CharField(max_length=1000)
     picture = models.FileField()
@@ -15,6 +17,22 @@ class Item(models.Model):
     colour_code = models.CharField(max_length=10)
     notifications = models.CharField(max_length=10000)
     price = models.PositiveIntegerField()
+    flag = models.BooleanField(default=False)
+    flag_time = models.DateTimeField()
+
 
     def __str__(self):
         return self.name
+
+
+class Request(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    roll = models.CharField(max_length=20)
+    quantity = models.PositiveSmallIntegerField()
+    is_sent = models.BooleanField(default=False)
+    is_approved = models.BooleanField(default=False)
+    is_returned = models.BooleanField(default=False)
+    time = models.DateTimeField()
+
+    def __str__(self):
+        return self.item +' - ' + self.roll
