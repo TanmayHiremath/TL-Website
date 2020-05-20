@@ -1,6 +1,6 @@
 from django.db import models
 # Create your models here.
-class Item(models.Model):
+class Items(models.Model):
     
     name = models.CharField(max_length=200)
     category = models.CharField(max_length=50)
@@ -26,7 +26,7 @@ class Item(models.Model):
 
 
 class Request(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    item = models.ForeignKey(Items, on_delete=models.CASCADE)
     roll = models.CharField(max_length=20)
     quantity = models.PositiveSmallIntegerField()
     is_sent = models.BooleanField(default=False)

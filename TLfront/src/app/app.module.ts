@@ -43,7 +43,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
           {path:'events',component:EventsComponent},
           {path:'inventory',component:InventoryComponent},
           {path:'contact',component:ContactComponent},
-          { path:'**',   redirectTo: '/home' }, 
+          
 
       ]),
       
