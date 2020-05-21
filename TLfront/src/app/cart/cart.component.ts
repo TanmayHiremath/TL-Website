@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -14,6 +16,7 @@ export class CartComponent implements OnInit {
   customers = []
   items = []
   requests = []
+  total_items=0
 
   constructor(private api: ApiService) { 
     
@@ -79,5 +82,27 @@ export class CartComponent implements OnInit {
       return false
 
   }
+
+ 
+      
+
+        const keys= Object.keys(this.requests)
+        
+        for( let key of keys) {
+    
+         
+    
+          if(this.requests[key].is_approved == true)
+          this.total_items+= this.requests[key].quantity
+    
+          
+    
+        
+
+    }
+
+
+
+
 
 }

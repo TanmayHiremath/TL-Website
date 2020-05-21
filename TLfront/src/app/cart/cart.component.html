@@ -54,20 +54,19 @@
 <br><br><br><br>
 
 
-
-<div  *ngFor="let order of orders" class="row">
+<div  class="row">
   <div class="col-lg-12">
     <div class="box-element">
 
-      <a  class="btn btn-outline-dark" href="#">&#x2190; Continue Shopping</a>
+      <a  class="btn btn-outline-dark" href="{% url 'store' %}">&#x2190; Continue Shopping</a>
 
       <br>
       <br>
       <table class="table">
         <tr>
-          <th><h5>Items: <strong>{{order.get_cart_products}}</strong></h5></th>
+          <th><h5>Items: <strong> </strong></h5></th>
           <th>
-            <a  style="float:right; margin:5px;" class="btn btn-success" href="#">Checkout</a>
+            <a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
           </th>
         </tr>
       </table>
@@ -75,29 +74,33 @@
     </div>
 
     <br>
-    <div class="box-element">
+    <div  class="box-element">
       <div class="cart-row">
         <div style="flex:2"></div>
         <div style="flex:2"><strong>Item</strong></div>
       
         <div style="flex:1"><strong>Quantity</strong></div>
       </div>
-      
-      <div *ngFor="let product of products"  >
-        <div *ngIf="choose(order.id, product.order)" class="cart-row">
-        <div style="flex:2" *ngIf="choose(order.id, product.order)"><img class="row-image" src=""></div>
-        <div style="flex:2" *ngIf="choose(order.id, product.order)"><p></p></div>
-        <div style="flex:1" *ngIf="choose(order.id, product.order)">
-          <p class="quantity " *ngIf="choose(order.id, product.order)">{{product.quantity}}</p>
-          <div class="quantity " *ngIf="choose(order.id, product.order)">
-            <img class="chg-quantity" src="" alt="up">
+     <div *ngFor="let request of requests">
+      <div  *ngIf="request.is_issued && request.is_approved && !(request.is_sent) &&!(request.is_returned) " class="cart-row">
+        <div   style="flex:2"><img class="row-image" src="#"></div>
+        <div   style="flex:2"><p>{{request.roll}}</p></div>
+        <div style="flex:1">
+          <p class="quantity">{{request.quantity}}</p>
+          <div class="quantity">
+            <img class="chg-quantity" src="{% static  'images/arrow-up.png' %}">
         
-            <img class="chg-quantity" src="" alt="down">
+            <img class="chg-quantity" src="{% static  'images/arrow-down.png' %}">
           </div>
         </div>
-      </div>
-      </div>
-      
+        </div>
+     </div>
     </div>
   </div>
+</div>
+
+
+
+<div *ngFor="let item of requests | keyvalue">
+  Key: <b>{{item.key}}</b> and Value: <b>{{item.quantity}}</b> and name: <b>{{item.name}}</b>
 </div>
