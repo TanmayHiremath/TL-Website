@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-inventory',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InventoryComponent implements OnInit {
 
-  constructor() { }
+  items = [{name: 'sample'}];
+
+
+  constructor(private api:ApiService) {
+   
+   }
 
   ngOnInit(): void {
+
+    this.api.getItems()
+      .subscribe(data => this.items=data);
+
   }
 
 }

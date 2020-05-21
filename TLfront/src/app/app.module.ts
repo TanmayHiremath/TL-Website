@@ -12,6 +12,7 @@ import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ApiService } from './api.service';
 
 
 
@@ -51,7 +52,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       
       ///////////////////////////////////////////////////////
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

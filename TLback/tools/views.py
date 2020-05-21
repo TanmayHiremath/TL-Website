@@ -1,13 +1,12 @@
 from django.shortcuts import render
 
-def store(request):
-	context = {}
-	return render(request, 'tools/store.html', context)
+from django.contrib.auth.models import User, Group
+from rest_framework import viewsets
+from tools.serializers import ItemSerializer
+from .models import Item
+from rest_framework.response import Response
 
-def cart(request):
-	context = {}
-	return render(request, 'tools/cart.html', context)
 
-def checkout(request):
-	context = {}
-	return render(request, 'tools/checkout.html', context)
+class ItemViewSet(viewsets.ModelViewSet):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
