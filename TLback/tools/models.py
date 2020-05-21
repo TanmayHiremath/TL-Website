@@ -39,8 +39,7 @@ class Request(models.Model):
     time = models.DateTimeField()
 
     def __str__(self):
-        return self.item +' - ' + self.roll
-
+        return self.roll
 
 
 class Customer(models.Model):

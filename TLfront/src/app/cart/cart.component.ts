@@ -13,6 +13,7 @@ export class CartComponent implements OnInit {
   products = []
   customers = []
   items = []
+  requests = []
 
   constructor(private api: ApiService) { 
     
@@ -48,6 +49,14 @@ export class CartComponent implements OnInit {
       this.api.getItems().subscribe(
         data => {
           this.items = data;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+      this.api.getRequest().subscribe(
+        data => {
+          this.requests = data;
         },
         error => {
           console.log(error);
