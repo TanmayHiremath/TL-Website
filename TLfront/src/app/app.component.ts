@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
      
     setTimeout(function(){
        $("#loader").fadeOut(400)
-     },2000);
+     },400);
 
 
     });

@@ -21,6 +21,9 @@ class Item(models.Model):
     flag = models.BooleanField(default=False)
     flag_time = models.DateTimeField()
 
+    display=models.BooleanField(default=False)
+    displaylevel1=models.BooleanField(default=False)
+    displaylevel2=models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -55,8 +58,7 @@ class Order(models.Model):
 	complete = models.BooleanField(default=False)
 	transaction_id = models.CharField(max_length=100, null=True)
 
-	def __str__(self):
-		return str(self.id)
+	
 
 	@property
 	def get_cart_products(self):
