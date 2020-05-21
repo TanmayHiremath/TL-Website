@@ -21,7 +21,9 @@ from tools import views
 
 router = routers.DefaultRouter()
 router.register(r'items', views.ItemViewSet)
-router.register(r'cart', views.OrderViewSet)
+router.register(r'order', views.OrderViewSet)
+router.register(r'orderproduct', views.OrderProductViewSet)
+router.register(r'customer', views.CustomerViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

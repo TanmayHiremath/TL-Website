@@ -16,7 +16,17 @@ export class ApiService {
     {headers: this.httpHeaders});
   }
   getOrders(): Observable<any> {
-    return this.http.get(this.baseurl + '/cart/',
+    return this.http.get(this.baseurl + '/order/',
+    {headers: this.httpHeaders});
+  }
+
+  getOrderproducts(): Observable<any> {
+    return this.http.get(this.baseurl + '/orderproduct/',
+    {headers: this.httpHeaders});
+  }
+
+  getCustomer(): Observable<any> {
+    return this.http.get(this.baseurl + '/customer/',
     {headers: this.httpHeaders});
   }
 

@@ -9,7 +9,10 @@ import { ApiService } from '../api.service';
 })
 export class CartComponent implements OnInit {
 
-  orders = [{customer:'titanic'}]
+  orders = []
+  products = []
+  customers = []
+  items = []
 
   constructor(private api: ApiService) { 
     
@@ -25,6 +28,35 @@ export class CartComponent implements OnInit {
           console.log(error);
         }
       );
+
+      this.api.getOrderproducts().subscribe(
+        data => {
+          this.products = data;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+      this.api.getCustomer().subscribe(
+        data => {
+          this.customers = data;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+      this.api.getItems().subscribe(
+        data => {
+          this.items = data;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+      
+      
+      
+
     
   }
 
