@@ -1,3 +1,23 @@
 <p>inventory works!</p>
 
-<h2 *ngFor="let item of items">{{item.name}}</h2>
+<h2 *ngFor="let item of items" (click)="categoryClicked(item)">{{item.category}}</h2>
+
+
+<ul>
+    <div *ngFor="let item of items"><li *ngIf="item.displaylevel1" (click)="level1Clicked(item)">{{item.level1}}</li></div>
+    
+
+
+    <ul>
+        <div *ngFor="let item of items"><li *ngIf="item.displaylevel2" (click)="level2Clicked(item)">{{item.level2}}</li></div>
+        
+
+        <ul>
+            <div *ngFor="let item of items"><li *ngIf="item.display">{{item.name}}</li></div>
+            
+        </ul>
+
+    </ul>
+
+
+</ul>

@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ApiService } from './api.service';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 
@@ -24,6 +26,8 @@ import { ApiService } from './api.service';
     InventoryComponent,
     ContactComponent,
     HomeComponent,
+    CartComponent,
+    CheckoutComponent,
   ],
   imports: [
       FormsModule,
@@ -44,7 +48,8 @@ import { ApiService } from './api.service';
           {path:'events',component:EventsComponent},
           {path:'inventory',component:InventoryComponent},
           {path:'contact',component:ContactComponent},
-          
+          {path:'cart',component:CartComponent},
+          {path:'checkout',component:CheckoutComponent},
 
       ]),
       
