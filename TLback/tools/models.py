@@ -35,6 +35,7 @@ class Request(models.Model):
     quantity = models.PositiveSmallIntegerField()
     is_sent = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
+    is_issued = models.BooleanField(default=False)
     is_returned = models.BooleanField(default=False)
     time = models.DateTimeField()
 
