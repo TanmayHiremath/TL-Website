@@ -1,1 +1,6 @@
-<p>cart works!</p>
+<h2>List of movies</h2>
+<ul>
+  <li *ngFor="let order of orders">
+    <h2 >{{order.customer.name}}</h2>
+  </li>
+</ul>
