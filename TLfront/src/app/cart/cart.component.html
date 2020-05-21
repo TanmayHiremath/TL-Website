@@ -1,28 +1,4 @@
 
-<ul>
-  <li *ngFor="let order of orders" >
-   
-    <h2>{{order.transaction_id}}</h2>
-     <!-- <h2 *ngFor="let item of items" >{{item.name}}</h2>
-    -->
-    
-    <ul>
-      <div *ngFor="let product of products" >
-        <ul *ngIf="choose(order.id, product.order)">
-
-          <div *ngFor="let item of items" >
-           
-             <!-- <h2 *ngFor="let item of items" >{{item.name}}</h2>
-            -->
-            <h2 *ngIf="choose(item.id, product.item)" >{{item.name}}</h2>
-         
-          </div>
-        </ul>
-      </div>
-    </ul>
-  </li>
-</ul>
-
 
 <div  *ngFor="let order of orders" class="row">
   <div class="col-lg-12">
