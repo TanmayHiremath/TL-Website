@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import * as $ from 'jquery';
+import { AbstractControlDirective } from '@angular/forms';
 
 @Component({
   selector: 'app-inventory',
@@ -9,7 +11,8 @@ import { ApiService } from '../api.service';
 export class InventoryComponent implements OnInit {
 
   items = [{name: 'sample'}];
-
+  tabledisplay : boolean =false;
+  id_required_string:string
 
   constructor(private api:ApiService) {
    
@@ -20,13 +23,36 @@ export class InventoryComponent implements OnInit {
     this.api.getItems()
       .subscribe(data => this.items=data);
 
+    
+
+  $(document).ready(function () {
+      $("i").click(function(){
+        $(this).toggleClass("far")
+        $(this).toggleClass("fas")
+      });
+
+
+
+    });
+
+  }
+  
+
+
+  convertBool( item ){
+    if ( item.id_required == false ){
+       this.id_required_string="No"
+      }
+    else {
+       this.id_required_string = "Yes"
+      }
   }
 
 
   categoryClicked(item) {
 
     const keys= Object.keys(this.items)
-
+    this.tabledisplay=false
     for( const key of keys) {
 
       this.items[key].displaylevel2=0
@@ -47,7 +73,7 @@ export class InventoryComponent implements OnInit {
   level1Clicked(item) {
 
     const keys= Object.keys(this.items)
-
+    this.tabledisplay=false
     for( const key of keys) {
 
       this.items[key].display=0
@@ -67,7 +93,7 @@ export class InventoryComponent implements OnInit {
   level2Clicked(item) {
 
     const keys= Object.keys(this.items)
-
+    this.tabledisplay=!this.tabledisplay
     for( const key of keys) {
 
       if(this.items[key].level2 == item.level2)

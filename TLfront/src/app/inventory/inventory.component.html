@@ -1,21 +1,42 @@
 <p>inventory works!</p>
 
-<h2 *ngFor="let item of items" (click)="categoryClicked(item)">{{item.category}}</h2>
+
+
+<h2 *ngFor="let item of items" ><a (click)="categoryClicked(item)">{{item.category}}</a></h2>
 
 
 <ul>
-    <div *ngFor="let item of items"><li *ngIf="item.displaylevel1" (click)="level1Clicked(item)">{{item.level1}}</li></div>
+    <div *ngFor="let item of items"><li *ngIf="item.displaylevel1" ><a (click)="level1Clicked(item)">{{item.level1}}</a></li></div>
     
 
 
     <ul>
-        <div *ngFor="let item of items"><li *ngIf="item.displaylevel2" (click)="level2Clicked(item)">{{item.level2}}</li></div>
-        
+        <div *ngFor="let item of items"><li *ngIf="item.displaylevel2" ><a (click)="level2Clicked(item)">{{item.level2}}</a></li></div>
+        <table class="table table-striped"  *ngIf="tabledisplay">
+        <thead>
+            <tr>
+              <th>Item Name</th>
+              <th>Id Required To Issue</th>
+              <th>Notify when available</th>
+              <th>Add to cart</th>
+              <th>Damaged items</th>
+              <th>Flag item</th>
+            </tr>
+          </thead>
 
-        <ul>
-            <div *ngFor="let item of items"><li *ngIf="item.display">{{item.name}}</li></div>
+        <tbody>
+            <tr *ngFor="let item of items">
+                <td *ngIf="item.display"><a >{{item.name}}</a></td>
+                <td *ngIf="item.display"><a >{{item.id_required}}</a></td>
+                <td *ngIf="item.display"><i class="far fa-bell"></i></td>
+                <td *ngIf="item.display"><i class="fas fa-shopping-cart"></i></td>
+                <td *ngIf="item.display"><a>Report Damage</a></td>
+                <td *ngIf="item.display"><i class="far fa-flag"></i></td>
             
-        </ul>
+            </tr>
+            
+        </tbody>
+    </table>
 
     </ul>
 
