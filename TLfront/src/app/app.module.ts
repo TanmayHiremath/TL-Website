@@ -12,6 +12,9 @@ import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ApiService } from './api.service';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 
@@ -23,6 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     InventoryComponent,
     ContactComponent,
     HomeComponent,
+    CartComponent,
+    CheckoutComponent,
   ],
   imports: [
       FormsModule,
@@ -43,7 +48,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
           {path:'events',component:EventsComponent},
           {path:'inventory',component:InventoryComponent},
           {path:'contact',component:ContactComponent},
-          { path:'**',   redirectTo: '/home' }, 
+          {path:'cart',component:CartComponent},
+          {path:'checkout',component:CheckoutComponent},
 
       ]),
       
@@ -51,7 +57,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       
       ///////////////////////////////////////////////////////
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
