@@ -60,4 +60,15 @@ export class CartComponent implements OnInit {
     
   }
 
+
+  choose(a, b){
+
+    if(a == b)
+      return true
+
+      else
+      return false
+
+  }
+
 }
