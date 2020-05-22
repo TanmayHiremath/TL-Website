@@ -94,6 +94,7 @@ export class CartComponent implements OnInit {
       if((this.requests[key].is_approved == true) && (this.requests[key].is_issued == true) && !(this.requests[key].is_sent == true) &&!(this.requests[key].is_returned == true) )
 
           this.total_items+= this.requests[key].quantity
+          
       
     }
     
