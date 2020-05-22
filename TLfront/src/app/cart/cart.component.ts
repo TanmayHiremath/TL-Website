@@ -84,23 +84,26 @@ export class CartComponent implements OnInit {
   }
 
  
-      
+  total(roll) {
 
-        const keys= Object.keys(this.requests)
-        
-        for( let key of keys) {
-    
-         
-    
-          if(this.requests[key].is_approved == true)
+    const keys= Object.keys(this.requests)
+    for( const key of keys) {
+
+     
+
+      if((this.requests[key].is_approved == true) && (this.requests[key].is_issued == true) && !(this.requests[key].is_sent == true) &&!(this.requests[key].is_returned == true) )
+
           this.total_items+= this.requests[key].quantity
+      
+    }
     
-          
-    
+
+  }  
+
+      
         
 
-    }
-
+    
 
 
 

@@ -1,5 +1,5 @@
 
-
+<!-- 
 <div  *ngFor="let order of orders" class="row">
   <div class="col-lg-12">
     <div class="box-element">
@@ -51,7 +51,7 @@
 
 <br><br><br><br><br>
 <h1>sample with request class</h1>
-<br><br><br><br>
+<br><br><br><br> -->
 
 
 <div  class="row">
@@ -64,7 +64,7 @@
       <br>
       <table class="table">
         <tr>
-          <th><h5>Items: <strong> </strong></h5></th>
+          <th><h5 >Items: <strong> {{total(1)}}  {{total_items}} </strong></h5></th>
           <th>
             <a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
           </th>
