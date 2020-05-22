@@ -17,6 +17,7 @@ export class CartComponent implements OnInit {
   items = []
   requests = []
   total_items=0
+  
 
   constructor(private api: ApiService) { 
     
@@ -82,20 +83,44 @@ export class CartComponent implements OnInit {
  
   total(roll) {
 
+
+//     var i;
+//   for (i = 0; i < this.requests.length; i+=1) {
+  
+//     if( this.requests[i].is_sent == false){
+//       this.total_items+= this.requests[i].quantity
+  
+//       console.log(this.total_items)
+//       console.log(this.requests[i].quantity)
+      
+//        console.log(this.requests.length)
+      
+//       console.log("this.requests[1].quantity")
+//   }
+// }
+
+
+
     const keys= Object.keys(this.requests)
+    this.total_items=0
+
     for( const key of keys) {
 
      
 
-      if( this.requests[key].is_sent == false)
-
+      if( this.requests[key].is_sent == false){
           this.total_items+= this.requests[key].quantity
           
       
+         
+       }
     }
     
 
   }  
+
+
+ 
 
 
 }
