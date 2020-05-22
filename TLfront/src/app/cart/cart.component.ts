@@ -112,14 +112,8 @@ export class CartComponent implements OnInit {
           this.total_items+= this.requests[key].quantity
           
       
-          console.log("total",this.total_items)
-          console.log(this.requests[key].quantity)
-          
-          console.log(this.requests[1].quantity)
-          console.log("this.requests[1].quantity")
-      }
-      this.requests[1]
-      
+         
+       }
     }
     
 
