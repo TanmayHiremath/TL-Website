@@ -17,6 +17,7 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ApprovedComponent } from './approved/approved.component';
 import { IssuedComponent } from './issued/issued.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -32,6 +33,7 @@ import { IssuedComponent } from './issued/issued.component';
     CheckoutComponent,
     ApprovedComponent,
     IssuedComponent,
+    LoginComponent,
   ],
   imports: [
       FormsModule,
