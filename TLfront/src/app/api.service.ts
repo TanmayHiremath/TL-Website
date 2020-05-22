@@ -30,5 +30,9 @@ export class ApiService {
     {headers: this.httpHeaders});
   }
 
+  getRequest(): Observable<any> {
+    return this.http.get(this.baseurl + '/request/',
+    {headers: this.httpHeaders});
+  }
 
 }

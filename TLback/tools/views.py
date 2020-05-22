@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import *
+from .models import Item, Request, Order, OrderProduct, Customer
+
 
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
@@ -11,7 +12,6 @@ from rest_framework.response import Response
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
-
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
@@ -25,35 +25,15 @@ class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
 
+class RequestViewSet(viewsets.ModelViewSet):
+    queryset = Request.objects.all()
+    serializer_class = RequestSerializer
 
-def store(request):
-	items=Item.objects.all()
-	context = {'items':items}
-	return render(request, 'tools/store.html', context)
+class ApprovedViewSet(viewsets.ModelViewSet):
+    queryset = Request.objects.filter(is_approved=True)
+    serializer_class= RequestSerializer
 
-def cart(request):
+class IssuedViewSet(viewsets.ModelViewSet):
+    queryset = Request.objects.filter(is_issued = True, is_returned = False)
+    serializer_class= RequestSerializer
 
-	if request.user.is_authenticated:
-		customer = request.user.customer
-		order, created = Order.objects.get_or_create(customer=customer, complete=False)
-		products = order.orderproduct_set.all()
-	else:
-		#Create empty cart for now for non-logged in user
-		products = []
-		order = { 'get_cart_products':0}
-
-	context = {'products':products, 'order':order}
-	return render(request, 'tools/cart.html', context)
-
-def checkout(request):
-	if request.user.is_authenticated:
-		customer = request.user.customer
-		order, created = Order.objects.get_or_create(customer=customer, complete=False)
-		products = order.orderproduct_set.all()
-	else:
-		#Create empty cart for now for non-logged in user
-		products = []
-		order = { 'get_cart_products':0}
-
-	context = {'products':products, 'order':order}
-	return render(request, 'tools/checkout.html', context)

@@ -35,12 +35,12 @@ class Request(models.Model):
     quantity = models.PositiveSmallIntegerField()
     is_sent = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
+    is_issued = models.BooleanField(default=False)
     is_returned = models.BooleanField(default=False)
     time = models.DateTimeField()
 
     def __str__(self):
-        return self.item +' - ' + self.roll
-
+        return self.roll
 
 
 class Customer(models.Model):
@@ -64,7 +64,7 @@ class Order(models.Model):
 	def get_cart_products(self):
 		orderproducts = self.orderproduct_set.all()
 		total = sum([product.quantity for product in orderproducts])
-		return total 
+		return total
 
 class OrderProduct(models.Model):
 	item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True)

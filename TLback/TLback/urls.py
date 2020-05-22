@@ -17,13 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers
-from tools import views
+from tools import views,models
 
 router = routers.DefaultRouter()
 router.register(r'items', views.ItemViewSet)
 router.register(r'order', views.OrderViewSet)
 router.register(r'orderproduct', views.OrderProductViewSet)
 router.register(r'customer', views.CustomerViewSet)
+router.register(r'request', views.RequestViewSet)
+router.register(r'approved', views.ApprovedViewSet)
+router.register(r'issued', views.IssuedViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
