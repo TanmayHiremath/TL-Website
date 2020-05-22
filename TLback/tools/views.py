@@ -3,9 +3,8 @@ from .models import Item, Request, Order, OrderProduct, Customer
 
 
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets
-from tools.serializers import *
-from .models import *
+from rest_framework import viewsets, generics
+from tools.serializers import ItemSerializer, OrderSerializer, OrderProductSerializer, CustomerSerializer, RequestSerializer
 from rest_framework.response import Response
 
 
@@ -29,11 +28,18 @@ class RequestViewSet(viewsets.ModelViewSet):
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
 
-class ApprovedViewset(viewsets.ModelViewSet):
-    queryset = Request.objects.filter(is_approved=True)
+class ApprovedViewset(generics.ListAPIView):
     serializer_class= RequestSerializer
+    
+    def get_queryset(self):
+        user = self.request.user
+        return Request.objects.filter(roll=user.number, is_approved=True)
 
-class IssuedViewSet(viewsets.ModelViewSet):
+class IssuedViewSet(generics.ListAPIView):
     queryset = Request.objects.filter(is_issued = True, is_returned = False)
     serializer_class= RequestSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return Request.objects.filter(roll=user.number, is_issued = True, is_returned = False)
 
