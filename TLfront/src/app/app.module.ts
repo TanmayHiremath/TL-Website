@@ -54,8 +54,9 @@ import { IssuedComponent } from './issued/issued.component';
           {path:'contact',component:ContactComponent},
           {path:'cart',component:CartComponent},
           {path:'checkout',component:CheckoutComponent},
+          
 
-      ]),
+      ], {scrollPositionRestoration: 'enabled'}),
       
 
       
