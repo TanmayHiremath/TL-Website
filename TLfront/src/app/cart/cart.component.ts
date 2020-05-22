@@ -65,11 +65,7 @@ export class CartComponent implements OnInit {
           console.log(error);
         }
       );
-      
-      
-      
-
-    
+        
   }
 
 
@@ -91,7 +87,7 @@ export class CartComponent implements OnInit {
 
      
 
-      if((this.requests[key].is_approved == true) && (this.requests[key].is_issued == true) && !(this.requests[key].is_sent == true) &&!(this.requests[key].is_returned == true) )
+      if( this.requests[key].is_sent == false)
 
           this.total_items+= this.requests[key].quantity
           
@@ -100,13 +96,6 @@ export class CartComponent implements OnInit {
     
 
   }  
-
-      
-        
-
-    
-
-
 
 
 }

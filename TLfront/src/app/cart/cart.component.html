@@ -58,7 +58,7 @@
   <div class="col-lg-12">
     <div class="box-element">
 
-      <a  class="btn btn-outline-dark" href="{% url 'store' %}">&#x2190; Continue Shopping</a>
+      <a  class="btn btn-outline-dark" routerLink="../inventory">&#x2190; Continue Shopping</a>
 
       <br>
       <br>
@@ -82,15 +82,15 @@
         <div style="flex:1"><strong>Quantity</strong></div>
       </div>
      <div *ngFor="let request of requests">
-      <div  *ngIf="request.is_issued && request.is_approved && !(request.is_sent) &&!(request.is_returned) " class="cart-row">
+      <div  *ngIf=" !(request.is_sent)  " class="cart-row">
         <div   style="flex:2"><img class="row-image" src="#"></div>
         <div   style="flex:2"><p>{{request.roll}}</p></div>
         <div style="flex:1">
           <p class="quantity">{{request.quantity}}</p>
           <div class="quantity">
-            <img class="chg-quantity" src="{% static  'images/arrow-up.png' %}">
+            <img class="chg-quantity" src="">
         
-            <img class="chg-quantity" src="{% static  'images/arrow-down.png' %}">
+            <img class="chg-quantity" src="">
           </div>
         </div>
         </div>
