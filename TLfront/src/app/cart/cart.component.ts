@@ -65,11 +65,7 @@ export class CartComponent implements OnInit {
           console.log(error);
         }
       );
-      
-      
-      
-
-    
+        
   }
 
 
@@ -99,13 +95,6 @@ export class CartComponent implements OnInit {
     
 
   }  
-
-      
-        
-
-    
-
-
 
 
 }
