@@ -49,8 +49,9 @@ import { LoginComponent } from './login/login.component';
       RouterModule.forRoot([
 
           {path:'home',component:HomeComponent},
-          
+          {path:'approved',component:ApprovedComponent},
           {path:'about',component:AboutComponent},
+          {path:'issued',component:IssuedComponent},
           {path:'events',component:EventsComponent},
           {path:'inventory',component:InventoryComponent},
           {path:'contact',component:ContactComponent},
