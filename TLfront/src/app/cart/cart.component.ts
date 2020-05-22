@@ -110,6 +110,7 @@ export class CartComponent implements OnInit {
 
       if( this.requests[key].is_sent == false){
           this.total_items+= this.requests[key].quantity
+          
       
           console.log("total",this.total_items)
           console.log(this.requests[key].quantity)
