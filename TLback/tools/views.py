@@ -29,7 +29,7 @@ class RequestViewSet(viewsets.ModelViewSet):
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
 
-class ApprovedViewset(viewsets.ModelViewSet):
+class ApprovedViewSet(viewsets.ModelViewSet):
     queryset = Request.objects.filter(is_approved=True)
     serializer_class= RequestSerializer
 
