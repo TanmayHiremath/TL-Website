@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ApiService } from './api.service';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { ApprovedComponent } from './approved/approved.component';
+import { IssuedComponent } from './issued/issued.component';
 
 
 
@@ -28,6 +30,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     HomeComponent,
     CartComponent,
     CheckoutComponent,
+    ApprovedComponent,
+    IssuedComponent,
   ],
   imports: [
       FormsModule,
