@@ -82,7 +82,7 @@
         <div style="flex:1"><strong>Quantity</strong></div>
       </div>
      <div *ngFor="let request of requests">
-      <div  *ngIf="request.is_issued && request.is_approved && !(request.is_sent) &&!(request.is_returned) " class="cart-row">
+      <div  *ngIf=" !(request.is_sent)  " class="cart-row">
         <div   style="flex:2"><img class="row-image" src="#"></div>
         <div   style="flex:2"><p>{{request.roll}}</p></div>
         <div style="flex:1">
