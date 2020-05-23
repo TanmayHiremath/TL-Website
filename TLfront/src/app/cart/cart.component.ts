@@ -15,7 +15,7 @@ export class CartComponent implements OnInit {
   products = []
   customers = []
   items = []
-  requests = []
+  requests: [{ id: '-1',roll:'0',quantity:'0',time:'0', item: '0' }];
   total_items=0
   
 
@@ -132,15 +132,16 @@ export class CartComponent implements OnInit {
   
     if( this.requests[i].is_sent == false)
     {
-      
-      this.api.updateRequest().subscribe(
+      this.requests[i].is_sent == true
+      this.api.updateRequest(this.requests[i]).subscribe(
         data => {
-          this.getRequest();
+          console.log(this.requests[i].is_sent)
         },
         error => {
           console.log(error);
         }
       );
+
     }
   }
 
