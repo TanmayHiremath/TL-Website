@@ -14,7 +14,7 @@ export class CartComponent implements OnInit {
   orders = []
   products = []
   customers = []
-  items = []
+  items = [{}]
   requests = []
   total_items=0
   
@@ -42,7 +42,7 @@ export class CartComponent implements OnInit {
           console.log(error);
         }
       );
-      this.api.getCustomer().subscribe(
+      this.api.getCustomers().subscribe(
         data => {
           this.customers = data;
         },
@@ -58,7 +58,7 @@ export class CartComponent implements OnInit {
           console.log(error);
         }
       );
-      this.api.getRequest().subscribe(
+      this.api.getRequests().subscribe(
         data => {
           this.requests = data;
         },
