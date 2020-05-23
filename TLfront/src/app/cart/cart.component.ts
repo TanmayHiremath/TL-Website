@@ -123,29 +123,32 @@ export class CartComponent implements OnInit {
   }
 
 
-  updateRequest() {
+  // updateRequest() {
 
 
-    var i;
-    for (i = 0; i < this.requests.length; i += 1) {
+  // var i;
+  // for (i = 0; i < this.requests.length; i+=1) 
+  // {
+  
+  //   if( this.requests[i].is_sent == false)
+  //   {
+  //     this.requests[i].is_sent == true
+  //     this.api.updateRequest(this.requests[i]).subscribe(
+  //       data => {
+  //         console.log(this.requests[i].is_sent)
+  //       },
+  //       error => {
+  //         console.log(error);
+  //       }
+  //     );
 
-      if (this.requests[i].is_sent == false) {
-
-        this.api.updateRequest(this.requests[i]).subscribe(
-          data => {
-            console.log(data)
-          },
-          error => {
-            console.log(error);
-          }
-        );
-      }
-    }
+  //   }
+  // }
 
 
 
-
-  }
+    
+  // }
 
 
 }
