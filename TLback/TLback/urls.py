@@ -21,10 +21,10 @@ from tools import views,models
 
 router = routers.DefaultRouter()
 router.register(r'items', views.ItemViewSet)
-router.register(r'order', views.OrderViewSet)
+router.register(r'orders', views.OrderViewSet)
 router.register(r'orderproduct', views.OrderProductViewSet)
-router.register(r'customer', views.CustomerViewSet)
-router.register(r'request', views.RequestViewSet)
+router.register(r'customers', views.CustomerViewSet)
+router.register(r'requests', views.RequestViewSet)
 router.register(r'approved', views.ApprovedViewSet)
 router.register(r'issued', views.IssuedViewSet)
 
