@@ -14,12 +14,13 @@ export class CartComponent implements OnInit {
   orders = []
   products = []
   customers = []
-  items = [{}]
-  requests = []
+  items = []
+  requests
   total_items = 0
 
 
   constructor(private api: ApiService) {
+    this.requests =[{ id: -1, item: -1, roll: 0,quantity:1 }]
 
   }
 
@@ -110,6 +111,7 @@ export class CartComponent implements OnInit {
 
       if (this.requests[key].is_sent == false) {
         this.total_items += this.requests[key].quantity
+        //  console.log(this.requests[key].id, "hi")
 
 
 
@@ -123,32 +125,32 @@ export class CartComponent implements OnInit {
   }
 
 
-  // updateRequest() {
+  updateRequest() {
 
 
-  // var i;
-  // for (i = 0; i < this.requests.length; i+=1) 
-  // {
+  var i;
+  for (i = 0; i < this.requests.length; i+=1) 
+  {
   
-  //   if( this.requests[i].is_sent == false)
-  //   {
-  //     this.requests[i].is_sent == true
-  //     this.api.updateRequest(this.requests[i]).subscribe(
-  //       data => {
-  //         console.log(this.requests[i].is_sent)
-  //       },
-  //       error => {
-  //         console.log(error);
-  //       }
-  //     );
+    if( this.requests[i].is_sent == false)
+    {
+      this.requests[i].is_sent = true;
+      this.api.updateRequest(this.requests[i]).subscribe(
+        data => {
+          console.log(data)
+        },
+        error => {
+          console.log(error);
+        }
+      );
 
-  //   }
-  // }
+    }
+  }
 
 
 
     
-  // }
+  }
 
 
 }
