@@ -42,7 +42,7 @@ export class ApprovedComponent implements OnInit {
           console.log(error);
         }
       );
-      this.api.getCustomer().subscribe(
+      this.api.getCustomers().subscribe(
         data => {
           this.customers = data;
         },
@@ -58,7 +58,7 @@ export class ApprovedComponent implements OnInit {
           console.log(error);
         }
       );
-      this.api.getRequest().subscribe(
+      this.api.getRequests().subscribe(
         data => {
           this.requests = data;
         },
