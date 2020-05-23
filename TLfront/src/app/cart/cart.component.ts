@@ -15,7 +15,7 @@ export class CartComponent implements OnInit {
   products = []
   customers = []
   items = []
-  requests: [{ id: '-1',roll:'0',quantity:'0',time:'0', item: '0' }];
+  requests: [];
   total_items=0
   
 
@@ -42,7 +42,7 @@ export class CartComponent implements OnInit {
           console.log(error);
         }
       );
-      this.api.getCustomer().subscribe(
+      this.api.getCustomers().subscribe(
         data => {
           this.customers = data;
         },
@@ -58,7 +58,7 @@ export class CartComponent implements OnInit {
           console.log(error);
         }
       );
-      this.api.getRequest().subscribe(
+      this.api.getRequests().subscribe(
         data => {
           this.requests = data;
         },
@@ -123,32 +123,32 @@ export class CartComponent implements OnInit {
   }  
 
 
-  updateRequest() {
+  // updateRequest() {
 
 
-  var i;
-  for (i = 0; i < this.requests.length; i+=1) 
-  {
+  // var i;
+  // for (i = 0; i < this.requests.length; i+=1) 
+  // {
   
-    if( this.requests[i].is_sent == false)
-    {
-      this.requests[i].is_sent == true
-      this.api.updateRequest(this.requests[i]).subscribe(
-        data => {
-          console.log(this.requests[i].is_sent)
-        },
-        error => {
-          console.log(error);
-        }
-      );
+  //   if( this.requests[i].is_sent == false)
+  //   {
+  //     this.requests[i].is_sent == true
+  //     this.api.updateRequest(this.requests[i]).subscribe(
+  //       data => {
+  //         console.log(this.requests[i].is_sent)
+  //       },
+  //       error => {
+  //         console.log(error);
+  //       }
+  //     );
 
-    }
-  }
+  //   }
+  // }
 
 
 
     
-  }
+  // }
 
 
 }
