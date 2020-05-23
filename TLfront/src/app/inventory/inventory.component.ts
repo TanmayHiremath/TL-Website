@@ -19,7 +19,7 @@ export class InventoryComponent implements OnInit {
 
   constructor(private api: ApiService) {
     this.GetItems();
-    this.newRequest = { id: -1, item: -1, roll: 0,quantity:1, time: 0 }
+    this.newRequest = { id: -1, item: -1, roll: 0,quantity:1 }
   }
 
   ngOnInit(): void {

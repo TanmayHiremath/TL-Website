@@ -8,5 +8,5 @@ export interface request_interface {
     is_approved : boolean
     is_issued : boolean
     is_returned : boolean
-    time :any
+    
 }

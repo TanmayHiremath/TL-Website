@@ -23,8 +23,8 @@ export class ApiService {
       { headers: this.httpHeaders });
   }
   createRequest(x): Observable<any> {
-    const body = { item:x.item,quantity:x.quantity,roll:x.roll,time:x.time};
-    return this.http.post<any>(this.baseurl + '/requests/' ,body,
+    const body = { item: x.item, quantity: x.quantity, roll: x.roll };
+    return this.http.post<any>(this.baseurl + '/requests/', body,
       { headers: this.httpHeaders });
   }
 
@@ -76,9 +76,9 @@ export class ApiService {
 
 
   updateRequest(req): Observable<any> {
-    const body = {is_sent: req.is_sent };
+    const body = { is_sent: req.is_sent };
     return this.http.put(this.baseurl + '/request/' + req.id + '/', body,
-    {headers: this.httpHeaders});
+      { headers: this.httpHeaders });
   }
 
 }
