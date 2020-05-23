@@ -37,7 +37,7 @@ class Request(models.Model):
     is_approved = models.BooleanField(default=False)
     is_issued = models.BooleanField(default=False)
     is_returned = models.BooleanField(default=False)
-    time =models.IntegerField()
+    
 
     def __str__(self):
         return self.roll
