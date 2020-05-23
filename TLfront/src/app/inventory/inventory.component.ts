@@ -10,23 +10,25 @@ import { AbstractControlDirective } from '@angular/forms';
 })
 export class InventoryComponent implements OnInit {
 
-  items = [{name: 'sample'}];
-  tabledisplay : boolean =false;
-  id_required_string:string
+  items = [{}];
+  tabledisplay: boolean = false;
+  id_required_string: string
+  requests: [{ id: '' }];
+  newRequest
+  displaycartbtn:boolean=true
 
-  constructor(private api:ApiService) {
-   
-   }
+  constructor(private api: ApiService) {
+    this.GetItems();
+    this.newRequest = { id: -1, item: -1, roll: 0,quantity:1 }
+  }
 
   ngOnInit(): void {
 
-    this.api.getItems()
-      .subscribe(data => this.items=data);
 
-    
 
-  $(document).ready(function () {
-      $("i").click(function(){
+
+    $(document).ready(function () {
+      $("i").click(function () {
         $(this).toggleClass("far")
         $(this).toggleClass("fas")
       });
@@ -36,74 +38,107 @@ export class InventoryComponent implements OnInit {
     });
 
   }
+
+
+  GetItems = () => {
+    this.api.getItems().subscribe(
+      data => {
+        this.items = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+
+  CreateRequest = (item) => {
+    
+
+    this.newRequest.item = item.id
+    
+
+    this.api.createRequest(this.newRequest).subscribe(
+      data => {
+        console.log(data)
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+  }
+
+
+
+
+  convertBool(item) {
+    if (item.id_required == false) {
+      this.id_required_string = "No"
+    }
+    else {
+      this.id_required_string = "Yes"
+    }
+  }
+
+
+  categoryClicked(clickedItem) {
+
+
+    this.tabledisplay = false
+
+    this.items.forEach(iterate)
+    function iterate(item) {
+
+      item.displaylevel2 = 0
+      item.display = 0
+
+      if (item.category == clickedItem.category) { item.displaylevel1 = 1 }
+
+      else { item.displaylevel1 = 0 }
+
+    }
+  }
+
+
+  level1Clicked(clickedItem) {
+
+    this.tabledisplay = false
+
+    this.items.forEach(iterate)
+    function iterate(item) {
+
+      item.display = 0
+
+
+      if (item.displaylevel1 == clickedItem.displaylevel1) { item.displaylevel2 = !item.displaylevel2 }
+
+      else { item.displaylevel2 = 0 }
+
+    }
+  }
+
+
+  level2Clicked(clickedItem) {
+
+    this.tabledisplay = !this.tabledisplay
+
+    this.items.forEach(iterate)
+    function iterate(item) {
+
+      if (item.displaylevel2 == clickedItem.displaylevel2) { item.display = !item.display }
+
+      else { item.display = 0 }
+
+    }
+
   
 
-
-  convertBool( item ){
-    if ( item.id_required == false ){
-       this.id_required_string="No"
-      }
-    else {
-       this.id_required_string = "Yes"
-      }
+  }
+  
+  cartClicked() {
+    this.displaycartbtn=false;
   }
 
 
-  categoryClicked(item) {
-
-    const keys= Object.keys(this.items)
-    this.tabledisplay=false
-    for( const key of keys) {
-
-      this.items[key].displaylevel2=0
-      this.items[key].display=0
-
-      if(this.items[key].category == item.category)
-      {this.items[key].displaylevel1=1}
-
-      else
-      {this.items[key].displaylevel1=0}
-
-    }
-    
-
-  }
-
-
-  level1Clicked(item) {
-
-    const keys= Object.keys(this.items)
-    this.tabledisplay=false
-    for( const key of keys) {
-
-      this.items[key].display=0
-
-      if(this.items[key].level1 == item.level1)
-      {this.items[key].displaylevel2=!this.items[key].displaylevel2}
-
-      else
-      {this.items[key].displaylevel2=0}
-
-    }
-    
-
-  }  
-
-
-  level2Clicked(item) {
-
-    const keys= Object.keys(this.items)
-    this.tabledisplay=!this.tabledisplay
-    for( const key of keys) {
-
-      if(this.items[key].level2 == item.level2)
-      {this.items[key].display=!this.items[key].display}
-
-      else
-      {this.items[key].display=0}
-
-    }
-    
-
-  } 
 }
