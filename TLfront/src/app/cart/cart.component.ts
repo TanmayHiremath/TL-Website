@@ -117,6 +117,18 @@ export class CartComponent implements OnInit {
     }
     
 
+
+  updateRequest (){
+    this.api.updateRequest(this.selectedMovie).subscribe(
+      data => {
+        this.getRequest();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
   }  
 
 
