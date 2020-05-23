@@ -11,7 +11,6 @@ export class AppComponent implements OnInit {
   title = 'TLfront';
   year: string;
   flag;
-
   constructor() {
 
     this.flag=0;
@@ -48,6 +47,9 @@ export class AppComponent implements OnInit {
        $("#loader").fadeOut(400)
      },400);
 
+     $("#uncheck").click(function(){
+        $("#nav-check").prop("checked", false);
+      });
 
     });
 
