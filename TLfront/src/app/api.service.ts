@@ -75,9 +75,9 @@ export class ApiService {
 
 
 
-  updateRequest(movie): Observable<any> {
-    const body = {title: movie.title , desc: movie.desc, year: movie.year };
-    return this.http.put(this.baseurl + '/movies/' + movie.id + '/', body,
+  updateRequest(req): Observable<any> {
+    const body = {is_sent: req.is_sent };
+    return this.http.put(this.baseurl + '/request/' + req.id + '/', body,
     {headers: this.httpHeaders});
   }
 
