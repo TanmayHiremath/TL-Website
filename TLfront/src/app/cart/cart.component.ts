@@ -19,7 +19,7 @@ export class CartComponent implements OnInit {
   items = []
   requests
   total_items = 0
-  myVar=true;
+  myVar;
 
 
   constructor(private api: ApiService) {
@@ -131,16 +131,16 @@ export class CartComponent implements OnInit {
   updateRequest()
   {
     
+    
 
-
-
+    
     var i;
     for (i = 0; i < this.requests.length; i+=1) 
       {
-        if( this.requests[i].is_sent == false)
+        if( (this.requests[i].is_sent == false) && (this.requests[i].quantity<=this.items[this.requests[i].item-1].quantity))
           {
 
-            
+            this.myVar=true
             this.requests[i].is_sent = true;
             this.api.updateRequest(this.requests[i]).subscribe
               (
@@ -155,14 +155,10 @@ export class CartComponent implements OnInit {
               );
           }
 
+          else{}
 
-          if(this.requests[i].quantity>this.items[this.requests[i].id].quantity){
-            this.myVar=false;
-            }
-          else{
-            this.myVar=true;
-          }
           console.log(this.myVar)
+          
       }
   }
 

@@ -66,8 +66,7 @@
         <tr>
           <th><h5 >Items: <strong> {{total(1)}}  {{total_items}} </strong></h5></th>
           <th>
-            <a (click)="updateRequest()">check</a>
-            <a  style="float:right; margin:5px;" class="btn btn-success"  
+            <a  style="float:right; margin:5px;" class="btn btn-success" (click)="updateRequest()" 
             [routerLink]= '[myVar ? "../checkout" : "../inventory"]' >Checkout</a>
           </th>
         </tr>
