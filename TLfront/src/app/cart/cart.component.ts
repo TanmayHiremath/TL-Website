@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 
 import * as $ from 'jquery';
+import { RouterLink } from '@angular/router';
+import { CheckoutComponent } from '../checkout/checkout.component';
 
 @Component({
   selector: 'app-cart',
@@ -17,6 +19,7 @@ export class CartComponent implements OnInit {
   items = []
   requests
   total_items = 0
+  myVar=true;
 
 
   constructor(private api: ApiService) {
@@ -127,11 +130,17 @@ export class CartComponent implements OnInit {
 
   updateRequest()
   {
+    
+
+
+
     var i;
     for (i = 0; i < this.requests.length; i+=1) 
       {
         if( this.requests[i].is_sent == false)
           {
+
+            
             this.requests[i].is_sent = true;
             this.api.updateRequest(this.requests[i]).subscribe
               (
@@ -145,6 +154,15 @@ export class CartComponent implements OnInit {
                   }
               );
           }
+
+
+          if(this.requests[i].quantity>this.items[this.requests[i].id].quantity){
+            this.myVar=false;
+            }
+          else{
+            this.myVar=true;
+          }
+          console.log(this.myVar)
       }
   }
 
