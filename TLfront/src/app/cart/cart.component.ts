@@ -125,32 +125,85 @@ export class CartComponent implements OnInit {
   }
 
 
-  updateRequest() {
-
-
-  var i;
-  for (i = 0; i < this.requests.length; i+=1) 
+  updateRequest()
   {
-  
-    if( this.requests[i].is_sent == false)
-    {
-      this.requests[i].is_sent = true;
-      this.api.updateRequest(this.requests[i]).subscribe(
-        data => {
-          console.log(data)
-        },
-        error => {
-          console.log(error);
-        }
-      );
-
-    }
+    var i;
+    for (i = 0; i < this.requests.length; i+=1) 
+      {
+        if( this.requests[i].is_sent == false)
+          {
+            this.requests[i].is_sent = true;
+            this.api.updateRequest(this.requests[i]).subscribe
+              (
+                data => 
+                  {
+                    console.log(data)
+                  },
+                error => 
+                  {
+                    console.log(error);
+                  }
+              );
+          }
+      }
   }
 
-
-
+  updateQuantityUp(request)
+  {
+    if( request.quantity < this.items[request.item-1].quantity)
+      {
+        request.quantity++;
+      }
+    this.api.updateRequest(request).subscribe
+      (
+        data => 
+          {
+            console.log(data)
+          },
+        error => 
+          {
+            console.log(error);
+          }
+      );
     
   }
 
+  updateQuantityDown(request)
+  {
+    if( request.quantity > 0)
+      {
+        request.quantity--;
+      }
+    this.api.updateRequest(request).subscribe
+      (
+        data => 
+          {
+            console.log(request.item, this.items[request.item-1])
+          },
+        error => 
+          {
+            console.log(error);
+          }
+      );
+  }
+
+
+
+
+  deleteRequest(request)
+  {
+    this.requests.splice(request.id -1, 1)
+    this.api.deleteRequest(this.requests).subscribe
+      (
+        data => 
+          {
+            console.log(data)
+          },
+        error => 
+          {
+            console.log(error);
+          }
+      );
+  }
 
 }

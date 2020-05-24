@@ -86,11 +86,12 @@
         <div   style="flex:2"><img class="row-image" src="#"></div>
         <div   style="flex:2"><p>{{request.roll}}</p></div>
         <div style="flex:1">
+          <a class="chg-quantity fas fa-angle-up" style='font-size:36px' (click)="updateQuantityUp(request)"></a>
           <p class="quantity">{{request.quantity}}</p>
+          <a class="chg-quantity fas fa-angle-down" style='font-size:36px' (click)="updateQuantityDown(request)"></a>
+          <a class="chg-quantity fas fa-trash" style='font-size:36px' (click)="deleteRequest(request)"></a>
           <div class="quantity">
-            <img class="chg-quantity" src="">
-        
-            <img class="chg-quantity" src="">
+            
           </div>
         </div>
         </div>
