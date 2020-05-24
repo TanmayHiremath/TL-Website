@@ -19,6 +19,7 @@ export class CartComponent implements OnInit {
   items = []
   requests
   total_items = 0
+  myVar=0
  
 
   constructor(private api: ApiService,
@@ -28,6 +29,7 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
 
     this.api.getOrders().subscribe(
       data => {
@@ -132,16 +134,15 @@ export class CartComponent implements OnInit {
   {
     
     
-
+    console.log(this.myVar)
     
     var i;
     for (i = 0; i < this.requests.length; i+=1) 
       {
-        if( (this.requests[i].is_sent == false) && (this.requests[i].quantity<=this.items[this.requests[i].item-1].quantity))
+        if( (this.requests[i].is_sent == false) && (this.requests[i].quantity<=this.items[this.requests[i].item-1].quantity) )
           {
 
-            console.log("if")
-            this.router.navigate(['./checkout'])
+            this.myVar=1;
             this.requests[i].is_sent = true;
             this.api.updateRequest(this.requests[i]).subscribe
               (
@@ -155,13 +156,15 @@ export class CartComponent implements OnInit {
                   }
               );
           }
-
-          else{this.router.navigate(['./inventory'])
-        console.log("else")}
-
-          
           
       }
+
+      if(this.myVar==0){
+      this.router.navigate(['./inventory'])}
+     
+      else  {this.router.navigate(['./checkout'])}
+      
+      
   }
 
   updateQuantityUp(request)
