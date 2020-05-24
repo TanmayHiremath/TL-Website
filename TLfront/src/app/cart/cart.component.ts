@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 
 import * as $ from 'jquery';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { CheckoutComponent } from '../checkout/checkout.component';
 
 @Component({
@@ -19,10 +19,10 @@ export class CartComponent implements OnInit {
   items = []
   requests
   total_items = 0
-  myVar;
+ 
 
-
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService,
+    private router: Router) {
     this.requests =[{ id: -1, item: -1, roll: 0,quantity:1 }]
 
   }
@@ -140,7 +140,8 @@ export class CartComponent implements OnInit {
         if( (this.requests[i].is_sent == false) && (this.requests[i].quantity<=this.items[this.requests[i].item-1].quantity))
           {
 
-            this.myVar=true
+            console.log("if")
+            this.router.navigate(['./checkout'])
             this.requests[i].is_sent = true;
             this.api.updateRequest(this.requests[i]).subscribe
               (
@@ -155,9 +156,10 @@ export class CartComponent implements OnInit {
               );
           }
 
-          else{}
+          else{this.router.navigate(['./inventory'])
+        console.log("else")}
 
-          console.log(this.myVar)
+          
           
       }
   }
