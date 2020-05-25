@@ -228,4 +228,32 @@ export class CartComponent implements OnInit {
       );
   }
 
+  deleteAllRequest()
+  {
+
+    const keys = Object.keys(this.requests)
+    this.total_items = 0
+
+    for (const key of keys) {
+
+
+
+      if (this.requests[key].is_sent == false) {
+        
+    this.requests.splice(this.requests[key].id -1, 1)
+    this.api.deleteRequest(this.requests[key].id).subscribe
+      (
+        data => 
+          {
+            this.getReq();
+          },
+        error => 
+          {
+            console.log(error);
+          }
+      );
+  }
+}
+}
+
 }
