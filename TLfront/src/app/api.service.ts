@@ -81,9 +81,8 @@ export class ApiService {
       { headers: this.httpHeaders });
   }
 
-  deleteRequest(req): Observable<any> {
-    const body = { item: req.item, quantity: req.quantity, roll: req.roll ,is_sent:req.is_sent };
-    return this.http.put<request_interface>(this.baseurl + '/requests/', body,
+  deleteRequest(id): Observable<any> {
+    return this.http.delete<request_interface>(this.baseurl + '/requests/'+ id + '/',
       { headers: this.httpHeaders });
   }
   

@@ -24,6 +24,7 @@ export class CartComponent implements OnInit {
 
   constructor(private api: ApiService,
     private router: Router) {
+    this.getReq();
     this.requests =[{ id: -1, item: -1, roll: 0,quantity:1 }]
 
   }
@@ -64,6 +65,11 @@ export class CartComponent implements OnInit {
         console.log(error);
       }
     );
+
+  
+  }
+
+  getReq(){
     this.api.getRequests().subscribe(
       data => {
         this.requests = data;
@@ -72,10 +78,7 @@ export class CartComponent implements OnInit {
         console.log(error);
       }
     );
-
-  }
-
-
+}
   choose(a, b) {
 
     if (a == b)
@@ -212,11 +215,11 @@ export class CartComponent implements OnInit {
   deleteRequest(request)
   {
     this.requests.splice(request.id -1, 1)
-    this.api.deleteRequest(this.requests).subscribe
+    this.api.deleteRequest(request.id).subscribe
       (
         data => 
           {
-            console.log(data)
+            this.getReq();
           },
         error => 
           {
