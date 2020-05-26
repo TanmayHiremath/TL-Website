@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 declare var $:any;
-import * as custom from "src/assets/js/jquery.rcounterup.js"
-import { OwlOptions } from 'ngx-owl-carousel-o';
+
 
 
 declare var rCounter: any;

@@ -32,25 +32,41 @@
 
             <tbody>
                 <tr *ngFor="let item of items">
-                    <td *ngIf="item.display"><a>{{item.name}}</a></td>
+                    <td id="itemName" *ngIf="item.display"><a>{{item.name}}</a></td>
                     <td *ngIf="item.display"><a>{{item.id_required}}</a></td>
                     <td *ngIf="item.display"><a><i class="far fa-bell"></i></a></td>
                     <td *ngIf="item.display" (click)="cartClicked()">
                         <div *ngIf="displaycartbtn ;then thenblock;else elseblock"></div>
 
                         <ng-template #thenblock>
-                            <a><i class="fas fa-shopping-cart"></i></a></ng-template>
+                            <a id="addToCart"><i class="fas fa-shopping-cart"></i></a></ng-template>
 
                         <ng-template #elseblock>
-                            <div><span>Quantity</span><button [disabled]="newRequest.quantity<=1"
+                            <div id="specifyQuantity"><span>Quantity&nbsp;</span><button [disabled]="newRequest.quantity<=1"
                                     (click)="decrementQuantity()">-</button><input type="text"
                                     [(ngModel)]="newRequest.quantity"><button
-                                    (click)="incrementQuantity()">+</button><span><button
-                                        (click)="CreateRequest(item);">Add</button></span></div>
+                                    (click)="incrementQuantity()">+</button><span><button title="Add to Cart"
+                                        (click)="CreateRequest(item);showAddedToCart();">Add</button></span></div>
                         </ng-template>
+                        <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
+                                    class="fas fa-shopping-cart"></i></a></div>
                     </td>
                     <td *ngIf="item.display"><a>Report Damage</a></td>
-                    <td *ngIf="item.display"><a><i class="far fa-flag"></i></a></td>
+                    <td *ngIf="item.display"><a><i class="far fa-flag"></i></a>
+                        <div class="overlay">
+                        <div class="expanded">
+              
+                          <img src={{item.picture}} alt="Couldn't load">
+                          <p></p>
+                          <h2>{{item.name}}</h2>
+                          <br>
+                          <div>
+                            <h4>{{item.description}}</h4>
+                          </div>
+              
+                        </div>
+                      </div></td>
+
 
                 </tr>
 

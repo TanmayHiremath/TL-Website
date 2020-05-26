@@ -21,19 +21,32 @@ export class InventoryComponent implements OnInit {
     
     this.GetItems();
     this.newRequest = { id: -1, item: -1, roll: 0,quantity:1 }
+    
   }
 
   ngOnInit(): void {
 
 
-
-
     $(document).ready(function () {
+      
       $("i").click(function () {
         $(this).toggleClass("far")
         $(this).toggleClass("fas")
       });
+      
+      
+      $("itemName").click(function () {
+        $(".overlay").slideDown(400)
 
+      });
+
+
+      $(".overlay").click(function () {
+        alert("hhhhh");
+        $(".overlay").slideUp(400)
+      });
+
+      
 
 
     });
@@ -50,6 +63,7 @@ export class InventoryComponent implements OnInit {
         console.log(error);
       }
     );
+    
   }
 
 
@@ -57,7 +71,7 @@ export class InventoryComponent implements OnInit {
     
     // this.router.navigate(['../cart'])
     this.newRequest.item = item.id
-    this.displaycartbtn=true
+    
 
     this.api.createRequest(this.newRequest).subscribe(
       data => {
@@ -84,6 +98,7 @@ export class InventoryComponent implements OnInit {
 
 
   categoryClicked(clickedItem) {
+    
 
 
     this.tabledisplay = false
@@ -150,4 +165,11 @@ export class InventoryComponent implements OnInit {
   }
 
 
+    
+  showAddedToCart() {
+    document.getElementById("addedToCart").style.display ="block";
+    
+    document.getElementById("specifyQuantity").style.display = "none";
+    document.getElementById("addToCart").style.display = "none";
+  }
 }
