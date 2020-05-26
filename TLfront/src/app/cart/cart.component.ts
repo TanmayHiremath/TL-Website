@@ -24,7 +24,7 @@ export class CartComponent implements OnInit {
 
   constructor(private api: ApiService,
     private router: Router) {
-    this.getReq();
+    
     this.requests =[{ id: -1, item: -1, roll: 0,quantity:1 }]
 
   }
