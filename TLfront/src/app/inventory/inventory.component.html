@@ -34,13 +34,23 @@
                 <tr *ngFor="let item of items">
                     <td *ngIf="item.display"><a>{{item.name}}</a></td>
                     <td *ngIf="item.display"><a>{{item.id_required}}</a></td>
-                    <td *ngIf="item.display"><i class="far fa-bell"></i></td>
+                    <td *ngIf="item.display"><a><i class="far fa-bell"></i></a></td>
                     <td *ngIf="item.display" (click)="cartClicked()">
-                        <i *ngIf="displaycartbtn" class="fas fa-shopping-cart"></i>
-                        <div *ngIf="!displaycartbtn"><span>Quantity</span><button>-</button><input type="text" [(ngModel)]="newRequest.quantity"><button>+</button><span><button (click)="CreateRequest(item)">Add</button></span></div>
+                        <div *ngIf="displaycartbtn ;then thenblock;else elseblock"></div>
+
+                        <ng-template #thenblock>
+                            <a><i class="fas fa-shopping-cart"></i></a></ng-template>
+
+                        <ng-template #elseblock>
+                            <div><span>Quantity</span><button [disabled]="newRequest.quantity<=1"
+                                    (click)="decrementQuantity()">-</button><input type="text"
+                                    [(ngModel)]="newRequest.quantity"><button
+                                    (click)="incrementQuantity()">+</button><span><button
+                                        (click)="CreateRequest(item);">Add</button></span></div>
+                        </ng-template>
                     </td>
                     <td *ngIf="item.display"><a>Report Damage</a></td>
-                    <td *ngIf="item.display"><i class="far fa-flag"></i></td>
+                    <td *ngIf="item.display"><a><i class="far fa-flag"></i></a></td>
 
                 </tr>
 

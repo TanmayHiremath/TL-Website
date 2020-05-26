@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import * as $ from 'jquery';
-import { AbstractControlDirective } from '@angular/forms';
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-inventory',
@@ -17,7 +17,8 @@ export class InventoryComponent implements OnInit {
   newRequest
   displaycartbtn:boolean=true
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService,private router :Router) {
+    
     this.GetItems();
     this.newRequest = { id: -1, item: -1, roll: 0,quantity:1 }
   }
@@ -54,9 +55,9 @@ export class InventoryComponent implements OnInit {
 
   CreateRequest = (item) => {
     
-
+    // this.router.navigate(['../cart'])
     this.newRequest.item = item.id
-    
+    this.displaycartbtn=true
 
     this.api.createRequest(this.newRequest).subscribe(
       data => {
@@ -138,6 +139,14 @@ export class InventoryComponent implements OnInit {
   
   cartClicked() {
     this.displaycartbtn=false;
+  }
+
+  incrementQuantity() {
+    this.newRequest.quantity ++;
+  }
+
+  decrementQuantity() {
+    this.newRequest.quantity --;
   }
 
 
