@@ -12,8 +12,6 @@ import * as $ from 'jquery';
 export class ApprovedComponent implements OnInit {
 
   orders = []
-  products = []
-  customers = []
   items = []
   requests = []
   total_items=0
@@ -28,23 +26,6 @@ export class ApprovedComponent implements OnInit {
       this.api.getOrders().subscribe(
         data => {
           this.orders = data;
-        },
-        error => {
-          console.log(error);
-        }
-      );
-
-      this.api.getOrderproducts().subscribe(
-        data => {
-          this.products = data;
-        },
-        error => {
-          console.log(error);
-        }
-      );
-      this.api.getCustomers().subscribe(
-        data => {
-          this.customers = data;
         },
         error => {
           console.log(error);
