@@ -3,9 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiBaseUrl: 'http://127.0.0.1:8000/api-auth/',
+  loginUrl: 'https://gymkhana.iitb.ac.in/sso/oauth/authorize/?client_id=J3M80WCuOwpUGtX1KgBMLYwYls1aZxk9LfO0KMSp&response_type=code&scope=program%20send_mail'
 };
-
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
