@@ -18,7 +18,7 @@ from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers
 from tools import views,models
-from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
 
 router = routers.DefaultRouter()
@@ -35,7 +35,8 @@ router.register(r'issued', views.IssuedViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('api-token-auth/', obtain_jwt_token),
-    path('api-token-refresh/', refresh_jwt_token),
+    path(r'api-token-auth/', obtain_jwt_token),
+    path(r'api-token-refresh/', refresh_jwt_token),
+    path(r'api-token-verify/', verify_jwt_token),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

@@ -18,9 +18,6 @@ class Item(models.Model):
     colour_code = models.CharField(max_length=10)
     notifications = models.CharField(max_length=10000)
     price = models.PositiveIntegerField()
-    flag = models.BooleanField(default=False)
-    flag_time = models.DateTimeField()
-
     display=models.BooleanField(default=False)
     displaylevel1=models.BooleanField(default=False)
     displaylevel2=models.BooleanField(default=False)
@@ -71,3 +68,13 @@ class OrderProduct(models.Model):
 	order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
 	quantity = models.IntegerField(default=0, null=True, blank=True)
 	date_added = models.DateTimeField(auto_now_add=True)
+
+class Flag(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    roll = models.CharField(max_length=20)
+    time = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        constraints = [
+        models.UniqueConstraint(fields=['item', 'roll'], name='unique flag')
+    ]
