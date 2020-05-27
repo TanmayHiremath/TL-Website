@@ -73,8 +73,4 @@ class Flag(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     roll = models.CharField(max_length=20)
     time = models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        constraints = [
-        models.UniqueConstraint(fields=['item', 'roll'], name='unique flag')
-    ]
+
