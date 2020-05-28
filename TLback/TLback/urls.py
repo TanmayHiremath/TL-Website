@@ -30,6 +30,9 @@ router.register(r'requests', views.RequestViewSet)
 router.register(r'approved', views.ApprovedViewSet)
 router.register(r'issued', views.IssuedViewSet)
 
+
+admin.site.site_header = 'Tinkerer\'s Lab Admin '
+
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [

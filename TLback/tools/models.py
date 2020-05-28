@@ -25,6 +25,11 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
+    # def save(self, *args, **kwargs):
+    # # save the value of self.timestamp into purchase_date
+    # colour_code = self.colour_code
+    # super(Item, self).save(*args, **kwargs)
+
 
 class Request(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
@@ -34,9 +39,20 @@ class Request(models.Model):
     is_approved = models.BooleanField(default=False)
     is_issued = models.BooleanField(default=False)
     is_returned = models.BooleanField(default=False)
+    colour_code = models.Value(Item.colour_code)
     
-
+    # @property
+    # def get_colour(self):
+    #     colour_code = Request.item.colour_code
+    #     return colour_code
+    
+    # @property
+    # def get_id(self):
+    #     id_required = Request.item.id_required
+    #     return id_required    
+    
     def __str__(self):
+        # self.colour_code=self.item.name
         return self.roll
 
 
