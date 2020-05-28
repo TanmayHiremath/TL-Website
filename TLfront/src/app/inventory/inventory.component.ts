@@ -54,7 +54,7 @@ export class InventoryComponent implements OnInit {
   }
 
 
-  GetItems = () => {
+  GetItems() {
     this.api.getItems().subscribe(
       data => {
         this.items = data;
@@ -67,11 +67,16 @@ export class InventoryComponent implements OnInit {
   }
 
 
-  CreateRequest = (item) => {
+  CreateRequest(item) {
     
     // this.router.navigate(['../cart'])
     this.newRequest.item = item.id
     
+    document.getElementById("addedToCart").style.display ="block";
+    
+    document.getElementById("specifyQuantity").style.display = "none";
+    document.getElementById("addToCart").style.display = "none";
+    alert("added")
 
     this.api.createRequest(this.newRequest).subscribe(
       data => {
@@ -81,6 +86,7 @@ export class InventoryComponent implements OnInit {
         console.log(error);
       }
     );
+    
 
   }
 
