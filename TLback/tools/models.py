@@ -39,7 +39,7 @@ class Request(models.Model):
     is_approved = models.BooleanField(default=False)
     is_issued = models.BooleanField(default=False)
     is_returned = models.BooleanField(default=False)
-    colour_code = models.Value(Item.colour_code)
+    colour_code = models.CharField(max_length=20,default= "green")
     
     # @property
     # def get_colour(self):
