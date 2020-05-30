@@ -14,59 +14,46 @@ import { CheckoutComponent } from '../checkout/checkout.component';
 export class CartComponent implements OnInit {
 
   orders = []
+  items = []
   products = []
   customers = []
-  items = []
-  requests
+  requests = []
   total_items = 0
   myVar=0
- 
+
 
   constructor(private api: ApiService,
-    private router: Router) {
+    private router: Router) { 
     
-    this.requests =[{ id: -1, item: -1, roll: 0,quantity:1 }]
-
   }
 
   ngOnInit(): void {
-
-
-    this.api.getOrders().subscribe(
-      data => {
-        this.orders = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
-
-    this.api.getOrderproducts().subscribe(
-      data => {
-        this.products = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
-    this.api.getCustomers().subscribe(
-      data => {
-        this.customers = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
-    this.api.getItems().subscribe(
-      data => {
-        this.items = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
-
-  
+   
+      this.api.getOrders().subscribe(
+        data => {
+          this.orders = data;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+      this.api.getItems().subscribe(
+        data => {
+          this.items = data;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+      
+      this.api.getRequests().subscribe(
+        data => {
+          this.requests = data;
+        },
+        error => {
+          console.log(error);
+        }
+      ); 
   }
 
   getReq(){
@@ -219,7 +206,7 @@ export class CartComponent implements OnInit {
       (
         data => 
           {
-            this.getReq();
+             this.getReq();
           },
         error => 
           {
@@ -245,7 +232,7 @@ export class CartComponent implements OnInit {
       (
         data => 
           {
-            this.getReq();
+             this.getReq();
           },
         error => 
           {
