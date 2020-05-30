@@ -39,7 +39,7 @@ class Request(models.Model):
     is_approved = models.BooleanField(default=False)
     is_issued = models.BooleanField(default=False)
     is_returned = models.BooleanField(default=False)
-    colour_code = models.Value(Item.colour_code)
+    colour_code = models.CharField(max_length=20,default= "green")
     
     # @property
     # def get_colour(self):
@@ -50,10 +50,17 @@ class Request(models.Model):
     # def get_id(self):
     #     id_required = Request.item.id_required
     #     return id_required    
-    
+
+    @property
+    def item_details(self):
+        return "%s %s"%(self.item.name, self.item.quantity)
+
     def __str__(self):
-        # self.colour_code=self.item.name
         return self.roll
+    
+    # def __str__(self):
+    #     # self.colour_code=self.item.name
+    #     return self.roll
 
 
 class Customer(models.Model):
