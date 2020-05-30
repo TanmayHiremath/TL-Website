@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import * as $ from 'jquery';
-import {Router} from '@angular/router'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-inventory',
@@ -15,26 +15,26 @@ export class InventoryComponent implements OnInit {
   id_required_string: string
   requests: [{ id: '' }];
   newRequest
-  displaycartbtn:boolean=true
+  displaycartbtn: boolean = true
 
-  constructor(private api: ApiService,private router :Router) {
-    
+  constructor(private api: ApiService, private router: Router) {
+
     this.GetItems();
-    this.newRequest = { id: -1, item: -1, roll: 0,quantity:1 }
-    
+    this.newRequest = { id: -1, item: -1, roll: 0, quantity: 1 }
+
   }
 
   ngOnInit(): void {
 
 
     $(document).ready(function () {
-      
+
       $("i").click(function () {
         $(this).toggleClass("far")
         $(this).toggleClass("fas")
       });
-      
-      
+
+
       $(".itemName").click(function () {
         console.log("Hi")
         //$(this).siblings(".overlay").slideDown(400)
@@ -46,7 +46,7 @@ export class InventoryComponent implements OnInit {
         $(".overlay").slideUp(400)
       });
 
-      
+
 
 
     });
@@ -63,17 +63,17 @@ export class InventoryComponent implements OnInit {
         console.log(error);
       }
     );
-    
+
   }
 
 
   CreateRequest(item) {
-    
+
     // this.router.navigate(['../cart'])
     this.newRequest.item = item.id
-    
-    document.getElementById("addedToCart").style.display ="block";
-    
+
+    document.getElementById("addedToCart").style.display = "block";
+
     document.getElementById("specifyQuantity").style.display = "none";
     document.getElementById("addToCart").style.display = "none";
     alert("added")
@@ -86,7 +86,7 @@ export class InventoryComponent implements OnInit {
         console.log(error);
       }
     );
-    
+
 
   }
 
@@ -104,7 +104,7 @@ export class InventoryComponent implements OnInit {
 
 
   categoryClicked(clickedItem) {
-    
+
 
 
     this.tabledisplay = false
@@ -154,27 +154,27 @@ export class InventoryComponent implements OnInit {
 
     }
 
-  
+
 
   }
-  
+
   cartClicked() {
-    this.displaycartbtn=false;
+    this.displaycartbtn = false;
   }
 
   incrementQuantity() {
-    this.newRequest.quantity ++;
+    this.newRequest.quantity++;
   }
 
   decrementQuantity() {
-    this.newRequest.quantity --;
+    this.newRequest.quantity--;
   }
 
 
-    
+
   showAddedToCart() {
-    document.getElementById("addedToCart").style.display ="block";
-    
+    document.getElementById("addedToCart").style.display = "block";
+
     document.getElementById("specifyQuantity").style.display = "none";
     document.getElementById("addToCart").style.display = "none";
   }

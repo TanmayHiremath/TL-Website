@@ -45,13 +45,10 @@
                         </ng-template>
 
                         <ng-template #elseblock>
-                            <div id="specifyQuantity"><span>Quantity&nbsp;</span><button
-                                    [disabled]="newRequest.quantity<=1" (click)="decrementQuantity()">-</button><input
-                                    type="text" [(ngModel)]="newRequest.quantity"><button
-                                    (click)="incrementQuantity()">+</button><span><button title="Add to Cart"
+                            <div id="specifyQuantity"><span>Quantity&nbsp;</span><button [disabled]="newRequest.quantity<=1" (click)="decrementQuantity()">-</button><input type="text" [(ngModel)]="newRequest.quantity"><button (click)="incrementQuantity()">+</button><span><button title="Add to Cart"
                                         (click)="CreateRequest(item)">Add</button></span></div>
                         </ng-template>
-                        
+
                     </td>
                     <td *ngIf="item.display"><a>Report Damage</a></td>
                     <td *ngIf="item.display"><a><i class="far fa-flag"></i></a>
