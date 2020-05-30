@@ -57,7 +57,9 @@ import { LoginComponent } from './login/login.component';
           {path:'contact',component:ContactComponent},
           {path:'cart',component:CartComponent},
           {path:'checkout',component:CheckoutComponent},
-          {path:'login',component:LoginComponent}
+          {path:'login',component:LoginComponent},
+          {path:'issued',component:IssuedComponent},
+
           
 
       ], {scrollPositionRestoration: 'enabled'}),

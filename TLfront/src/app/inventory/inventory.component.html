@@ -36,18 +36,18 @@
                     <td *ngIf="item.display"><a>{{item.id_required}}</a></td>
                     <td *ngIf="item.display"><a><i class="far fa-bell"></i></a></td>
                     <td *ngIf="item.display">
-                        <div *ngIf="displaycartbtn ;then thenblock;else elseblock"></div>
 
-                        <ng-template #thenblock>
-                            <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
-                            <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
+                        <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
+
+                        
+                        <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
                                 class="fas fa-shopping-cart"></i></a></div>
-                        </ng-template>
 
-                        <ng-template #elseblock>
-                            <div id="specifyQuantity"><span>Quantity&nbsp;</span><button [disabled]="newRequest.quantity<=1" (click)="decrementQuantity()">-</button><input type="text" [(ngModel)]="newRequest.quantity"><button (click)="incrementQuantity()">+</button><span><button title="Add to Cart"
+
+
+                        <div id="specifyQuantity"><span>Quantity&nbsp;</span><button [disabled]="newRequest.quantity<=1" (click)="decrementQuantity()">-</button><input type="text" [(ngModel)]="newRequest.quantity"><button (click)="incrementQuantity()">+</button><span><button title="Add to Cart"
                                         (click)="CreateRequest(item)">Add</button></span></div>
-                        </ng-template>
+
 
                     </td>
                     <td *ngIf="item.display"><a>Report Damage</a></td>
