@@ -9,10 +9,13 @@ def sent_status(self, request, queryset):
 sent_status.short_description = 'sent' # at admin page
 
 class RequestAdmin(admin.ModelAdmin):
-    list_display = ('item', 'roll', 'quantity', 'colour_code', 'is_sent')
+    list_display = ('item', 'roll', 'quantity', 'item_details', 'is_sent')
     list_editable = ('is_sent',)
     search_fields = ['roll', 'item__name', 'item__colour_code' ]
     actions = [sent_status]
+    # list_select_related = (
+    #     'item',
+    # )
     # search_fields = ('roll' , )
     # ordering = ['last_name', 'email'] # first by last_name then by email
     #   date_hierarchy = 'publication_date'
