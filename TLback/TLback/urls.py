@@ -38,8 +38,5 @@ admin.site.site_header = 'Tinkerer\'s Lab Admin '
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path(r'api-token-auth/', obtain_jwt_token),
-    path(r'api-token-refresh/', refresh_jwt_token),
-    path(r'api-token-verify/', verify_jwt_token),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
