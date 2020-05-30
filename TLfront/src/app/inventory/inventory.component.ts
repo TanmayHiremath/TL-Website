@@ -11,6 +11,7 @@ import { Router } from '@angular/router'
 export class InventoryComponent implements OnInit {
 
   items = [{}];
+  orders = [{}];
   tabledisplay: boolean = false;
   id_required_string: string
   requests: [{ id: '' }];
@@ -19,12 +20,32 @@ export class InventoryComponent implements OnInit {
 
   constructor(private api: ApiService, private router: Router) {
 
-    this.GetItems();
+
     this.newRequest = { id: -1, item: -1, roll: 0, quantity: 1 }
 
   }
 
   ngOnInit(): void {
+
+    this.api.getItems().subscribe(
+      data => {
+        this.items = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+    this.api.getOrders().subscribe(
+      data => {
+        this.orders = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+
 
 
     $(document).ready(function () {
@@ -54,17 +75,7 @@ export class InventoryComponent implements OnInit {
   }
 
 
-  GetItems() {
-    this.api.getItems().subscribe(
-      data => {
-        this.items = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
 
-  }
 
 
   CreateRequest(item) {
@@ -76,7 +87,7 @@ export class InventoryComponent implements OnInit {
 
     document.getElementById("specifyQuantity").style.display = "none";
     document.getElementById("addToCart").style.display = "none";
-    alert("added")
+
 
     this.api.createRequest(this.newRequest).subscribe(
       data => {
@@ -152,14 +163,23 @@ export class InventoryComponent implements OnInit {
 
       else { item.display = 0 }
 
+      
+    
+
     }
+
+
+
+
 
 
 
   }
 
   cartClicked() {
-    this.displaycartbtn = false;
+    document.getElementById("specifyQuantity").style.display = "block";
+    document.getElementById("addToCart").style.display = "none";
+
   }
 
   incrementQuantity() {

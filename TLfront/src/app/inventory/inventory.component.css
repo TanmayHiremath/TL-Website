@@ -12,6 +12,10 @@ a:hover {
     display: none;
 }
 
+#specifyQuantity {
+    display: none;
+}
+
 .overlay {
     position: fixed;
     display: none;
