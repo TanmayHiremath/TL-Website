@@ -76,15 +76,15 @@ export class ApiService {
 
 
   updateRequest(req): Observable<any> {
-    const body = { item: req.item, quantity: req.quantity, roll: req.roll ,is_sent:req.is_sent };
-    return this.http.put<request_interface>(this.baseurl + '/requests/'+ req.id +'/' , body,
+    const body = { item: req.item, quantity: req.quantity, roll: req.roll, is_sent: req.is_sent };
+    return this.http.put<request_interface>(this.baseurl + '/requests/' + req.id + '/', body,
       { headers: this.httpHeaders });
   }
 
   deleteRequest(id): Observable<any> {
-    return this.http.delete<request_interface>(this.baseurl + '/requests/'+ id + '/',
+    return this.http.delete<request_interface>(this.baseurl + '/requests/' + id + '/',
       { headers: this.httpHeaders });
   }
-  
+
 
 }
