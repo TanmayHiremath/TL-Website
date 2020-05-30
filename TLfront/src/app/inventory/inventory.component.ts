@@ -35,14 +35,14 @@ export class InventoryComponent implements OnInit {
       });
       
       
-      $("itemName").click(function () {
-        $(".overlay").slideDown(400)
+      $(".itemName").click(function () {
+        console.log("Hi")
+        //$(this).siblings(".overlay").slideDown(400)
 
       });
 
 
       $(".overlay").click(function () {
-        alert("hhhhh");
         $(".overlay").slideUp(400)
       });
 

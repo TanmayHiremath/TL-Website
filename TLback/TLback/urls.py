@@ -18,6 +18,8 @@ from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers
 from tools import views,models
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
+
 
 router = routers.DefaultRouter()
 router.register(r'items', views.ItemViewSet)
@@ -28,10 +30,16 @@ router.register(r'requests', views.RequestViewSet)
 router.register(r'approved', views.ApprovedViewSet)
 router.register(r'issued', views.IssuedViewSet)
 
+
+admin.site.site_header = 'Tinkerer\'s Lab Admin '
+
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
+    path(r'api-token-auth/', obtain_jwt_token),
+    path(r'api-token-refresh/', refresh_jwt_token),
+    path(r'api-token-verify/', verify_jwt_token),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

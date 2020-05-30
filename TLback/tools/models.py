@@ -18,15 +18,17 @@ class Item(models.Model):
     colour_code = models.CharField(max_length=10)
     notifications = models.CharField(max_length=10000)
     price = models.PositiveIntegerField()
-    flag = models.BooleanField(default=False)
-    flag_time = models.DateTimeField()
-
     display=models.BooleanField(default=False)
     displaylevel1=models.BooleanField(default=False)
     displaylevel2=models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
+
+    # def save(self, *args, **kwargs):
+    # # save the value of self.timestamp into purchase_date
+    # colour_code = self.colour_code
+    # super(Item, self).save(*args, **kwargs)
 
 
 class Request(models.Model):
@@ -37,9 +39,20 @@ class Request(models.Model):
     is_approved = models.BooleanField(default=False)
     is_issued = models.BooleanField(default=False)
     is_returned = models.BooleanField(default=False)
+    colour_code = models.Value(Item.colour_code)
     
-
+    # @property
+    # def get_colour(self):
+    #     colour_code = Request.item.colour_code
+    #     return colour_code
+    
+    # @property
+    # def get_id(self):
+    #     id_required = Request.item.id_required
+    #     return id_required    
+    
     def __str__(self):
+        # self.colour_code=self.item.name
         return self.roll
 
 
@@ -71,3 +84,9 @@ class OrderProduct(models.Model):
 	order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
 	quantity = models.IntegerField(default=0, null=True, blank=True)
 	date_added = models.DateTimeField(auto_now_add=True)
+
+class Flag(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    roll = models.CharField(max_length=20)
+    time = models.DateTimeField(auto_now_add=True)
+
