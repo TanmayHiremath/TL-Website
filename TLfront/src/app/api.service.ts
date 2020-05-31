@@ -35,39 +35,6 @@ export class ApiService {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  getOrders(): Observable<any> {
-    return this.http.get(this.baseurl + '/orders/',
-      { headers: this.httpHeaders });
-  }
-
-  getOrderproducts(): Observable<any> {
-    return this.http.get(this.baseurl + '/orderproduct/',
-      { headers: this.httpHeaders });
-  }
-
   getCustomers(): Observable<any> {
     return this.http.get(this.baseurl + '/customers/',
       { headers: this.httpHeaders });
@@ -85,6 +52,5 @@ export class ApiService {
     return this.http.delete<request_interface>(this.baseurl + '/requests/' + id + '/',
       { headers: this.httpHeaders });
   }
-
 
 }
