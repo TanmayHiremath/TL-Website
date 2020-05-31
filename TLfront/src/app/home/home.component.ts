@@ -25,6 +25,14 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+    var urlParams = new URLSearchParams(window.location.search)
+    this.code=urlParams.get('code')
+    if(this.code!=null){
+      document.getElementById('loader').style.display = "block"
+    console.log(urlParams.get('code'))
+
+
     
     $(document).ready(function () {
 
