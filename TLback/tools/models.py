@@ -72,28 +72,7 @@ class Customer(models.Model):
         return self.name
 
 
-class Order(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
-    date_ordered = models.DateTimeField(auto_now_add=True)
-    complete = models.BooleanField(default=False)
-    transaction_id = models.CharField(max_length=100, null=True)
-
-    
-
-    @property
-    def get_cart_products(self):
-        orderproducts = self.orderproduct_set.all()
-        total = sum([product.quantity for product in orderproducts])
-        return total
-
-class OrderProduct(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
-    quantity = models.IntegerField(default=0, null=True, blank=True)
-    date_added = models.DateTimeField(auto_now_add=True)
-
 class Flag(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     roll = models.CharField(max_length=20)
     time = models.DateTimeField(auto_now_add=True)
-
