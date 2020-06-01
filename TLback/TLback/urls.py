@@ -23,12 +23,8 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify
 
 router = routers.DefaultRouter()
 router.register(r'items', views.ItemViewSet)
-router.register(r'orders', views.OrderViewSet)
-router.register(r'orderproduct', views.OrderProductViewSet)
 router.register(r'customers', views.CustomerViewSet)
 router.register(r'requests', views.RequestViewSet)
-router.register(r'approved', views.ApprovedViewSet)
-router.register(r'issued', views.IssuedViewSet)
 
 
 admin.site.site_header = 'Tinkerer\'s Lab Admin '
