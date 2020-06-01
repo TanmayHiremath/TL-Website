@@ -11,7 +11,6 @@ import { Router } from '@angular/router'
 export class InventoryComponent implements OnInit {
 
   items = [{}];
-  orders = [{}];
   tabledisplay: boolean = false;
   id_required_string: string
   requests: [{ id: '' }];
@@ -35,17 +34,6 @@ export class InventoryComponent implements OnInit {
         console.log(error);
       }
     );
-
-    this.api.getOrders().subscribe(
-      data => {
-        this.orders = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
-
-
 
 
     $(document).ready(function () {

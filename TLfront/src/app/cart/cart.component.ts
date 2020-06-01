@@ -13,9 +13,7 @@ import { CheckoutComponent } from '../checkout/checkout.component';
 })
 export class CartComponent implements OnInit {
 
-  orders = []
   items = []
-  products = []
   customers = []
   requests = []
   total_items = 0
@@ -29,14 +27,6 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
    
-      this.api.getOrders().subscribe(
-        data => {
-          this.orders = data;
-        },
-        error => {
-          console.log(error);
-        }
-      );
       this.api.getItems().subscribe(
         data => {
           this.items = data;
