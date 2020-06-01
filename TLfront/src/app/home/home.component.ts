@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     this.code = urlParams.get('code')
     if (this.code != null) {
       document.getElementById('loader').style.display = "block"
-      console.log(urlParams.get('code'))
+      console.log(urlParams.get('code'))}
 
 
 
@@ -124,6 +124,6 @@ export class HomeComponent implements OnInit {
 
 
 
-    }
+    
   }
 }
