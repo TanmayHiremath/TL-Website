@@ -32,23 +32,9 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.api.getOrders().subscribe(
-      data => {
-        this.orders = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    
 
-    this.api.getOrderproducts().subscribe(
-      data => {
-        this.products = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    
     this.api.getCustomers().subscribe(
       data => {
         this.customers = data;
