@@ -4,8 +4,20 @@
           <h4>Block title</h4>
       
           <div class="cd-filter-content">
-             <!-- filter content -->
+            <a class="chg-quantity " style='font-size:36px' (click)="only_approved()">only_approved()</a>
+        </div> 
+        <div class="cd-filter-content">
+            <a class="chg-quantity " style='font-size:36px' (click)="only_denied()">only_denied()</a>
+            <div class="cd-filter-content">
+        </div> 
+        <div class="cd-filter-content"></div>
+            <a class="chg-quantity " style='font-size:36px' (click)="only_pending()">only_pending()</a>
+            
+        </div> 
+        <div class="cd-filter-content">
+            <a class="chg-quantity " style='font-size:36px' (click)="all_1()">all_1()</a>
           </div> <!-- cd-filter-content -->
+          
        </div> <!-- cd-filter-block -->
        <div class="cd-filter-block">
         <h4>Block title</h4>
@@ -59,9 +71,9 @@
       <tr  *ngFor="let request of requests">
           
         <td>{{items[request.item-1].name}}</td>
-        <td *ngIf="request.is_approved==filter_condition">{{request.quantity}}</td>
+        <td >{{request.quantity}}</td>
         <td>{{request.roll}}</td>
-        <td>{{items[request.item-1].quantity}}</td>
+        <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{items[request.item-1].quantity}}</td>
         
       </tr>
     </tbody>

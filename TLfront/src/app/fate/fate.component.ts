@@ -36,7 +36,41 @@ export class FateComponent implements OnInit {
     
   }
 
-  filter_condition=false
+  filter_approved=false;
+  filter_denied=false;
+  
+
+
+  only_approved(){
+
+    this.filter_approved=true;
+    this.filter_denied=false;
+    console.log(this.filter_approved)
+    console.log(this.filter_denied)
+
+  }
+  only_denied(){
+    this.filter_approved=false;
+    this.filter_denied=true;
+    console.log(this.filter_approved)
+    console.log(this.filter_denied)
+
+  }
+  only_pending(){
+
+    this.filter_approved=false;
+    this.filter_denied=false;
+    console.log(this.filter_approved)
+    console.log(this.filter_denied)
+
+  }
+  all_1(){
+
+    this.filter_approved=true;
+    this.filter_denied=false;
+    console.log(this.filter_approved)
+
+  }
  
 
 }
