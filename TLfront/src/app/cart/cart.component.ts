@@ -17,7 +17,7 @@ export class CartComponent implements OnInit {
   products = []
   customers = []
   items = []
-  requests
+  requests 
   total_items = 0
   myVar=0
  
