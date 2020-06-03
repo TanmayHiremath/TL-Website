@@ -40,6 +40,7 @@ export class FateComponent implements OnInit {
   filter_denied=false;
   filter_11='d-show';
   filter_12='d-none';
+  
 
   only_approved(){
     this.filter_11='d-show';
