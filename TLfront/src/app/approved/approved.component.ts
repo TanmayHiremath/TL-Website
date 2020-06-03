@@ -11,7 +11,6 @@ import * as $ from 'jquery';
 })
 export class ApprovedComponent implements OnInit {
 
-  orders = []
   items = []
   requests = []
   total_items=0
@@ -23,14 +22,6 @@ export class ApprovedComponent implements OnInit {
 
   ngOnInit(): void {
    
-      this.api.getOrders().subscribe(
-        data => {
-          this.orders = data;
-        },
-        error => {
-          console.log(error);
-        }
-      );
       this.api.getItems().subscribe(
         data => {
           this.items = data;

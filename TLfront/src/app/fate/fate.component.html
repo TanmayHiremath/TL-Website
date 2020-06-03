@@ -1,0 +1,92 @@
+<div class="cd-filter">
+    <form>
+       <div class="cd-filter-block">
+          <h4>Block title</h4>
+      
+          <div class="cd-filter-content">
+            <a class="chg-quantity " style='font-size:36px' (click)="only_approved()">only_approved()</a>
+        </div> 
+        <div class="cd-filter-content">
+            <a class="chg-quantity " style='font-size:36px' (click)="only_denied()">only_denied()</a>
+            <div class="cd-filter-content">
+        </div> 
+        <div class="cd-filter-content"></div>
+            <a class="chg-quantity " style='font-size:36px' (click)="only_pending()">only_pending()</a>
+            
+        </div> 
+        <div class="cd-filter-content">
+            <a class="chg-quantity " style='font-size:36px' (click)="all_1()">all_1()</a>
+          </div> <!-- cd-filter-content -->
+          
+       </div> <!-- cd-filter-block -->
+       <div class="cd-filter-block">
+        <h4>Block title</h4>
+    
+        <div class="cd-filter-content">
+           <!-- filter content -->
+        </div> <!-- cd-filter-content -->
+     </div> <!-- cd-filter-block -->
+     <div class="cd-filter-block">
+        <h4>Block title</h4>
+    
+        <div class="cd-filter-content">
+           <!-- filter content -->
+        </div> <!-- cd-filter-content -->
+     </div> <!-- cd-filter-block -->
+     <div class="cd-filter-block">
+        <h4>Block title</h4>
+    
+        <div class="cd-filter-content">
+           <!-- filter content -->
+        </div> <!-- cd-filter-content -->
+     </div> <!-- cd-filter-block -->
+    </form>
+
+    <a href="#0" class="cd-close">Close</a>
+ </div> <!-- cd-filter -->
+
+ <a href="#0" class="cd-filter-trigger">Filters</a>
+
+
+
+
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th class="th-sm">Name
+        </th>
+        <th class="th-sm">Position
+        </th>
+        <th class="th-sm">Office
+        </th>
+        <th class="th-sm">Age
+        </th>
+        <th class="th-sm">Start date
+        </th>
+        <th class="th-sm">Salary
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="{{filter_11}}" *ngFor="let request of requests">
+          
+        <td>{{items[request.item-1].name}}</td>
+        <td >{{request.quantity}}</td>
+        <td>{{request.roll}}</td>
+        <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{items[request.item-1].quantity}}</td>
+        
+      </tr>
+      <tr class="{{filter_12}}" *ngFor="let request of requests">
+          
+        <td>{{items[request.item-1].name}}</td>
+        <td >{{request.quantity}}</td>
+        <td>{{request.roll}}</td>
+        <td >{{items[request.item-1].quantity}}</td>
+        
+      </tr>
+    </tbody>
+    
+  </table>
+
+
+  

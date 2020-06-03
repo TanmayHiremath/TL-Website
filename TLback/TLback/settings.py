@@ -26,7 +26,7 @@ SECRET_KEY = 'n+&-(9ocmtw*x=q4e1vp2_34-f92^c#@s)@4vd53$993)8_f&$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 CORS_ORIGIN_WHITELIST = [
     
@@ -36,6 +36,7 @@ CORS_ORIGIN_WHITELIST = [
 
 INSTALLED_APPS = [
     'corsheaders',
+    'iitb_oauth',
 
     'django.contrib.admin',
     'django.contrib.auth',
