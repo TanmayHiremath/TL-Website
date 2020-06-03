@@ -3,15 +3,16 @@
         <label class="radio-inline">
           <input type="radio" name="optradio" (click)="only_approved()">approved
         </label>
+        &nbsp;
         <label class="radio-inline">
           <input type="radio" name="optradio" (click)="only_denied()">denied
-        </label>
+        </label>&nbsp;
         <label class="radio-inline">
           <input type="radio" name="optradio" (click)="only_pending()" checked>pending
-        </label>
+        </label>&nbsp;
         <label class="radio-inline">
             <input type="radio" name="optradio" (click)="all_1()">all
-          </label>
+          </label>&nbsp;
       </form>
 
     <a href="#0" class="cd-close"></a>
@@ -42,9 +43,9 @@
     <tbody>
       <tr class="{{filter_11}}" *ngFor="let request of requests">
           
-        <td>{{items[request.item-1].name}}</td>
-        <td >{{request.quantity}}</td>
-        <td >{{request.roll}}</td>
+        <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{items[request.item-1].name}}</td>
+        <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{request.quantity}}</td>
+        <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{request.roll}}</td>
         <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{items[request.item-1].quantity}}</td>
         
       </tr>
