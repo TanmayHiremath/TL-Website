@@ -18,6 +18,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ApprovedComponent } from './approved/approved.component';
 import { IssuedComponent } from './issued/issued.component';
 import { LoginComponent } from './login/login.component';
+import { FateComponent } from './fate/fate.component';
 
 
 
@@ -34,6 +35,7 @@ import { LoginComponent } from './login/login.component';
     ApprovedComponent,
     IssuedComponent,
     LoginComponent,
+    FateComponent,
   ],
   imports: [
       FormsModule,
@@ -59,6 +61,7 @@ import { LoginComponent } from './login/login.component';
           {path:'checkout',component:CheckoutComponent},
           {path:'login',component:LoginComponent},
           {path:'issued',component:IssuedComponent},
+          {path:'fate',component:FateComponent},
 
           
 

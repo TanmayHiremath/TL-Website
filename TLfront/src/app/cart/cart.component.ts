@@ -112,17 +112,22 @@ export class CartComponent implements OnInit {
 
   updateRequest()
   {
-    
-    
-    console.log(this.myVar)
-    
     var i;
     for (i = 0; i < this.requests.length; i+=1) 
       {
-        if( (this.requests[i].is_sent == false) && (this.requests[i].quantity<=this.items[this.requests[i].item-1].quantity) )
+    if( this.requests[i].quantity>this.items[this.requests[i].item-1].quantity )
           {
-
             this.myVar=1;
+          }
+        }
+    
+    console.log(this.myVar)
+    
+    
+    for (i = 0; i < this.requests.length; i+=1) 
+      {
+        if( (this.requests[i].is_sent == false) && (this.myVar==0) )
+          {
             this.requests[i].is_sent = true;
             this.api.updateRequest(this.requests[i]).subscribe
               (
@@ -139,7 +144,7 @@ export class CartComponent implements OnInit {
           
       }
 
-      if(this.myVar==0){
+      if(this.myVar==1){
       this.router.navigate(['./inventory'])}
      
       else  {this.router.navigate(['./checkout'])}
