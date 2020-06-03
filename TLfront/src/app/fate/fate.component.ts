@@ -38,11 +38,12 @@ export class FateComponent implements OnInit {
 
   filter_approved=false;
   filter_denied=false;
-  
-
+  filter_11='d-show';
+  filter_12='d-none';
 
   only_approved(){
-
+    this.filter_11='d-show';
+    this.filter_12='d-none';
     this.filter_approved=true;
     this.filter_denied=false;
     console.log(this.filter_approved)
@@ -50,6 +51,8 @@ export class FateComponent implements OnInit {
 
   }
   only_denied(){
+    this.filter_11='d-show';
+    this.filter_12='d-none';
     this.filter_approved=false;
     this.filter_denied=true;
     console.log(this.filter_approved)
@@ -57,7 +60,8 @@ export class FateComponent implements OnInit {
 
   }
   only_pending(){
-
+    this.filter_11='d-show';
+    this.filter_12='d-none';
     this.filter_approved=false;
     this.filter_denied=false;
     console.log(this.filter_approved)
@@ -65,7 +69,8 @@ export class FateComponent implements OnInit {
 
   }
   all_1(){
-
+    this.filter_11='d-none';
+    this.filter_12='d-show';
     this.filter_approved=true;
     this.filter_denied=false;
     console.log(this.filter_approved)

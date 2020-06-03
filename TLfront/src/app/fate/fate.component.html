@@ -68,12 +68,20 @@
       </tr>
     </thead>
     <tbody>
-      <tr  *ngFor="let request of requests">
+      <tr class="{{filter_11}}" *ngFor="let request of requests">
           
         <td>{{items[request.item-1].name}}</td>
         <td >{{request.quantity}}</td>
         <td>{{request.roll}}</td>
         <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{items[request.item-1].quantity}}</td>
+        
+      </tr>
+      <tr class="{{filter_12}}" *ngFor="let request of requests">
+          
+        <td>{{items[request.item-1].name}}</td>
+        <td >{{request.quantity}}</td>
+        <td>{{request.roll}}</td>
+        <td >{{items[request.item-1].quantity}}</td>
         
       </tr>
     </tbody>
