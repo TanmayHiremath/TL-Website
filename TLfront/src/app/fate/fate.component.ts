@@ -17,6 +17,10 @@ export class FateComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+
+
+
+    
     this.api.getItems().subscribe(
       data => {
         this.items = data;
