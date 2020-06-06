@@ -29,7 +29,6 @@
             <p class="quantity" *ngIf=" (request.is_issued) && !(request.is_returned)  " style="color: orange">Issued</p>
             <p class="quantity" *ngIf=" (request.is_denied)  " style="color: red">Denied</p>
             <p class="quantity" *ngIf=" !(request.is_approved) && !(request.is_denied)  " style="color: yellow">Pending</p>
-            <p class="quantity" *ngIf="(request.is_approved)&& !((request.is_issued)||(request.is_returned))  " style="color: blue">Not issued yet</p>
           </div>
           </div>
        </div>
