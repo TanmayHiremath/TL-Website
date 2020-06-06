@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-
+import {FormsModule} from '@angular/forms'
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class FateComponent implements OnInit {
   requests = []
   items = []
-
+  quantity
   constructor(private api: ApiService,
     private router: Router) { }
 
