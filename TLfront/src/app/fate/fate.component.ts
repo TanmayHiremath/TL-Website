@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-fate',
   templateUrl: './fate.component.html',
-  styleUrls: ['./fate.component.css']
+  styleUrls: ['./fate.component.css'],
+  providers: [ApiService]
 })
 export class FateComponent implements OnInit {
   requests = []
@@ -39,6 +40,16 @@ export class FateComponent implements OnInit {
       );
     
   }
+  getReq(){
+    this.api.getRequests().subscribe(
+      data => {
+        this.requests = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+}
 
   filter_approved=false;
   filter_denied=false;
@@ -84,14 +95,47 @@ export class FateComponent implements OnInit {
  
   approve_request(request)
   {
-    console.log("data")
-    
+    request.is_approved=true;
+    request.is_denied=false;
     this.api.updateRequest(request).subscribe
       (
         data => 
           {
             console.log(data)
-            console.log("ata")
+          },
+        error => 
+          {
+            console.log(error);
+          }
+      );
+    
+  }
+  deny_request(request)
+  {
+    request.is_approved=false;
+    request.is_denied=true;
+    this.api.updateRequest(request).subscribe
+      (
+        data => 
+          {
+            console.log(data)
+          },
+        error => 
+          {
+            console.log(error);
+          }
+      );
+    
+  }
+  p_request(request)
+  {
+    request.is_approved=false;
+    request.is_denied=false;
+    this.api.updateRequest(request).subscribe
+      (
+        data => 
+          {
+            console.log(data)
           },
         error => 
           {

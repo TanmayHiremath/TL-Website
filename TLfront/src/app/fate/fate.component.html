@@ -36,7 +36,7 @@
       </th>
       <th class="th-sm">request.id
       </th>
-      <th class="th-sm">button
+      <th class="th-sm">status
     </tr>
   </thead>
   <tbody>
@@ -47,7 +47,8 @@
       <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{request.roll}}</td>
       <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{items[request.item-1].quantity}}</td>
       <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{request.id}}</td>
-      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)"><button (click)="approve_request(request.id)">approve</button></td>
+      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied) &&(filter_approved==false) && (filter_denied==false)"><button (click)="approve_request(request)">approve</button><button (click)="deny_request(request)">deny</button></td>
+      <button (click)="p_request(request)">p</button>
       
     </tr>
     <tr class="{{filter_12}}" *ngFor="let request of requests">
@@ -56,6 +57,10 @@
       <td >{{request.quantity}}</td>
       <td>{{request.roll}}</td>
       <td >{{items[request.item-1].quantity}}</td>
+      <td >{{request.id}}</td>
+      <td *ngIf="(request.is_approved==false) && (request.is_denied==false) "><button (click)="approve_request(request)">approve</button><button (click)="deny_request(request)">deny</button></td>
+      <td *ngIf="(request.is_approved==true) && (request.is_denied==false) ">approved</td>
+      <td *ngIf="(request.is_approved==false) && (request.is_denied==true) ">denied</td>
       
       
     </tr>
