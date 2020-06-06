@@ -1,25 +1,40 @@
 
 <div class="cd-filter">
     <form>
-        <label class="radio-inline">
-          <input type="radio" name="optradio" (click)="only_approved()">approved
-        </label>
-        &nbsp;
-        <label class="radio-inline">
-          <input type="radio" name="optradio" (click)="only_denied()">denied
-        </label>&nbsp;
-        <label class="radio-inline">
-          <input type="radio" name="optradio" (click)="only_pending()" checked>pending
-        </label>&nbsp;
-        <label class="radio-inline">
-            <input type="radio" name="optradio" (click)="all_1()">all
-          </label>&nbsp;
-      </form>
+       <div class="cd-filter-block">
+          <h4>Block title</h4>
+      
+          <div class="cd-filter-content">
+             <!-- filter content -->
+          </div> <!-- cd-filter-content -->
+       </div> <!-- cd-filter-block -->
+       <div class="cd-filter-block">
+        <h4>Block title</h4>
+    
+        <div class="cd-filter-content">
+           <!-- filter content -->
+        </div> <!-- cd-filter-content -->
+     </div> <!-- cd-filter-block -->
+     <div class="cd-filter-block">
+        <h4>Block title</h4>
+    
+        <div class="cd-filter-content">
+           <!-- filter content -->
+        </div> <!-- cd-filter-content -->
+     </div> <!-- cd-filter-block -->
+     <div class="cd-filter-block">
+        <h4>Block title</h4>
+    
+        <div class="cd-filter-content">
+           <!-- filter content -->
+        </div> <!-- cd-filter-content -->
+     </div> <!-- cd-filter-block -->
+    </form>
 
-    <a href="#0" class="cd-close"></a>
+    <a href="#0" class="cd-close">Close</a>
  </div> <!-- cd-filter -->
 
- <a href="#0" class="cd-filter-trigger"></a>
+ <a href="#0" class="cd-filter-trigger">Filters</a>
 
 
 
@@ -42,20 +57,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="{{filter_11}}" *ngFor="let request of requests">
-          
-        <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{items[request.item-1].name}}</td>
-        <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{request.quantity}}</td>
-        <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{request.roll}}</td>
-        <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{items[request.item-1].quantity}}</td>
-        
-      </tr>
-      <tr class="{{filter_12}}" *ngFor="let request of requests">
+      <tr  *ngFor="let request of requests">
           
         <td>{{items[request.item-1].name}}</td>
-        <td >{{request.quantity}}</td>
+        <td *ngIf="request.is_approved==filter_condition">{{request.quantity}}</td>
         <td>{{request.roll}}</td>
-        <td >{{items[request.item-1].quantity}}</td>
+        <td>{{items[request.item-1].quantity}}</td>
         
       </tr>
     </tbody>
@@ -63,6 +70,7 @@
   </table>
 
 
+<<<<<<< HEAD
   
 
   
@@ -122,3 +130,6 @@ $(document).ready(function(){
 });
 </script> -->
 
+=======
+  
+>>>>>>> parent of 98700e2... Merge branch 'master' of https://github.com/TanmayHiremath/TL-Website
