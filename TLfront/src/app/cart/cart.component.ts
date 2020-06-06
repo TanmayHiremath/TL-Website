@@ -178,7 +178,7 @@ export class CartComponent implements OnInit {
 
   updateQuantityDown(request)
   {
-    if( request.quantity > 0)
+    if( request.quantity > 1)
       {
         request.quantity--;
       }
