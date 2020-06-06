@@ -14,12 +14,8 @@ import { CheckoutComponent } from '../checkout/checkout.component';
 export class CartComponent implements OnInit {
 
   items = []
-<<<<<<< HEAD
-  requests=[] 
-=======
   customers = []
   requests = []
->>>>>>> parent of 98700e2... Merge branch 'master' of https://github.com/TanmayHiremath/TL-Website
   total_items = 0
   myVar=0
 
