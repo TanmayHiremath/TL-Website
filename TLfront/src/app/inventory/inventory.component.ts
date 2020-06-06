@@ -46,6 +46,7 @@ export class InventoryComponent implements OnInit {
 
       $(".itemName").click(function () {
         console.log("Hi")
+        alert("heheheh")
         //$(this).siblings(".overlay").slideDown(400)
 
       });

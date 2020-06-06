@@ -26,7 +26,7 @@
       <a href="{{loginUrl}}" class="btn btn-primary px-4 py-2">Login with SSO</a>
     </div>
 
-    <div class="slideshow col-md-7" style="height: 420px;">
+    <!-- <div class="slideshow col-md-7" style="height: 420px;">
 
       <div class="slideshow-item item-1">
         <img src="http://lorempixel.com/g/600/420" alt="" />
@@ -43,13 +43,15 @@
       <div class="slideshow-item item-4">
         <img src="http://lorempixel.com/g/640/420" alt="" />
       </div>
-    </div>
+    </div> -->
   </div>
 
 </div>
-<div id="sso-root" style="margin: 300px 0px 0px -80px;">
-        <iframe id="sso-iframe" src="//gymkhana.iitb.ac.in/sso/widget/login/?client_id={J3M80WCuOwpUGtX1KgBMLYwYls1aZxk9LfO0KMSp}&redirect_uri={redirect_uri}&amp;response_type=code&amp;scope=basic profile picture sex ldap phone insti_address program&amp;state=&amp;new_window=false&amp;button_div_bg_color=303F9F&amp;button_anchor_color=FFFFFF&amp;logout_anchor_color=727272" frameborder="0" scrolling="No" ></iframe>
-      </div>
+<div id="sso-root">
+  <iframe id="sso-iframe"
+    src="//gymkhana.iitb.ac.in/sso/widget/login/?client_id=J3M80WCuOwpUGtX1KgBMLYwYls1aZxk9LfO0KMSp&redirect_uri=&amp;response_type=code&amp;scope=basic profile picture sex ldap phone insti_address program&amp;state=&amp;new_window=false&amp;button_div_bg_color=303F9F&amp;button_anchor_color=FFFFFF&amp;logout_anchor_color=727272"
+    frameborder="0" scrolling="No"></iframe>
+</div>
 
 
 <div class="container" id="tools">
@@ -296,7 +298,7 @@
           <i class="fas fa-chevron-left" style="color: grey;"></i>
         </a></div>
       <div class="col-8">
-        
+
 
         <!-- The slideshow -->
         <div class="carousel-inner">
