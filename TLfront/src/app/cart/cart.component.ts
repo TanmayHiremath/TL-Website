@@ -104,7 +104,7 @@ export class CartComponent implements OnInit {
     }
 
 
-
+    console.log(" my var"+this.myVar)
 
 
   }
@@ -115,13 +115,16 @@ export class CartComponent implements OnInit {
     var i;
     for (i = 0; i < this.requests.length; i+=1) 
       {
-    if( this.requests[i].quantity>this.items[this.requests[i].item-1].quantity )
+        console.log(" request quantity"+this.requests[i].quantity)
+        console.log(" item quantity"+this.items[this.requests[i].item-1].quantity)
+
+    if( this.requests[i].quantity>this.items[this.requests[i].item-1].quantity && (this.requests[i].is_sent == false) )
           {
             this.myVar=1;
           }
         }
     
-    console.log(this.myVar)
+    console.log(" my var"+this.myVar)
     
     
     for (i = 0; i < this.requests.length; i+=1) 
@@ -174,7 +177,7 @@ export class CartComponent implements OnInit {
 
   updateQuantityDown(request)
   {
-    if( request.quantity > 0)
+    if( request.quantity > 1)
       {
         request.quantity--;
       }
