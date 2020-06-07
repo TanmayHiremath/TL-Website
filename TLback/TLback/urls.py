@@ -19,6 +19,8 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from tools import views,models
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 router = routers.DefaultRouter()
@@ -37,4 +39,8 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('',include('iitb_oauth.urls')),
     path("autho/", views.post)
+
+    
 ]
+if settings.DEBUG == True: 
+        urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

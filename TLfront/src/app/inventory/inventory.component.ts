@@ -14,9 +14,9 @@ export class InventoryComponent implements OnInit {
   tabledisplay: boolean = false;
   id_required_string: string
   requests: [{ id: '' }];
-  newRequest
+  newRequest: { item: any; quantity: any; id?: number; roll?: number; }
   displaycartbtn: boolean = true
-
+  fw="red"
   constructor(private api: ApiService, private router: Router) {
 
 
@@ -47,7 +47,7 @@ export class InventoryComponent implements OnInit {
       $(".itemName").click(function () {
         console.log("Hi")
         alert("heheheh")
-        //$(this).siblings(".overlay").slideDown(400)
+        $(".overlay").css("display", "block")
 
       });
 
@@ -63,10 +63,7 @@ export class InventoryComponent implements OnInit {
 
   }
 
-
-
-
-
+  
   CreateRequest(item) {
 
     // this.router.navigate(['../cart'])
@@ -95,18 +92,15 @@ export class InventoryComponent implements OnInit {
 
   convertBool(item) {
     if (item.id_required == false) {
-      this.id_required_string = "No"
+      return 'No'
     }
     else {
-      this.id_required_string = "Yes"
+      return 'Yes'
     }
   }
 
 
   categoryClicked(clickedItem) {
-
-
-
     this.tabledisplay = false
 
     this.items.forEach(iterate)
@@ -131,8 +125,6 @@ export class InventoryComponent implements OnInit {
     function iterate(item) {
 
       item.display = 0
-
-
       if (item.displaylevel1 == clickedItem.displaylevel1) { item.displaylevel2 = !item.displaylevel2 }
 
       else { item.displaylevel2 = 0 }
@@ -151,18 +143,16 @@ export class InventoryComponent implements OnInit {
       if (item.displaylevel2 == clickedItem.displaylevel2) { item.display = !item.display }
 
       else { item.display = 0 }
-
-      
-    
-
     }
 
+  }
 
+  nameClicked() {
+    $(".overlay").slideDown(400)
+  }
 
-
-
-
-
+  overlayClicked() {
+    $(".overlay").slideUp(400)
   }
 
   cartClicked() {

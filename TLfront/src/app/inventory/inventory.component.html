@@ -9,7 +9,7 @@
 
 <ul>
     <div *ngFor="let item of items">
-        <li *ngIf="item.displaylevel1"><a (click)="level1Clicked(item)">{{item.level1}}</a></li>
+        <li *ngIf="item.displaylevel1"><a [style.color]="fw" (click)="level1Clicked(item)">{{item.level1}}</a></li>
     </div>
 
 
@@ -18,7 +18,7 @@
         <div *ngFor="let item of items">
             <li *ngIf="item.displaylevel2"><a (click)="level2Clicked(item)">{{item.level2}}</a></li>
         </div>
-        
+        <div class="container">
         <table class="table table-striped" *ngIf="tabledisplay">
             <thead>
                 <tr>
@@ -33,8 +33,8 @@
 
             <tbody>
                 <tr *ngFor="let item of items">
-                    <td class="itemName" *ngIf="item.display"><a>{{item.name}}</a></td>
-                    <td *ngIf="item.display"><a>{{item.id_required}}</a></td>
+                    <td class="itemName" [style.color]='item.colour_code' (click)="nameClicked()" *ngIf="item.display">{{item.colour_code}}<a>{{item.name}}</a></td>
+                    <td *ngIf="item.display"><span>{{convertBool(item)}}</span></td>
                     <td *ngIf="item.display"><a><i class="far fa-bell"></i></a></td>
                     <td *ngIf="item.display">
 
@@ -53,12 +53,13 @@
                     </td>
                     <td *ngIf="item.display"><a>Report Damage</a></td>
                     <td *ngIf="item.display"><a><i class="far fa-flag"></i></a>
-                        <div class="overlay">
+                        <div (click)="overlayClicked()" class="overlay">
                             <div class="expanded">
 
                                 <img src={{item.picture}} alt="Couldn't load">
                                 <p></p>
                                 <h2>{{item.name}}</h2>
+                               
                                 <br>
                                 <div>
                                     <h4>{{item.description}}</h4>
@@ -73,6 +74,7 @@
 
             </tbody>
         </table>
+        </div>
 
     </ul>
 
