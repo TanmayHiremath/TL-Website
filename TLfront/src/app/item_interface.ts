@@ -17,7 +17,6 @@ export interface item_interface {
     colour_code : string
     notifications : string
     price : number
-    flag : boolean
     display:boolean
     displaylevel1:boolean
     displaylevel2:boolean
