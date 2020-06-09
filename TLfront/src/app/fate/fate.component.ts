@@ -94,11 +94,13 @@ export class FateComponent implements OnInit {
     console.log(this.filter_approved)
 
   }
- 
+
   approve_request(request)
   {
     request.is_approved=true;
     request.is_denied=false;
+    request.is_returned=this.items[request.item-1].is_consumable;
+
     this.api.updateRequest(request).subscribe
       (
         data => 
