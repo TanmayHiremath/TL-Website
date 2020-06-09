@@ -22,7 +22,7 @@ def issued_status(self, request, queryset):
     count= queryset.update(
         is_issued=True,
         is_denied=False,
-        item__quantity= request.quantity
+        
     )
 
     self.message_user(request, '{} issued'.format(count))
