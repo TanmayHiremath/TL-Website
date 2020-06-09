@@ -18,8 +18,6 @@ export interface item_interface {
     notifications : string
     price : number
     flag : boolean
-    flag_time : any
-
     display:boolean
     displaylevel1:boolean
     displaylevel2:boolean
