@@ -11,11 +11,10 @@ export class ApiService {
   baseurl = "http://127.0.0.1:8000";
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-
   constructor(private http: HttpClient) { }
 
   getItems(): Observable<any> {
-    return this.http.get<item_interface>(this.baseurl + '/items/',
+    return this.http.get(this.baseurl + '/items/',
       { headers: this.httpHeaders });
   }
 
@@ -44,7 +43,7 @@ export class ApiService {
 
 
   updateRequest(req): Observable<any> {
-    const body = { item: req.item, quantity: req.quantity, roll: req.roll, is_sent: req.is_sent, is_approved: req.is_approved, is_denied: req.is_denied };
+    const body = { item: req.item, quantity: req.quantity, roll: req.roll, is_sent: req.is_sent,is_approved: req.is_approved,is_denied: req.is_denied };
     return this.http.put<request_interface>(this.baseurl + '/requests/' + req.id + '/', body,
       { headers: this.httpHeaders });
   }
@@ -54,38 +53,4 @@ export class ApiService {
       { headers: this.httpHeaders });
   }
 
-  setColourCode(items): void {
-   
-    for (var i = 0, len = items.length; i < len; i++) {
-
-      console.log(i)
-
-      if (items[i].is_consumable == true) {
-
-        if (items[i].quantity < 0.3 * items[i].critical_val) {
-          items[i].colour_code = "red"
-        }
-
-        else if (items[i].quantity < 0.75 * items[i].critical_val) {
-          items[i].colour_code = "yellow"
-        }
-
-        else if (items[i].quantity < items[i].critical_val) {
-          items[i].colour_code = "green"
-        }
-
-        else {
-          items[i].colour_code = "green"
-        }
-
-
-      }
-
-    }
-    
-
-  }
-
-
 }
-

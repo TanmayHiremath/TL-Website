@@ -10,34 +10,30 @@ import { Router } from '@angular/router'
 })
 export class InventoryComponent implements OnInit {
 
-  items = [];
+  items = [{}];
   tabledisplay: boolean = false;
   id_required_string: string
   requests: [{ id: '' }];
   newRequest: { item: any; quantity: any; id?: number; roll?: number; }
   displaycartbtn: boolean = true
-  fw = "red"
-
+  fw="red"
   constructor(private api: ApiService, private router: Router) {
 
 
     this.newRequest = { id: -1, item: -1, roll: 0, quantity: 1 }
-   
+
   }
 
-
   ngOnInit(): void {
+
     this.api.getItems().subscribe(
       data => {
         this.items = data;
-        this.api.setColourCode(this.items)
       },
       error => {
         console.log(error);
       }
     );
-
-
 
 
     $(document).ready(function () {
@@ -67,7 +63,7 @@ export class InventoryComponent implements OnInit {
 
   }
 
-
+  
   CreateRequest(item) {
 
     // this.router.navigate(['../cart'])

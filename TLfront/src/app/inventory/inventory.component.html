@@ -4,8 +4,6 @@
     <div class="p-2 ml-3" *ngFor="let item of items"><a (click)="categoryClicked(item)">{{item.category}}</a></div>
     <div class="ml-auto p-2 mr-3"><a routerLink="../cart"><i class="fas fa-shopping-cart" style="color: white;"></i></a>
     </div>
-    <div class=" p-2 mr-3"><a routerLink="../fate">fate</a>
-    </div>
 </div>
 
 
@@ -35,9 +33,9 @@
 
             <tbody>
                 <tr *ngFor="let item of items">
-                    <td class="itemName" [style.backgroundColor]='item.colour_code' (click)="nameClicked()" *ngIf="item.display"><a>{{item.name}}</a></td>
-                    <td  *ngIf="item.display"><span>{{convertBool(item)}}</span></td>
-                    <td *ngIf="item.display" title="Notify When Available"><a><i class="far fa-bell"></i></a></td>
+                    <td class="itemName" [style.color]='item.colour_code' (click)="nameClicked()" *ngIf="item.display">{{item.colour_code}}<a>{{item.name}}</a></td>
+                    <td *ngIf="item.display"><span>{{convertBool(item)}}</span></td>
+                    <td *ngIf="item.display"><a><i class="far fa-bell"></i></a></td>
                     <td *ngIf="item.display">
 
                         <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
