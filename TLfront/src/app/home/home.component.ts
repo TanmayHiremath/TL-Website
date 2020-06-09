@@ -4,7 +4,7 @@ declare var $: any;
 
 
 
-declare var rCounter: any;
+
 @Component({
 
   selector: 'app-home',

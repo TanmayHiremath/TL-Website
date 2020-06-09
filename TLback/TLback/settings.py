@@ -27,6 +27,7 @@ SECRET_KEY = 'n+&-(9ocmtw*x=q4e1vp2_34-f92^c#@s)@4vd53$993)8_f&$'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_ALLOW_ALL=True
 
 CORS_ORIGIN_WHITELIST = [
     

@@ -46,3 +46,31 @@ a:hover {
     width:150px;
 }
 
+
+@media screen and (max-width:992px) {
+    .expanded {
+        width: 100%;
+        left: 0;
+    }
+    th{
+        font-size: 0.5rem;
+        margin: 0;
+    }
+    td {
+        margin: 0;
+        padding: 2vw;
+        font-size: 0.5rem;
+    }
+    
+
+    .table {
+        
+
+        padding: 0;
+        margin: 0;
+       width: 80%; 
+    }
+
+
+}
+

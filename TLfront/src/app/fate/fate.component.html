@@ -1,19 +1,19 @@
 <div class="cd-filter">
   <form>
-      <label class="radio-inline">
-        <input type="radio" name="optradio" (click)="only_approved()">approved
-      </label>
-      &nbsp;
-      <label class="radio-inline">
-        <input type="radio" name="optradio" (click)="only_denied()">denied
-      </label>&nbsp;
-      <label class="radio-inline">
-        <input type="radio" name="optradio" (click)="only_pending()" checked>pending
-      </label>&nbsp;
-      <label class="radio-inline">
-          <input type="radio" name="optradio" (click)="all_1()">all
-        </label>&nbsp;
-    </form>
+    <label class="radio-inline">
+      <input type="radio" name="optradio" (click)="only_approved()">approved
+    </label>
+    &nbsp;
+    <label class="radio-inline">
+      <input type="radio" name="optradio" (click)="only_denied()">denied
+    </label>&nbsp;
+    <label class="radio-inline">
+      <input type="radio" name="optradio" (click)="only_pending()" checked>pending
+    </label>&nbsp;
+    <label class="radio-inline">
+      <input type="radio" name="optradio" (click)="all_1()">all
+    </label>&nbsp;
+  </form>
 
   <a href="#0" class="cd-close"></a>
 </div> <!-- cd-filter -->
@@ -43,36 +43,44 @@
   </thead>
   <tbody>
     <tr class="{{filter_11}}" *ngFor="let request of requests">
-        
-      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{items[request.item-1].name}}</td>
+
+      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">
+        {{items[request.item-1].name}}</td>
       <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{request.quantity}}</td>
       <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{request.roll}}</td>
-      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{items[request.item-1].quantity}}</td>
+      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">
+        {{items[request.item-1].quantity}}</td>
       <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{request.id}}</td>
-      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{items[request.item-1].id_required}}</td>
-      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied) &&(filter_approved==false) && (filter_denied==false)"><button (click)="approve_request(request)">approve</button><button (click)="deny_request(request)">deny</button></td>
+      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">
+        {{items[request.item-1].id_required}}</td>
+      <td
+        *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied) &&(filter_approved==false) && (filter_denied==false)">
+        <button (click)="approve_request(request)">approve</button><button (click)="deny_request(request)">deny</button>
+      </td>
       <button (click)="p_request(request)">p</button>
-      
+
     </tr>
     <tr class="{{filter_12}}" *ngFor="let request of requests">
-        
+
       <td>{{items[request.item-1].name}}</td>
-      <td >{{request.quantity}}</td>
+      <td>{{request.quantity}}</td>
       <td>{{request.roll}}</td>
-      <td >{{items[request.item-1].quantity}}</td>
-      <td >{{request.id}}</td>
-      <td >{{items[request.item-1].id_required}}</td>
-      <td *ngIf="(request.is_approved==false) && (request.is_denied==false) "><button (click)="approve_request(request)">approve</button><button (click)="deny_request(request)">deny</button></td>
+      <td>{{items[request.item-1].quantity}}</td>
+      <td>{{request.id}}</td>
+      <td>{{items[request.item-1].id_required}}</td>
+      <td *ngIf="(request.is_approved==false) && (request.is_denied==false) "><button
+          (click)="approve_request(request)">approve</button><button (click)="deny_request(request)">deny</button></td>
       <td *ngIf="(request.is_approved==true) && (request.is_denied==false) ">approved</td>
       <td *ngIf="(request.is_approved==false) && (request.is_denied==true) ">denied</td>
-      
-      
+
+
     </tr>
   </tbody>
-  
+
 </table>
 
-<br><br><br><br><br><br><br><br><br><h1>ITEMS</h1>
+<br><br><br><br><br><br><br><br><br>
+<h1>ITEMS</h1>
 
 
 
@@ -94,14 +102,41 @@
   </thead>
   <tbody>
     <tr class="" *ngFor="let item of items">
-        
-      <td >{{item.name}}</td>
-      <td >{{item.category}}</td>
-      <td >{{item.price}}</td>
-      <td >{{item.quantity}}  <input type="text" [(ngModel)]="quantity"></td>
+
+      <td>{{item.name}}</td>
+      <td>{{item.category}}</td>
+      <td>{{item.price}}</td>
+      <td><div><a style="cursor:pointer" data-toggle="modal" href="#{{item.name}}">{{item.quantity}}</a></div>
+
+
+        <div class="modal fade" id="{{item.name}}">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Change Quantity of {{item.name}}</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <button [disabled]="item.quantity<=1" (click)="decrementQuantity(item)">-</button><input type="text"
+                  [(ngModel)]="item.quantity"><button (click)="incrementQuantity(item)">+</button>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </td>
       <td>{{item.colour_code}}</td>
       <td>{{item.id_required}}</td>
-      
+
     </tr>
     <!-- <tr class="{{filter_12}}" *ngFor="let request of requests">
         
@@ -117,6 +152,5 @@
       
     </tr> -->
   </tbody>
-  
-</table>
 
+</table>
