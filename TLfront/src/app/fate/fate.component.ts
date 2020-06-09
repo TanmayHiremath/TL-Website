@@ -53,51 +53,51 @@ export class FateComponent implements OnInit {
     );
 }
 
-  filter_approved=false;
+  filter_issued=false;
   filter_denied=false;
   filter_11='d-show';
   filter_12='d-none';
   
 
-  only_approved(){
+  only_issued(){
     this.filter_11='d-show';
     this.filter_12='d-none';
-    this.filter_approved=true;
+    this.filter_issued=true;
     this.filter_denied=false;
-    console.log(this.filter_approved)
+    console.log(this.filter_issued)
     console.log(this.filter_denied)
 
   }
   only_denied(){
     this.filter_11='d-show';
     this.filter_12='d-none';
-    this.filter_approved=false;
+    this.filter_issued=false;
     this.filter_denied=true;
-    console.log(this.filter_approved)
+    console.log(this.filter_issued)
     console.log(this.filter_denied)
 
   }
   only_pending(){
     this.filter_11='d-show';
     this.filter_12='d-none';
-    this.filter_approved=false;
+    this.filter_issued=false;
     this.filter_denied=false;
-    console.log(this.filter_approved)
+    console.log(this.filter_issued)
     console.log(this.filter_denied)
 
   }
   all_1(){
     this.filter_11='d-none';
     this.filter_12='d-show';
-    this.filter_approved=true;
+    this.filter_issued=true;
     this.filter_denied=false;
-    console.log(this.filter_approved)
+    console.log(this.filter_issued)
 
   }
 
-  approve_request(request)
+  issue_request(request)
   {
-    request.is_approved=true;
+    request.is_issued=true;
     request.is_denied=false;
     request.is_returned=this.items[request.item-1].is_consumable;
 
@@ -116,7 +116,7 @@ export class FateComponent implements OnInit {
   }
   deny_request(request)
   {
-    request.is_approved=false;
+    request.is_issued=false;
     request.is_denied=true;
     this.api.updateRequest(request).subscribe
       (
@@ -133,7 +133,7 @@ export class FateComponent implements OnInit {
   }
   p_request(request)
   {
-    request.is_approved=false;
+    request.is_issued=false;
     request.is_denied=false;
     this.api.updateRequest(request).subscribe
       (

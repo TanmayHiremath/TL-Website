@@ -1,7 +1,7 @@
 <div class="cd-filter">
   <form>
       <label class="radio-inline">
-        <input type="radio" name="optradio" (click)="only_approved()">approved
+        <input type="radio" name="optradio" (click)="only_issued()">issued
       </label>
       &nbsp;
       <label class="radio-inline">
@@ -44,13 +44,13 @@
   <tbody>
     <tr class="{{filter_11}}" *ngFor="let request of requests">
         
-      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{items[request.item-1].name}}</td>
-      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{request.quantity}}</td>
-      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{request.roll}}</td>
-      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{items[request.item-1].quantity}}</td>
-      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{request.id}}</td>
-      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied)">{{items[request.item-1].id_required}}</td>
-      <td *ngIf="(request.is_approved==filter_approved) && (request.is_denied==filter_denied) &&(filter_approved==false) && (filter_denied==false)"><button (click)="approve_request(request)">approve</button><button (click)="deny_request(request)">deny</button></td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied)">{{items[request.item-1].name}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied)">{{request.quantity}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied)">{{request.roll}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied)">{{items[request.item-1].quantity}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied)">{{request.id}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied)">{{items[request.item-1].id_required}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) &&(filter_issued==false) && (filter_denied==false)"><button (click)="issue_request(request)">issue</button><button (click)="deny_request(request)">deny</button></td>
       <button (click)="p_request(request)">p</button>
       
     </tr>
@@ -62,9 +62,9 @@
       <td >{{items[request.item-1].quantity}}</td>
       <td >{{request.id}}</td>
       <td >{{items[request.item-1].id_required}}</td>
-      <td *ngIf="(request.is_approved==false) && (request.is_denied==false) "><button (click)="approve_request(request)">approve</button><button (click)="deny_request(request)">deny</button></td>
-      <td *ngIf="(request.is_approved==true) && (request.is_denied==false) ">approved</td>
-      <td *ngIf="(request.is_approved==false) && (request.is_denied==true) ">denied</td>
+      <td *ngIf="(request.is_issued==false) && (request.is_denied==false) "><button (click)="issue_request(request)">issue</button><button (click)="deny_request(request)">deny</button></td>
+      <td *ngIf="(request.is_issued==true) && (request.is_denied==false) ">issued</td>
+      <td *ngIf="(request.is_issued==false) && (request.is_denied==true) ">denied</td>
       
       
     </tr>
@@ -112,9 +112,9 @@
       <td>{{request.roll}}</td>
       <td >{{items[request.item-1].quantity}}</td>
       <td >{{request.id}}</td>
-      <td *ngIf="(request.is_approved==false) && (request.is_denied==false) "><button (click)="approve_request(request)">approve</button><button (click)="deny_request(request)">deny</button></td>
-      <td *ngIf="(request.is_approved==true) && (request.is_denied==false) ">approved</td>
-      <td *ngIf="(request.is_approved==false) && (request.is_denied==true) ">denied</td>
+      <td *ngIf="(request.is_issued==false) && (request.is_denied==false) "><button (click)="issue_request(request)">issue</button><button (click)="deny_request(request)">deny</button></td>
+      <td *ngIf="(request.is_issued==true) && (request.is_denied==false) ">issued</td>
+      <td *ngIf="(request.is_issued==false) && (request.is_denied==true) ">denied</td>
       
       
     </tr> -->
