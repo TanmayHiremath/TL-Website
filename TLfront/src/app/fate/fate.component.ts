@@ -145,4 +145,15 @@ export class FateComponent implements OnInit {
     
   }
 
+
+
+
+  incrementQuantity(item) {
+    item.quantity++;
+  }
+
+  decrementQuantity(item) {
+    item.quantity--;
+  }
+
 }

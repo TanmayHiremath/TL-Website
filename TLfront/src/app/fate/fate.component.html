@@ -98,7 +98,8 @@
       <td >{{item.name}}</td>
       <td >{{item.category}}</td>
       <td >{{item.price}}</td>
-      <td >{{item.quantity}}  <input type="text" [(ngModel)]="quantity"></td>
+      <td >{{item.quantity}} <button [disabled]="item.quantity<=1" (click)="decrementQuantity(item)">-</button><input type="text"
+        [(ngModel)]="item.quantity"><button (click)="incrementQuantity(item)">+</button></td>
       <td>{{item.colour_code}}</td>
       <td>{{item.id_required}}</td>
       
