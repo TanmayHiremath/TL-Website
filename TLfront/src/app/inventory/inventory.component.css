@@ -3,6 +3,7 @@ a {
 }
 
 a:hover {
+    
     opacity: 0.5;
     cursor: pointer;
     text-decoration: none;
@@ -29,6 +30,7 @@ a:hover {
 }
 
 .expanded {
+
     background-color: darksalmon;
     color: white;
     position: absolute;
@@ -39,3 +41,8 @@ a:hover {
     padding: 10px;
     border-radius: 15px;
 }
+
+.expanded img {
+    width:150px;
+}
+

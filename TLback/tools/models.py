@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from .functions import set_colour_code
 # Create your models here.
 class Item(models.Model):
     
@@ -9,18 +10,21 @@ class Item(models.Model):
     level2 = models.CharField(max_length=50)
     description = models.CharField(max_length=2000)
     keywords = models.CharField(max_length=1000)
-    picture = models.FileField()
+    picture = models.ImageField(upload_to='images/')
     id_required = models.BooleanField(default=True)
     quantity = models.PositiveSmallIntegerField()
     critical_val = models.PositiveSmallIntegerField()
     current_holders = models.CharField(max_length=1000)
     is_consumable = models.BooleanField(default=False)
-    colour_code = models.CharField(max_length=10)
+    colour_code = models.CharField(max_length=10,blank=True)
     notifications = models.CharField(max_length=10000)
     price = models.PositiveIntegerField()
     display=models.BooleanField(default=False)
     displaylevel1=models.BooleanField(default=False)
     displaylevel2=models.BooleanField(default=False)
+    
+    if(is_consumable == True):
+            colour_code =  set_colour_code(quantity,critical_val)
 
     def __str__(self):
         return self.name
