@@ -19,10 +19,11 @@ admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
 def issued_status(self, request, queryset):
+
     count= queryset.update(
         is_issued=True,
         is_denied=False,
-        
+        item__quantity=456
     )
 
     self.message_user(request, '{} issued'.format(count))
