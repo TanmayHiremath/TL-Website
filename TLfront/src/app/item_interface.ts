@@ -8,7 +8,7 @@ export interface item_interface {
     level2 : string
     description : string
     keywords : string
-    picture : File
+    picture : string
     id_required :boolean
     quantity : number
     critical_val :number

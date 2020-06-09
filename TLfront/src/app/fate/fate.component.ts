@@ -15,7 +15,9 @@ export class FateComponent implements OnInit {
   items = []
   quantity;
   constructor(private api: ApiService,
-    private router: Router) { }
+    private router: Router) { 
+
+    }
 
   ngOnInit(): void {
 
@@ -165,7 +167,7 @@ export class FateComponent implements OnInit {
 
 save(item){
 
-  console.log("data")
+  console.log(item)
   this.api.updateItem(item).subscribe
       (
         data => 
