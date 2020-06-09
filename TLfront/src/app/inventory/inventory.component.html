@@ -1,82 +1,87 @@
+
 <div class="d-flex justify-content-start bg-secondary mb-3">
 
 
-    <div class="p-2 ml-3" *ngFor="let item of items"><a (click)="categoryClicked(item)">{{item.category}}</a></div>
-    <div class="ml-auto p-2 mr-3"><a routerLink="../cart"><i class="fas fa-shopping-cart" style="color: white;"></i></a>
-    </div>
+  <div class="p-2 ml-3" *ngFor="let item of items"><a (click)="categoryClicked(item)">{{item.category}}</a></div>
+  <div class="ml-auto p-2 mr-3"><a routerLink="../cart"><i class="fas fa-shopping-cart" style="color: white;"></i></a>
+    <a routerLink="../fate">fate</a>
+  </div>
 </div>
 
 
 <ul>
+  <div *ngFor="let item of items">
+    <li *ngIf="item.displaylevel1"><a [style.color]="fw" (click)="level1Clicked(item)">{{item.level1}}</a></li>
+  </div>
+
+
+
+  <ul>
     <div *ngFor="let item of items">
-        <li *ngIf="item.displaylevel1"><a [style.color]="fw" (click)="level1Clicked(item)">{{item.level1}}</a></li>
+      <li *ngIf="item.displaylevel2"><a (click)="level2Clicked(item)">{{item.level2}}</a></li>
+    </div>
+    <div class="container">
+      <table class="table table-striped" *ngIf="tabledisplay">
+        <thead>
+          <tr>
+            <th>Item Name</th>
+            <th>Id Required To Issue</th>
+            <th>Notify when available</th>
+            <th>Add to cart</th>
+            <th>Damaged items</th>
+            <th>Flag item</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of items">
+            <td class="itemName" [style.color]='item.colour_code' (click)="nameClicked()" *ngIf="item.display">
+              <a>{{item.name}}</a></td>
+            <td *ngIf="item.display"><span>{{convertBool(item)}}</span></td>
+            <td *ngIf="item.display"><a><i class="far fa-bell"></i></a></td>
+            <td *ngIf="item.display">
+
+              <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
+
+
+              <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
+                    class="fas fa-shopping-cart"></i></a></div>
+
+
+
+              <div id="specifyQuantity"><span>Quantity&nbsp;</span><button [disabled]="newRequest.quantity<=1"
+                  (click)="decrementQuantity()">-</button><input type="text" [(ngModel)]="newRequest.quantity"><button
+                  (click)="incrementQuantity()">+</button><span><button title="Add to Cart"
+                    (click)="CreateRequest(item)">Add</button></span></div>
+
+
+            </td>
+            <td *ngIf="item.display"><a>Report Damage</a></td>
+            <td *ngIf="item.display"><a><i class="far fa-flag"></i></a>
+              <div (click)="overlayClicked()" class="overlay">
+                <div class="expanded">
+
+                  <img src={{item.picture}} alt="Couldn't load">
+                  <p></p>
+                  <h2>{{item.name}}</h2>
+
+                  <br>
+                  <div>
+                    <h4>{{item.description}}</h4>
+                  </div>
+
+                </div>
+              </div>
+            </td>
+
+
+          </tr>
+
+        </tbody>
+      </table>
     </div>
 
-
-
-    <ul>
-        <div *ngFor="let item of items">
-            <li *ngIf="item.displaylevel2"><a (click)="level2Clicked(item)">{{item.level2}}</a></li>
-        </div>
-        <div class="container">
-        <table class="table table-striped" *ngIf="tabledisplay">
-            <thead>
-                <tr>
-                    <th>Item Name</th>
-                    <th>Id Required To Issue</th>
-                    <th>Notify when available</th>
-                    <th>Add to cart</th>
-                    <th>Damaged items</th>
-                    <th>Flag item</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr *ngFor="let item of items">
-                    <td class="itemName" [style.color]='item.colour_code' (click)="nameClicked()" *ngIf="item.display">{{item.colour_code}}<a>{{item.name}}</a></td>
-                    <td *ngIf="item.display"><span>{{convertBool(item)}}</span></td>
-                    <td *ngIf="item.display"><a><i class="far fa-bell"></i></a></td>
-                    <td *ngIf="item.display">
-
-                        <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
-
-
-                        <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
-                                class="fas fa-shopping-cart"></i></a></div>
-
-
-
-                        <div id="specifyQuantity"><span>Quantity&nbsp;</span><button [disabled]="newRequest.quantity<=1" (click)="decrementQuantity()">-</button><input type="text" [(ngModel)]="newRequest.quantity"><button (click)="incrementQuantity()">+</button><span><button title="Add to Cart"
-                                        (click)="CreateRequest(item)">Add</button></span></div>
-
-
-                    </td>
-                    <td *ngIf="item.display"><a>Report Damage</a></td>
-                    <td *ngIf="item.display"><a><i class="far fa-flag"></i></a>
-                        <div (click)="overlayClicked()" class="overlay">
-                            <div class="expanded">
-
-                                <img src={{item.picture}} alt="Couldn't load">
-                                <p></p>
-                                <h2>{{item.name}}</h2>
-                               
-                                <br>
-                                <div>
-                                    <h4>{{item.description}}</h4>
-                                </div>
-
-                            </div>
-                        </div>
-                    </td>
-
-
-                </tr>
-
-            </tbody>
-        </table>
-        </div>
-
-    </ul>
+  </ul>
 
 
 </ul>
