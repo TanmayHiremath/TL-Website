@@ -15,6 +15,7 @@
 .circles {
   width: 100vw;
   overflow: hidden;
+  z-index: 1;
 }
 
 .circles li {
