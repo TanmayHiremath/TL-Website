@@ -97,12 +97,13 @@
         
       <td >{{item.name}}</td>
       <td >{{item.category}}</td>
-      <td >{{item.price}}</td>
+      <td >{{item.price}}<button [disabled]="item.price<=1" (click)="decrementPrice(item)">-</button><input type="text"
+        [(ngModel)]="item.price"><button (click)="incrementPrice(item)">+</button></td>
       <td >{{item.quantity}} <button [disabled]="item.quantity<=1" (click)="decrementQuantity(item)">-</button><input type="text"
         [(ngModel)]="item.quantity"><button (click)="incrementQuantity(item)">+</button></td>
       <td>{{item.colour_code}}</td>
       <td>{{item.id_required}}</td>
-      
+      <td><button (click)="save(item)">save</button></td>
     </tr>
     <!-- <tr class="{{filter_12}}" *ngFor="let request of requests">
         

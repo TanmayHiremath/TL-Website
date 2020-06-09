@@ -155,5 +155,30 @@ export class FateComponent implements OnInit {
   decrementQuantity(item) {
     item.quantity--;
   }
+  incrementPrice(item) {
+    item.price++;
+  }
+
+  decrementPrice(item) {
+    item.price--;
+  }
+
+save(item){
+
+  console.log("data")
+  this.api.updateItem(item).subscribe
+      (
+        data => 
+          {
+            console.log(data)
+          },
+        error => 
+          {
+            console.log(error);
+          }
+      );
+
+      console.log("data")
+        }
 
 }
