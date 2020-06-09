@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class FateComponent implements OnInit {
   requests = []
   items = []
-  quantity
+  quantity;
   constructor(private api: ApiService,
     private router: Router) { }
 
