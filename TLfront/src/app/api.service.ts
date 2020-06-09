@@ -29,8 +29,9 @@ export class ApiService {
   }
 
   updateItem(item): Observable<any> {
+    console.log("hello")
     const body = {  quantity: item.quantity, price: item.price };
-    return this.http.put(this.baseurl + '/items/' + item.id + '/', body,
+    return this.http.put<any>(this.baseurl + '/items/' + item.id + '/', body,
       { headers: this.httpHeaders });
   }
 

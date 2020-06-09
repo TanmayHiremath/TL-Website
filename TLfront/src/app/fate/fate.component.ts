@@ -164,7 +164,7 @@ export class FateComponent implements OnInit {
   }
 
 save(item){
-
+  console.log("hjjj")
   console.log("data")
   this.api.updateItem(item).subscribe
       (
