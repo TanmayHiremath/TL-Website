@@ -11,6 +11,9 @@
         <input type="radio" name="optradio" (click)="only_pending()" checked>pending
       </label>&nbsp;
       <label class="radio-inline">
+        <input type="radio" name="optradio" (click)="only_returned()" >returned
+      </label>&nbsp;
+      <label class="radio-inline">
           <input type="radio" name="optradio" (click)="all_1()">all
         </label>&nbsp;
     </form>
@@ -38,19 +41,26 @@
       </th>
       <th class="th-sm">id required</th>
 
-      <th class="th-sm">status
+      <th class="th-sm">status</th>
     </tr>
   </thead>
   <tbody>
     <tr class="{{filter_11}}" *ngFor="let request of requests">
         
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied)">{{items[request.item-1].name}}</td>
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied)">{{request.quantity}}</td>
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied)">{{request.roll}}</td>
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied)">{{items[request.item-1].quantity}}</td>
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied)">{{request.id}}</td>
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied)">{{items[request.item-1].id_required}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{items[request.item-1].name}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{request.quantity}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{request.roll}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{items[request.item-1].quantity}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{request.id}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{items[request.item-1].id_required}}</td>
       <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) &&(filter_issued==false) && (filter_denied==false)"><button (click)="issue_request(request)">issue</button><button (click)="deny_request(request)">deny</button></td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) &&(filter_issued==true) && (filter_denied==false) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">issued<button (click)="deny_request(request)">deny anyway</button><button *ngIf="request.is_returned==false" (click)="return_request(request)">return</button>
+        <!-- <button (click)="deny_request(request)">deny</button> -->
+      </td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) &&(filter_issued==false) && (filter_denied==true)">denied<button (click)="issue_request(request)">issue anyway</button>
+        <!-- <button (click)="deny_request(request)">deny</button> -->
+      </td>
+      
       <button (click)="p_request(request)">p</button>
       
     </tr>
@@ -63,8 +73,9 @@
       <td >{{request.id}}</td>
       <td >{{items[request.item-1].id_required}}</td>
       <td *ngIf="(request.is_issued==false) && (request.is_denied==false) "><button (click)="issue_request(request)">issue</button><button (click)="deny_request(request)">deny</button></td>
-      <td *ngIf="(request.is_issued==true) && (request.is_denied==false) ">issued</td>
-      <td *ngIf="(request.is_issued==false) && (request.is_denied==true) ">denied</td>
+      <td *ngIf="(request.is_issued==true) && (request.is_denied==false) && ((request.is_returned==false) || (items[request.item-1].is_consumable==true)) ">issued <button (click)="deny_request(request)">deny anyway</button></td>
+      <td *ngIf="(request.is_issued==false) && (request.is_denied==true) ">denied <button (click)="issue_request(request)">issue anyway</button></td>
+      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">returned</td>
       
       
     </tr>
@@ -81,27 +92,31 @@
     <tr>
       <th class="th-sm">item Name
       </th>
-      <th class="th-sm">category
-      </th>
+      
       <th class="th-sm">price
       </th>
       <th class="th-sm">items quantity
       </th>
       <th class="th-sm">colour code
       </th>
-      <th class="th-sm">id required
+      <th class="th-sm">id required</th>
+      <th class="th-sm">SAVE
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr class="" *ngFor="let item of items">
         
       <td >{{item.name}}</td>
-      <td >{{item.category}}</td>
+      
       <td >{{item.price}}<button [disabled]="item.price<=1" (click)="decrementPrice(item)">-</button><input type="text"
         [(ngModel)]="item.price"><button (click)="incrementPrice(item)">+</button></td>
       <td >{{item.quantity}} <button [disabled]="item.quantity<=1" (click)="decrementQuantity(item)">-</button><input type="text"
         [(ngModel)]="item.quantity"><button (click)="incrementQuantity(item)">+</button></td>
-      <td>{{item.colour_code}}</td>
+      <td *ngIf="item.is_consumable==true  &&  item.quantity<0.3*item.critical_val">Red</td>
+      <td *ngIf="item.is_consumable==true  &&  0.3*item.critical_val<=item.quantity &&  item.quantity <0.7*item.critical_val">Yellow</td>
+      <td *ngIf="item.is_consumable==true  &&  item.quantity>=0.7*item.critical_val">Green</td>
+      <td *ngIf="item.is_consumable==false">Not Consumable</td>
       <td>{{item.id_required}}</td>
       <td><button (click)="save(item)">save</button></td>
     </tr>

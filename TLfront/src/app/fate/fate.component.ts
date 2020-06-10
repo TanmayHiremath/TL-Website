@@ -55,6 +55,8 @@ export class FateComponent implements OnInit {
 
   filter_issued=false;
   filter_denied=false;
+  filter_returned=false;
+  filter_consumable=true;
   filter_11='d-show';
   filter_12='d-none';
   
@@ -64,6 +66,8 @@ export class FateComponent implements OnInit {
     this.filter_12='d-none';
     this.filter_issued=true;
     this.filter_denied=false;
+    this.filter_returned=false;
+    this.filter_consumable=true;
     console.log(this.filter_issued)
     console.log(this.filter_denied)
 
@@ -73,6 +77,18 @@ export class FateComponent implements OnInit {
     this.filter_12='d-none';
     this.filter_issued=false;
     this.filter_denied=true;
+    this.filter_returned=false;
+    console.log(this.filter_issued)
+    console.log(this.filter_denied)
+
+  }
+  only_returned(){
+    this.filter_11='d-show';
+    this.filter_12='d-none';
+    this.filter_issued=true;
+    this.filter_denied=false;
+    this.filter_returned=true;
+
     console.log(this.filter_issued)
     console.log(this.filter_denied)
 
@@ -82,6 +98,7 @@ export class FateComponent implements OnInit {
     this.filter_12='d-none';
     this.filter_issued=false;
     this.filter_denied=false;
+    this.filter_returned=false;
     console.log(this.filter_issued)
     console.log(this.filter_denied)
 
@@ -118,6 +135,25 @@ export class FateComponent implements OnInit {
   {
     request.is_issued=false;
     request.is_denied=true;
+    request.is_returned=false;
+    this.api.updateRequest(request).subscribe
+      (
+        data => 
+          {
+            console.log(data)
+          },
+        error => 
+          {
+            console.log(error);
+          }
+      );
+    
+  }
+  return_request(request)
+  {
+    request.is_issued=true;
+    request.is_denied=false;
+    request.is_returned=true;
     this.api.updateRequest(request).subscribe
       (
         data => 
@@ -135,6 +171,8 @@ export class FateComponent implements OnInit {
   {
     request.is_issued=false;
     request.is_denied=false;
+    request.is_returned=false;
+
     this.api.updateRequest(request).subscribe
       (
         data => 
