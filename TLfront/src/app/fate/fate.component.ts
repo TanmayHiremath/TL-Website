@@ -60,6 +60,8 @@ export class FateComponent implements OnInit {
   filter_11='d-show';
   filter_12='d-none';
   filter_13='d-none';
+  filter_1='d-none';
+  filter_2='d-none';
   
 
   only_issued(){
@@ -229,5 +231,13 @@ save(item){
 
       console.log("data")
         }
+  show_requests(){
+    this.filter_1='d-show';
+    this.filter_2='d-none';
+  }
 
+  show_items(){
+    this.filter_1='d-none';
+    this.filter_2='d-show';
+  }
 }
