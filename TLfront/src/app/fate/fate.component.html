@@ -79,6 +79,22 @@
       
       
     </tr>
+
+    <tr class="{{filter_13}}" *ngFor="let request of requests">
+        
+      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">{{items[request.item-1].name}}</td>
+      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">{{request.quantity}}</td>
+      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">{{request.roll}}</td>
+      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">{{items[request.item-1].quantity}}</td>
+      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">{{request.id}}</td>
+      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">{{items[request.item-1].id_required}}</td>
+      <!-- <td *ngIf="(request.is_issued==false) && (request.is_denied==false) "><button (click)="issue_request(request)">issue</button><button (click)="deny_request(request)">deny</button></td>
+      <td *ngIf="(request.is_issued==true) && (request.is_denied==false) && ((request.is_returned==false) || (items[request.item-1].is_consumable==true)) ">issued <button (click)="deny_request(request)">deny anyway</button></td>
+      <td *ngIf="(request.is_issued==false) && (request.is_denied==true) ">denied <button (click)="issue_request(request)">issue anyway</button></td> -->
+      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">returned</td>
+      
+      
+    </tr>
   </tbody>
   
 </table>
