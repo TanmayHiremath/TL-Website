@@ -55,17 +55,17 @@
   <tbody>
     <tr class="{{filter_11}}" *ngFor="let request of requests">
         
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{items[request.item-1].name}}</td>
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{request.quantity}}</td>
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{request.roll}}</td>
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{items[request.item-1].quantity}}</td>
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{request.id}}</td>
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{items[request.item-1].id_required}}</td>
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) &&(filter_issued==false) && (filter_denied==false)"><button (click)="issue_request(request)">issue</button><button (click)="deny_request(request)">deny</button></td>
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) &&(filter_issued==true) && (filter_denied==false) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">issued<button (click)="deny_request(request)">deny anyway</button><button *ngIf="request.is_returned==false" (click)="return_request(request)">return</button>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{items[request.item-1].name}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{request.quantity}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{request.roll}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{items[request.item-1].quantity}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{request.id}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{items[request.item-1].id_required}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) &&(filter_issued==false) && (filter_denied==false)"><button (click)="issue_request(request)">issue</button><button (click)="deny_request(request)">deny</button></td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) &&(filter_issued==true) && (filter_denied==false) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">issued<button (click)="deny_request(request)">deny anyway</button><button *ngIf="request.is_returned==false" (click)="return_request(request)">return</button>
         <!-- <button (click)="deny_request(request)">deny</button> -->
       </td>
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) &&(filter_issued==false) && (filter_denied==true)">denied<button (click)="issue_request(request)">issue anyway</button>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && (filter_issued==false) && (filter_denied==true)">denied<button (click)="issue_request(request)">issue anyway</button>
         <!-- <button (click)="deny_request(request)">deny</button> -->
       </td>
       
@@ -74,32 +74,32 @@
     </tr>
     <tr class="{{filter_12}}" *ngFor="let request of requests">
         
-      <td>{{items[request.item-1].name}}</td>
-      <td >{{request.quantity}}</td>
-      <td>{{request.roll}}</td>
-      <td >{{items[request.item-1].quantity}}</td>
-      <td >{{request.id}}</td>
-      <td >{{items[request.item-1].id_required}}</td>
-      <td *ngIf="(request.is_issued==false) && (request.is_denied==false) ">pending<button (click)="issue_request(request)">issue</button><button (click)="deny_request(request)">deny</button></td>
-      <td *ngIf="(request.is_issued==true) && (request.is_denied==false) && ((request.is_returned==false) || (items[request.item-1].is_consumable==true)) ">issued &nbsp; <button *ngIf="request.is_returned==false" (click)="return_request(request)">return</button>&nbsp;<button (click)="deny_request(request)">deny anyway</button></td>
-      <td *ngIf="(request.is_issued==false) && (request.is_denied==true) ">denied <button (click)="issue_request(request)">issue anyway</button></td>
-      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">returned</td>
+      <td *ngIf= " (request.is_sent==true)" >{{items[request.item-1].name}}</td>
+      <td *ngIf= " (request.is_sent==true)">{{request.quantity}}</td>
+      <td *ngIf= " (request.is_sent==true)">{{request.roll}}</td>
+      <td *ngIf= " (request.is_sent==true)">{{items[request.item-1].quantity}}</td>
+      <td *ngIf= " (request.is_sent==true)">{{request.id}}</td>
+      <td *ngIf= " (request.is_sent==true)">{{items[request.item-1].id_required}}</td>
+      <td *ngIf="(request.is_issued==false) && (request.is_sent==true) && (request.is_denied==false) ">pending<button (click)="issue_request(request)">issue</button><button (click)="deny_request(request)">deny</button></td>
+      <td *ngIf="(request.is_issued==true) && (request.is_sent==true) && (request.is_denied==false) && ((request.is_returned==false) || (items[request.item-1].is_consumable==true)) ">issued &nbsp; <button *ngIf="request.is_returned==false" (click)="return_request(request)">return</button>&nbsp;<button (click)="deny_request(request)">deny anyway</button></td>
+      <td *ngIf="(request.is_issued==false) && (request.is_sent==true) && (request.is_denied==true) ">denied <button (click)="issue_request(request)">issue anyway</button></td>
+      <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">returned</td>
       
       
     </tr>
 
     <tr class="{{filter_13}}" *ngFor="let request of requests">
         
-      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">{{items[request.item-1].name}}</td>
-      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">{{request.quantity}}</td>
-      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">{{request.roll}}</td>
-      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">{{items[request.item-1].quantity}}</td>
-      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">{{request.id}}</td>
-      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">{{items[request.item-1].id_required}}</td>
+      <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">{{items[request.item-1].name}}</td>
+      <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">{{request.quantity}}</td>
+      <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">{{request.roll}}</td>
+      <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">{{items[request.item-1].quantity}}</td>
+      <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">{{request.id}}</td>
+      <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">{{items[request.item-1].id_required}}</td>
       <!-- <td *ngIf="(request.is_issued==false) && (request.is_denied==false) "><button (click)="issue_request(request)">issue</button><button (click)="deny_request(request)">deny</button></td>
       <td *ngIf="(request.is_issued==true) && (request.is_denied==false) && ((request.is_returned==false) || (items[request.item-1].is_consumable==true)) ">issued <button (click)="deny_request(request)">deny anyway</button></td>
       <td *ngIf="(request.is_issued==false) && (request.is_denied==true) ">denied <button (click)="issue_request(request)">issue anyway</button></td> -->
-      <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">returned</td>
+      <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">returned</td>
       
       
     </tr>

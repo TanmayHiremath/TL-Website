@@ -153,10 +153,11 @@ export class FateComponent implements OnInit {
       );
 
 
-      this.toastr.success('Hello world! issue', 'Toastr fun!',
-    {timeOut: 1000,
-    positionClass : "toast-top-full-width"
-    });
+      this.toastr.success(this.items[request.item-1].name+' is issued successfully to '+ request.roll, 'Issued',
+      {timeOut: 1000,
+      positionClass : "toast-top-full-width"
+      });
+    
 
     
   }
@@ -177,10 +178,10 @@ export class FateComponent implements OnInit {
           }
       );
 
-      this.toastr.success('Hello world!  deny', 'Toastr fun!',
-    {timeOut: 1000,
-    positionClass : "toast-top-full-width"
-    });
+      this.toastr.success(this.items[request.item-1].name+' requested by '+ request.roll+ ' has been denied', 'Issued',
+      {timeOut: 1000,
+      positionClass : "toast-top-full-width"
+      });
     
   }
   return_request(request)
@@ -211,7 +212,7 @@ export class FateComponent implements OnInit {
             console.log(error);
           }
       );
-      this.toastr.success('Hello world! return', 'Toastr fun!',
+      this.toastr.success(this.items[request.item-1].name+' issued by '+ request.roll +' is returned successfully', 'Returned',
       {timeOut: 1000,
       positionClass : "toast-top-full-width"
       });
@@ -275,7 +276,7 @@ save(item){
 
 
 
-      this.toastr.success('Hello world!', 'Toastr fun!',
+      this.toastr.success(item.name+' has been updated', 'Updated Successfully',
     {timeOut: 2000,
     positionClass : "toast-top-full-width"
     });
