@@ -23,3 +23,11 @@ table.dataTable thead .sorting_desc_disabled:before {
 /* table{
   width: fit-content;
 } */
+
+@media screen and (max-width: 650px) {
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+}
