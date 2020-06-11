@@ -19,3 +19,7 @@ table.dataTable thead .sorting_desc_disabled:before {
   margin: 20px;
 
 }
+
+/* table{
+  width: fit-content;
+} */

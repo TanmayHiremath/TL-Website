@@ -126,7 +126,7 @@ export class FateComponent implements OnInit {
     request.is_issued=true;
     request.is_denied=false;
     request.is_returned=this.items[request.item-1].is_consumable;
-
+    this.items[request.item-1].quantity-=request.quantity;
     this.api.updateRequest(request).subscribe
       (
         data => 
@@ -138,6 +138,18 @@ export class FateComponent implements OnInit {
             console.log(error);
           }
       );
+      this.api.updateItem(this.items[request.item-1]).subscribe
+      (
+        data => 
+          {
+            console.log(data)
+          },
+        error => 
+          {
+            console.log(error);
+          }
+      );
+
     
   }
   deny_request(request)
@@ -163,6 +175,7 @@ export class FateComponent implements OnInit {
     request.is_issued=true;
     request.is_denied=false;
     request.is_returned=true;
+    this.items[request.item-1].quantity+=request.quantity;
     this.api.updateRequest(request).subscribe
       (
         data => 
@@ -174,6 +187,18 @@ export class FateComponent implements OnInit {
             console.log(error);
           }
       );
+      this.api.updateItem(this.items[request.item-1]).subscribe
+      (
+        data => 
+          {
+            console.log(data)
+          },
+        error => 
+          {
+            console.log(error);
+          }
+      );
+
     
   }
   p_request(request)
