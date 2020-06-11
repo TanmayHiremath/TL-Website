@@ -81,7 +81,7 @@
       <td >{{request.id}}</td>
       <td >{{items[request.item-1].id_required}}</td>
       <td *ngIf="(request.is_issued==false) && (request.is_denied==false) ">pending<button (click)="issue_request(request)">issue</button><button (click)="deny_request(request)">deny</button></td>
-      <td *ngIf="(request.is_issued==true) && (request.is_denied==false) && ((request.is_returned==false) || (items[request.item-1].is_consumable==true)) ">issued <button (click)="deny_request(request)">deny anyway</button></td>
+      <td *ngIf="(request.is_issued==true) && (request.is_denied==false) && ((request.is_returned==false) || (items[request.item-1].is_consumable==true)) ">issued &nbsp; <button *ngIf="request.is_returned==false" (click)="return_request(request)">return</button>&nbsp;<button (click)="deny_request(request)">deny anyway</button></td>
       <td *ngIf="(request.is_issued==false) && (request.is_denied==true) ">denied <button (click)="issue_request(request)">issue anyway</button></td>
       <td *ngIf="(request.is_returned==true) && items[request.item-1].is_consumable==false">returned</td>
       

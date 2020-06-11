@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { ToastrService } from 'ngx-toastr';
 import {FormsModule} from '@angular/forms'
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
@@ -15,7 +16,8 @@ export class FateComponent implements OnInit {
   items = []
   quantity;
   constructor(private api: ApiService,
-    private router: Router) { 
+    private router: Router,
+    private toastr: ToastrService) { 
 
     }
 
@@ -150,6 +152,12 @@ export class FateComponent implements OnInit {
           }
       );
 
+
+      this.toastr.success('Hello world! issue', 'Toastr fun!',
+    {timeOut: 1000,
+    positionClass : "toast-top-full-width"
+    });
+
     
   }
   deny_request(request)
@@ -168,6 +176,11 @@ export class FateComponent implements OnInit {
             console.log(error);
           }
       );
+
+      this.toastr.success('Hello world!  deny', 'Toastr fun!',
+    {timeOut: 1000,
+    positionClass : "toast-top-full-width"
+    });
     
   }
   return_request(request)
@@ -198,7 +211,10 @@ export class FateComponent implements OnInit {
             console.log(error);
           }
       );
-
+      this.toastr.success('Hello world! return', 'Toastr fun!',
+      {timeOut: 1000,
+      positionClass : "toast-top-full-width"
+      });
     
   }
   p_request(request)
@@ -255,7 +271,15 @@ save(item){
       );
 
       console.log("data")
-        }
+
+
+
+
+      this.toastr.success('Hello world!', 'Toastr fun!',
+    {timeOut: 2000,
+    positionClass : "toast-top-full-width"
+    });
+  }
   show_requests(){
     this.filter_1='d-show';
     this.filter_2='d-none';
@@ -265,4 +289,9 @@ save(item){
     this.filter_1='d-none';
     this.filter_2='d-show';
   }
+
+
+
+  
+
 }
