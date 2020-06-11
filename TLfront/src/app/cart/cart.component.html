@@ -75,7 +75,7 @@
     </div>
 
     <br>
-    <div  class="box-element">
+    <div *ngIf="total_items != 0" class="box-element">
       <div class="cart-row">
         <div style="flex:2"></div>
         <div style="flex:2"><strong>Item</strong></div>
@@ -103,3 +103,6 @@
 
 
 
+<div *ngIf="total_items == 0" class="alert alert-warning" role="alert">
+  Your cart is empty
+</div>
