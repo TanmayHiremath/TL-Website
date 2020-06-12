@@ -30,5 +30,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Install the following before starting the server
 
- npm install ngx-toastr
+ npm install ngx-toastr,
+ 
  npm install @angular/animations
