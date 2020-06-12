@@ -8,7 +8,7 @@ export interface item_interface {
     level2 : string
     description : string
     keywords : string
-    picture : File
+    picture : string
     id_required :boolean
     quantity : number
     critical_val :number
@@ -17,9 +17,6 @@ export interface item_interface {
     colour_code : string
     notifications : string
     price : number
-    flag : boolean
-    flag_time : any
-
     display:boolean
     displaylevel1:boolean
     displaylevel2:boolean

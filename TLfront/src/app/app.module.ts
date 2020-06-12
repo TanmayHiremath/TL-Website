@@ -12,11 +12,11 @@ import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr'
 import { ApiService } from './api.service';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ApprovedComponent } from './approved/approved.component';
-import { IssuedComponent } from './issued/issued.component';
 import { LoginComponent } from './login/login.component';
 import { FateComponent } from './fate/fate.component';
 
@@ -33,7 +33,6 @@ import { FateComponent } from './fate/fate.component';
     CartComponent,
     CheckoutComponent,
     ApprovedComponent,
-    IssuedComponent,
     LoginComponent,
     FateComponent,
   ],
@@ -46,6 +45,9 @@ import { FateComponent } from './fate/fate.component';
       
       BrowserAnimationsModule,
       
+      ToastrModule.forRoot({
+        // preventDuplicates: true
+      }), // ToastrModule added
 
       ///////////////////////////////////////////////////////
       RouterModule.forRoot([
@@ -53,14 +55,12 @@ import { FateComponent } from './fate/fate.component';
           {path:'',component:HomeComponent},
           {path:'approved',component:ApprovedComponent},
           {path:'about',component:AboutComponent},
-          {path:'issued',component:IssuedComponent},
           {path:'events',component:EventsComponent},
           {path:'inventory',component:InventoryComponent},
           {path:'contact',component:ContactComponent},
           {path:'cart',component:CartComponent},
           {path:'checkout',component:CheckoutComponent},
           {path:'login',component:LoginComponent},
-          {path:'issued',component:IssuedComponent},
           {path:'fate',component:FateComponent},
 
           

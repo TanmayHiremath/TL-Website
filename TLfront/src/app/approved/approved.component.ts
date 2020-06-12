@@ -14,6 +14,16 @@ export class ApprovedComponent implements OnInit {
   items = []
   requests = []
   total_items=0
+  choice="request.is_denied"
+  roll="19D070003"
+  chooseapp()
+  {
+    this.choice="request.is_approved"
+  }
+  chooseden()
+  {
+    this.choice="request.is_denied"
+  }
 
 
   constructor(private api: ApiService) { 

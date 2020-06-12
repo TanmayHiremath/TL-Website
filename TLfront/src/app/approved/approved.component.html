@@ -18,16 +18,17 @@
           <div style="flex:2"><strong>Status</strong></div>
         </div>
        <div *ngFor="let request of requests">
-        <div  *ngIf=" (request.is_approved) && (request.roll=='19D070003')  " class="cart-row">
+        <div  *ngIf=" (request.roll==roll)  " class="cart-row">
           <div   style="flex:2"><img class="row-image" src="#"></div>
-          <div   style="flex:2"><p>{{items[request.item].name}}</p></div>
+          <div   style="flex:2"><p>{{items[request.item-1].name}}</p></div>
           <div style="flex:2">
             <p class="quantity">{{request.quantity}}</p>
           </div>
           <div style="flex:2">
             <p class="quantity" *ngIf=" (request.is_returned)  " style="color: green;">Returned</p>
-            <p class="quantity" *ngIf=" (request.is_issued)  " style="color: orange">Issued</p>
-            <p class="quantity" *ngIf=" !((request.is_issued)||(request.is_returned))  " style="color: blue">Not issued yet</p>
+            <p class="quantity" *ngIf=" (request.is_issued) && !(request.is_returned)  " style="color: orange">Issued</p>
+            <p class="quantity" *ngIf=" (request.is_denied)  " style="color: red">Denied</p>
+            <p class="quantity" *ngIf=" !(request.is_approved) && !(request.is_denied)  " style="color: yellow">Pending</p>
           </div>
           </div>
        </div>

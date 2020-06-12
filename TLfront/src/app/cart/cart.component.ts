@@ -13,60 +13,37 @@ import { CheckoutComponent } from '../checkout/checkout.component';
 })
 export class CartComponent implements OnInit {
 
-  orders = []
-  products = []
-  customers = []
   items = []
-  requests 
+  customers = []
+  requests = []
   total_items = 0
   myVar=0
- 
+
 
   constructor(private api: ApiService,
-    private router: Router) {
+    private router: Router) { 
     
-    this.requests =[{ id: -1, item: -1, roll: 0,quantity:1 }]
-
   }
 
   ngOnInit(): void {
-
-
-    // this.api.getOrders().subscribe(
-    //   data => {
-    //     this.orders = data;
-    //   },
-    //   error => {
-    //     console.log(error);
-    //   }
-    // );
-
-    // this.api.getOrderproducts().subscribe(
-    //   data => {
-    //     this.products = data;
-    //   },
-    //   error => {
-    //     console.log(error);
-    //   }
-    // );
-    this.api.getCustomers().subscribe(
-      data => {
-        this.customers = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
-    this.api.getItems().subscribe(
-      data => {
-        this.items = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
-
-  
+   
+      this.api.getItems().subscribe(
+        data => {
+          this.items = data;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+      
+      this.api.getRequests().subscribe(
+        data => {
+          this.requests = data;
+        },
+        error => {
+          console.log(error);
+        }
+      ); 
   }
 
   getReq(){
@@ -127,7 +104,7 @@ export class CartComponent implements OnInit {
     }
 
 
-
+    console.log(" my var"+this.myVar)
 
 
   }
@@ -135,17 +112,25 @@ export class CartComponent implements OnInit {
 
   updateRequest()
   {
-    
-    
-    console.log(this.myVar)
-    
     var i;
     for (i = 0; i < this.requests.length; i+=1) 
       {
-        if( (this.requests[i].is_sent == false) && (this.requests[i].quantity<=this.items[this.requests[i].item-1].quantity) )
-          {
+        console.log(" request quantity"+this.requests[i].quantity)
+        console.log(" item quantity"+this.items[this.requests[i].item-1].quantity)
 
+    if( this.requests[i].quantity>this.items[this.requests[i].item-1].quantity && (this.requests[i].is_sent == false) )
+          {
             this.myVar=1;
+          }
+        }
+    
+    console.log(" my var"+this.myVar)
+    
+    
+    for (i = 0; i < this.requests.length; i+=1) 
+      {
+        if( (this.requests[i].is_sent == false) && (this.myVar==0) )
+          {
             this.requests[i].is_sent = true;
             this.api.updateRequest(this.requests[i]).subscribe
               (
@@ -162,7 +147,7 @@ export class CartComponent implements OnInit {
           
       }
 
-      if(this.myVar==0){
+      if(this.myVar==1){
       this.router.navigate(['./inventory'])}
      
       else  {this.router.navigate(['./checkout'])}
@@ -192,7 +177,7 @@ export class CartComponent implements OnInit {
 
   updateQuantityDown(request)
   {
-    if( request.quantity > 0)
+    if( request.quantity > 1)
       {
         request.quantity--;
       }
@@ -219,7 +204,7 @@ export class CartComponent implements OnInit {
       (
         data => 
           {
-            this.getReq();
+             this.getReq();
           },
         error => 
           {
@@ -245,7 +230,7 @@ export class CartComponent implements OnInit {
       (
         data => 
           {
-            this.getReq();
+             this.getReq();
           },
         error => 
           {

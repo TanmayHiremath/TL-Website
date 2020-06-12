@@ -11,3 +11,23 @@ table.dataTable thead .sorting_desc_disabled:before {
   bottom: .5em;
 }
 
+.one{
+    margin: 20px;
+}
+.two{
+
+  margin: 20px;
+
+}
+
+/* table{
+  width: fit-content;
+} */
+
+@media screen and (max-width: 650px) {
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+}
