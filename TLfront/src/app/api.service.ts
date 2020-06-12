@@ -33,7 +33,7 @@ export class ApiService {
 
       name: item.name, category: item.category, level1: item.level1, level2: item.level2, description: item.description,  keywords: item.keywords, picture: item.picture, id_required: item.id_required, quantity: item.quantity, critical_val: item.critical_val, current_holders: item.current_holders, is_consumable: item.is_consumable, colour_code: item.colour_code, notifications: item.notifications, price: item.price,display: item.display, displaylevel1: item.displaylevel1, displaylevel2: item.displaylevel2,
     };
-    return this.http.put<item_interface>(this.baseurl + '/items/' + item.id + '/', body,
+    return this.http.put(this.baseurl + '/items/' + item.id + '/', body,
       { headers: this.httpHeaders });
   }
 

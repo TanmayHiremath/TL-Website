@@ -14,6 +14,7 @@ export class FateComponent implements OnInit {
   requests = []
   items = []
   quantity;
+  x;
   constructor(private api: ApiService,
     private router: Router) { 
 
@@ -166,9 +167,9 @@ export class FateComponent implements OnInit {
   }
 
 save(item){
-
+  this.x=item
   console.log(item)
-  this.api.updateItem(item).subscribe
+  this.api.updateItem(this.x).subscribe
       (
         data => 
           {
