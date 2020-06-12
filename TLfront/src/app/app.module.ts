@@ -61,7 +61,7 @@ import { FateComponent } from './fate/fate.component';
           {path:'cart',component:CartComponent},
           {path:'checkout',component:CheckoutComponent},
           {path:'login',component:LoginComponent},
-          {path:'fate',component:FateComponent},
+          {path:'technician',component:FateComponent},
 
           
 
