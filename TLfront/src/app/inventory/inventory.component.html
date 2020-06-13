@@ -2,23 +2,24 @@
 <div class="d-flex justify-content-start bg-secondary mb-3">
 
 
-  <div class="p-2 ml-3" *ngFor="let item of items"><a (click)="categoryClicked(item)">{{item.category}}</a></div>
+  <div class="p-2 ml-3" *ngFor="let item of items"><a class="btn btn-success" (click)="categoryClicked(item)">{{item.category}}</a></div>
   <div class="ml-auto p-2 mr-3"><a routerLink="../cart"><i class="fas fa-shopping-cart" style="color: white;"></i></a>
-    <a routerLink="../technician">technician_page</a>
+    
   </div>
+  <a class="btn btn-info" routerLink="../technician">technician_page</a>
 </div>
 
 
 <ul>
   <div *ngFor="let item of items">
-    <li *ngIf="item.displaylevel1"><a [style.color]="fw" (click)="level1Clicked(item)">{{item.level1}}</a></li>
+    <li *ngIf="item.displaylevel1"><a class="btn btn-info" (click)="level1Clicked(item)">{{item.level1}}</a></li>
   </div>
 
-
+  <br>
 
   <ul>
     <div *ngFor="let item of items">
-      <li *ngIf="item.displaylevel2"><a (click)="level2Clicked(item)">{{item.level2}}</a></li>
+      <li *ngIf="item.displaylevel2"><a class="btn btn-warning" (click)="level2Clicked(item)">{{item.level2}}</a></li>
     </div>
     <div class="container">
       <table class="table table-striped" *ngIf="tabledisplay">
@@ -35,8 +36,8 @@
 
         <tbody>
           <tr *ngFor="let item of items">
-            <td class="itemName" [style.color]='item.colour_code' (click)="nameClicked()" *ngIf="item.display">
-              <a>{{item.name}}</a></td>
+            <td class="itemName"  (click)="nameClicked()" *ngIf="item.display">
+              <a class="btn" [style.backgroundColor]='item.colour_code'>{{item.name}}</a></td>
             <td *ngIf="item.display"><span>{{convertBool(item)}}</span></td>
             <td *ngIf="item.display"><a><i class="far fa-bell"></i></a></td>
             <td *ngIf="item.display">

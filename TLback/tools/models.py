@@ -10,7 +10,7 @@ class Item(models.Model):
     level2 = models.CharField(max_length=50)
     description = models.CharField(max_length=2000)
     keywords = models.CharField(max_length=1000)
-    picture = models.CharField(max_length=1000)
+    picture = models.ImageField()
     id_required = models.BooleanField(default=True)
     quantity = models.PositiveSmallIntegerField()
     critical_val = models.PositiveSmallIntegerField()
