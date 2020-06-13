@@ -16,6 +16,7 @@ export class FateComponent implements OnInit {
   items = []
   quantity;
   roll;
+  x;
   constructor(private api: ApiService,
     private router: Router,
     private toastr: ToastrService) { 
@@ -260,9 +261,9 @@ searchTitle() {
   }
 
 save(item){
-
+  this.x=item
   console.log(item)
-  this.api.updateItem(item).subscribe
+  this.api.updateItem(this.x).subscribe
       (
         data => 
           {
