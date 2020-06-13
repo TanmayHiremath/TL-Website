@@ -133,13 +133,17 @@
         
       <td >{{item.name}}</td>
       
-      <td ><button [disabled]="item.price<=1" (click)="decrementPrice(item)">-</button><input type="text"
-        [(ngModel)]="item.price"><button (click)="incrementPrice(item)">+</button></td>
+      <td >
+        <button [disabled]="item.price<=1" (click)="decrementPrice(item)">-</button>
+        <input type="text"
+        [(ngModel)]="item.price">
+        <button (click)="incrementPrice(item)">+</button>
+      </td>
       <td > <button [disabled]="item.quantity<=1" (click)="decrementQuantity(item)">-</button><input type="text"
         [(ngModel)]="item.quantity"><button (click)="incrementQuantity(item)">+</button></td>
-      <td *ngIf="item.is_consumable==true  &&  item.quantity<0.3*item.critical_val">Red</td>
-      <td *ngIf="item.is_consumable==true  &&  0.3*item.critical_val<=item.quantity &&  item.quantity <0.7*item.critical_val">Yellow</td>
-      <td *ngIf="item.is_consumable==true  &&  item.quantity>=0.7*item.critical_val">Green</td>
+      <td style="color: red;" *ngIf="item.is_consumable==true  &&  item.quantity<0.3*item.critical_val">Red</td>
+      <td style="color: yellow;" *ngIf="item.is_consumable==true  &&  0.3*item.critical_val<=item.quantity &&  item.quantity <0.7*item.critical_val">Yellow</td>
+      <td  style="color: green;" *ngIf="item.is_consumable==true  &&  item.quantity>=0.7*item.critical_val">Green</td>
       <td *ngIf="item.is_consumable==false">Not Consumable</td>
       <td>{{item.id_required}}</td>
       <td><button (click)="save(item)">save</button></td>
