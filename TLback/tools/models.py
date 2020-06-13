@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from .functions import set_colour_code
+
 # Create your models here.
 class Item(models.Model):
     
@@ -23,11 +23,10 @@ class Item(models.Model):
     displaylevel1=models.BooleanField(default=False)
     displaylevel2=models.BooleanField(default=False)
     
-    if(is_consumable == True):
-            colour_code =  set_colour_code(quantity,critical_val)
+    
 
     def __str__(self):
-        return self.name
+        return self.picture
 
     # def save(self, *args, **kwargs):
     # # save the value of self.timestamp into purchase_date
