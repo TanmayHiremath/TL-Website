@@ -19,6 +19,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ApprovedComponent } from './approved/approved.component';
 import { LoginComponent } from './login/login.component';
 import { FateComponent } from './fate/fate.component';
+import { MachinestatusComponent } from './machinestatus/machinestatus.component';
 
 
 
@@ -35,6 +36,7 @@ import { FateComponent } from './fate/fate.component';
     ApprovedComponent,
     LoginComponent,
     FateComponent,
+    MachinestatusComponent,
   ],
   imports: [
       FormsModule,
@@ -62,7 +64,7 @@ import { FateComponent } from './fate/fate.component';
           {path:'checkout',component:CheckoutComponent},
           {path:'login',component:LoginComponent},
           {path:'technician',component:FateComponent},
-
+          {path:'machinestatus',component:MachinestatusComponent}
           
 
       ], {scrollPositionRestoration: 'enabled'}),
