@@ -19,9 +19,13 @@ export class ApiService {
   }
 
   getRequests(): Observable<any> {
-    return this.http.get(this.baseurl + '/requests/',
+    return this.http.get(this.baseurl + '/requests?',
       { headers: this.httpHeaders });
   }
+  rollSearch(roll): Observable<any>{
+    return this.http.get(this.baseurl+'/requests'+'?roll='+ roll);
+  }
+
   createRequest(x): Observable<any> {
     const body = { item: x.item, quantity: x.quantity, roll: x.roll };
     return this.http.post<request_interface>(this.baseurl + '/requests/', body,

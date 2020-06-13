@@ -26,7 +26,6 @@ from django.conf.urls.static import static
 router = routers.DefaultRouter()
 router.register(r'items', views.ItemViewSet)
 router.register(r'customers', views.CustomerViewSet)
-router.register(r'requests', views.RequestViewSet)
 
 
 admin.site.site_header = 'Tinkerer\'s Lab Admin '
@@ -38,7 +37,8 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('',include('iitb_oauth.urls')),
-    path("autho/", views.post)
+    path("autho/", views.post),
+    path('requests', views.RequestViewSet.as_view())
 
     
 ]

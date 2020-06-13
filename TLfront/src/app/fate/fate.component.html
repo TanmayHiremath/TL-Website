@@ -30,7 +30,23 @@
 
   <a href="#0" class="cd-close"></a>
 </div> <!-- cd-filter -->
-
+<div class="input-group mb-3 {{filter_1}}">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Search by roll number"
+    [(ngModel)]="roll"
+  />
+  <div class="input-group-append ">
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      (click)="searchTitle()"
+    >
+      Search
+    </button>
+  </div>
+</div>
 
 
 
