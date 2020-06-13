@@ -15,6 +15,7 @@ export class FateComponent implements OnInit {
   requests = []
   items = []
   quantity;
+  roll;
   constructor(private api: ApiService,
     private router: Router,
     private toastr: ToastrService) { 
@@ -44,15 +45,17 @@ export class FateComponent implements OnInit {
       );
     
   }
-  getReq(){
-    this.api.getRequests().subscribe(
+  
+searchTitle() {
+  this.api.rollSearch(this.roll)
+    .subscribe(
       data => {
         this.requests = data;
+        console.log(data);
       },
       error => {
         console.log(error);
-      }
-    );
+      });
 }
 
   filter_issued=false;
