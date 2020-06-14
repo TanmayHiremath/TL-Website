@@ -17,6 +17,14 @@ a:hover {
     display: none;
 }
 
+#specifyQuantity input {
+
+    width: 5vw;
+
+}
+
+
+
 .overlay {
     position: fixed;
     display: none;

@@ -133,8 +133,8 @@
     backdrop-filter: blur(5px);
     height: calc(100vh - 60px);
     transition-property: left, width;
-    transition-duration: 0.5s;
-    transition-timing-function: ease-in;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
     overflow-y: hidden;
     top: 60px;
     left: 100%;

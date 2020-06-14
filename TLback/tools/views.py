@@ -19,7 +19,13 @@ class CustomerViewSet(viewsets.ModelViewSet):
     serializer_class = CustomerSerializer
 
 
-class RequestViewSet(generics.ListAPIView):
+class RequestViewSet(viewsets.ModelViewSet):
+    queryset = Request.objects.all()
+    serializer_class = RequestSerializer
+
+
+
+class RequestssViewSet(generics.ListAPIView):
     serializer_class = RequestSerializer
 
     def get_queryset(self):

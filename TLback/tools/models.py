@@ -26,7 +26,7 @@ class Item(models.Model):
     
 
     def __str__(self):
-        return self.picture
+        return self.name
 
     # def save(self, *args, **kwargs):
     # # save the value of self.timestamp into purchase_date

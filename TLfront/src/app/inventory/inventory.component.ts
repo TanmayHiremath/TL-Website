@@ -38,18 +38,16 @@ export class InventoryComponent implements OnInit {
 
     $(document).ready(function () {
 
+
+      
+
       $("i").click(function () {
         $(this).toggleClass("far")
         $(this).toggleClass("fas")
       });
 
 
-      $(".itemName").click(function () {
-        console.log("Hi")
-        alert("heheheh")
-        $(".overlay").css("display", "block")
-
-      });
+      
 
 
       $(".overlay").click(function () {
