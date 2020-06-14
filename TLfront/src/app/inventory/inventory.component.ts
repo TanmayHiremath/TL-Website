@@ -16,7 +16,7 @@ export class InventoryComponent implements OnInit {
   requests: [{ id: '' }];
   newRequest: { item: any; quantity: any; id?: number; roll?: number; }
   displaycartbtn: boolean = true
-  fw="red"
+  fw = "red"
   constructor(private api: ApiService, private router: Router) {
 
 
@@ -25,10 +25,26 @@ export class InventoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    
     this.api.getItems().subscribe(
       data => {
         this.items = data;
+        //setcolourcode
+        const that = this
+        this.items.forEach(iterate)
+        function iterate(item) {
+          if (item.is_consumable == true) {
+            if (item.quantity < 0.3 * item.critical_val) { item.colour_code = "red" }
+            else if (item.quantity < 0.75 * item.critical_val) { item.colour_code = "yellow" }
+            else if (item.quantity < item.critical_val) { item.colour_code = "green" }
+            else { item.colour_code = "white" }
+
+          }
+          that.api.updateItem(item).subscribe(data => { console.log(data) },error => { console.log(error); });
+
+        }
+        //end setcolourcode
+
       },
       error => {
         console.log(error);
@@ -36,10 +52,13 @@ export class InventoryComponent implements OnInit {
     );
 
 
+
+
+
     $(document).ready(function () {
 
 
-      
+
 
       $("i").click(function () {
         $(this).toggleClass("far")
@@ -47,7 +66,7 @@ export class InventoryComponent implements OnInit {
       });
 
 
-      
+
 
 
       $(".overlay").click(function () {
@@ -61,7 +80,7 @@ export class InventoryComponent implements OnInit {
 
   }
 
-  
+
   CreateRequest(item) {
 
     // this.router.navigate(['../cart'])
@@ -174,5 +193,11 @@ export class InventoryComponent implements OnInit {
 
     document.getElementById("specifyQuantity").style.display = "none";
     document.getElementById("addToCart").style.display = "none";
+  }
+
+
+  setColourCode(items): void {
+
+
   }
 }
