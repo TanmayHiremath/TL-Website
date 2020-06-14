@@ -31,6 +31,19 @@ export class FateComponent implements OnInit {
     this.api.getItems().subscribe(
       data => {
         this.items = data;
+        const that = this
+        this.items.forEach(iterate)
+        function iterate(item) {
+          if (item.is_consumable == true) {
+            if (item.quantity < 0.3 * item.critical_val) { item.colour_code = "red" }
+            else if (item.quantity < 0.75 * item.critical_val) { item.colour_code = "yellow" }
+            else if (item.quantity < item.critical_val) { item.colour_code = "green" }
+            else { item.colour_code = "green" }
+
+          }
+          that.api.updateItem(item).subscribe(data => { console.log(data) },error => { console.log(error); });
+
+        }
       },
       error => {
         console.log(error);
