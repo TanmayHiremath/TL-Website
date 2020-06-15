@@ -14,14 +14,10 @@ class Item(models.Model):
     id_required = models.BooleanField(default=True)
     quantity = models.PositiveSmallIntegerField()
     critical_val = models.PositiveSmallIntegerField()
-    current_holders = models.CharField(max_length=1000)
     is_consumable = models.BooleanField(default=False)
     colour_code = models.CharField(max_length=10,blank=True)
-    notifications = models.CharField(max_length=10000)
     price = models.PositiveIntegerField()
     display=models.BooleanField(default=False)
-    displaylevel1=models.BooleanField(default=False)
-    displaylevel2=models.BooleanField(default=False)
     
     
 
@@ -39,11 +35,9 @@ class Request(models.Model):
     roll = models.CharField(max_length=20)
     quantity = models.PositiveSmallIntegerField()
     is_sent = models.BooleanField(default=False)
-    is_approved = models.BooleanField(default=False)
     is_denied = models.BooleanField(default=False)
     is_issued = models.BooleanField(default=False)
     is_returned = models.BooleanField(default=False)
-    colour_code = models.CharField(max_length=20,default= "green")
     
     # @property
     # def get_colour(self):
@@ -82,3 +76,9 @@ class Flag(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     roll = models.CharField(max_length=20)
     time = models.DateTimeField(auto_now_add=True)
+
+class Project(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=1000)
+    picture = models.ImageField()
+    
