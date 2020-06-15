@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import * as $ from 'jquery';
 import { Router } from '@angular/router'
+import { getMaxListeners } from 'process';
 
 @Component({
   selector: 'app-inventory',
@@ -195,9 +196,18 @@ export class InventoryComponent implements OnInit {
     document.getElementById("addToCart").style.display = "none";
   }
 
+  flagItem(item){
+    var subject= 'Flagging of item'
+    var message=item.name +' <h1>has been flagged</h1>'
+    var recipent_list="[tanmay.v.hiremath@gmail.com]"
+    var date_time= Date()
+    var html_message='<h1>'+item.name +'</h1>has been flagged at<h2>'+date_time+'</h2>'
+    
 
-  setColourCode(items): void {
+    this.api.updateMail(subject,message,recipent_list,html_message).subscribe(data => { console.log(data) },error => { console.log(error); });
 
-
+    this.api.sendMail()
+    
   }
+  
 }

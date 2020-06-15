@@ -17,7 +17,6 @@ export class ApiService {
     return this.http.get(this.baseurl + '/items/',
       { headers: this.httpHeaders });
   }
-
   getRequests(): Observable<any> {
     return this.http.get(this.baseurl + '/requests?',
       { headers: this.httpHeaders });
@@ -58,6 +57,30 @@ export class ApiService {
   deleteRequest(id): Observable<any> {
     return this.http.delete<request_interface>(this.baseurl + '/requests/' + id + '/',
       { headers: this.httpHeaders });
+  }
+
+
+  sendMail(): void {
+    console.log('sending')
+    $.get(this.baseurl + '/sendmail/', function (data) { alert(data) })
+  }
+
+  updateMail(subject,message,recipient_list,html_message): Observable<any> {
+    const body = {
+
+      subject:subject,message:message,recipient_list:recipient_list,html_message:html_message };
+    return this.http.patch(this.baseurl + '/mails/' + '1' + '/', body,
+      { headers: this.httpHeaders });
+  }
+
+  setJdata(data){
+    alert("setting")
+    localStorage.setItem('a','b');
+    localStorage.setItem('jdata',data);
+  }
+
+  getJdata() {
+    localStorage.getItem('jdata')
   }
 
 }

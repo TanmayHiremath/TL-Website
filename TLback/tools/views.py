@@ -1,15 +1,21 @@
-from django.shortcuts import render
-from .models import Item, Request, Customer
+from django.shortcuts import render,redirect
 
-from django.http import HttpResponse
+
+from django.http import HttpResponse,JsonResponse
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets, generics
-from tools.serializers import *
+from .serializers import *
 from .models import *
 from rest_framework.response import Response
 from django.db.models import Q
-
-
+from django.core.mail import send_mail
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+import base64
+import requests
+import ast
+import json
+FRONT_URL='http://localhost:4200/'
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
@@ -22,6 +28,11 @@ class CustomerViewSet(viewsets.ModelViewSet):
 class RequestViewSet(viewsets.ModelViewSet):
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
+
+
+class MailViewSet(viewsets.ModelViewSet):
+    queryset = Mail.objects.all()
+    serializer_class = MailSerializer
 
 
 
@@ -40,12 +51,38 @@ class RequestssViewSet(generics.ListAPIView):
                 Q(roll__icontains=query)
             ).distinct()
         return queryset
+@csrf_exempt
+def posts(request):
+    
+    print("333")
+    
+    headers = { "Authorization": "Basic "
+                + base64.b64encode(
+                    f"{settings.CLIENT_ID}:{settings.CLIENT_SECRET}".encode("utf-8")
+                ).decode("utf-8"),
+                "Content-Type": "application/x-www-form-urlencoded",
+    }
+    x=base64.b64encode(
+                    f"{settings.CLIENT_ID}:{settings.CLIENT_SECRET}".encode("utf-8")
+                ).decode("utf-8")
+    print(request.POST)
+    r = requests.post('https://gymkhana.iitb.ac.in/profiles/oauth/token/', data='code='+request.POST['code']+'&grant_type=authorization_code', headers=headers) 
+    print(r.json())
+    r = requests.get('https://gymkhana.iitb.ac.in/profiles/user/api/user/?fields=first_name,last_name,type,username,profile_picture,email,mobile,roll_number,program', headers={'Authorization':'Bearer '+r.json()['access_token']})
+    data=r.json()
+    print(data)
+    
+    return JsonResponse(data)
 
-def post(self, request, format=None):
-        headers = {'Authorization':'Basic {Yaha base64 convert karke daalna hai}',
-                        'Content-Type':'application/x-www-form-urlencoded'
-        }
-        r = request.post('https://gymkhana.iitb.ac.in/sso/oauth/token/', data='code='+request.data['code']+'&redirect_uri={redirect_uri}&grant_type=authorization_code', headers=headers) 
-        r = request.get('https://gymkhana.iitb.ac.in/sso/user/api/user/?fields=first_name,last_name,type,profile_picture,sex,username,email,program,contacts,insti_address,secondary_emails,mobile,roll_number', headers={'Authorization':'Bearer '+r.json()['access_token']})
-        data=r.json()
-        return HttpResponse("<h1>"+data+"</h1>")
+def email(request):
+   for mail in Mail.objects.all(): 
+    subject = mail.subject
+    message = mail.message
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = mail.recipient_list.strip('][').split(',')
+    print(type(recipient_list))
+    print(recipient_list)
+    html_message=mail.html_message
+   if request.method == 'GET':
+        send_mail( subject,message, email_from, recipient_list,html_message=html_message)
+        return HttpResponse('Mail Sent Successfully')

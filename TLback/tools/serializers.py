@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Item, Request, Customer
+from .models import *
 
 
 class ItemSerializer(serializers.ModelSerializer):
@@ -16,3 +16,7 @@ class RequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Request
         fields = '__all__'
+class MailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Mail
+        fields = '__all__'        

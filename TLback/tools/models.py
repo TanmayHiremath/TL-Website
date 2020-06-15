@@ -69,10 +69,17 @@ class Request(models.Model):
 
 class Customer(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200, null=True)
+    first_name = models.CharField(max_length=200, null=True)
+    last_name  = models.CharField(max_length=200, null=True)
+    program_type = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200)
-    auth_code = models.CharField(max_length=200, null=True)
-    refresh_code = models.CharField(max_length=200, null=True)
+    mobile=models.IntegerField(default=1234567890)
+    roll_number=models.CharField(max_length=11,null=True)
+    username=models.CharField(max_length=11,null=True)
+    # auth_code = models.CharField(max_length=200, null=True)
+    access_token=models.CharField(max_length=200, null=True)
+    refresh_token = models.CharField(max_length=200, null=True)
+    
 
     def __str__(self):
         return self.name
@@ -82,3 +89,12 @@ class Flag(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     roll = models.CharField(max_length=20)
     time = models.DateTimeField(auto_now_add=True)
+
+class Mail(models.Model):
+    subject=models.TextField(default='Thank you for registering to our site')
+    message=models.TextField(default=' it  means a world to us ')    
+    recipient_list=models.TextField(default="[tanmay.v.hiremath@gmail.com]")
+    html_message=models.TextField(default="<h1>default</h1>")
+
+    def __str__(self):
+        return self.subject

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
-declare var $: any;
+import { ApiService } from '../api.service';
+declare var $: any
 
 
 
@@ -14,6 +15,8 @@ declare var rCounter: any;
 export class HomeComponent implements OnInit {
   loginUrl = environment.loginUrl;
   code:any;
+  
+  
   chunk(arr, chunkSize) {
     let R = [];
     for (let i = 0, len = arr.length; i < len; i += chunkSize) {
@@ -23,15 +26,23 @@ export class HomeComponent implements OnInit {
   }
 
 
-  constructor() { }
+  constructor(private api:ApiService) { }
 
   ngOnInit(): void {
 
     var urlParams = new URLSearchParams(window.location.search)
     this.code = urlParams.get('code')
     if (this.code != null) {
-      document.getElementById('loader').style.display = "block"
-      console.log(urlParams.get('code'))}
+      console.log(this.code)
+
+
+
+      const that = this
+      $.post("http://127.0.0.1:8000/autho/", { code: this.code },function(data){
+      console.log(data)  
+      that.api.setJdata(JSON.stringify(data))})
+
+    }
 
 
 
@@ -94,7 +105,7 @@ export class HomeComponent implements OnInit {
 
         // funFacts end
 
-
+        
         $("#myCarousel").carousel({
           interval: 2500
         });

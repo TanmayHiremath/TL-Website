@@ -135,3 +135,18 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/images/'
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'pwill6953@gmail.com'
+EMAIL_HOST_PASSWORD = 'chal nikal bot,btw password idhar daalo'
+
+
+CLIENT_ID='J3M80WCuOwpUGtX1KgBMLYwYls1aZxk9LfO0KMSp'
+CLIENT_SECRET='48Ok73dx3oyxx47niohjV9UCZEGV9r6mW9ncIVRqa2fRnXPoHBmsuptRxDbFkhj5JceQ6UNXgl03JQIaUu6AZDdcpm0cK6omO980dfY7cyTdJVzCwkx5ghycMDgBK5J8'
+
+

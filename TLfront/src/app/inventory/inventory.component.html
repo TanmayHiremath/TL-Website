@@ -66,7 +66,7 @@
 
               </td>
               <td *ngIf="item.display"><a>Report Damage</a></td>
-              <td *ngIf="item.display"><a><i class="far fa-flag"></i></a>
+              <td *ngIf="item.display" ><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
                 <div (click)="overlayClicked()" class="overlay">
                   <div class="expanded">
 
