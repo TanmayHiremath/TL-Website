@@ -31,10 +31,16 @@ export class ApiService {
       { headers: this.httpHeaders });
   }
 
+  createFlag(x): Observable<any> {
+    const body = { item: x.item, roll: x.roll };
+    return this.http.post<request_interface>(this.baseurl + '/flags/', body,
+      { headers: this.httpHeaders });
+  }
+
   updateItem(item): Observable<any> {
     const body = {
 
-      quantity: item.quantity, critical_val: item.critical_val, current_holders: item.current_holders, colour_code: item.colour_code, notifications: item.notifications, price: item.price
+      quantity: item.quantity, critical_val: item.critical_val, colour_code: item.colour_code, is_flagged: item.is_flagged, price: item.price
     };
     return this.http.patch(this.baseurl + '/items/' + item.id + '/', body,
       { headers: this.httpHeaders });
@@ -43,6 +49,11 @@ export class ApiService {
 
   getCustomers(): Observable<any> {
     return this.http.get(this.baseurl + '/customers/',
+      { headers: this.httpHeaders });
+  }
+
+  getFlags(): Observable<any> {
+    return this.http.get(this.baseurl + '/flags/',
       { headers: this.httpHeaders });
   }
 

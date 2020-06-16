@@ -20,3 +20,8 @@ class MailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mail
         fields = '__all__'        
+
+class FlagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Flag
+        fields = '__all__'

@@ -28,6 +28,7 @@ router.register(r'items', views.ItemViewSet)
 router.register(r'customers', views.CustomerViewSet)
 router.register(r'requests', views.RequestViewSet)
 router.register(r'mails', views.MailViewSet)
+router.register(r'flags', views.FlagViewSet)
 
 
 admin.site.site_header = 'Tinkerer\'s Lab Admin '
@@ -42,6 +43,7 @@ urlpatterns = [
     path("autho/", views.posts),
     path('requestss/', views.RequestssViewSet.as_view()),
     path("sendmail/", views.email)
+
 
 
     

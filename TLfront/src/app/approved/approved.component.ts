@@ -48,7 +48,29 @@ export class ApprovedComponent implements OnInit {
           console.log(error);
         }
       );
+      
         
+  }
+  flagItem(request)
+  {
+    this.items[request.item-1].is_flagged= true;
+    this.api.updateItem(this.items[request.item-1]).subscribe(
+      data => {
+        console.log(data)
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+    this.api.createFlag(request).subscribe(
+      data => {
+        console.log(data)
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
 
