@@ -62,13 +62,13 @@ class Request(models.Model):
 
 
 class Customer(models.Model):
-    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    # user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=200, null=True)
     last_name  = models.CharField(max_length=200, null=True)
-    program_type = models.CharField(max_length=200, null=True)
+    # program_type = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200)
-    mobile=models.IntegerField(default=1234567890)
-    roll_number=models.CharField(max_length=11,null=True)
+    # mobile=models.IntegerField(default=1234567890)
+    roll_number=models.CharField(max_length=11,default='123456789',primary_key=True)
     username=models.CharField(max_length=11,null=True)
     # auth_code = models.CharField(max_length=200, null=True)
     access_token=models.CharField(max_length=200, null=True)
@@ -76,7 +76,7 @@ class Customer(models.Model):
     
 
     def __str__(self):
-        return self.name
+        return self.roll_number
 
 
 class Flag(models.Model):

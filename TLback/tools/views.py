@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
 
 
-from django.http import HttpResponse,JsonResponse
+from django.http import HttpResponse,JsonResponse,Http404
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics,status
+from rest_framework.views import APIView
 from .serializers import *
 from .models import *
 from rest_framework.response import Response
@@ -15,6 +16,8 @@ import base64
 import requests
 import ast
 import json
+import random
+import string
 FRONT_URL='http://localhost:4200/'
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
@@ -23,6 +26,39 @@ class ItemViewSet(viewsets.ModelViewSet):
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
+
+class getCustomer(APIView):
+    def get_object(self, roll_number):
+        try:
+            return Customer.objects.get(roll_number=roll_number)
+        except Customer.DoesNotExist:
+            return None    
+        
+
+    def get(self, request, roll_number, format=None):
+        customer = self.get_object(roll_number)
+        serializer = CustomerSerializer(customer)
+        return Response(serializer.data)    
+
+    def put(self, request, roll_number, format=None):
+        customer = self.get_object(roll_number)
+        if customer is not None:
+            serializer = CustomerSerializer(customer, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+        else:  
+            serializer = CustomerSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def post(self, request, format=None):
+        serializer = CustomerSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
 
 
 class RequestViewSet(viewsets.ModelViewSet):
@@ -68,8 +104,15 @@ def posts(request):
     print(request.POST)
     r = requests.post('https://gymkhana.iitb.ac.in/profiles/oauth/token/', data='code='+request.POST['code']+'&grant_type=authorization_code', headers=headers) 
     print(r.json())
-    r = requests.get('https://gymkhana.iitb.ac.in/profiles/user/api/user/?fields=first_name,last_name,type,username,profile_picture,email,mobile,roll_number,program', headers={'Authorization':'Bearer '+r.json()['access_token']})
-    data=r.json()
+    b = requests.get('https://gymkhana.iitb.ac.in/profiles/user/api/user/?fields=first_name,last_name,type,username,profile_picture,email,mobile,roll_number,program', headers={'Authorization':'Bearer '+r.json()['access_token']})
+    data=b.json()
+    data['refresh_token']=r.json()['refresh_token']
+    data['access_token']=r.json()['access_token']
+
+    # key = ''
+    # for i in range(10):
+    #     key += random.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits)
+    # data['login_key']=key
     print(data)
     
     return JsonResponse(data)

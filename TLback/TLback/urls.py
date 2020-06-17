@@ -41,7 +41,8 @@ urlpatterns = [
     path('',include('iitb_oauth.urls')),
     path("autho/", views.posts),
     path('requestss/', views.RequestssViewSet.as_view()),
-    path("sendmail/", views.email)
+    path("sendmail/", views.email),
+    path("customer/<str:roll_number>",views.getCustomer.as_view())
 
 
     

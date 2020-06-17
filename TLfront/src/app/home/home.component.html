@@ -1,3 +1,5 @@
+
+
 <div class="area">
   <ul class="circles">
     <li></li>
@@ -23,7 +25,8 @@
       <h4 class="mt-2">If it can be imagined, it can be made.</h4>
       <br>
       <br>
-      <a href="{{loginUrl}}" class="btn btn-primary px-4 py-2">Login with SSO</a>
+      <a *ngIf="! logged_in"  href="{{loginUrl}}" class="btn btn-primary px-4 py-2">Login with SSO</a>
+      <a *ngIf="logged_in" href="" class="btn btn-primary px-4 py-2">Logged in as {{user_data.roll_number}}</a>
     </div>
 
     <div class="slideshow col-md-7" style="height: 420px;">
@@ -50,7 +53,7 @@
 
 
 <div class="container" id="tools">
-
+  <div *ngIf="logged_in">{{user_data.first_name}}</div>
   <div class="display-2 mb-5 heading" style="color: #24bdc9;">Resources</div>
   <h2 class="heading m-5">Automated Machines</h2>
 

@@ -67,7 +67,7 @@ import { MachinestatusComponent } from './machinestatus/machinestatus.component'
           {path:'machinestatus',component:MachinestatusComponent}
           
 
-      ], {scrollPositionRestoration: 'enabled'}),
+      ], {scrollPositionRestoration: 'enabled',onSameUrlNavigation: 'reload',anchorScrolling:'enabled'},),
       
 
       
