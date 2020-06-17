@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import * as $ from 'jquery';
 import { Router } from '@angular/router'
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-inventory',
@@ -16,7 +17,8 @@ export class InventoryComponent implements OnInit {
   requests: [{ id: '' }];
   newRequest: { item: any; quantity: any; id?: number; roll?: number; }
   displaycartbtn: boolean = true
-  fw = "red"
+  logged_in
+  user_data
   constructor(private api: ApiService, private router: Router) {
 
 
@@ -25,6 +27,16 @@ export class InventoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.logged_in = this.api.is_Authenticated()
+    console.log(this.logged_in)
+    if (this.logged_in == true) {
+      this.user_data = JSON.parse(this.api.getJdata(environment.jdataKey));
+      this.user_data.roll_number = window.atob(this.user_data.roll_number)
+      this.api.getCustomer(this.user_data.roll_number)
+        .subscribe(data => { this.user_data = data; console.log(data), error => { console.log(error) } })
+    }
+    else { this.router.navigate(['']) }
     
     this.api.getItems().subscribe(
       data => {
@@ -195,9 +207,18 @@ export class InventoryComponent implements OnInit {
     document.getElementById("addToCart").style.display = "none";
   }
 
+  flagItem(item){
+    var subject= 'Flagging of item'
+    var message=item.name +' <h1>has been flagged</h1>'
+    var recipent_list="[tanmay.v.hiremath@gmail.com]"
+    var date_time= Date()
+    var html_message='<h1>'+item.name +'</h1>has been flagged at<h2>'+date_time+'</h2>'
+    
 
-  setColourCode(items): void {
+    this.api.updateMail(subject,message,recipent_list,html_message).subscribe(data => { console.log(data) },error => { console.log(error); });
 
-
+    this.api.sendMail()
+    
   }
+  
 }

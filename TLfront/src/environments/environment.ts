@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://127.0.0.1:8000/api-auth/',
-  loginUrl: 'https://gymkhana.iitb.ac.in/sso/oauth/authorize/?client_id=J3M80WCuOwpUGtX1KgBMLYwYls1aZxk9LfO0KMSp&response_type=code&scope=program%20send_mail'
+  serverUrl: 'http://127.0.0.1:8000/',
+  loginUrl: 'https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=J3M80WCuOwpUGtX1KgBMLYwYls1aZxk9LfO0KMSp&response_type=code&scope=basic profile phone picture insti_address secondary_emails ldap program',
+  jdataKey:'Kb8VUT3E9q7vshw21'
 };
 /*
  * For easier debugging in development mode, you can import the following file

@@ -7,6 +7,9 @@
   <div class="ml-auto p-2 mr-3"><a routerLink="../cart"><i class="fas fa-shopping-cart" style="color: white;"></i></a>
 
   </div>
+  
+  
+ 
   <a class="btn btn-info" routerLink="../technician">technician_page</a>
 </div>
 
@@ -66,7 +69,7 @@
 
               </td>
               <td *ngIf="item.display"><a>Report Damage</a></td>
-              <td *ngIf="item.display"><a><i class="far fa-flag"></i></a>
+              <td *ngIf="item.display" ><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
                 <div (click)="overlayClicked()" class="overlay">
                   <div class="expanded">
 

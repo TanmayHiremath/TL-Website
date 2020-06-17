@@ -14,14 +14,11 @@ class Item(models.Model):
     id_required = models.BooleanField(default=True)
     quantity = models.PositiveSmallIntegerField()
     critical_val = models.PositiveSmallIntegerField()
-    current_holders = models.CharField(max_length=1000)
     is_consumable = models.BooleanField(default=False)
     colour_code = models.CharField(max_length=10,blank=True)
-    notifications = models.CharField(max_length=10000)
     price = models.PositiveIntegerField()
-    display=models.BooleanField(default=False)
-    displaylevel1=models.BooleanField(default=False)
-    displaylevel2=models.BooleanField(default=False)
+    display= models.BooleanField(default=True)
+    is_flagged= models.BooleanField(default=False)
     
     
 
@@ -39,11 +36,9 @@ class Request(models.Model):
     roll = models.CharField(max_length=20)
     quantity = models.PositiveSmallIntegerField()
     is_sent = models.BooleanField(default=False)
-    is_approved = models.BooleanField(default=False)
     is_denied = models.BooleanField(default=False)
     is_issued = models.BooleanField(default=False)
     is_returned = models.BooleanField(default=False)
-    colour_code = models.CharField(max_length=20,default= "green")
     
     # @property
     # def get_colour(self):
@@ -68,17 +63,41 @@ class Request(models.Model):
 
 
 class Customer(models.Model):
-    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200, null=True)
+    # user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=200, null=True)
+    last_name  = models.CharField(max_length=200, null=True)
+    # program_type = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200)
-    auth_code = models.CharField(max_length=200, null=True)
-    refresh_code = models.CharField(max_length=200, null=True)
+    # mobile=models.IntegerField(default=1234567890)
+    roll_number=models.CharField(max_length=11,default='123456789',primary_key=True)
+    username=models.CharField(max_length=11,null=True)
+    # auth_code = models.CharField(max_length=200, null=True)
+    access_token=models.CharField(max_length=200, null=True)
+    refresh_token = models.CharField(max_length=200, null=True)
+    
 
     def __str__(self):
-        return self.name
+        return self.roll_number
 
 
 class Flag(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    item = models.OneToOneField(Item, on_delete=models.CASCADE)
     roll = models.CharField(max_length=20)
     time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.item.name
+
+class Mail(models.Model):
+    subject=models.TextField(default='Thank you for registering to our site')
+    message=models.TextField(default=' it  means a world to us ')    
+    recipient_list=models.TextField(default="[tanmay.v.hiremath@gmail.com]")
+    html_message=models.TextField(default="<h1>default</h1>")
+
+    def __str__(self):
+        return self.subject
+class Project(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=1000)
+    picture = models.ImageField()
+    
