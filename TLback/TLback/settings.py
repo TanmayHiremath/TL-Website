@@ -37,8 +37,7 @@ CORS_ORIGIN_WHITELIST = [
 
 INSTALLED_APPS = [
     'corsheaders',
-    'iitb_oauth',
-
+    'background_task',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

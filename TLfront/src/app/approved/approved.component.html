@@ -16,6 +16,7 @@
         
           <div style="flex:2"><strong>Quantity</strong></div>
           <div style="flex:2"><strong>Status</strong></div>
+          <div style="flex:1"><strong>Action</strong></div>
         </div>
        <div *ngFor="let request of requests">
         <div  *ngIf=" (request.roll==roll)  " class="cart-row">
@@ -29,6 +30,9 @@
             <p class="quantity" *ngIf=" (request.is_issued) && !(request.is_returned)  " style="color: orange">Issued</p>
             <p class="quantity" *ngIf=" (request.is_denied)  " style="color: red">Denied</p>
             <p class="quantity" *ngIf=" !(request.is_approved) && !(request.is_denied)  " style="color: yellow">Pending</p>
+          </div>
+          <div style="flex:1" >
+            <button *ngIf=" !(request.is_approved) && !(request.is_denied) && !(items[request.item-1].is_flagged)  " (click)="flagItem(request)">Flag Item</button>
           </div>
           </div>
        </div>

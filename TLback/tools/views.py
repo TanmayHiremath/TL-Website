@@ -70,6 +70,10 @@ class MailViewSet(viewsets.ModelViewSet):
     queryset = Mail.objects.all()
     serializer_class = MailSerializer
 
+class FlagViewSet(viewsets.ModelViewSet):
+    queryset = Flag.objects.all()
+    serializer_class = FlagSerializer
+
 
 
 class RequestssViewSet(generics.ListAPIView):
@@ -87,6 +91,9 @@ class RequestssViewSet(generics.ListAPIView):
                 Q(roll__icontains=query)
             ).distinct()
         return queryset
+
+
+
 @csrf_exempt
 def posts(request):
     

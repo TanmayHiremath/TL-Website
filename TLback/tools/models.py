@@ -17,7 +17,8 @@ class Item(models.Model):
     is_consumable = models.BooleanField(default=False)
     colour_code = models.CharField(max_length=10,blank=True)
     price = models.PositiveIntegerField()
-    display=models.BooleanField(default=False)
+    display= models.BooleanField(default=True)
+    is_flagged= models.BooleanField(default=False)
     
     
 
@@ -80,9 +81,12 @@ class Customer(models.Model):
 
 
 class Flag(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    item = models.OneToOneField(Item, on_delete=models.CASCADE)
     roll = models.CharField(max_length=20)
     time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.item.name
 
 class Mail(models.Model):
     subject=models.TextField(default='Thank you for registering to our site')
