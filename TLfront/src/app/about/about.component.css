@@ -245,14 +245,15 @@
     }
     
     .flip-card-front {
-      background-color: #bbb;
+      background-color: transparent;
       color: black;
     }
     
     .flip-card-back {
-      background-color: #2980b9;
+      background-color: plum;
       color: white;
       transform: rotateY(180deg);
+      padding-top: 20%;
     }
 
 
@@ -310,3 +311,154 @@ img {margin-bottom: -8px;}
 }
 
 
+
+
+
+.container{
+  box-sizing: border-box;
+}
+.heading{
+  text-transform: uppercase;
+  font-size: 3.5rem;
+  letter-spacing: 3px;
+  margin-right: -3px;
+  margin-bottom: 5rem;
+  text-align: center;
+  color: #333;
+  position: relative;
+
+}
+
+.heading::after{
+  content: "";
+  width: 10rem;
+  height: .8rem;
+  background-color: #45e19f;
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2rem;
+}
+.card-wrapper{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+}
+.card{
+  width: 22rem;
+  background-color: #ebeef8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  box-shadow: .5rem .5rem 3rem rgba(0,0,0,0.2);
+}
+
+.card .card-img{
+  width: 100%;
+  height: 18rem;
+  object-fit: cover;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 78%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 0% 100%);
+}
+
+.profile-img{
+  width: 15rem;
+  height: 15rem;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-top: -11rem;
+  z-index:29;
+  border: 1rem solid #ebeef8 ;
+
+}
+.card h1{
+  font-size: 2.5rem;
+  color: #333;
+  margin-top: 1.5rem;
+
+}
+.job-title{
+  color: #777;
+  font-size: 1.5rem;
+  font-weight: 300;
+
+}
+.about{
+  font-size: 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  text-align: center;
+  color: #333;
+
+}
+.social-media{
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1.2rem 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  margin: 0;
+
+}
+
+.social-media i{
+  font-size: 3rem;
+}
+
+.fa-facebook-square{
+  color: #3b5999;
+}
+
+.fa-twitter-square{
+  color: #55acee;
+}
+.fa-google-plus-square{
+  color: #dd4b39;
+}
+.fa-instagram{
+  color: #e6683c;
+}
+
+
+@media screen and ( min-width: 700px){
+  .card-wrapper{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card{
+    margin: 2rem;
+    transition: transform .5s;
+  }
+  /* @keyframes fadeIn {
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 1;
+    }
+    
+  }
+  .card:nth-child(1){
+    animation: fadeIn .5s .5s backwards;;
+  }
+  .card:nth-child(2){
+    animation: fadeIn .5s 1s backwards;;
+  }
+  .card:nth-child(3){
+    animation: fadeIn .5s 1.5s backwards;;
+  }
+  .card:nth-child(4){
+    animation: fadeIn .5s 2s backwards;;
+  }  */
+  .card:hover{
+    transform: scale(1.05);
+  }
+}
