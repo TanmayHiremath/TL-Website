@@ -26,7 +26,11 @@ export class ApiService {
       { headers: this.httpHeaders });
   }
   rollSearch(roll): Observable<any> {
-    return this.http.get(environment.serverUrl + 'requestss' + '?roll=' + roll);
+    return this.http.get(environment.serverUrl + 'requestss' + '?roll_number=' + roll);
+  }
+
+  itemSearch(query): Observable<any> {
+    return this.http.get(environment.serverUrl + 'itemss' + '?query=' + query);
   }
 
   createRequest(x): Observable<any> {

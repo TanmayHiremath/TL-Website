@@ -16,19 +16,8 @@ export class ApprovedComponent implements OnInit {
   items = []
   requests = []
   total_items=0
-  choice="request.is_denied"
-  roll=0
   user_data
   logged_in
-  chooseapp()
-  {
-    this.choice="request.is_approved"
-  }
-  chooseden()
-  {
-    this.choice="request.is_denied"
-  }
-
 
   constructor(private api: ApiService,  private router: Router) { 
     
@@ -46,7 +35,6 @@ export class ApprovedComponent implements OnInit {
         this.user_data.roll_number = window.atob(this.user_data.roll_number)
         this.api.getCustomer(this.user_data.roll_number)
           .subscribe(data => { this.user_data = data; console.log(data), error => { console.log(error) } })
-        this.roll=this.user_data.roll_number
       }
       else { this.router.navigate(['']) }
     //authentication code end
@@ -59,7 +47,7 @@ export class ApprovedComponent implements OnInit {
           console.log(error);
         }
       );
-      this.api.rollSearch(this.roll).subscribe(
+      this.api.rollSearch(this.user_data.roll_number).subscribe(
         data => {
           this.requests = data;
         },
@@ -92,17 +80,5 @@ export class ApprovedComponent implements OnInit {
     );
   }
 
-
-  choose(a, b){
-
-    if(a == b)
-      return true
-
-      else
-      return false
-
-  }
  
-
-
 }

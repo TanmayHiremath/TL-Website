@@ -83,7 +83,7 @@ class FlagViewSet(viewsets.ModelViewSet):
 
 
 
-class RequestssViewSet(generics.ListAPIView):
+class RequestSearch(generics.ListAPIView):
     serializer_class = RequestSerializer
 
     def get_queryset(self):
@@ -92,10 +92,30 @@ class RequestssViewSet(generics.ListAPIView):
         by filtering against a `roll` query parameter in the URL.
         """
         queryset = Request.objects.all()
-        query = self.request.query_params.get('roll', None)
+        query = self.request.query_params.get('roll_number', None)
         if query:
             queryset = Request.objects.filter(
-                Q(roll__icontains=query)
+                Q(roll_number__roll_number__icontains=query) |
+                Q(roll_number__first_name__icontains=query)|
+                Q(roll_number__last_name__icontains=query)|
+                Q(item__name__icontains=query)|
+                Q(item__keywords__icontains=query)
+            ).distinct()
+        return queryset
+
+class ItemSearch(generics.ListAPIView):
+    serializer_class = ItemSerializer
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `roll` query parameter in the URL.
+        """
+        queryset = Item.objects.all()
+        query = self.request.query_params.get('query', None)
+        if query:
+            queryset = Item.objects.filter(
+                Q(name__icontains=query)
             ).distinct()
         return queryset
 
