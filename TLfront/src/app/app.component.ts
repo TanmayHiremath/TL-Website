@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   flag;
   logged_in:boolean=false
   code
-  user_data
+  user_data=null
   constructor(private api: ApiService,private router: Router) {
 
     this.flag = 0;
@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
     var urlParams = new URLSearchParams(window.location.search)
     this.code = urlParams.get('code')
     if (this.code != null) {
+      
       console.log(this.code)
       this.router.navigate([''])
       const that = this
@@ -44,26 +45,31 @@ export class AppComponent implements OnInit {
         data.roll_number=window.btoa(data.roll_number)
         that.api.setJdata(environment.jdataKey, JSON.stringify(data))
         
-       
         window.location.reload()
+        
         
       })
     }
     this.logged_in = this.api.is_Authenticated()
     console.log(this.logged_in)
     if (this.logged_in == true) {
+      
+      
       this.user_data = JSON.parse(this.api.getJdata(environment.jdataKey));
       this.user_data.roll_number = window.atob(this.user_data.roll_number)
+
       this.api.getCustomer(this.user_data.roll_number)
         .subscribe(data => { this.user_data = data; console.log(data), error => { console.log(error) } })
-    }
-    else { this.router.navigate(['']) }
 
-    const that = this
+    }
+    else {this.router.navigate(['']);  }
+
+    
     $(document).ready(function () {
       
       $('.dropdown-toggle').click(function(){
-        $('.dropdown-toggle').dropdown('toggle');
+        $('.dropdown-men').fadeToggle(200)
+        
       });
       $(document).scroll(function () {
         if ($(window).scrollTop() > 700) {
@@ -85,9 +91,7 @@ export class AppComponent implements OnInit {
       });
 
 
-      setTimeout(function () {
-        $("#loader").fadeOut(400)
-      }, 400);
+      
 
       $("#uncheck").click(function () {
         $("#nav-check").prop("checked", false);

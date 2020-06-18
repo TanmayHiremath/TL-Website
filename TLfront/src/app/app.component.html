@@ -31,16 +31,19 @@
     <a *ngIf="logged_in" routerLink="inventory">Inventory</a>
     <a routerLink="contact">Contact</a>
     <a class="dropdown" *ngIf="logged_in">
-    <a class="btn dropdown-toggle"  data-toggle="dropdown"><i class="fas fa-2x fa-user-circle " ></i></a>
-      <ul class="dropdown-menu mr-5 p-2">
-      <div class="container">
-          <li>{{user_data.first_name}} {{user_data.last_name}}-{{user_data.roll_number}}</li>
-        <li class="pt-2"><a routerLink="../cart">My Cart</a></li>
-        <li class="pt-3"><a routerLink="../issued">Issued Items</a></li>
-        <li class="pt-3"><a routerLink="" (click)="logout()">Logout</a></li></div>
-      </ul>
+      <a class="btn dropdown-toggle" data-toggle="dropdown"><i class="fas fa-2x fa-user-circle "></i></a>
+
     </a>
   </div>
+</div>
+<div class="dropdown-men">
+
+  <div class="d-flex flex-column container">
+    <a class="pt-2 text-muted">{{user_data.first_name}} {{user_data.last_name}}-{{user_data.roll_number}}</a>
+    <a class="pt-2 text-warning" routerLink="../cart">My Cart</a>
+    <a class="pt-3 text-success" routerLink="../issued">Issued Items</a>
+    <hr class="rounded">
+    <a class="pt-1 pb-2 text-danger" routerLink="" (click)="logout()">Logout</a></div>
 </div>
 
 <router-outlet></router-outlet>

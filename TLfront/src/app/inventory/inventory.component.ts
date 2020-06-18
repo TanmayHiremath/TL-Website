@@ -15,14 +15,15 @@ export class InventoryComponent implements OnInit {
   tabledisplay: boolean = false;
   id_required_string: string
   requests: [{ id: '' }];
-  newRequest: { item: any; quantity: any; id?: number; roll?: number; }
+  newRequest: { item: any; quantity: any; id?: number; roll_number?: string; }
   displaycartbtn: boolean = true
   logged_in
   user_data
+  mail={'roll_number':'','subject':'','message':'','html_message':'','recipient_list':''}
   constructor(private api: ApiService, private router: Router) {
 
 
-    this.newRequest = { id: -1, item: -1, roll: 0, quantity: 1 }
+    this.newRequest = { id: -1, item: -1, roll_number: '123456789', quantity: 1 }
 
   }
 
@@ -37,7 +38,7 @@ export class InventoryComponent implements OnInit {
         .subscribe(data => { this.user_data = data; console.log(data), error => { console.log(error) } })
     }
     else { this.router.navigate(['']) }
-    
+
     this.api.getItems().subscribe(
       data => {
         this.items = data;
@@ -52,7 +53,7 @@ export class InventoryComponent implements OnInit {
             else { item.colour_code = "green" }
 
           }
-          that.api.updateItem(item).subscribe(data => { console.log(data) },error => { console.log(error); });
+          that.api.updateItem(item).subscribe(data => { console.log(data) }, error => { console.log(error); });
 
         }
         //end setcolourcode
@@ -97,7 +98,7 @@ export class InventoryComponent implements OnInit {
 
     // this.router.navigate(['../cart'])
     this.newRequest.item = item.id
-
+    this.newRequest.roll_number=this.user_data.roll_number
     document.getElementById("addedToCart").style.display = "block";
 
     document.getElementById("specifyQuantity").style.display = "none";
@@ -207,18 +208,29 @@ export class InventoryComponent implements OnInit {
     document.getElementById("addToCart").style.display = "none";
   }
 
-  flagItem(item){
-    var subject= 'Flagging of item'
-    var message=item.name +' <h1>has been flagged</h1>'
-    var recipent_list="[tanmay.v.hiremath@gmail.com]"
-    var date_time= Date()
-    var html_message='<h1>'+item.name +'</h1>has been flagged at<h2>'+date_time+'</h2>'
-    
+  reportItem(item){
+    this.mail.roll_number=this.user_data.roll_number
+    this.mail.subject = 'Reporting of '+item.name
+    this.mail.message = item.name + ' <h1>has been flagged</h1>'
+    this.mail.recipient_list = "['tanmay.v.hiremath@gmail.com']"
+    var date_time =new Date()
+    this.mail.html_message = '<strong>' + item.name+'</strong>' + ' has been reported on the website by <strong>'+this.user_data.first_name+' '+this.user_data.last_name+'-'+this.user_data.roll_number+'</strong> at ' + date_time +'<br><br>Please check the item.'
 
-    this.api.updateMail(subject,message,recipent_list,html_message).subscribe(data => { console.log(data) },error => { console.log(error); });
 
-    this.api.sendMail()
+    this.api.updateMail(this.mail).subscribe(data => {this.api.sendMail(this.user_data.roll_number); console.log(data) }, error => { console.log(error); });
+  }
+
+  flagItem(item) {
+    this.mail.roll_number=this.user_data.roll_number
+    this.mail.subject = 'Flagging of '+item.name
+    this.mail.message = item.name + ' <h1>has been flagged</h1>'
+    this.mail.recipient_list = "['tanmay.v.hiremath@gmail.com']"
+    var date_time =new Date()
+    this.mail.html_message = '<strong>' + item.name+'</strong>' + ' has been flagged on the website by <strong>'+this.user_data.first_name+' '+this.user_data.last_name+'-'+this.user_data.roll_number+'</strong> at ' + date_time +'<br><br>Please check the item.'
+
+
+    this.api.updateMail(this.mail).subscribe(data => {this.api.sendMail(this.user_data.roll_number); console.log(data) }, error => { console.log(error); });
     
   }
-  
+
 }

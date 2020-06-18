@@ -1,4 +1,3 @@
-
 <!-- 
 <div  *ngFor="let order of orders" class="row">
   <div class="col-lg-12">
@@ -54,20 +53,22 @@
 <br><br><br><br> -->
 
 
-<div  class="row">
+<div class="row">
   <div class="col-lg-12">
     <div class="box-element">
 
-      <a  class="btn btn-outline-dark" routerLink="../inventory">&#x2190; Continue Shopping</a>
-      <a  class="btn btn-outline-dark"  (click)="deleteAllRequest()" > Clear Cart</a>
+      <a class="btn btn-outline-dark" routerLink="../inventory">&#x2190; Back to Inventory</a>
+      &nbsp;&nbsp;&nbsp;<a class="btn btn-outline-dark" (click)="deleteAllRequest()"> Clear Cart</a>
       <br>
       <br>
       <table class="table">
         <tr>
-          <th><h5 >Items: <strong> {{total(1)}}  {{total_items}} </strong></h5></th>
           <th>
-            <a  style="float:right; margin:5px;" class="btn btn-success" (click)="updateRequest()" 
-            >Checkout</a>
+            <h5>Items: <strong> {{total(1)}} {{total_items}} </strong></h5>
+          </th>
+          <th>
+            <a style="float:right; margin:5px;" class="btn btn-success" (click)="updateRequest()"
+              title="Send request to issue all items in cart">Checkout</a>
           </th>
         </tr>
       </table>
@@ -79,24 +80,27 @@
       <div class="cart-row">
         <div style="flex:2"></div>
         <div style="flex:2"><strong>Item</strong></div>
-      
+
         <div style="flex:1"><strong>Quantity</strong></div>
       </div>
-     <div *ngFor="let request of requests">
-      <div  *ngIf=" !(request.is_sent)  " class="cart-row">
-        <div   style="flex:2"><img class="row-image" src={{items[request.item-1].picture}}></div>
-        <div   style="flex:2"><p>{{request.roll}},{{items[request.item-1].name}}</p></div>
-        <div style="flex:1">
-          <a class="chg-quantity fas fa-angle-up" style='font-size:36px' (click)="updateQuantityUp(request)"></a>
-          <p class="quantity">{{request.quantity}}</p>
-          <a class="chg-quantity fas fa-angle-down" style='font-size:36px' (click)="updateQuantityDown(request)"></a>
-          <a class="chg-quantity fas fa-trash" style='font-size:36px' (click)="deleteRequest(request)"></a>
-          <div class="quantity">
-            
+      <div *ngFor="let request of requests">
+        <div *ngIf=" !(request.is_sent)  " class="cart-row">
+          <div style="flex:2"><img class="row-image" src={{items[request.item-1].picture}}></div>
+          <div style="flex:2">
+            <p>{{request.roll}},{{items[request.item-1].name}}</p>
+          </div>
+          <div style="flex:1">
+            <a class="chg-quantity fas fa-angle-up" style='font-size:36px' (click)="updateQuantityUp(request)"></a>
+            <p class="quantity">{{request.quantity}}</p>
+            <a class="chg-quantity fas fa-angle-down" style='font-size:36px' (click)="updateQuantityDown(request)"></a>
+            <br>
+            <a class="chg-quantity fas fa-trash" style='font-size:24px' (click)="deleteRequest(request)"></a>
+            <div class="quantity">
+
+            </div>
           </div>
         </div>
-        </div>
-     </div>
+      </div>
     </div>
   </div>
 </div>

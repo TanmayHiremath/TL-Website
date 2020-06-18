@@ -5,7 +5,7 @@ import { item_interface } from './item_interface';
 import { request_interface } from './request_interface';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { env } from 'process';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -30,7 +30,7 @@ export class ApiService {
   }
 
   createRequest(x): Observable<any> {
-    const body = { item: x.item, quantity: x.quantity, roll: x.roll };
+    const body = { item: x.item, quantity: x.quantity, roll_number: x.roll_number };
     return this.http.post<request_interface>(environment.serverUrl + 'requests/', body,
       { headers: this.httpHeaders });
   }
@@ -75,17 +75,18 @@ export class ApiService {
   }
 
 
-  sendMail(): void {
+  sendMail(roll_number): void {
+    
     console.log('sending')
-    $.get(environment.serverUrl + '/sendmail/', function (data) { alert(data) })
+    $.get(environment.serverUrl + 'sendmail/'+ roll_number, function (data) { alert(data) })
   }
 
-  updateMail(subject, message, recipient_list, html_message): Observable<any> {
+  updateMail(mail): Observable<any> {
     const body = {
 
-      subject: subject, message: message, recipient_list: recipient_list, html_message: html_message
+      subject: mail.subject, message: mail.message, recipient_list: mail.recipient_list, html_message: mail.html_message
     };
-    return this.http.patch(environment.serverUrl + 'mails/' + '1' + '/', body,
+    return this.http.patch(environment.serverUrl + 'mails/' + mail.roll_number +'/' , body,
       { headers: this.httpHeaders });
   }
 

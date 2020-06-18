@@ -42,7 +42,7 @@ urlpatterns = [
     
     path("autho/", views.posts),
     path('requestss/', views.RequestssViewSet.as_view()),
-    path("sendmail/", views.email),
+    path("sendmail/<str:roll_number>", views.sendMail.as_view()),
     path("customer/<str:roll_number>",views.getCustomer.as_view())
 
 

@@ -142,7 +142,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'pwill6953@gmail.com'
-EMAIL_HOST_PASSWORD = 'chal nikal bot,btw password idhar daalo'
+EMAIL_HOST_PASSWORD = 'pass1234#'
 
 
 CLIENT_ID='SURfRGPqH2W4dKtnWnE3hX249Tk1XXEZpUhRaX4P'

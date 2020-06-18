@@ -50,8 +50,7 @@
                 <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
 
 
-                <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
-                      class="fas fa-shopping-cart"></i></a></div>
+                <div id="addedToCart">Item in Cart</div>
 
 
 
@@ -68,7 +67,7 @@
 
 
               </td>
-              <td *ngIf="item.display"><a>Report Damage</a></td>
+              <td *ngIf="item.display"><a (click)="reportItem(item)">Report Damage</a></td>
               <td *ngIf="item.display" ><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
                 <div (click)="overlayClicked()" class="overlay">
                   <div class="expanded">
