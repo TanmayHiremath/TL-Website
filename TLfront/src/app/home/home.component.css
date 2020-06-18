@@ -1,293 +1,324 @@
 #initial {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 #initial h1 {
-    color: white;
-    font-weight: bold;
+  color: white;
+  font-weight: bold;
 }
 
 #initial h4 {
-    Font-Family: 'Cabin', Sans-Serif;
-    color: white;
-    opacity: 0.7;
+  Font-Family: 'Cabin', Sans-Serif;
+  color: white;
+  opacity: 0.7;
 }
 
 #initial .btn {
-    font-size: 1.5rem;
-    color: #20c9c3;
-    background-color: white;
-    border-radius: 30px;
-    border-width: 0;
+  font-size: 1.5rem;
+  color: #20c9c3;
+  background-color: white;
+  border-radius: 30px;
+  border-width: 0;
+}
+
+#loginloader {
+  background-color: white;
+  z-index: 500;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  display: none;
+}
+
+#loginLoader {
+
+  width: 160px;
+  height: 160px;
+  position: fixed;
+  top: 45vh;
+  left: 45vw;
+  z-index: 500;
 }
 
 .heading {
-    text-align: center;
-    
+  text-align: center;
+
 }
 
 #tools h2 {
-    font-family: Lato;
+  font-family: Lato;
 }
 
 #tools h4 {
-    font-family: Alegreya;
+  font-family: Alegreya;
 }
 
 #tools .card img {
-    width: 80px;
-    height: auto;
+  width: 80px;
+  height: auto;
 }
 
 #tools .card {
-    margin-bottom: 3vh;
+  margin-bottom: 3vh;
 }
 
 #tools .card-footer {
-    background-color: #24bdc9;
-    height: 10vh;
-    color: white;
+  background-color: #24bdc9;
+  height: 10vh;
+  color: white;
 }
 
 #tools .expanded>img {
-    width: 15vw;
+  width: 15vw;
 }
 
 .slideshow {
-    background: lighten(black, 15);
-    border-radius: 4px;
-    margin-bottom: 20px;
-    position: relative;
+  background: lighten(black, 15);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 .slideshow-item {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
 }
 
 .slideshow-item>img {
-    display: block;
-    margin: auto;
+  display: block;
+  margin: auto;
 }
 
 .item-1 {
-    animation: slideshow 16s ease 0s infinite;
+  animation: slideshow 16s ease 0s infinite;
 }
 
 .item-2 {
-    animation: slideshow 16s ease 4s infinite;
+  animation: slideshow 16s ease 4s infinite;
 }
 
 .item-3 {
-    animation: slideshow 16s ease 8s infinite;
+  animation: slideshow 16s ease 8s infinite;
 }
 
 .item-4 {
-    animation: slideshow 16s ease 12s infinite;
+  animation: slideshow 16s ease 12s infinite;
 }
 
 @keyframes slideshow {
-    0%, 30%, 100% {
-        opacity: 0;
-    }
-    5%, 25% {
-        opacity: 1;
-    }
+
+  0%,
+  30%,
+  100% {
+    opacity: 0;
+  }
+
+  5%,
+  25% {
+    opacity: 1;
+  }
 }
 
 #intro {
-    margin-left: 3vw;
+  margin-left: 3vw;
 }
 
 .overlay {
-    position: fixed;
-    display: none;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    z-index: 200;
-    backdrop-filter: blur(5px);
+  position: fixed;
+  display: none;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 200;
+  backdrop-filter: blur(5px);
 }
 
 .expanded {
-    background-color: darksalmon;
-    color: white;
-    position: absolute;
-    top: 20%;
-    width: 50%;
-    left: 25%;
-    text-align: center;
-    padding: 10px;
-    border-radius: 15px;
+  background-color: darksalmon;
+  color: white;
+  position: absolute;
+  top: 20%;
+  width: 50%;
+  left: 25%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 15px;
 }
 
 #myCarousel .card {
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 #myCarousel .card-header {
-    background-color: #24bdc9;
-    color: white;
-    text-align: center;
+  background-color: #24bdc9;
+  color: white;
+  text-align: center;
 }
 
 #myCarousel .card-footer {
-    height: 150px;
+  height: 150px;
 }
 
 #myCarousel .carousel-indicators li {
-    background-color: black;
-    border-radius: 50%;
-    height: 10px;
-    width: 10px;
+  background-color: black;
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
 }
 
 #myCarousel .carousel-indicators .active {
-    background-color: blue;
+  background-color: blue;
 }
 
 #funFacts {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url("../../assets/Images/bg_1.jpg");
+  background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url("../../assets/Images/bg_1.jpg");
 }
 
 #funFacts>h1 {
-    font-size: 5vw;
+  font-size: 5vw;
 }
 
 @media screen and (max-width:992px) {
-    .expanded {
-        width: 100%;
-        left: 0;
-    }
-    #funFacts>h1 {
-        font-size: 10vw;
-    }
-    .slideshow-item>img {
-        width: 50vw;
-        position: absolute;
-        top: 10px;
-        left: 25vw;
-        margin-right: 5px;
-        margin-left: 5px;
-        justify-content: center;
-    }
-    #tools>.heading>div {
-        font-size: 12vw;
-    }
+  .expanded {
+    width: 100%;
+    left: 0;
+  }
+
+  #funFacts>h1 {
+    font-size: 10vw;
+  }
+
+  .slideshow-item>img {
+    width: 50vw;
+    position: absolute;
+    top: 10px;
+    left: 25vw;
+    margin-right: 5px;
+    margin-left: 5px;
+    justify-content: center;
+  }
+
+  #tools>.heading>div {
+    font-size: 12vw;
+  }
 }
 
 .area {
-    background: #20c9c3;
-    width: 100vw;
-    height: auto;
+  background: #20c9c3;
+  width: 100vw;
+  height: auto;
 }
 
 .circles {
-    width: 100vw;
-    overflow: hidden;
+  width: 100vw;
+  overflow: hidden;
 }
 
 .circles li {
-    position: absolute;
-    list-style: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.2);
-    animation: animate 15s linear infinite;
-    bottom: -150px;
+  position: absolute;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  animation: animate 15s linear infinite;
+  bottom: -150px;
 }
 
 .circles li:nth-child(1) {
-    left: 25%;
-    width: 80px;
-    height: 80px;
-    animation-delay: 0s;
+  left: 25%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
 }
 
 .circles li:nth-child(2) {
-    left: 10%;
-    width: 20px;
-    height: 20px;
-    animation-delay: 2s;
-    animation-duration: 12s;
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 2s;
+  animation-duration: 12s;
 }
 
 .circles li:nth-child(3) {
-    left: 70%;
-    width: 20px;
-    height: 20px;
-    animation-delay: 4s;
+  left: 70%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 4s;
 }
 
 .circles li:nth-child(4) {
-    left: 40%;
-    width: 60px;
-    height: 60px;
-    animation-delay: 0s;
-    animation-duration: 18s;
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  animation-delay: 0s;
+  animation-duration: 18s;
 }
 
 .circles li:nth-child(5) {
-    left: 65%;
-    width: 20px;
-    height: 20px;
-    animation-delay: 0s;
+  left: 65%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
 }
 
 .circles li:nth-child(6) {
-    left: 75%;
-    width: 110px;
-    height: 110px;
-    animation-delay: 3s;
+  left: 75%;
+  width: 110px;
+  height: 110px;
+  animation-delay: 3s;
 }
 
 .circles li:nth-child(7) {
-    left: 35%;
-    width: 150px;
-    height: 150px;
-    animation-delay: 7s;
+  left: 35%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 7s;
 }
 
 .circles li:nth-child(8) {
-    left: 50%;
-    width: 25px;
-    height: 25px;
-    animation-delay: 15s;
-    animation-duration: 45s;
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 15s;
+  animation-duration: 45s;
 }
 
 .circles li:nth-child(9) {
-    left: 20%;
-    width: 15px;
-    height: 15px;
-    animation-delay: 2s;
-    animation-duration: 35s;
+  left: 20%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 2s;
+  animation-duration: 35s;
 }
 
 .circles li:nth-child(10) {
-    left: 85%;
-    width: 150px;
-    height: 150px;
-    animation-delay: 0s;
-    animation-duration: 11s;
+  left: 85%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 0s;
+  animation-duration: 11s;
 }
 
 @keyframes animate {
-    0% {
-        transform: translateX(0) translateY(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(-1000px) translateY(-1000px);
-        opacity: 0;
-    }
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-1000px) translateY(-1000px);
+    opacity: 0;
+  }
 }

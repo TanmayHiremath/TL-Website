@@ -39,7 +39,9 @@ export class HomeComponent implements OnInit {
     this.logged_in = this.api.is_Authenticated()
     console.log(this.logged_in)
     if (this.logged_in == true) {
+      
       this.user_data = JSON.parse(this.api.getJdata(environment.jdataKey));
+      console.log(this.user_data)
       this.user_data.roll_number = window.atob(this.user_data.roll_number)
       this.api.getCustomer(this.user_data.roll_number)
         .subscribe(data => { this.user_data = data; console.log(data), error => { console.log(error) } })

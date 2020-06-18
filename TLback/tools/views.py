@@ -14,7 +14,7 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 import base64
 import requests
-import ast
+import ast as ast
 import json
 import random
 import string
@@ -42,16 +42,23 @@ class getCustomer(APIView):
 
     def put(self, request, roll_number, format=None):
         customer = self.get_object(roll_number)
+        
         if customer is not None:
             serializer = CustomerSerializer(customer, data=request.data)
+            
             if serializer.is_valid():
                 serializer.save()
+                
                 return Response(serializer.data)
         else:  
             serializer = CustomerSerializer(data=request.data)
+            
             if serializer.is_valid():
                 serializer.save()
+                
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
+            else:
+                print(serializer.errors)    
 
     def post(self, request, format=None):
         serializer = CustomerSerializer(data=request.data)
@@ -124,15 +131,24 @@ def posts(request):
     
     return JsonResponse(data)
 
-def email(request):
-   for mail in Mail.objects.all(): 
-    subject = mail.subject
-    message = mail.message
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = mail.recipient_list.strip('][').split(',')
-    print(type(recipient_list))
-    print(recipient_list)
-    html_message=mail.html_message
-   if request.method == 'GET':
+class sendMail(APIView):
+    def get_object(self, roll_number):
+        try:
+            return Mail.objects.get(roll_number=roll_number)
+        except Mail.DoesNotExist:
+            return None    
+        
+
+    def get(self, request, roll_number, format=None):
+        mail = self.get_object(roll_number)
+        
+        subject = mail.subject
+        message = mail.message
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list =ast.literal_eval(mail.recipient_list)
+        print(type(recipient_list))
+        print(recipient_list)
+        html_message=mail.html_message
+    
         send_mail( subject,message, email_from, recipient_list,html_message=html_message)
         return HttpResponse('Mail Sent Successfully')
