@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 import * as $ from 'jquery';
 
@@ -15,7 +17,9 @@ export class ApprovedComponent implements OnInit {
   requests = []
   total_items=0
   choice="request.is_denied"
-  roll="19D070003"
+  roll=0
+  user_data
+  logged_in
   chooseapp()
   {
     this.choice="request.is_approved"
@@ -26,11 +30,26 @@ export class ApprovedComponent implements OnInit {
   }
 
 
-  constructor(private api: ApiService) { 
+  constructor(private api: ApiService,  private router: Router) { 
     
   }
 
   ngOnInit(): void {
+
+      //authentication code to be copied
+      this.logged_in = this.api.is_Authenticated()
+      console.log(this.logged_in)
+      if (this.logged_in == true) {
+        
+        this.user_data = JSON.parse(this.api.getJdata(environment.jdataKey));
+        console.log(this.user_data)
+        this.user_data.roll_number = window.atob(this.user_data.roll_number)
+        this.api.getCustomer(this.user_data.roll_number)
+          .subscribe(data => { this.user_data = data; console.log(data), error => { console.log(error) } })
+        this.roll=this.user_data.roll_number
+      }
+      else { this.router.navigate(['']) }
+    //authentication code end
    
       this.api.getItems().subscribe(
         data => {
@@ -40,7 +59,7 @@ export class ApprovedComponent implements OnInit {
           console.log(error);
         }
       );
-      this.api.getRequests().subscribe(
+      this.api.rollSearch(this.roll).subscribe(
         data => {
           this.requests = data;
         },
@@ -83,47 +102,6 @@ export class ApprovedComponent implements OnInit {
       return false
 
   }
-
- 
-  total(roll) {
-
-
-//     var i;
-//   for (i = 0; i < this.requests.length; i+=1) {
-  
-//     if( this.requests[i].is_sent == false){
-//       this.total_items+= this.requests[i].quantity
-  
-//       console.log(this.total_items)
-//       console.log(this.requests[i].quantity)
-      
-//        console.log(this.requests.length)
-      
-//       console.log("this.requests[1].quantity")
-//   }
-// }
-
-
-
-    const keys= Object.keys(this.requests)
-    this.total_items=0
-
-    for( const key of keys) {
-
-     
-
-      if( this.requests[key].is_sent == false){
-          this.total_items+= this.requests[key].quantity
-          
-      
-         
-       }
-    }
-    
-
-  }  
-
-
  
 
 
