@@ -288,13 +288,6 @@ searchItem() {
   decrementQuantity(item) {
     item.quantity--;
   }
-  incrementPrice(item) {
-    item.price++;
-  }
-
-  decrementPrice(item) {
-    item.price--;
-  }
 
 save(item){
   this.x=item

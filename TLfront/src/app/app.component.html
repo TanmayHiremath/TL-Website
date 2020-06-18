@@ -27,7 +27,7 @@
     <a routerLink="">Home</a>
     <a routerLink="about">About</a>
     <a routerLink="events">Events</a>
-    <a *ngIf="!logged_in" routerLink="machinestatus">Machine Status</a>
+    <a routerLink="machinestatus">Machine Status</a>
     <a *ngIf="logged_in" routerLink="inventory">Inventory</a>
     <a routerLink="contact">Contact</a>
     <a class="dropdown" *ngIf="logged_in">

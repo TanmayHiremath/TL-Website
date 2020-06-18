@@ -146,16 +146,16 @@
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm  {{filter_2}}" cellspacing="0" width="100%">
   <thead>
     <tr>
-      <th class="th-sm">item Name
+      <th class="th-sm">Item Name
       </th>
       
-      <th class="th-sm">price
+      <th class="th-sm">Price
       </th>
-      <th class="th-sm">items quantity
+      <th class="th-sm">Quantity
       </th>
-      <th class="th-sm">colour code
+      <th class="th-sm">Colour code
       </th>
-      <th class="th-sm">id required</th>
+      <th class="th-sm">ID required</th>
       <th class="th-sm">SAVE
       </th>
     </tr>
@@ -166,17 +166,14 @@
       <td >{{item.name}}</td>
       
       <td >
-        <button [disabled]="item.price<=1" (click)="decrementPrice(item)">-</button>
-        <input type="text"
-        [(ngModel)]="item.price">
-        <button (click)="incrementPrice(item)">+</button>
+        ₹{{item.price}}
       </td>
       <td > <button [disabled]="item.quantity<=1" (click)="decrementQuantity(item)">-</button><input type="text"
         [(ngModel)]="item.quantity"><button (click)="incrementQuantity(item)">+</button></td>
       <td *ngIf="item.is_consumable==true" [style.backgroundColor]='item.colour_code'>{{item.colour_code}}</td>
       <td *ngIf="item.is_consumable==false">Not Consumable</td>
       <td>{{item.id_required}}</td>
-      <td><button (click)="save(item)">save</button></td>
+      <td><button (click)="save(item)">Save</button></td>
     </tr>
     <!-- <tr class="{{filter_12}}" *ngFor="let request of requests">
         

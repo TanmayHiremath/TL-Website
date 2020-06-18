@@ -15,7 +15,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr'
 import { ApiService } from './api.service';
 import { CartComponent } from './cart/cart.component';
-import { CheckoutComponent } from './checkout/checkout.component';
 import { ApprovedComponent } from './approved/approved.component';
 import { LoginComponent } from './login/login.component';
 import { FateComponent } from './fate/fate.component';
@@ -32,7 +31,6 @@ import { MachinestatusComponent } from './machinestatus/machinestatus.component'
     ContactComponent,
     HomeComponent,
     CartComponent,
-    CheckoutComponent,
     ApprovedComponent,
     LoginComponent,
     FateComponent,
@@ -61,7 +59,6 @@ import { MachinestatusComponent } from './machinestatus/machinestatus.component'
           {path:'inventory',component:InventoryComponent},
           {path:'contact',component:ContactComponent},
           {path:'cart',component:CartComponent},
-          {path:'checkout',component:CheckoutComponent},
           {path:'login',component:LoginComponent},
           {path:'technician',component:FateComponent},
           {path:'machinestatus',component:MachinestatusComponent}
