@@ -18,6 +18,11 @@ import ast as ast
 import json
 import random
 import string
+from .tasks import delet_this
+from logging import getLogger
+
+logger = getLogger(__name__)
+
 FRONT_URL='http://localhost:4200/'
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
@@ -120,6 +125,13 @@ class ItemSearch(generics.ListAPIView):
         return queryset
 
 
+def tasks(request):
+    message = request.GET.get("message")
+    if message:
+        delet_this(message)
+        return JsonResponse({}, status=200)
+    else:
+        return JsonResponse({}, status=405)
 
 @csrf_exempt
 def posts(request):

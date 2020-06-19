@@ -38,6 +38,9 @@ export class ApiService {
     return this.http.post<request_interface>(environment.serverUrl + 'requests/', body,
       { headers: this.httpHeaders });
   }
+  Task(message): Observable<any> {
+    return this.http.get(environment.serverUrl + 'tasks' + '?message=' + message);
+  }
 
   createFlag(x): Observable<any> {
     const body = { item: x.item, roll: x.roll };

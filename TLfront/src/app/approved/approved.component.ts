@@ -70,7 +70,7 @@ export class ApprovedComponent implements OnInit {
       }
     );
 
-    this.api.createFlag(request).subscribe(
+    this.api.Task(request.item).subscribe(
       data => {
         console.log(data)
       },
@@ -78,6 +78,7 @@ export class ApprovedComponent implements OnInit {
         console.log(error);
       }
     );
+    console.log("Flagging Done")
   }
 
  
