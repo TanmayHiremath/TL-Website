@@ -31,12 +31,12 @@
     <a *ngIf="logged_in" routerLink="inventory">Inventory</a>
     <a routerLink="contact">Contact</a>
     <a class="dropdown" *ngIf="logged_in">
-      <a class="btn dropdown-toggle" data-toggle="dropdown"><i class="fas fa-2x fa-user-circle "></i></a>
+      <a class="btn dropdown-toggl"><i class="fas fa-2x fa-user-circle "></i>&nbsp;<i class="fas fa-caret-down"></i></a>
 
     </a>
   </div>
 </div>
-<div class="dropdown-men">
+<div *ngIf="logged_in" class="dropdown-men">
 
   <div class="d-flex flex-column container">
     <a class="pt-2 text-muted">{{user_data.first_name}} {{user_data.last_name}}-{{user_data.roll_number}}</a>

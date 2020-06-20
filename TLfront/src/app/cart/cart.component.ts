@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 import { CheckoutComponent } from '../checkout/checkout.component';
 
 @Component({
@@ -18,6 +19,8 @@ export class CartComponent implements OnInit {
   requests = []
   total_items = 0
   myVar=0
+  user_data
+  logged_in
 
 
   constructor(private api: ApiService,
@@ -26,7 +29,19 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
+   //authentication code to be copied
+   this.logged_in = this.api.is_Authenticated()
+   console.log(this.logged_in)
+   if (this.logged_in == true) {
+     
+     this.user_data = JSON.parse(this.api.getJdata(environment.jdataKey));
+     console.log(this.user_data)
+     this.user_data.roll_number = window.atob(this.user_data.roll_number)
+     this.api.getCustomer(this.user_data.roll_number)
+       .subscribe(data => { this.user_data = data; console.log(data), error => { console.log(error) } })
+   }
+   else { this.router.navigate(['']) }
+ //authentication code end
       this.api.getItems().subscribe(
         data => {
           this.items = data;
@@ -36,7 +51,7 @@ export class CartComponent implements OnInit {
         }
       );
       
-      this.api.getRequests().subscribe(
+      this.api.rollSearch(this.user_data.roll_number).subscribe(
         data => {
           this.requests = data;
         },
@@ -47,7 +62,7 @@ export class CartComponent implements OnInit {
   }
 
   getReq(){
-    this.api.getRequests().subscribe(
+    this.api.rollSearch(this.user_data.roll_number).subscribe(
       data => {
         this.requests = data;
       },

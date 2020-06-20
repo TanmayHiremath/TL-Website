@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
     
     $(document).ready(function () {
       
-      $('.dropdown-toggle').click(function(){
+      $('.dropdown-toggl').click(function(){
         $('.dropdown-men').fadeToggle(200)
         
       });
