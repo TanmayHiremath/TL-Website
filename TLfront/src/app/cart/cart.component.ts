@@ -4,7 +4,6 @@ import { ApiService } from '../api.service';
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
-import { CheckoutComponent } from '../checkout/checkout.component';
 
 @Component({
   selector: 'app-cart',
@@ -165,7 +164,7 @@ export class CartComponent implements OnInit {
       if(this.myVar==1){
       this.router.navigate(['./inventory'])}
      
-      else  {this.router.navigate(['./checkout'])}
+      else  {this.router.navigate(['./approved'])}
       
       
   }

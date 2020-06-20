@@ -30,12 +30,12 @@
 
   <a href="#0" class="cd-close"></a>
 </div> <!-- cd-filter -->
-<div class="input-group mb-3 {{filter_1}}">
+<div class="input-group col-3 {{filter_1}}">
   <input
     type="text"
     class="form-control"
-    placeholder="Search by roll number"
-    [(ngModel)]="roll"
+    placeholder="Click to Search"
+    [(ngModel)]="roll_number"
   />
   <div class="input-group-append ">
     <button
@@ -53,19 +53,19 @@
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm  {{filter_1}}" cellspacing="0" width="100%">
   <thead>
     <tr>
-      <th class="th-sm">item Name
+      <th class="th-sm">Item name
       </th>
-      <th class="th-sm">request.quantity
+      <th class="th-sm">Quantity requested
       </th>
-      <th class="th-sm">request.roll
+      <th class="th-sm">Roll number
       </th>
-      <th class="th-sm">items[request.item-1].quantity
+      <th class="th-sm">Total Quantiy
       </th>
-      <th class="th-sm">request.id
+      <th class="th-sm">Request Number
       </th>
-      <th class="th-sm">id required</th>
+      <th class="th-sm">ID required</th>
 
-      <th class="th-sm">status</th>
+      <th class="th-sm">Status</th>
     </tr>
   </thead>
   <tbody>
@@ -73,7 +73,7 @@
         
       <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{items[request.item-1].name}}</td>
       <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{request.quantity}}</td>
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{request.roll}}</td>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{request.roll_number}}</td>
       <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{items[request.item-1].quantity}}</td>
       <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{request.id}}</td>
       <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{items[request.item-1].id_required}}</td>
@@ -92,7 +92,7 @@
         
       <td *ngIf= " (request.is_sent==true)" >{{items[request.item-1].name}}</td>
       <td *ngIf= " (request.is_sent==true)">{{request.quantity}}</td>
-      <td *ngIf= " (request.is_sent==true)">{{request.roll}}</td>
+      <td *ngIf= " (request.is_sent==true)">{{request.roll_number}}</td>
       <td *ngIf= " (request.is_sent==true)">{{items[request.item-1].quantity}}</td>
       <td *ngIf= " (request.is_sent==true)">{{request.id}}</td>
       <td *ngIf= " (request.is_sent==true)">{{items[request.item-1].id_required}}</td>
@@ -108,7 +108,7 @@
         
       <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">{{items[request.item-1].name}}</td>
       <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">{{request.quantity}}</td>
-      <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">{{request.roll}}</td>
+      <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">{{request.roll_number}}</td>
       <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">{{items[request.item-1].quantity}}</td>
       <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">{{request.id}}</td>
       <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">{{items[request.item-1].id_required}}</td>
@@ -124,49 +124,62 @@
 </table>
 
 <h1  class="{{filter_2}}">ITEMS</h1>
-
+<div class="input-group col-3 {{filter_2}}">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Click to Search"
+    [(ngModel)]="item_query"
+  />
+  <div class="input-group-append ">
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      (click)="searchItem()"
+    >
+      Search
+    </button>
+  </div>
+</div>
 
 
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm  {{filter_2}}" cellspacing="0" width="100%">
   <thead>
     <tr>
-      <th class="th-sm">item Name
+      <th class="th-sm">Item Name
       </th>
       
-      <th class="th-sm">price
+      <th class="th-sm">Price
       </th>
-      <th class="th-sm">items quantity
+      <th class="th-sm">Quantity
       </th>
-      <th class="th-sm">colour code
+      <th class="th-sm">Colour code
       </th>
-      <th class="th-sm">id required</th>
+      <th class="th-sm">ID required</th>
       <th class="th-sm">SAVE
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr class="" *ngFor="let item of items">
+    <tr class="" *ngFor="let item of displayItems">
         
       <td >{{item.name}}</td>
       
       <td >
-        <button [disabled]="item.price<=1" (click)="decrementPrice(item)">-</button>
-        <input type="text"
-        [(ngModel)]="item.price">
-        <button (click)="incrementPrice(item)">+</button>
+        ₹{{item.price}}
       </td>
       <td > <button [disabled]="item.quantity<=1" (click)="decrementQuantity(item)">-</button><input type="text"
         [(ngModel)]="item.quantity"><button (click)="incrementQuantity(item)">+</button></td>
       <td *ngIf="item.is_consumable==true" [style.backgroundColor]='item.colour_code'>{{item.colour_code}}</td>
       <td *ngIf="item.is_consumable==false">Not Consumable</td>
       <td>{{item.id_required}}</td>
-      <td><button (click)="save(item)">save</button></td>
+      <td><button (click)="save(item)">Save</button></td>
     </tr>
     <!-- <tr class="{{filter_12}}" *ngFor="let request of requests">
         
       <td>{{items[request.item-1].name}}</td>
       <td >{{request.quantity}}</td>
-      <td>{{request.roll}}</td>
+      <td>{{request.roll_number}}</td>
       <td >{{items[request.item-1].quantity}}</td>
       <td >{{request.id}}</td>
       <td *ngIf="(request.is_issued==false) && (request.is_denied==false) "><button (click)="issue_request(request)">issue</button><button (click)="deny_request(request)">deny</button></td>

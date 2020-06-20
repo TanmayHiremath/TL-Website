@@ -87,7 +87,7 @@
       <div *ngFor="let request of requests">
         <div  *ngIf=" !(request.is_sent)  " class="cart-row">
             <div    class="bod2"><img class="row-image" src={{items[request.item-1].picture}}></div>
-            <div   style="flex:2" class="bod1"><p>{{request.roll}},{{items[request.item-1].name}}</p></div>
+            <div   style="flex:2" class="bod1"><p>{{request.roll_number}},{{items[request.item-1].name}}</p></div>
             <div style="flex:1">
               <a class="chg-quantity fas fa-angle-up" style='font-size:36px' (click)="updateQuantityUp(request)"></a>
               <p class="quantity">{{request.quantity}}</p>

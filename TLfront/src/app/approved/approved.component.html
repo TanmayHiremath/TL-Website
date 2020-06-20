@@ -11,7 +11,6 @@
       <br>
       <div  class="box-element">
         <div class="cart-row">
-          <div style="flex:2"></div>
           <div style="flex:2"><strong>Item</strong></div>
         
           <div style="flex:2"><strong>Quantity</strong></div>
@@ -19,23 +18,41 @@
           <div style="flex:1"><strong>Action</strong></div>
         </div>
        <div *ngFor="let request of requests">
-        <div class="cart-row">
-          <div   style="flex:2"><img class="row-image" src="#"></div>
+        <div *ngIf=" !(request.is_returned)&&!(request.is_denied)" class="cart-row">
           <div   style="flex:2"><p>{{items[request.item-1].name}}</p></div>
           <div style="flex:2">
             <p class="quantity">{{request.quantity}}</p>
           </div>
           <div style="flex:2">
             <p class="quantity" *ngIf=" (request.is_returned)  " style="color: green;">Returned</p>
-            <p class="quantity" *ngIf=" (request.is_issued) && !(request.is_returned)  " style="color: orange">Issued</p>
+            <p class="quantity" *ngIf=" (request.is_issued) && !(request.is_returned)  " style="color: rgba(0, 140, 255, 0.959)">Issued</p>
             <p class="quantity" *ngIf=" (request.is_denied)  " style="color: red">Denied</p>
-            <p class="quantity" *ngIf=" !(request.is_approved) && !(request.is_denied)  " style="color: yellow">Pending</p>
+            <p class="quantity" *ngIf=" !(request.is_issued) && !(request.is_denied)  " style="color:salmon">Pending</p>
           </div>
           <div style="flex:1" >
-            <button *ngIf=" !(request.is_approved) && !(request.is_denied) && !(items[request.item-1].is_flagged)  " (click)="flagItem(request)">Flag Item</button>
+            <div *ngIf="  !(request.is_issued) && !(request.is_denied) && (items[request.item-1].is_flagged)  " style="color: slategrey;">Flagged</div>
+            <button *ngIf=" !(request.is_issued) && !(request.is_denied) && !(items[request.item-1].is_flagged)  " (click)="flagItem(request)">Flag Item</button>
           </div>
           </div>
+
+          
        </div>
+       <div *ngFor="let request of requests">
+          <div *ngIf=" (request.is_returned)||(request.is_denied)" class="cart-row">
+            <div   style="flex:2"><p>{{items[request.item-1].name}}</p></div>
+            <div style="flex:2">
+              <p class="quantity">{{request.quantity}}</p>
+            </div>
+            <div style="flex:2">
+              <p class="quantity" *ngIf=" (request.is_returned)  " style="color: green;">Returned</p>
+              <p class="quantity" *ngIf=" (request.is_issued) && !(request.is_returned)  " style="color: rgba(0, 140, 255, 0.959)">Issued</p>
+              <p class="quantity" *ngIf=" (request.is_denied)  " style="color: red">Denied</p>
+              <p class="quantity" *ngIf=" !(request.is_issued) && !(request.is_denied)  " style="color:salmon">Pending</p>
+            </div>
+            <div style="flex:1" >
+            </div>
+            </div>
+        </div>
       </div>
     </div>
   </div>

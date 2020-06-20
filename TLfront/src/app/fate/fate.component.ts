@@ -15,12 +15,14 @@ export class FateComponent implements OnInit {
   requests = []
   items = []
   quantity;
-  roll;
+  roll_number;
+  displayItems;
+  item_query;
+  customers;
   x;
   constructor(private api: ApiService,
     private router: Router,
     private toastr: ToastrService) { 
-
     }
 
   ngOnInit(): void {
@@ -44,6 +46,7 @@ export class FateComponent implements OnInit {
           that.api.updateItem(item).subscribe(data => { console.log(data) },error => { console.log(error); });
 
         }
+       this.displayItems=this.items; 
       },
       error => {
         console.log(error);
@@ -57,14 +60,34 @@ export class FateComponent implements OnInit {
           console.log(error);
         }
       );
+    this.api.getCustomers().subscribe(
+      data => {
+        this.customers = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
     
   }
   
 searchTitle() {
-  this.api.rollSearch(this.roll)
+  this.api.rollSearch(this.roll_number)
     .subscribe(
       data => {
         this.requests = data;
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      });
+}
+
+searchItem() {
+  this.api.itemSearch(this.item_query)
+    .subscribe(
+      data => {
+        this.displayItems = data;
         console.log(data);
       },
       error => {
@@ -170,7 +193,7 @@ searchTitle() {
       );
 
 
-      this.toastr.success(this.items[request.item-1].name+' is issued successfully to '+ request.roll, 'Issued',
+      this.toastr.success(this.items[request.item-1].name+' is issued successfully to '+ request.roll_number, 'Issued',
       {timeOut: 1000,
       positionClass : "toast-top-full-width"
       });
@@ -195,7 +218,7 @@ searchTitle() {
           }
       );
 
-      this.toastr.success(this.items[request.item-1].name+' requested by '+ request.roll+ ' has been denied', 'Issued',
+      this.toastr.success(this.items[request.item-1].name+' requested by '+ request.roll_number+ ' has been denied', 'Issued',
       {timeOut: 1000,
       positionClass : "toast-top-full-width"
       });
@@ -229,7 +252,7 @@ searchTitle() {
             console.log(error);
           }
       );
-      this.toastr.success(this.items[request.item-1].name+' issued by '+ request.roll +' is returned successfully', 'Returned',
+      this.toastr.success(this.items[request.item-1].name+' issued by '+ request.roll_number +' is returned successfully', 'Returned',
       {timeOut: 1000,
       positionClass : "toast-top-full-width"
       });
@@ -264,13 +287,6 @@ searchTitle() {
 
   decrementQuantity(item) {
     item.quantity--;
-  }
-  incrementPrice(item) {
-    item.price++;
-  }
-
-  decrementPrice(item) {
-    item.price--;
   }
 
 save(item){

@@ -18,6 +18,11 @@ import ast as ast
 import json
 import random
 import string
+from .tasks import delet_this
+from logging import getLogger
+
+logger = getLogger(__name__)
+
 FRONT_URL='http://localhost:4200/'
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
@@ -83,7 +88,7 @@ class FlagViewSet(viewsets.ModelViewSet):
 
 
 
-class RequestssViewSet(generics.ListAPIView):
+class RequestSearch(generics.ListAPIView):
     serializer_class = RequestSerializer
 
     def get_queryset(self):
@@ -92,14 +97,41 @@ class RequestssViewSet(generics.ListAPIView):
         by filtering against a `roll` query parameter in the URL.
         """
         queryset = Request.objects.all()
-        query = self.request.query_params.get('roll', None)
+        query = self.request.query_params.get('roll_number', None)
         if query:
             queryset = Request.objects.filter(
-                Q(roll__icontains=query)
+                Q(roll_number__roll_number__icontains=query) |
+                Q(roll_number__first_name__icontains=query)|
+                Q(roll_number__last_name__icontains=query)|
+                Q(item__name__icontains=query)|
+                Q(item__keywords__icontains=query)
+            ).distinct()
+        return queryset
+
+class ItemSearch(generics.ListAPIView):
+    serializer_class = ItemSerializer
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `roll` query parameter in the URL.
+        """
+        queryset = Item.objects.all()
+        query = self.request.query_params.get('query', None)
+        if query:
+            queryset = Item.objects.filter(
+                Q(name__icontains=query)
             ).distinct()
         return queryset
 
 
+def tasks(request):
+    message = request.GET.get("message")
+    if message:
+        delet_this(message)
+        return JsonResponse({}, status=200)
+    else:
+        return JsonResponse({}, status=405)
 
 @csrf_exempt
 def posts(request):
