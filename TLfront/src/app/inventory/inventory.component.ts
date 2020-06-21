@@ -14,7 +14,8 @@ export class InventoryComponent implements OnInit {
   items = [{}];
   tabledisplay: boolean = false;
   id_required_string: string
-  requests: [{ id: '' }];
+  requests= [];
+  ordered=[];
   newRequest: { item: any; quantity: any; id?: number; roll_number?: string; }
   displaycartbtn: boolean = true
   logged_in
@@ -38,6 +39,25 @@ export class InventoryComponent implements OnInit {
         .subscribe(data => { this.user_data = data; console.log(data), error => { console.log(error) } })
     }
     else { this.router.navigate(['']) }
+
+    this.api.rollSearch(this.user_data.roll_number).subscribe(
+      data => {
+        this.requests = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    var i  
+    for(i=0;i<this.requests.length;i++)
+    {
+      console.log("hi")
+      if(!this.requests[i].is_sent)
+      {
+        this.ordered[this.requests[i].item-1]=i
+      }
+    }
+    console.log(this.ordered)
 
     this.api.getItems().subscribe(
       data => {

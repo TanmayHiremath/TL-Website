@@ -39,7 +39,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    
+    path('tasks/', views.tasks, name='tasks'),
     path("autho/", views.posts),
     path('requestss/', views.RequestSearch.as_view()),
     path('itemss/', views.ItemSearch.as_view()),

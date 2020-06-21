@@ -30,6 +30,7 @@
             <p class="quantity" *ngIf=" !(request.is_issued) && !(request.is_denied)  " style="color:salmon">Pending</p>
           </div>
           <div style="flex:1" >
+            <div *ngIf="  !(request.is_issued) && !(request.is_denied) && (items[request.item-1].is_flagged)  " style="color: slategrey;">Flagged</div>
             <button *ngIf=" !(request.is_issued) && !(request.is_denied) && !(items[request.item-1].is_flagged)  " (click)="flagItem(request)">Flag Item</button>
           </div>
           </div>
@@ -49,7 +50,6 @@
               <p class="quantity" *ngIf=" !(request.is_issued) && !(request.is_denied)  " style="color:salmon">Pending</p>
             </div>
             <div style="flex:1" >
-              <button *ngIf=" !(request.is_issued) && !(request.is_denied) && !(items[request.item-1].is_flagged)  " (click)="flagItem(request)">Flag Item</button>
             </div>
             </div>
         </div>
