@@ -45,7 +45,7 @@
                 <a class="btn" [style.backgroundColor]='item.colour_code'>{{item.name}}</a></td>
               <td *ngIf="item.display"><span>{{convertBool(item)}}</span></td>
               <td *ngIf="item.display"><a><i class="far fa-bell"></i></a></td>
-              <td *ngIf="item.display">
+              <td class={{item.name}} *ngIf="item.display">
 
                 <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
 
