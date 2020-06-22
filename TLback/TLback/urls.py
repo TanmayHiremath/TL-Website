@@ -18,7 +18,6 @@ from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers
 from tools import views,models
-from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -39,7 +38,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('tasks/', views.tasks, name='tasks'),
     path("autho/", views.posts),
     path('requestss/', views.RequestSearch.as_view()),
     path('itemss/', views.ItemSearch.as_view()),
