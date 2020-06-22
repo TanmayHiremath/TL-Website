@@ -12,7 +12,7 @@ import { environment } from '../../environments/environment';
 export class InventoryComponent implements OnInit {
 
   items = [{}];
-  tabledisplay: boolean = false;
+  tabledisplay: boolean = true;
   id_required_string: string
   requests= [];
   ordered=[];
@@ -251,6 +251,33 @@ export class InventoryComponent implements OnInit {
 
     this.api.updateMail(this.mail).subscribe(data => {this.api.sendMail(this.user_data.roll_number); console.log(data) }, error => { console.log(error); });
     
+  }
+
+
+  selected_category="b"
+  LED='d-none'
+  Resistor='d-none'
+  Capacitor='d-none'
+  Jumper='d-none';
+
+  display_table(chosen){
+    
+    this.selected_category=chosen;
+    console.log(this.selected_category)
+    if (chosen=='LED'){
+    this.LED='d-show';
+    this.Resistor='d-none'
+    this.Capacitor='d-none'
+    this.Jumper='d-none';
+
+    }
+    else if(chosen=='Resistor'){
+    this.LED='d-none';
+    this.Resistor='d-show'
+    this.Capacitor='d-none'
+    this.Jumper='d-none';
+      }
+
   }
 
 }
