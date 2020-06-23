@@ -252,32 +252,55 @@ export class InventoryComponent implements OnInit {
     this.api.updateMail(this.mail).subscribe(data => {this.api.sendMail(this.user_data.roll_number); console.log(data) }, error => { console.log(error); });
     
   }
-
-
+  categoryArray = ['d-none','d-none', 'd-none','d-none','d-none','d-none','d-none','d-none','d-none','d-none','d-none']
+  cArray = ['d-none','d-none', 'Resistor','Capacitor','Jumper','LED','d-none','Screw','Nut','Bolt','d-none']
   selected_category="b"
-  LED='d-none'
-  Resistor='d-none'
-  Capacitor='d-none'
-  Jumper='d-none';
-
+  selected_value
   display_table(chosen){
     
-    this.selected_category=chosen;
-    console.log(this.selected_category)
-    if (chosen=='LED'){
-    this.LED='d-show';
-    this.Resistor='d-none'
-    this.Capacitor='d-none'
-    this.Jumper='d-none';
-
-    }
-    else if(chosen=='Resistor'){
-    this.LED='d-none';
-    this.Resistor='d-show'
-    this.Capacitor='d-none'
-    this.Jumper='d-none';
+    this.selected_category=this.cArray[chosen];
+    if(this.selected_value==chosen){
+        this.selected_value=11;
       }
+    else{
+    this.selected_value=chosen;
+    }
+    // if(chosen=='Resistor'){
+    //   this.selected_value=2;
+    // }
+    // else if(chosen=='Capacitor'){
+    //   this.selected_value=3;
+    // }
+    // else if(chosen=='Jumper'){
+    //   this.selected_value=4;
+    // }
+    // else if(chosen=='LED'){
+    //   this.selected_value=5;
+    // }
+    // else if(chosen=='Screw'){
+    //   this.selected_value=7;
+    // }
+    // else if(chosen=='Nut'){
+    //   this.selected_value=8;
+    // }
+    // else if(chosen=='Bolt'){
+    //   this.selected_value=9;
+    // }
+    var i
+    for (i = 0; i < 11; i++) {
+      this.categoryArray[i]='d-none';
+    }    
+    this.categoryArray[this.selected_value]='d-show';
 
   }
 
 }
+
+
+// categoryArray = ['d-none','d-none', 'Resistor','Capacitor','Jumper','LED','d-none','Screw','Nut','Bolt','d-none']
+// if(this.selected_value==chosen){
+//   this.selected_value=11;
+// }
+// else{
+// this.selected_value=chosen;
+// }
