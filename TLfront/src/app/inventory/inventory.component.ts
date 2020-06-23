@@ -252,32 +252,34 @@ export class InventoryComponent implements OnInit {
     this.api.updateMail(this.mail).subscribe(data => {this.api.sendMail(this.user_data.roll_number); console.log(data) }, error => { console.log(error); });
     
   }
-
-
-  selected_category="b"
-  LED='d-none'
-  Resistor='d-none'
-  Capacitor='d-none'
-  Jumper='d-none';
-
+  displayArray = ['d-none','d-none', 'd-none','d-none','d-none','d-none','d-none','d-none','d-none','d-none','d-none']
+  categoryArray = ['d-none','d-none', 'Resistor','Capacitor','Jumper','LED','d-none','Screw','Nut','Bolt','d-none']
+  selected_category="none"
+  selected_value=100
   display_table(chosen){
     
-    this.selected_category=chosen;
-    console.log(this.selected_category)
-    if (chosen=='LED'){
-    this.LED='d-show';
-    this.Resistor='d-none'
-    this.Capacitor='d-none'
-    this.Jumper='d-none';
-
-    }
-    else if(chosen=='Resistor'){
-    this.LED='d-none';
-    this.Resistor='d-show'
-    this.Capacitor='d-none'
-    this.Jumper='d-none';
+    this.selected_category=this.categoryArray[chosen];
+    if(this.selected_value==chosen){
+        this.selected_value=100;
       }
+    else{
+    this.selected_value=chosen;
+    }
+    var i
+    for (i = 0; i < 11; i++) {
+      this.displayArray[i]='d-none';
+    }    
+    this.displayArray[this.selected_value]='d-show';
 
   }
 
 }
+
+
+// displayArray = ['d-none','d-none', 'Resistor','Capacitor','Jumper','LED','d-none','Screw','Nut','Bolt','d-none']
+// if(this.selected_value==chosen){
+//   this.selected_value=11;
+// }
+// else{
+// this.selected_value=chosen;
+// }
