@@ -486,6 +486,13 @@ img {margin-bottom: -8px;}
   margin: 0rem;
 
 }
+.conta2 .card:nth-child(5) h1{
+  font-size: 2.5rem;
+  color: #333;
+  margin-top: -4rem;
+  z-index:29;
+  padding-bottom: 5rem;
+}
 .job-title{
   color: #777;
   font-size: 1.2rem;
@@ -684,6 +691,16 @@ img {margin-bottom: -8px;}
     align-items: center;
     justify-content: center;
     margin: 2rem 0rem 2rem 0.5rem;
+    box-shadow: .5rem .5rem 3rem rgba(0,0,0,0.2);
+  }
+  .conta2 .card:nth-child(7){
+    width: 21rem;
+    background-color: #ebeef8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 2rem;
     box-shadow: .5rem .5rem 3rem rgba(0,0,0,0.2);
   }
   .conta2 .card:nth-child(3),.conta2 .card:nth-child(8){
