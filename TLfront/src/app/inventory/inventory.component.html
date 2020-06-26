@@ -104,8 +104,8 @@
 
 
 
-
-
+ <tr *ngFor="let item of items">
+ <td *ngIf="item.display"><a (click)="reportItem(item)">Report Damage</a></td></tr>
 <h1>ELECTRONICS</h1>
 <ul>
   <li><h3 (click)="display_table(0)">Sensors</h3>

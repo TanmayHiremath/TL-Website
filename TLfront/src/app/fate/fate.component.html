@@ -174,6 +174,7 @@
       <td *ngIf="item.is_consumable==false">Not Consumable</td>
       <td>{{item.id_required}}</td>
       <td><button (click)="save(item)">Save</button></td>
+      <td><button (click)="reportItem(item)">report</button></td>
     </tr>
     <!-- <tr class="{{filter_12}}" *ngFor="let request of requests">
         
