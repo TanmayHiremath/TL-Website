@@ -12,7 +12,7 @@ import { environment } from '../../environments/environment';
 export class InventoryComponent implements OnInit {
 
   items = [{}];
-  tabledisplay: boolean = false;
+  tabledisplay: boolean = true;
   id_required_string: string
   requests= [];
   ordered=[];
@@ -252,5 +252,34 @@ export class InventoryComponent implements OnInit {
     this.api.updateMail(this.mail).subscribe(data => {this.api.sendMail(this.user_data.roll_number); console.log(data) }, error => { console.log(error); });
     
   }
+  displayArray = ['d-none','d-none', 'd-none','d-none','d-none','d-none','d-none','d-none','d-none','d-none','d-none']
+  categoryArray = ['d-none','d-none', 'Resistor','Capacitor','Jumper','LED','d-none','Screw','Nut','Bolt','d-none']
+  selected_category="none"
+  selected_value=100
+  display_table(chosen){
+    
+    this.selected_category=this.categoryArray[chosen];
+    if(this.selected_value==chosen){
+        this.selected_value=100;
+      }
+    else{
+    this.selected_value=chosen;
+    }
+    var i
+    for (i = 0; i < 11; i++) {
+      this.displayArray[i]='d-none';
+    }    
+    this.displayArray[this.selected_value]='d-show';
+
+  }
 
 }
+
+
+// displayArray = ['d-none','d-none', 'Resistor','Capacitor','Jumper','LED','d-none','Screw','Nut','Bolt','d-none']
+// if(this.selected_value==chosen){
+//   this.selected_value=11;
+// }
+// else{
+// this.selected_value=chosen;
+// }

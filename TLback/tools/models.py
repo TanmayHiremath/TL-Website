@@ -52,8 +52,12 @@ class Request(models.Model):
     is_issued = models.BooleanField(default=False)
     is_returned = models.BooleanField(default=False)
     
+    
+    @property
+    def item_details(self):
+        return "%s %s"%(self.item.name, self.item.quantity)
     def __str__(self):
-        return str(self.roll_number)+'-'+str(self.item)+'-'+str(self.quantity)
+        return self.roll
 
 class Flag(models.Model):
     item = models.OneToOneField(Item, on_delete=models.CASCADE)
