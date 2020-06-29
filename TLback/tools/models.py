@@ -55,7 +55,7 @@ class Request(models.Model):
     
     @property
     def item_details(self):
-        return "%s %s"%(self.item.name, self.item.quantity)
+        return "%s %s %s"%(self.item.name,self.item.category, self.item.quantity)
     
 
 class Flag(models.Model):
