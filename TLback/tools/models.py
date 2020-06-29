@@ -56,8 +56,7 @@ class Request(models.Model):
     @property
     def item_details(self):
         return "%s %s"%(self.item.name, self.item.quantity)
-    def __str__(self):
-        return self.roll
+    
 
 class Flag(models.Model):
     item = models.OneToOneField(Item, on_delete=models.CASCADE)

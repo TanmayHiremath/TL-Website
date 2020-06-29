@@ -160,9 +160,11 @@ export class CartComponent implements OnInit {
           }
           
       }
-
+      
       if(this.myVar==1){
-      this.router.navigate(['./inventory'])}
+      this.router.navigate(['./cart'])
+      console.error("quantity chosen is not available");
+    }
      
       else  {this.router.navigate(['./approved'])}
       
