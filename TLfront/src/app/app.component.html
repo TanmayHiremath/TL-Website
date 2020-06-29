@@ -30,16 +30,16 @@
     <a routerLink="machinestatus">Machine Status</a>
     <a *ngIf="logged_in" routerLink="inventory">Inventory</a>
     <a routerLink="contact">Contact</a>
-    <a class="dropdown" *ngIf="logged_in">
-      <a class="btn dropdown-toggl"><i class="fas fa-2x fa-user-circle "></i>&nbsp;<i class="fas fa-caret-down"></i></a>
-
+    <a class="dropdown dropdown-toggl" id="dropdown-toggl" *ngIf="logged_in">
+      <a class="btn"><i class="fas fa-2x fa-user-circle "></i>&nbsp;<i class="fas fa-caret-down"></i></a>
     </a>
+    <a routerLink="" *ngIf="logged_in" (click)="logout()" id="mobile-logout">Logout</a>
   </div>
 </div>
-<div *ngIf="logged_in" class="dropdown-men">
+<div *ngIf="logged_in" class="dropdown-men" id="dropdown-men">
 
   <div class="d-flex flex-column container">
-    <a class="pt-2 text-muted">{{user_data.first_name}} {{user_data.last_name}}-{{user_data.roll_number}}</a>
+    <a class="pt-3 pb-4 text-primary">{{user_data.first_name}} {{user_data.last_name}}-{{user_data.roll_number}}</a>
     <a class="pt-2 text-warning" routerLink="../cart">My Cart</a>
     <a class="pt-3 text-success" routerLink="../approved">Issued Items</a>
     <hr class="rounded">
@@ -83,7 +83,7 @@
               class="fab fa-linkedin-in fa-2x"></i></a>
           <a class="pr-3 pl-2" href="https://www.facebook.com/tinkererIITB/" id="facebook" target="_blank"><i
               class="fab fa-facebook-f fa-2x"></i></a>
-          <a class="pl-2" href="https://www.instagram.com/tinkererslaboratory/" id="instagram" target="_blank"><i
+          <a class="pl-2" href="https://www.instagram.com/tinkererslab.iitb/" id="instagram" target="_blank"><i
               class="fab fa-instagram fa-2x"></i></a>
         </div>
       </div>
