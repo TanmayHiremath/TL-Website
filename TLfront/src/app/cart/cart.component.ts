@@ -20,7 +20,8 @@ export class CartComponent implements OnInit {
   myVar=0
   user_data
   logged_in
-
+  mail={'roll_number':'','subject':'','message':'','html_message':'','recipient_list':''}
+  mailItems='';
 
   constructor(private api: ApiService,
     private router: Router) { 
@@ -146,6 +147,8 @@ export class CartComponent implements OnInit {
         if( (this.requests[i].is_sent == false) && (this.myVar==0) )
           {
             this.requests[i].is_sent = true;
+            this.mailItems+='<strong>'+this.items[this.requests[i].item-1].name+'</strong>: Quantity = <strong>'+this.requests[i].quantity+'</strong><br>'
+            console.log(this.mailItems)
             this.api.updateRequest(this.requests[i]).subscribe
               (
                 data => 
@@ -168,7 +171,20 @@ export class CartComponent implements OnInit {
      
       else  {this.router.navigate(['./approved'])}
       
-      
+      if(this.total_items>0){
+        console.log('mailsent')
+        this.mail.roll_number=this.user_data.roll_number
+        this.mail.subject = 'Requested issuing of items from Tinkerers\' Laboratory '
+        this.mail.message = ' <h1>to be issued</h1>'
+        this.mail.recipient_list = "['gakshat2207@gmail.com']"
+        var date_time =new Date()
+        this.mail.html_message = this.user_data.first_name+' '+this.user_data.last_name+' is trying to issue the following items:<br>'+this.mailItems+'<br>Click on this link to approve or deny  http://localhost:4200/technician<br><br>Details of student: '+this.user_data.roll_number+'<br>Email ID of student: '+this.user_data.email
+    
+    
+        this.api.updateMail(this.mail).subscribe(data => {this.api.sendMail(this.user_data.roll_number); console.log(data) }, error => { console.log(error); });
+    
+
+      } 
   }
 
   updateQuantityUp(request)
