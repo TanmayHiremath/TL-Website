@@ -41,8 +41,8 @@ returned_status.short_description = 'return' # at admin page
 
 class RequestAdmin(admin.ModelAdmin):
 
-    list_display = ('item', 'roll_number', 'quantity', 'item_details', 'is_issued', 'is_denied', 'is_returned')
-    list_editable = ('is_issued', 'is_denied', 'is_returned')
+    list_display = ('item', 'roll_number', 'quantity', 'item_details', 'is_issued', 'is_denied', 'is_returned','is_sent')
+    list_editable = ('is_issued', 'is_denied', 'is_returned', 'is_sent')
     search_fields = ['item__name', 'item__colour_code', ]
     actions = [issued_status, denied_status, returned_status]
 
@@ -52,11 +52,26 @@ class RequestAdmin(admin.ModelAdmin):
     # search_fields = ('roll' , )
     # ordering = ['last_name', 'email'] # first by last_name then by email
     #   date_hierarchy = 'publication_date'
-    list_filter = ['item', 'roll_number', 'quantity', 'item__colour_code', 'is_issued', 'is_denied']
+    list_filter = ['item', 'item__colour_code', 'is_issued', 'is_denied','is_returned']
+# Register your models here.
+class ItemAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'category', 'quantity', 'colour_code', 'price', 'is_flagged','id_required')
+    list_editable = ('quantity', 'price', 'is_flagged', 'id_required')
+    search_fields = ['name', 'category','quantity', 'colour_code']
+    # actions = [issued_status, denied_status, returned_status]
+
+    # list_select_related = (
+    #     'item',
+    # )
+    # search_fields = ('roll' , )
+    # ordering = ['last_name', 'email'] # first by last_name then by email
+    #   date_hierarchy = 'publication_date'
+    list_filter = ['category', 'colour_code', 'is_flagged', 'id_required']
 # Register your models here.
 
 
-admin.site.register(Item)
+admin.site.register(Item, ItemAdmin)
 admin.site.register(Request, RequestAdmin)
 admin.site.register(Customer)
 admin.site.register(Mail)

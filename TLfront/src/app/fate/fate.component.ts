@@ -219,7 +219,16 @@ searchItem() {
       positionClass : "toast-top-full-width"
       });
     
+    this.mail.roll_number=this.user_data.roll_number
+    this.mail.subject = this.items[request.item-1].name + ' Issued'
+    this.mail.message = this.items[request.item-1].name + ' <h1>has been issued successfully</h1>'
+    this.mail.recipient_list = "['gakshat2207@gmail.com']"
+    var date_time =new Date()
+    this.mail.html_message =this.user_data.first_name+' '+this.user_data.last_name+ ', <br><br>You have successfully issued <strong>' + this.items[request.item-1].name+'</strong>' + ': Quantity = <strong>'+request.quantity+'</strong> at '+ date_time+'<br><br>Please keep the item safe and secure. If you face any issues or problems, contact the Tinkerers\' Laboratory team as soon as possible.<br><br>Regards,<br>Tinkerers\' Laboratory Team'
+    
 
+
+    this.api.updateMail(this.mail).subscribe(data => {this.api.sendMail(this.user_data.roll_number); console.log(data) }, error => { console.log(error); });
     
   }
   deny_request(request)
@@ -277,6 +286,17 @@ searchItem() {
       {timeOut: 1000,
       positionClass : "toast-top-full-width"
       });
+
+      this.mail.roll_number=this.user_data.roll_number
+      this.mail.subject = this.items[request.item-1].name+' Returned'
+      this.mail.message = this.items[request.item-1].name + ' <h1>has been returned successfully</h1>'
+      this.mail.recipient_list = "['gakshat2207@gmail.com']"
+      var date_time =new Date()
+      this.mail.html_message =this.user_data.first_name+' '+this.user_data.last_name+ ', <br><br>You have successfully returned <strong>' + this.items[request.item-1].name+'</strong>' + ': Quantity = <strong>'+request.quantity+'</strong> at '+ date_time+ '<br><br>Thank you for returning the item in good condition.'+'<br><br>If you face any issues or problems, contact the Tinkerers\' Laboratory team or reply to the thread.<br><br>Regards,<br>Tinkerers\' Laboratory Team'
+    
+
+
+    this.api.updateMail(this.mail).subscribe(data => {this.api.sendMail(this.user_data.roll_number); console.log(data) }, error => { console.log(error); });
     
   }
   p_request(request)
@@ -346,17 +366,18 @@ save(item){
   }
 
 
-  reportItem(item){
-    this.mail.roll_number=this.user_data.roll_number
-    this.mail.subject = 'Reporting of '+item.name
-    this.mail.message = item.name + ' <h1>has been flagged</h1>'
-    this.mail.recipient_list = "['gakshat2207@gmail.com']"
-    var date_time =new Date()
-    this.mail.html_message = '<strong>' + item.name+'</strong>' + ' has been reported on the website by <strong>'+this.user_data.first_name+' '+this.user_data.last_name+'-'+this.user_data.roll_number+'</strong> <br>at ' + date_time +'<br><br>Please check the item.'
+  // reportItem(item){
+  //   this.mail.roll_number=this.user_data.roll_number
+  //   this.mail.subject = 'Reporting of '+item.name
+  //   this.mail.message = item.name + ' <h1>has been flagged</h1>'
+  //   this.mail.recipient_list = "['gakshat2207@gmail.com']"
+  //   var date_time =new Date()
+  //   this.mail.html_message = '<strong>' + item.name+'</strong>' + ' has been reported on the website by <strong>'+this.user_data.first_name+' '+this.user_data.last_name+'-'+this.user_data.roll_number+'</strong> <br>at ' + date_time +'<br><br>Please check the item.'
+    
 
 
-    this.api.updateMail(this.mail).subscribe(data => {this.api.sendMail(this.user_data.roll_number); console.log(data) }, error => { console.log(error); });
-  }
+  //   this.api.updateMail(this.mail).subscribe(data => {this.api.sendMail(this.user_data.roll_number); console.log(data) }, error => { console.log(error); });
+  // }
 
 
   
