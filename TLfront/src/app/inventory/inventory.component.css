@@ -9,20 +9,19 @@ a:hover {
     text-decoration: none;
 }
 
-#addedToCart {
+.addedToCart {
+    display: none;
+}
+.specifyQuantity {
     display: none;
 }
 
-#specifyQuantity {
-    display: none;
-}
-
-#specifyQuantity input {
+.specifyQuantity input {
 
     width: 5vw;
+    min-width: 50px;
 
 }
-
 
 
 .overlay {
@@ -39,7 +38,7 @@ a:hover {
 
 .expanded {
 
-    background-color: darksalmon;
+    background-color: lightblue;
     color: white;
     position: absolute;
     top: 20%;
@@ -54,3 +53,8 @@ a:hover {
     width:150px;
 }
 
+@media screen and (max-width:992px) {
+    #decrementQuantity{
+        display: none;
+    }
+}

@@ -24,16 +24,22 @@
     </label>
   </div>
   <div id="uncheck" class="nav-links ml-auto">
-    <a routerLink="">Home</a>
-    <a routerLink="about">About</a>
-    <a routerLink="events">Events</a>
-    <a routerLink="machinestatus">Machine Status</a>
-    <a *ngIf="logged_in" routerLink="inventory">Inventory</a>
-    <a routerLink="contact">Contact</a>
+    <a class="text-primary mobile-view" *ngIf="logged_in">{{user_data.first_name}}
+      {{user_data.last_name}}-{{user_data.roll_number}}</a>
+    <a routerLink="" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+      true}">Home</a>
+    <a routerLink="about" routerLinkActive="active-link">About</a>
+    <a routerLink="events" routerLinkActive="active-link">Events</a>
+    <a routerLink="machinestatus" routerLinkActive="active-link">Machine Status</a>
+    <a *ngIf="logged_in" routerLink="inventory" routerLinkActive="active-link">Inventory</a>
+    <a routerLink="contact" routerLinkActive="active-link">Contact</a>
     <a class="dropdown dropdown-toggl" id="dropdown-toggl" *ngIf="logged_in">
       <a class="btn"><i class="fas fa-2x fa-user-circle "></i>&nbsp;<i class="fas fa-caret-down"></i></a>
     </a>
-    <a routerLink="" *ngIf="logged_in" (click)="logout()" id="mobile-logout">Logout</a>
+    <a class="pt-2 text-warning mobile-view" *ngIf="logged_in" routerLink="../cart">My Cart</a>
+    <a class="pt-3 text-success mobile-view" *ngIf="logged_in" routerLink="../approved">Issued Items</a>
+    <hr class="rounded mobile-view" *ngIf="logged_in">
+    <a routerLink="" *ngIf="logged_in" (click)="logout()" class="mobile-view">Logout</a>
   </div>
 </div>
 <div *ngIf="logged_in" class="dropdown-men" id="dropdown-men">

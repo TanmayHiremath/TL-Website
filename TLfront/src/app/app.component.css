@@ -9,6 +9,9 @@
   align-items: center;
   display: none;
 }
+.active-link{
+  background-color: rgba(0, 0, 0, 0.3);
+}
 
 .pulse-container {
   position: fixed;
@@ -104,8 +107,8 @@
 
 
 
-#mobile-logout{
-  display: none;
+.mobile-view{
+  display: none!important;
 }
 .dropdown-men {
   border-radius: 20px;
@@ -202,8 +205,8 @@ hr.rounded {
 
 
 @media (max-width:850px) {
-  #mobile-logout{
-    display: block;
+  .mobile-view{
+    display: block!important;
   }
   #dropdown-toggl {
     display: none;

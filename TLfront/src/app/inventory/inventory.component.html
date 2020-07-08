@@ -1,4 +1,4 @@
- <!-- <div class="d-flex justify-content-start bg-secondary mb-3">
+<!-- <div class="d-flex justify-content-start bg-secondary mb-3">
 
 
   <div class="p-2 ml-3 " *ngFor="let item of items">
@@ -41,13 +41,13 @@
 
           <tbody>
             <tr *ngFor="let item of items">
-              <td class="itemName" (click)="nameClicked()" *ngIf="item.display">
+              <td class="itemName" (click)="nameClicked(item)" *ngIf="item.display">
                 <a class="btn" [style.backgroundColor]='item.colour_code'>{{item.name}}</a></td>
               <td *ngIf="item.display"><span>{{convertBool(item)}}</span></td>
               <td *ngIf="item.display"><a><i class="far fa-bell"></i></a></td>
               <td class={{item.name}} *ngIf="item.display">
 
-                <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
+                <a (click)="cartClicked(item)" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
 
 
                 <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
@@ -70,7 +70,7 @@
               </td>
               <td *ngIf="item.display"><a (click)="reportItem(item)">Report Damage</a></td>
               <td *ngIf="item.display" ><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
-                <div (click)="overlayClicked()" class="overlay">
+                <div (click)="overlayClicked(item)" class="overlay">
                   <div class="expanded">
 
                     <img src={{item.picture}} alt="Couldn't load">
@@ -104,11 +104,13 @@
 
 
 
- <tr *ngFor="let item of items">
- <td *ngIf="item.display"><a (click)="reportItem(item)">Report Damage</a></td></tr>
+<!-- <tr *ngFor="let item of items">
+  <td *ngIf="item.display"><a (click)="reportItem(item)">Report Damage</a></td>
+</tr> -->
 <h1>ELECTRONICS</h1>
 <ul>
-  <li><h3 (click)="display_table(0)">Sensors</h3>
+  <li>
+    <h6><a class="text-info" (click)="display_table(0)">Sensors</a></h6>
     <div class="container {{displayArray[0]}}">
       <div class="table-responsive">
         <table class="table table-striped ">
@@ -125,52 +127,47 @@
 
           <tbody>
             <tr *ngFor="let item of items">
-              <td class="itemName" (click)="nameClicked()" *ngIf="item.category==selected_category">
+              <td class="itemName" (click)="nameClicked(item)" *ngIf="item.category==selected_category">
                 <a class="btn" [style.backgroundColor]='item.colour_code'>{{item.name}}</a></td>
               <td *ngIf="item.category==selected_category"><span>{{convertBool(item)}}</span></td>
               <td *ngIf="item.category==selected_category"><a><i class="far fa-bell"></i></a></td>
-              <td *ngIf="item.category==selected_category">
+              <td id={{item.id}} *ngIf="item.category==selected_category">
 
-                <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
-
-
-                <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
-                      class="fas fa-shopping-cart"></i></a></div>
+                <a (click)="cartClicked(item)" class="a"><i class="addToCart fas fa-shopping-cart"></i></a>
 
 
-
-                <div id="specifyQuantity"><span>Quantity <br></span>
+                <div class="specifyQuantity"><span>Quantity <br></span>
                   <button class="btn btn-warning pl-4 pr-4 m-1" [disabled]="newRequest.quantity<=1"
                     (click)="decrementQuantity()">-</button>
                   <input class="btn btn-secondary mr-1 ml-1" type="text" [(ngModel)]="newRequest.quantity">
                   <button class="btn btn-warning pl-4 pr-4 m-1" (click)="incrementQuantity()">+</button>
-                  <p>
-                    &nbsp; <button class="btn btn-success ml-5" title="Add to Cart"
+                  <br>
+                     <button class="btn btn-success ml-5" title="Add to Cart"
                       (click)="CreateRequest(item)">Add</button>
-                  </p>
+                  
                 </div>
 
 
-              </td>
-              <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
-              <td *ngIf="item.category==selected_category" ><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
-                <div (click)="overlayClicked()" class="overlay">
-                  <div class="expanded">
+                <div class="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
+                      class="fas fa-shopping-cart"></i></a></div>
 
+                <div (click)="overlayClicked(item)" class="overlay">
+                  <div class="expanded">
                     <img src={{item.picture}} alt="Couldn't load">
                     <p></p>
                     <h2>{{item.name}}</h2>
-
                     <br>
                     <div>
                       <h4>{{item.description}}</h4>
                     </div>
-
                   </div>
                 </div>
+
               </td>
-
-
+              <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
+              <td *ngIf="item.category==selected_category"><a (click)="flagItem(item)"><i
+                    class="far fa-flag"></i></a>
+              </td>
             </tr>
 
           </tbody>
@@ -179,7 +176,8 @@
     </div>
   </li>
 
-  <li><h3 (click)="display_table(1)">PCB Boards</h3>
+  <li>
+    <h6><a class="text-info" (click)="display_table(1)">PCB Boards</a></h6>
     <div class="container {{displayArray[1]}}">
       <div class="table-responsive">
         <table class="table table-striped ">
@@ -196,52 +194,47 @@
 
           <tbody>
             <tr *ngFor="let item of items">
-              <td class="itemName" (click)="nameClicked()" *ngIf="item.category==selected_category">
+              <td class="itemName" (click)="nameClicked(item)" *ngIf="item.category==selected_category">
                 <a class="btn" [style.backgroundColor]='item.colour_code'>{{item.name}}</a></td>
               <td *ngIf="item.category==selected_category"><span>{{convertBool(item)}}</span></td>
               <td *ngIf="item.category==selected_category"><a><i class="far fa-bell"></i></a></td>
-              <td *ngIf="item.category==selected_category">
+              <td id={{item.id}} *ngIf="item.category==selected_category">
 
-                <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
-
-
-                <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
-                      class="fas fa-shopping-cart"></i></a></div>
+                <a (click)="cartClicked(item)" class="a"><i class="addToCart fas fa-shopping-cart"></i></a>
 
 
-
-                <div id="specifyQuantity"><span>Quantity <br></span>
+                <div class="specifyQuantity"><span>Quantity <br></span>
                   <button class="btn btn-warning pl-4 pr-4 m-1" [disabled]="newRequest.quantity<=1"
                     (click)="decrementQuantity()">-</button>
                   <input class="btn btn-secondary mr-1 ml-1" type="text" [(ngModel)]="newRequest.quantity">
                   <button class="btn btn-warning pl-4 pr-4 m-1" (click)="incrementQuantity()">+</button>
-                  <p>
-                    &nbsp; <button class="btn btn-success ml-5" title="Add to Cart"
+                  <br>
+                     <button class="btn btn-success ml-5" title="Add to Cart"
                       (click)="CreateRequest(item)">Add</button>
-                  </p>
+                  
                 </div>
 
 
-              </td>
-              <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
-              <td *ngIf="item.category==selected_category" ><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
-                <div (click)="overlayClicked()" class="overlay">
-                  <div class="expanded">
+                <div class="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
+                      class="fas fa-shopping-cart"></i></a></div>
 
+                <div (click)="overlayClicked(item)" class="overlay">
+                  <div class="expanded">
                     <img src={{item.picture}} alt="Couldn't load">
                     <p></p>
                     <h2>{{item.name}}</h2>
-
                     <br>
                     <div>
                       <h4>{{item.description}}</h4>
                     </div>
-
                   </div>
                 </div>
+
               </td>
-
-
+              <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
+              <td *ngIf="item.category==selected_category"><a (click)="flagItem(item)"><i
+                    class="far fa-flag"></i></a>
+              </td>
             </tr>
 
           </tbody>
@@ -250,81 +243,11 @@
     </div>
   </li>
 
-  <li><h3>Consumables</h3>
+  <li>
+    <h3>Consumables</h3>
     <ul>
       <li>
-        <h6 (click)="display_table(2)">Resistors</h6>
-        <div class="container {{displayArray[2]}}">
-          <div class="table-responsive">
-            <table class="table table-striped ">
-              <thead>
-                <tr>
-                  <th>Item Name</th>
-                  <th>Id Required To Issue</th>
-                  <th>Notify when available</th>
-                  <th>Add to cart</th>
-                  <th>Damaged items</th>
-                  <th>Flag item</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr *ngFor="let item of items">
-                  <td class="itemName" (click)="nameClicked()" *ngIf="item.category==selected_category">
-                    <a class="btn" [style.backgroundColor]='item.colour_code'>{{item.name}}</a></td>
-                  <td *ngIf="item.category==selected_category"><span>{{convertBool(item)}}</span></td>
-                  <td *ngIf="item.category==selected_category"><a><i class="far fa-bell"></i></a></td>
-                  <td *ngIf="item.category==selected_category">
-
-                    <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
-
-
-                    <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
-                          class="fas fa-shopping-cart"></i></a></div>
-
-
-
-                    <div id="specifyQuantity"><span>Quantity <br></span>
-                      <button class="btn btn-warning pl-4 pr-4 m-1" [disabled]="newRequest.quantity<=1"
-                        (click)="decrementQuantity()">-</button>
-                      <input class="btn btn-secondary mr-1 ml-1" type="text" [(ngModel)]="newRequest.quantity">
-                      <button class="btn btn-warning pl-4 pr-4 m-1" (click)="incrementQuantity()">+</button>
-                      <p>
-                        &nbsp; <button class="btn btn-success ml-5" title="Add to Cart"
-                          (click)="CreateRequest(item)">Add</button>
-                      </p>
-                    </div>
-
-
-                  </td>
-                  <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
-                  <td *ngIf="item.category==selected_category" ><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
-                    <div (click)="overlayClicked()" class="overlay">
-                      <div class="expanded">
-
-                        <img src={{item.picture}} alt="Couldn't load">
-                        <p></p>
-                        <h2>{{item.name}}</h2>
-
-                        <br>
-                        <div>
-                          <h4>{{item.description}}</h4>
-                        </div>
-
-                      </div>
-                    </div>
-                  </td>
-
-
-                </tr>
-
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </li>
-      <li>
-        <h6 (click)="display_table(3)">Capacitors</h6>
+        <h6><a class="text-info" (click)="display_table(3)">Capacitors</a></h6>
         <div class="container {{displayArray[3]}}">
           <div class="table-responsive">
             <table class="table table-striped ">
@@ -341,52 +264,47 @@
 
               <tbody>
                 <tr *ngFor="let item of items">
-                  <td class="itemName" (click)="nameClicked()" *ngIf="item.category==selected_category">
+                  <td class="itemName" (click)="nameClicked(item)" *ngIf="item.category==selected_category">
                     <a class="btn" [style.backgroundColor]='item.colour_code'>{{item.name}}</a></td>
                   <td *ngIf="item.category==selected_category"><span>{{convertBool(item)}}</span></td>
                   <td *ngIf="item.category==selected_category"><a><i class="far fa-bell"></i></a></td>
-                  <td *ngIf="item.category==selected_category">
+                  <td id={{item.id}} *ngIf="item.category==selected_category">
 
-                    <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
-
-
-                    <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
-                          class="fas fa-shopping-cart"></i></a></div>
+                    <a (click)="cartClicked(item)" class="a"><i class="addToCart fas fa-shopping-cart"></i></a>
 
 
-
-                    <div id="specifyQuantity"><span>Quantity <br></span>
+                    <div class="specifyQuantity"><span>Quantity <br></span>
                       <button class="btn btn-warning pl-4 pr-4 m-1" [disabled]="newRequest.quantity<=1"
                         (click)="decrementQuantity()">-</button>
                       <input class="btn btn-secondary mr-1 ml-1" type="text" [(ngModel)]="newRequest.quantity">
                       <button class="btn btn-warning pl-4 pr-4 m-1" (click)="incrementQuantity()">+</button>
-                      <p>
-                        &nbsp; <button class="btn btn-success ml-5" title="Add to Cart"
+                      <br>
+                         <button class="btn btn-success ml-5" title="Add to Cart"
                           (click)="CreateRequest(item)">Add</button>
-                      </p>
+                      
                     </div>
 
 
-                  </td>
-                  <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
-                  <td *ngIf="item.category==selected_category" ><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
-                    <div (click)="overlayClicked()" class="overlay">
-                      <div class="expanded">
+                    <div class="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
+                          class="fas fa-shopping-cart"></i></a></div>
 
+                    <div (click)="overlayClicked(item)" class="overlay">
+                      <div class="expanded">
                         <img src={{item.picture}} alt="Couldn't load">
                         <p></p>
                         <h2>{{item.name}}</h2>
-
                         <br>
                         <div>
                           <h4>{{item.description}}</h4>
                         </div>
-
                       </div>
                     </div>
+
                   </td>
-
-
+                  <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
+                  <td *ngIf="item.category==selected_category"><a (click)="flagItem(item)"><i
+                        class="far fa-flag"></i></a>
+                  </td>
                 </tr>
 
               </tbody>
@@ -395,7 +313,74 @@
         </div>
       </li>
       <li>
-        <h6 (click)="display_table(4)">Jumpers</h6>
+        <h6><a class="text-info" (click)="display_table(2)">Resistors</a></h6>
+        <div class="container {{displayArray[2]}}">
+          <div class="table-responsive">
+            <table class="table table-striped ">
+              <thead>
+                <tr>
+                  <th>Item Name</th>
+                  <th>Id Required To Issue</th>
+                  <th>Notify when available</th>
+                  <th>Add to cart</th>
+                  <th>Damaged items</th>
+                  <th>Flag item</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let item of items">
+                  <td class="itemName" (click)="nameClicked(item)" *ngIf="item.category==selected_category">
+                    <a class="btn" [style.backgroundColor]='item.colour_code'>{{item.name}}</a></td>
+                  <td *ngIf="item.category==selected_category"><span>{{convertBool(item)}}</span></td>
+                  <td *ngIf="item.category==selected_category"><a><i class="far fa-bell"></i></a></td>
+                  <td id={{item.id}} *ngIf="item.category==selected_category">
+
+                    <a (click)="cartClicked(item)" class="a"><i class="addToCart fas fa-shopping-cart"></i></a>
+
+
+                    <div class="specifyQuantity"><span>Quantity <br></span>
+                      <button class="btn btn-warning pl-4 pr-4 m-1" [disabled]="newRequest.quantity<=1"
+                        (click)="decrementQuantity()">-</button>
+                      <input class="btn btn-secondary mr-1 ml-1" type="text" [(ngModel)]="newRequest.quantity">
+                      <button class="btn btn-warning pl-4 pr-4 m-1" (click)="incrementQuantity()">+</button>
+                      <br>
+                         <button class="btn btn-success ml-5" title="Add to Cart"
+                          (click)="CreateRequest(item)">Add</button>
+                      
+                    </div>
+
+
+                    <div class="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
+                          class="fas fa-shopping-cart"></i></a></div>
+
+                    <div (click)="overlayClicked(item)" class="overlay">
+                      <div class="expanded">
+                        <img src={{item.picture}} alt="Couldn't load">
+                        <p></p>
+                        <h2>{{item.name}}</h2>
+                        <br>
+                        <div>
+                          <h4>{{item.description}}</h4>
+                        </div>
+                      </div>
+                    </div>
+
+                  </td>
+                  <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
+                  <td *ngIf="item.category==selected_category"><a (click)="flagItem(item)"><i
+                        class="far fa-flag"></i></a>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </li>
+      
+      <!-- <li>
+        <h6><a class="text-info" (click)="display_table(4)">Jumpers</a></h6>
         <div class="container {{displayArray[4]}}">
           <div class="table-responsive">
             <table class="table table-striped ">
@@ -412,52 +397,47 @@
 
               <tbody>
                 <tr *ngFor="let item of items">
-                  <td class="itemName" (click)="nameClicked()" *ngIf="item.category==selected_category">
+                  <td class="itemName" (click)="nameClicked(item)" *ngIf="item.category==selected_category">
                     <a class="btn" [style.backgroundColor]='item.colour_code'>{{item.name}}</a></td>
                   <td *ngIf="item.category==selected_category"><span>{{convertBool(item)}}</span></td>
                   <td *ngIf="item.category==selected_category"><a><i class="far fa-bell"></i></a></td>
-                  <td *ngIf="item.category==selected_category">
+                  <td id={{item.id}} *ngIf="item.category==selected_category">
 
-                    <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
-
-
-                    <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
-                          class="fas fa-shopping-cart"></i></a></div>
+                    <a (click)="cartClicked(item)" class="a"><i class="addToCart fas fa-shopping-cart"></i></a>
 
 
-
-                    <div id="specifyQuantity"><span>Quantity <br></span>
+                    <div class="specifyQuantity"><span>Quantity <br></span>
                       <button class="btn btn-warning pl-4 pr-4 m-1" [disabled]="newRequest.quantity<=1"
                         (click)="decrementQuantity()">-</button>
                       <input class="btn btn-secondary mr-1 ml-1" type="text" [(ngModel)]="newRequest.quantity">
                       <button class="btn btn-warning pl-4 pr-4 m-1" (click)="incrementQuantity()">+</button>
-                      <p>
-                        &nbsp; <button class="btn btn-success ml-5" title="Add to Cart"
+                      <br>
+                         <button class="btn btn-success ml-5" title="Add to Cart"
                           (click)="CreateRequest(item)">Add</button>
-                      </p>
+                      
                     </div>
 
 
-                  </td>
-                  <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
-                  <td *ngIf="item.category==selected_category" ><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
-                    <div (click)="overlayClicked()" class="overlay">
-                      <div class="expanded">
+                    <div class="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
+                          class="fas fa-shopping-cart"></i></a></div>
 
+                    <div (click)="overlayClicked(item)" class="overlay">
+                      <div class="expanded">
                         <img src={{item.picture}} alt="Couldn't load">
                         <p></p>
                         <h2>{{item.name}}</h2>
-
                         <br>
                         <div>
                           <h4>{{item.description}}</h4>
                         </div>
-
                       </div>
                     </div>
+
                   </td>
-
-
+                  <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
+                  <td *ngIf="item.category==selected_category"><a (click)="flagItem(item)"><i
+                        class="far fa-flag"></i></a>
+                  </td>
                 </tr>
 
               </tbody>
@@ -483,13 +463,13 @@
 
               <tbody>
                 <tr *ngFor="let item of items">
-                  <td class="itemName" (click)="nameClicked()" *ngIf="item.category==selected_category">
+                  <td class="itemName" (click)="nameClicked(item)" *ngIf="item.category==selected_category">
                     <a class="btn" [style.backgroundColor]='item.colour_code'>{{item.name}}</a></td>
                   <td *ngIf="item.category==selected_category"><span>{{convertBool(item)}}</span></td>
                   <td *ngIf="item.category==selected_category"><a><i class="far fa-bell"></i></a></td>
                   <td *ngIf="item.category==selected_category">
 
-                    <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
+                    <a (click)="cartClicked(item)" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
 
 
                     <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
@@ -511,8 +491,9 @@
 
                   </td>
                   <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
-                  <td *ngIf="item.category==selected_category" ><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
-                    <div (click)="overlayClicked()" class="overlay">
+                  <td *ngIf="item.category==selected_category"><a (click)="flagItem(item)"><i
+                        class="far fa-flag"></i></a>
+                    <div (click)="overlayClicked(item)" class="overlay">
                       <div class="expanded">
 
                         <img src={{item.picture}} alt="Couldn't load">
@@ -535,7 +516,7 @@
             </table>
           </div>
         </div>
-      </li>
+      </li> -->
     </ul>
   </li>
 </ul>
@@ -545,7 +526,8 @@
 
 <h1>MECHANICAL</h1>
 <ul>
-  <li><h3 (click)="display_table(6)">Power Tools</h3>
+  <li>
+    <h3 (click)="display_table(6)">Power Tools</h3>
     <div class="container {{displayArray[6]}}">
       <div class="table-responsive">
         <table class="table table-striped ">
@@ -562,13 +544,13 @@
 
           <tbody>
             <tr *ngFor="let item of items">
-              <td class="itemName" (click)="nameClicked()" *ngIf="item.category==selected_category">
+              <td class="itemName" (click)="nameClicked(item)" *ngIf="item.category==selected_category">
                 <a class="btn" [style.backgroundColor]='item.colour_code'>{{item.name}}</a></td>
               <td *ngIf="item.category==selected_category"><span>{{convertBool(item)}}</span></td>
               <td *ngIf="item.category==selected_category"><a><i class="far fa-bell"></i></a></td>
               <td *ngIf="item.category==selected_category">
 
-                <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
+                <a (click)="cartClicked(item)" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
 
 
                 <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
@@ -590,8 +572,8 @@
 
               </td>
               <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
-              <td *ngIf="item.category==selected_category" ><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
-                <div (click)="overlayClicked()" class="overlay">
+              <td *ngIf="item.category==selected_category"><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
+                <div (click)="overlayClicked(item)" class="overlay">
                   <div class="expanded">
 
                     <img src={{item.picture}} alt="Couldn't load">
@@ -616,7 +598,8 @@
     </div>
   </li>
 
-  <li><h3 >Consumables</h3>
+  <li>
+    <h3>Consumables</h3>
     <ul>
       <li>
         <h6 (click)="display_table(7)">Screws</h6>
@@ -636,13 +619,13 @@
 
               <tbody>
                 <tr *ngFor="let item of items">
-                  <td class="itemName" (click)="nameClicked()" *ngIf="item.category==selected_category">
+                  <td class="itemName" (click)="nameClicked(item)" *ngIf="item.category==selected_category">
                     <a class="btn" [style.backgroundColor]='item.colour_code'>{{item.name}}</a></td>
                   <td *ngIf="item.category==selected_category"><span>{{convertBool(item)}}</span></td>
                   <td *ngIf="item.category==selected_category"><a><i class="far fa-bell"></i></a></td>
                   <td *ngIf="item.category==selected_category">
 
-                    <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
+                    <a (click)="cartClicked(item)" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
 
 
                     <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
@@ -664,8 +647,9 @@
 
                   </td>
                   <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
-                  <td *ngIf="item.category==selected_category" ><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
-                    <div (click)="overlayClicked()" class="overlay">
+                  <td *ngIf="item.category==selected_category"><a (click)="flagItem(item)"><i
+                        class="far fa-flag"></i></a>
+                    <div (click)="overlayClicked(item)" class="overlay">
                       <div class="expanded">
 
                         <img src={{item.picture}} alt="Couldn't load">
@@ -707,13 +691,13 @@
 
               <tbody>
                 <tr *ngFor="let item of items">
-                  <td class="itemName" (click)="nameClicked()" *ngIf="item.category==selected_category">
+                  <td class="itemName" (click)="nameClicked(item)" *ngIf="item.category==selected_category">
                     <a class="btn" [style.backgroundColor]='item.colour_code'>{{item.name}}</a></td>
                   <td *ngIf="item.category==selected_category"><span>{{convertBool(item)}}</span></td>
                   <td *ngIf="item.category==selected_category"><a><i class="far fa-bell"></i></a></td>
                   <td *ngIf="item.category==selected_category">
 
-                    <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
+                    <a (click)="cartClicked(item)" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
 
 
                     <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
@@ -735,8 +719,9 @@
 
                   </td>
                   <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
-                  <td *ngIf="item.category==selected_category" ><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
-                    <div (click)="overlayClicked()" class="overlay">
+                  <td *ngIf="item.category==selected_category"><a (click)="flagItem(item)"><i
+                        class="far fa-flag"></i></a>
+                    <div (click)="overlayClicked(item)" class="overlay">
                       <div class="expanded">
 
                         <img src={{item.picture}} alt="Couldn't load">
@@ -778,13 +763,13 @@
 
               <tbody>
                 <tr *ngFor="let item of items">
-                  <td class="itemName" (click)="nameClicked()" *ngIf="item.category==selected_category">
+                  <td class="itemName" (click)="nameClicked(item)" *ngIf="item.category==selected_category">
                     <a class="btn" [style.backgroundColor]='item.colour_code'>{{item.name}}</a></td>
                   <td *ngIf="item.category==selected_category"><span>{{convertBool(item)}}</span></td>
                   <td *ngIf="item.category==selected_category"><a><i class="far fa-bell"></i></a></td>
                   <td *ngIf="item.category==selected_category">
 
-                    <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
+                    <a (click)="cartClicked(item)" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
 
 
                     <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
@@ -806,8 +791,9 @@
 
                   </td>
                   <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
-                  <td *ngIf="item.category==selected_category" ><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
-                    <div (click)="overlayClicked()" class="overlay">
+                  <td *ngIf="item.category==selected_category"><a (click)="flagItem(item)"><i
+                        class="far fa-flag"></i></a>
+                    <div (click)="overlayClicked(item)" class="overlay">
                       <div class="expanded">
 
                         <img src={{item.picture}} alt="Couldn't load">
@@ -831,7 +817,7 @@
           </div>
         </div>
       </li>
-      
+
     </ul>
   </li>
 </ul>
@@ -852,13 +838,13 @@
 
       <tbody>
         <tr *ngFor="let item of items">
-          <td class="itemName" (click)="nameClicked()" *ngIf="item.category==selected_category">
+          <td class="itemName" (click)="nameClicked(item)" *ngIf="item.category==selected_category">
             <a class="btn" [style.backgroundColor]='item.colour_code'>{{item.name}}</a></td>
           <td *ngIf="item.category==selected_category"><span>{{convertBool(item)}}</span></td>
           <td *ngIf="item.category==selected_category"><a><i class="far fa-bell"></i></a></td>
           <td *ngIf="item.category==selected_category">
 
-            <a (click)="cartClicked()" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
+            <a (click)="cartClicked(item)" id="addToCart"><i class="fas fa-shopping-cart"></i></a>
 
 
             <div id="addedToCart">Added To Cart&nbsp;<a routerLink="../cart" title="Go to Cart"><i
@@ -880,8 +866,8 @@
 
           </td>
           <td *ngIf="item.category==selected_category"><a (click)="reportItem(item)">Report Damage</a></td>
-          <td *ngIf="item.category==selected_category" ><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
-            <div (click)="overlayClicked()" class="overlay">
+          <td *ngIf="item.category==selected_category"><a (click)="flagItem(item)"><i class="far fa-flag"></i></a>
+            <div (click)="overlayClicked(item)" class="overlay">
               <div class="expanded">
 
                 <img src={{item.picture}} alt="Couldn't load">
