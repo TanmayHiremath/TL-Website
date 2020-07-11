@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { EventsComponent } from './events/events.component';
@@ -23,6 +25,7 @@ import { MachinestatusComponent } from './machinestatus/machinestatus.component'
 
 
 @NgModule({
+  
   declarations: [
     AppComponent,
     AboutComponent,
@@ -35,6 +38,8 @@ import { MachinestatusComponent } from './machinestatus/machinestatus.component'
     LoginComponent,
     FateComponent,
     MachinestatusComponent,
+
+   
   ],
   imports: [
       FormsModule,
@@ -42,6 +47,8 @@ import { MachinestatusComponent } from './machinestatus/machinestatus.component'
       RouterModule,
       HttpClientModule,
       ReactiveFormsModule,
+
+      MatProgressSpinnerModule,
       
       BrowserAnimationsModule,
       

@@ -12,6 +12,7 @@ from django.db.models import Q
 from django.core.mail import send_mail
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 import base64
 import requests
 import ast as ast
@@ -171,4 +172,30 @@ class sendMail(APIView):
         html_message=mail.html_message
     
         send_mail( subject,message, email_from, recipient_list,html_message=html_message)
-        return HttpResponse('Mail Sent Successfully')
+        return HttpResponse('sent')
+
+@method_decorator(csrf_exempt, name='dispatch')
+class getMail(APIView):
+      
+    def put(self, request, roll_number, format=None):
+        try:
+            mail = Mail.objects.get(roll_number=roll_number)
+        except Mail.DoesNotExist:
+            mail = None
+        
+        if mail is not None:
+            serializer = MailSerializer(mail, data=request.data)
+            
+            if serializer.is_valid():
+                serializer.save()
+                
+                return Response(serializer.data)
+               
+        else:  
+            serializer = MailSerializer(data=request.data)
+            
+            if serializer.is_valid():
+                serializer.save()                
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            else:
+                print(serializer.errors)   

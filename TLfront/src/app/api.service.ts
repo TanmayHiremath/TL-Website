@@ -81,11 +81,18 @@ export class ApiService {
       { headers: this.httpHeaders });
   }
 
+  createMail(roll_number):Observable<any> {
+    const body = {
+      'roll_number':roll_number,subject: 'subject', message: 'message', recipient_list: 'add some default recipient', html_message: 'initialised html_message'
+    };
+    return this.http.put(environment.serverUrl + 'mail/' + roll_number , body,
+      { headers: this.httpHeaders });
 
-  sendMail(roll_number): void {
-    
+  }
+
+  sendMail(roll_number): Observable<any>{
     console.log('sending')
-    $.get(environment.serverUrl + 'sendmail/'+ roll_number, function (data) { alert(data) })
+    return this.http.get(environment.serverUrl + 'sendmail/'+ roll_number,{responseType: 'text'})  
   }
 
   updateMail(mail): Observable<any> {
