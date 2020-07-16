@@ -47,7 +47,10 @@ urlpatterns = [
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 8ae5f71... events link in backend
 =======
 >>>>>>> parent of 8ae5f71... events link in backend
     
