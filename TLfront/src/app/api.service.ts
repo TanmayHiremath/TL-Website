@@ -40,7 +40,7 @@ export class ApiService {
   }
   
   createFlag(x): Observable<any> {
-    const body = { item: x.item, roll: x.roll };
+    const body = { item: x.item, roll_number: x.roll_number };
     return this.http.post<request_interface>(environment.serverUrl + '/flags/', body,
       { headers: this.httpHeaders });
   }
@@ -61,7 +61,7 @@ export class ApiService {
   }
 
   getFlags(): Observable<any> {
-    return this.http.get(environment.serverUrl + '/flags/',
+    return this.http.get(environment.serverUrl + 'flags/',
       { headers: this.httpHeaders });
   }
 

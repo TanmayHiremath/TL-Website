@@ -34,7 +34,7 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=200, null=True)
     last_name  = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200)
-    roll_number=models.CharField(max_length=11,default='123456789',primary_key=True)
+    roll_number=models.CharField(max_length=11,default='19D070003',primary_key=True)
     username=models.CharField(max_length=50,null=True)
     access_token=models.CharField(max_length=200, null=True)
     refresh_token = models.CharField(max_length=200, null=True)
@@ -45,14 +45,14 @@ class Customer(models.Model):
 
 class Request(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    roll_number=models.ForeignKey(Customer,default='123456789',on_delete=models.CASCADE)
+    roll_number=models.ForeignKey(Customer,default='19D070003',on_delete=models.CASCADE)
     quantity = models.PositiveSmallIntegerField()
     is_sent = models.BooleanField(default=False)
     is_denied = models.BooleanField(default=False)
     is_issued = models.BooleanField(default=False)
     is_returned = models.BooleanField(default=False)
-    
-    
+    #date = models.DateField(auto_now=True, default='')
+
     @property
     def item_details(self):
         return "%s %s %s"%(self.item.name,self.item.category, self.item.quantity)
@@ -60,7 +60,7 @@ class Request(models.Model):
 
 class Flag(models.Model):
     item = models.OneToOneField(Item, on_delete=models.CASCADE)
-    roll_number = models.CharField(max_length=20)
+    roll_number=models.ForeignKey(Customer,default='19D070003',on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -69,7 +69,7 @@ class Flag(models.Model):
 class Mail(models.Model):
     roll_number=models.OneToOneField(Customer,on_delete=models.CASCADE,primary_key=True)
     subject=models.TextField(default='Thank you for registering to our site')
-    message=models.TextField(default=' it  means a world to us ')    
+    message=models.TextField(default='It means the world to us')    
     recipient_list=models.TextField(default="['tanmay.v.hiremath@gmail.com']")
     html_message=models.TextField(default="<h1>default</h1>")
 

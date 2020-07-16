@@ -15,10 +15,12 @@ export class ApprovedComponent implements OnInit {
 
   items = []
   requests = []
+  flags=[]
   total_items=0
   user_data
   logged_in
-
+  diff
+  newFlag: { item: any; roll_number?: string; }
   constructor(private api: ApiService,  private router: Router) { 
     
   }
@@ -47,6 +49,18 @@ export class ApprovedComponent implements OnInit {
           console.log(error);
         }
       );
+      this.api.getFlags().subscribe(
+        data => {
+          this.flags = data;
+          console.log(data)
+          this.diff=(new Date(this.flags[1].time)).getTime()-(new Date(this.flags[0].time)).getTime()
+        },
+        error => {
+          console.log(error);
+        }
+      );
+      
+
       this.api.rollSearch(this.user_data.roll_number).subscribe(
         data => {
           this.requests = data;
@@ -69,7 +83,27 @@ export class ApprovedComponent implements OnInit {
         console.log(error);
       }
     );
+
+    this.newFlag.item=this.items[request.item-1].id
+    this.newFlag.roll_number= this.user_data.roll_number
+    this.api.createFlag(this.newFlag).subscribe(
+      data => {
+        this.flags.push(this.newFlag)
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
+  
+  sendtype(flag)
+  {
+    var dede=(new Date(flag)).getTime()
+    console.log(dede)
+    console.log(this.diff)
+    return this.diff
+
+  }
  
 }
