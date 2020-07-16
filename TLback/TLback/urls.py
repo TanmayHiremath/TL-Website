@@ -46,14 +46,7 @@ urlpatterns = [
     path("mail/<str:roll_number>",views.getMail.as_view())
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 8ae5f71... events link in backend
-=======
->>>>>>> parent of 8ae5f71... events link in backend
-    
 ]
 if settings.DEBUG == True: 
         urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
