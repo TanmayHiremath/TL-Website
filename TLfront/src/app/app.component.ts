@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
 
       this.user_data = JSON.parse(this.api.getJdata(environment.jdataKey));
       this.user_data.roll_number = window.atob(this.user_data.roll_number)
-
+      this.api.createMail(this.user_data.roll_number).subscribe(data=>{console.log(data)},error=>{console.log(error)})
       this.api.getCustomer(this.user_data.roll_number)
         .subscribe(data => { this.user_data = data; console.log(data), error => { console.log(error) } })
 

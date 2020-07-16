@@ -69,16 +69,6 @@ export class ApprovedComponent implements OnInit {
         console.log(error);
       }
     );
-
-    this.api.Task(request.item).subscribe(
-      data => {
-        console.log(data)
-      },
-      error => {
-        console.log(error);
-      }
-    );
-    console.log("Flagging Done")
   }
 
  
