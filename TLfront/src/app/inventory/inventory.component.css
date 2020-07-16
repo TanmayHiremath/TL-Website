@@ -22,33 +22,9 @@ a:hover {
     min-width: 50px;
 
 }
-.d-non{
-    display: none;
-}
-.d-show {
-    display: block;
-}
 
-.super-overlay {
-    position: fixed;
-    display: none;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    z-index: 300;
-    backdrop-filter: blur(3px);
-}
-mat-spinner {
-    top: 40vh;
-    width: 60vw;
-    left: 45vw;
-    text-align: center;
-}
 
 .overlay {
-    cursor: pointer;
     position: fixed;
     display: none;
     left: 0;

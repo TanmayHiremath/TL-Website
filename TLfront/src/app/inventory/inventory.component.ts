@@ -1,9 +1,8 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 declare var $: any
 import { Router } from '@angular/router'
 import { environment } from '../../environments/environment';
-
 
 @Component({
   selector: 'app-inventory',
@@ -22,7 +21,7 @@ export class InventoryComponent implements OnInit {
   logged_in
   user_data
   mail = { 'roll_number': '', 'subject': '', 'message': '', 'html_message': '', 'recipient_list': '' }
-  constructor(private api: ApiService, private router: Router, private renderer: Renderer2) {
+  constructor(private api: ApiService, private router: Router) {
     this.newRequest = { id: -1, item: -1, roll_number: '123456789', quantity: 1 }
 
   }
@@ -42,16 +41,19 @@ export class InventoryComponent implements OnInit {
     this.api.rollSearch(this.user_data.roll_number).subscribe(
       data => {
         this.requests = data;
-        // const that = this
-        // this.requests.forEach(repeat)       
-        // function repeat(request){
-        //   that.showAddedToCart(request.item)
-        // }
+        
       },
       error => {
         console.log(error);
       }
     );
+    // var i
+    // for (i = 0; i < this.requests.length; i++) {
+    //   console.log("hi")
+    //   if (!this.requests[i].is_sent) {
+    //     this.ordered[this.requests[i].item - 1] = i
+    //   }
+    // }
     console.log(this.ordered)
     this.api.getItems().subscribe(
       data => {
@@ -74,52 +76,37 @@ export class InventoryComponent implements OnInit {
         console.log(error);
       });
 
+
     $(document).ready(function () {
       $("i").click(function () {
         $(this).toggleClass("far")
         $(this).toggleClass("fas")
       });
+      $(".overlay").click(function () {
+        $(".overlay").slideUp(400)
+      });
+
     });
 
   }
 
-  addA(id) {
-    return 'A' + id.toString()
-  }
-  addB(id) {
-    return 'B' + id.toString()
-  }
-  addC(id) {
-    return 'C' + id.toString()
-  }
-  addD(id) {
-    return 'D' + id.toString()
-  }
-  CreateRequest(item, event) {
-    console.log(event)
+  CreateRequest(item) {
+
+    // this.router.navigate(['../cart'])
     this.newRequest.item = item.id
     this.newRequest.roll_number = this.user_data.roll_number
-    var children = event.srcElement.parentElement.parentElement.children
-    var i = 0;
-    this.requests.forEach(iterate)
-    function iterate(request) {
-      if (request.item == item.id) { i++ }
-    }
-    if (i == 0) {
-      this.api.createRequest(this.newRequest).subscribe(
-        data => {
-          this.requests.push(this.newRequest)
-          children[0].style.display = 'none'
-          children[1].style.display = 'none'
-          children[2].style.display = 'block'
-          console.log(data)
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }
-    else { this.router.navigate(['../cart']) }
+    this.showAddedToCart(item)
+
+    this.api.createRequest(this.newRequest).subscribe(
+      data => {
+        console.log(data)
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+
   }
 
   convertBool(item) {
@@ -179,49 +166,51 @@ export class InventoryComponent implements OnInit {
 
   }
 
-  nameClicked(id, event) {
-    console.log('heyy')
-    console.log(event)
-    var target = event.srcElement.parentElement.children[1]
-    target.style.display = 'block'
+  nameClicked(item) {
+    console.log($('#' + item.id).children().eq(3))
+    $('#' + item.id).children().eq(3).slideDown(400)
   }
-
-  // nameClicked(item) {
-  //   console.log(document.getElementById('D'+item.id.toString()))
-  //   // $('#D'+item.id.toString()).show()
-  //   // document.getElementById('D'+item.id.toString()).style.display = 'block'
-  //   document.getElementById('A'+item.id.toString()).innerHTML = 'red'
-  // }
 
   overlayClicked(item) {
-    $('.overlay').slideUp(400)
+    $('#' + item.id).children().eq(3).slideUp(400)
   }
 
-  cartClicked(id, event) {
-    console.log(id.toString())
-    var children = event.srcElement.parentElement.children
-    console.log(children)
-    const that = this
-    this.requests.forEach(iterate)
-    function iterate(request) {
-      if (!request.is_sent && request.item == id) { that.router.navigate(['../cart']) }
-    }
-    children[0].style.display = 'none'
-    children[1].style.display = 'block'
-    children[2].style.display = 'none'
-    // document.getElementById('A'+id.toString()).style.display = 'none'
-    // document.getElementById('B'+id.toString()).style.display = 'block'
-    // document.getElementById('C'+id.toString()).style.display = 'none'
+  cartClicked(item) {
+
+    // document.getElementById("specifyQuantity").style.display = "block";
+    // document.getElementById("addToCart").style.display = "none";
+    console.log('#' + item.id)
+    var c = $('#' + item.id).children()
+    c.eq(0).css({ "display": "none" })
+    c.eq(1).css({ "display": "block" })
+    c.eq(2).css({ "display": "none" })
+
+
+    // $(".addToCart").click(function(){
+    //   alert('hey')
+    //   $(this).css({"display": "none"});
+    //   $(this).siblings('.specifyQuantity').css({"display": "block"})
+    // });
   }
 
-  incrementQuantity() { this.newRequest.quantity++; }
+  incrementQuantity() {
+    this.newRequest.quantity++;
+  }
 
-  decrementQuantity() { this.newRequest.quantity--; }
+  decrementQuantity() {
+    this.newRequest.quantity--;
+  }
 
-
+  showAddedToCart(item) {
+    $('#testt').css({ "display": "block!important" })
+    var c = $('#' + item.id).children()
+    c.eq(0).css({ "display": "none" })
+    c.eq(1).css({ "display": "none" })
+    c.eq(2).css({ "display": "block" })
+    console.log('satc')
+  }
 
   reportItem(item) {
-    document.getElementById('super-overlay').style.display = 'block'
     this.mail.roll_number = this.user_data.roll_number
     this.mail.subject = 'Reporting of ' + item.name
     this.mail.message = item.name + ' <h1>has been flagged</h1>'
@@ -230,17 +219,10 @@ export class InventoryComponent implements OnInit {
     this.mail.html_message = '<strong>' + item.name + '</strong>' + ' has been reported on the website by <strong>' + this.user_data.first_name + ' ' + this.user_data.last_name + '-' + this.user_data.roll_number + '</strong> at ' + date_time + '<br><br>Please check the item.'
 
 
-    this.api.updateMail(this.mail).subscribe(
-      data => {
-        console.log(data);
-        this.api.sendMail(this.user_data.roll_number).subscribe(data => { console.log(data); if (data == 'sent') { document.getElementById('super-overlay').style.display = 'none'; console.log('mail sent successfully') } },
-          error => { document.getElementById('super-overlay').style.display = 'none'; alert('error'); console.log(error); });
-      }, error => { console.log(error); });
+    this.api.updateMail(this.mail).subscribe(data => { this.api.sendMail(this.user_data.roll_number); console.log(data) }, error => { console.log(error); });
   }
 
   flagItem(item) {
-
-    document.getElementById('super-overlay').style.display = 'block'
     this.mail.roll_number = this.user_data.roll_number
     this.mail.subject = 'Flagging of ' + item.name
     this.mail.message = item.name + ' <h1>has been flagged</h1>'
@@ -249,22 +231,16 @@ export class InventoryComponent implements OnInit {
     this.mail.html_message = '<strong>' + item.name + '</strong>' + ' has been flagged on the website by <strong>' + this.user_data.first_name + ' ' + this.user_data.last_name + '-' + this.user_data.roll_number + '</strong> at ' + date_time + '<br><br>Please check the item.'
 
 
-    this.api.updateMail(this.mail).subscribe(
-      data => {
-        console.log(data);
-        this.api.sendMail(this.user_data.roll_number)
-          .subscribe(data => { console.log(data); if (data == 'sent') { document.getElementById('super-overlay').style.display = 'none'; console.log('mail sent successfully') } },
-            error => { document.getElementById('super-overlay').style.display = 'none'; alert('error'); console.log(error); });
-      }, error => { console.log(error); });
+    this.api.updateMail(this.mail).subscribe(data => { this.api.sendMail(this.user_data.roll_number); console.log(data) }, error => { console.log(error); });
 
   }
-  displayArray = ['d-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non']
-  categoryArray = ['Sensor', 'PCB', 'Resistor', 'Capacitor', 'Jumper', 'LED', 'd-non', 'Screw', 'Nut', 'Bolt', 'Machine']
+  displayArray = ['d-none', 'd-none', 'd-none', 'd-none', 'd-none', 'd-none', 'd-none', 'd-none', 'd-none', 'd-none', 'd-none']
+  categoryArray = ['Sensor', 'PCB', 'Resistor', 'Capacitor', 'Jumper', 'LED', 'd-none', 'Screw', 'Nut', 'Bolt', 'Machine']
   selected_category = "none"
   selected_value = 100
   display_table(chosen) {
 
-
+    
 
     this.selected_category = this.categoryArray[chosen];
     if (this.selected_value == chosen) {
@@ -275,16 +251,28 @@ export class InventoryComponent implements OnInit {
     }
     var i
     for (i = 0; i < 11; i++) {
-      this.displayArray[i] = 'd-non';
+      this.displayArray[i] = 'd-none';
     }
     this.displayArray[this.selected_value] = 'd-show';
+
+    setTimeout(()=>{
+      const that = this
+        this.requests.forEach(repeat)
+        function repeat(request) {
+          if (!request.is_sent) { that.showAddedToCart(that.items[request.item - 1]); console.log(request.is_sent); console.log(that.items[request.item - 1]) }
+        }
+    },10)
+
+
+
+    
 
   }
 
 }
 
 
-// displayArray = ['d-non','d-non', 'Resistor','Capacitor','Jumper','LED','d-non','Screw','Nut','Bolt','d-non']
+// displayArray = ['d-none','d-none', 'Resistor','Capacitor','Jumper','LED','d-none','Screw','Nut','Bolt','d-none']
 // if(this.selected_value==chosen){
 //   this.selected_value=11;
 // }
