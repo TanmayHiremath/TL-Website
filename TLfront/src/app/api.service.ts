@@ -42,12 +42,9 @@ export class ApiService {
     return this.http.post<request_interface>(environment.serverUrl + 'requests/', body,
       { headers: this.httpHeaders });
   }
-  Task(message): Observable<any> {
-    return this.http.get(environment.serverUrl + 'tasks' + '?message=' + message);
-  }
-
+  
   createFlag(x): Observable<any> {
-    const body = { item: x.item, roll: x.roll };
+    const body = { item: x.item, roll_number: x.roll_number };
     return this.http.post<request_interface>(environment.serverUrl + '/flags/', body,
       { headers: this.httpHeaders });
   }
@@ -68,7 +65,7 @@ export class ApiService {
   }
 
   getFlags(): Observable<any> {
-    return this.http.get(environment.serverUrl + '/flags/',
+    return this.http.get(environment.serverUrl + 'flags/',
       { headers: this.httpHeaders });
   }
 
@@ -93,8 +90,8 @@ export class ApiService {
       { headers: this.httpHeaders });
 
   }
-
-  sendMail(roll_number): Observable<any>{
+  sendMail(roll_number): Observable<any> {
+    
     console.log('sending')
     return this.http.get(environment.serverUrl + 'sendmail/'+ roll_number,{responseType: 'text'})  
   }

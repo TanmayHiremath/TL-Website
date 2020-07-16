@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ApiService } from '../api.service';
 declare var $: any
 import { Router } from '@angular/router'
@@ -22,7 +22,7 @@ export class InventoryComponent implements OnInit {
   logged_in
   user_data
   mail = { 'roll_number': '', 'subject': '', 'message': '', 'html_message': '', 'recipient_list': '' }
-  constructor(private api: ApiService, private router: Router, private renderer: Renderer2) {
+  constructor(private api: ApiService, private router: Router) {
     this.newRequest = { id: -1, item: -1, roll_number: '123456789', quantity: 1 }
 
   }
@@ -239,8 +239,6 @@ export class InventoryComponent implements OnInit {
   }
 
   flagItem(item) {
-
-    document.getElementById('super-overlay').style.display = 'block'
     this.mail.roll_number = this.user_data.roll_number
     this.mail.subject = 'Flagging of ' + item.name
     this.mail.message = item.name + ' <h1>has been flagged</h1>'

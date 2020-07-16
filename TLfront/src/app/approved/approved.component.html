@@ -60,4 +60,12 @@
   
   
   
-  
+  <div  *ngFor="let flag of flags">
+    {{flag.time}}|
+    {{flag.roll_number}}
+    <br>
+    Type---
+    <br>
+    {{sendtype(flag.time)}}
+
+  </div>

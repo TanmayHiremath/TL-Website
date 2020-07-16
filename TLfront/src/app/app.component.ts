@@ -40,10 +40,14 @@ export class AppComponent implements OnInit {
         delete data['refresh_token']
         delete data['access_token']
         console.log(data)
+
         that.api.set_user_data(data)
         data.roll_number = window.btoa(data.roll_number)
         that.api.setJdata(environment.jdataKey, JSON.stringify(data))
+
         window.location.reload()
+
+
       })
     }
     this.logged_in = this.api.is_Authenticated()

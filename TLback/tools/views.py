@@ -197,26 +197,26 @@ class sendMail(APIView):
 
 @method_decorator(csrf_exempt, name='dispatch')
 class getMail(APIView):
-      
+
     def put(self, request, roll_number, format=None):
         try:
             mail = Mail.objects.get(roll_number=roll_number)
         except Mail.DoesNotExist:
             mail = None
-        
+
         if mail is not None:
             serializer = MailSerializer(mail, data=request.data)
-            
+
             if serializer.is_valid():
                 serializer.save()
-                
+
                 return Response(serializer.data)
-               
+
         else:  
             serializer = MailSerializer(data=request.data)
-            
+
             if serializer.is_valid():
                 serializer.save()                
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             else:
-                print(serializer.errors)   
+                print(serializer.errors)
