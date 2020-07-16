@@ -46,7 +46,10 @@ urlpatterns = [
     path("mail/<str:roll_number>",views.getMail.as_view())
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 8ae5f71... events link in backend
     
 ]
 if settings.DEBUG == True: 

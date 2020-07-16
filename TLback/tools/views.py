@@ -26,11 +26,6 @@ class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
-
-class FblinkViewSet(viewsets.ModelViewSet):
-    queryset = Fblink.objects.all()
-    serializer_class = FblinkSerializer
-
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
@@ -91,7 +86,6 @@ class FlagViewSet(viewsets.ModelViewSet):
 
 
 
-
 class RequestSearch(generics.ListAPIView):
     serializer_class = RequestSerializer
 
@@ -109,21 +103,6 @@ class RequestSearch(generics.ListAPIView):
                 Q(roll_number__last_name__icontains=query)|
                 Q(item__name__icontains=query)|
                 Q(item__keywords__icontains=query)
-            ).distinct()
-        return queryset
-class FblinkSearch(generics.ListAPIView):
-    serializer_class = FblinkSerializer
-
-    def get_queryset(self):
-        """
-        Optionally restricts the returned purchases to a given user,
-        by filtering against a `roll` query parameter in the URL.
-        """
-        queryset = Fblink.objects.all()
-        query = self.request.query_params.get('query', None)
-        if query:
-            queryset = Fblink.objects.filter(
-                Q(name__icontains=query)
             ).distinct()
         return queryset
 

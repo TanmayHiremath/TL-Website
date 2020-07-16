@@ -79,15 +79,4 @@ class Project(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
     picture = models.ImageField()
-
-
-
-class Fblink(models.Model):
-    link = models.CharField(max_length=1000)
-
-
-    def __str__(self):
-        return self.link
-
-
     

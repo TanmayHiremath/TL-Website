@@ -25,8 +25,3 @@ class FlagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Flag
         fields = '__all__'
-
-class FblinkSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Fblink
-        fields = '__all__'
