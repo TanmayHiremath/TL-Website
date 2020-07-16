@@ -28,6 +28,7 @@ router.register(r'customers', views.CustomerViewSet)
 router.register(r'requests', views.RequestViewSet)
 router.register(r'mails', views.MailViewSet)
 router.register(r'flags', views.FlagViewSet)
+router.register(r'fblinks', views.FblinkViewSet)
 
 
 admin.site.site_header = 'Tinkerer\'s Lab Admin '
@@ -43,10 +44,9 @@ urlpatterns = [
     path('itemss/', views.ItemSearch.as_view()),
     path("sendmail/<str:roll_number>", views.sendMail.as_view()),
     path("customer/<str:roll_number>",views.getCustomer.as_view()),
-    path("mail/<str:roll_number>",views.getMail.as_view())
+    path("mail/<str:roll_number>",views.getMail.as_view()),
+    path('fblinkss/', views.FblinkSearch.as_view()),
 
-
-    
 ]
 if settings.DEBUG == True: 
         urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
