@@ -174,7 +174,7 @@ export class CartComponent implements OnInit {
       if(this.total_items>0){
         console.log('mailsent')
         this.mail.roll_number=this.user_data.roll_number
-        this.mail.subject = 'Requested issuing of items from Tinkerers\' Laboratory '
+        this.mail.subject = 'Student - issue items'
         this.mail.message = ' <h1>to be issued</h1>'
         this.mail.recipient_list = "['gakshat2207@gmail.com']"
         var date_time =new Date()

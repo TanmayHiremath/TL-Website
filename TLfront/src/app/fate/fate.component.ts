@@ -220,7 +220,7 @@ searchItem() {
       });
     
     this.mail.roll_number=this.user_data.roll_number
-    this.mail.subject = this.items[request.item-1].name + ' Issued'
+    this.mail.subject = this.items[request.item-1].name + 'Confirmation receipt for item issue'
     this.mail.message = this.items[request.item-1].name + ' <h1>has been issued successfully</h1>'
     this.mail.recipient_list = "['gakshat2207@gmail.com']"
     var date_time =new Date()
@@ -288,7 +288,7 @@ searchItem() {
       });
 
       this.mail.roll_number=this.user_data.roll_number
-      this.mail.subject = this.items[request.item-1].name+' Returned'
+      this.mail.subject = this.items[request.item-1].name+' Confirmation receipt for return of items'
       this.mail.message = this.items[request.item-1].name + ' <h1>has been returned successfully</h1>'
       this.mail.recipient_list = "['gakshat2207@gmail.com']"
       var date_time =new Date()
