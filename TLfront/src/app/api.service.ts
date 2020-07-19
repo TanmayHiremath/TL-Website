@@ -41,7 +41,7 @@ export class ApiService {
   
   createFlag(x): Observable<any> {
     const body = { item: x.item, roll_number: x.roll_number };
-    return this.http.post<request_interface>(environment.serverUrl + '/flags/', body,
+    return this.http.post(environment.serverUrl + 'flags/', body,
       { headers: this.httpHeaders });
   }
 

@@ -20,7 +20,7 @@ export class ApprovedComponent implements OnInit {
   user_data
   logged_in
   diff
-  newFlag: { item: any; roll_number?: string; }
+  newFlag
   constructor(private api: ApiService,  private router: Router) { 
     
   }
@@ -74,9 +74,11 @@ export class ApprovedComponent implements OnInit {
   }
   flagItem(request)
   {
-    this.items[request.item-1].is_flagged= true;
-    this.api.updateItem(this.items[request.item-1]).subscribe(
+    var newflg = {item:this.items[request.item-1].id,roll_number:this.user_data.roll_number}
+
+    this.api.createFlag(newflg).subscribe(
       data => {
+        this.flags.push(newflg)
         console.log(data)
       },
       error => {
@@ -84,11 +86,10 @@ export class ApprovedComponent implements OnInit {
       }
     );
 
-    this.newFlag.item=this.items[request.item-1].id
-    this.newFlag.roll_number= this.user_data.roll_number
-    this.api.createFlag(this.newFlag).subscribe(
+    this.items[request.item-1].is_flagged= true;
+    this.api.updateItem(this.items[request.item-1]).subscribe(
       data => {
-        this.flags.push(this.newFlag)
+        console.log(data)
       },
       error => {
         console.log(error);
