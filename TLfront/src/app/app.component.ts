@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
           if((this.time-(new Date(element.time)).getTime())>60000)
           {
             console.log(element)
-            this.items[element.item-1].isflagged= false;
+            this.items[element.item-1].is_flagged= false;
             this.api.updateItem(this.items[element.item-1]).subscribe(
               data => {
                 console.log(data)

@@ -69,10 +69,12 @@ class ItemAdmin(admin.ModelAdmin):
     #   date_hierarchy = 'publication_date'
     list_filter = ['category', 'colour_code', 'is_flagged', 'id_required']
 # Register your models here.
+class FlagAdmin(admin.ModelAdmin):
 
+     list_display = ('item', 'roll_number', 'time')
 
 admin.site.register(Item, ItemAdmin)
 admin.site.register(Request, RequestAdmin)
 admin.site.register(Customer)
 admin.site.register(Mail)
-admin.site.register(Flag)
+admin.site.register(Flag, FlagAdmin)
