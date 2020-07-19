@@ -41,7 +41,7 @@ export class ApiService {
   
   createFlag(x): Observable<any> {
     const body = { item: x.item, roll_number: x.roll_number };
-    return this.http.post<request_interface>(environment.serverUrl + '/flags/', body,
+    return this.http.post(environment.serverUrl + 'flags/', body,
       { headers: this.httpHeaders });
   }
 
@@ -141,5 +141,11 @@ export class ApiService {
   getJdata(key) { return localStorage.getItem(key) }
 
   removeJdata(key) { localStorage.removeItem(key) }
+
+  authenticate_technician(data):Observable<any>{
+    const body = { username: data.username, password: data.password };
+    return this.http.post(environment.serverUrl + 'auth_technician/', body,
+      { headers: this.httpHeaders });
+  }
 
 }
