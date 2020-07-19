@@ -13,18 +13,66 @@ declare var $: any
 export class AppComponent implements OnInit {
   title = 'TLfront';
   year: string;
-  flag;
+  flags=[]
+  items=[]
   logged_in: boolean = false
   code
+  time
   user_data = null
   constructor(private api: ApiService, private router: Router) {
 
-    this.flag = 0;
     this.year = new Date().getFullYear().toString();
+    this.time = new Date().getTime()
 
   }
 
   ngOnInit(): void {
+
+    this.api.getItems().subscribe(
+      data => {
+        this.items = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+    this.api.getFlags().subscribe(
+      data => {
+        this.flags = data;
+        this.flags.forEach(element => {
+          console.log(this.time)
+          if((this.time-(new Date(element.time)).getTime())>60000)
+          {
+            console.log(element)
+            this.items[element.item-1].isflagged= false;
+            this.api.updateItem(this.items[element.item-1]).subscribe(
+              data => {
+                console.log(data)
+              },
+              error => {
+                console.log(error);
+              }
+            );
+            this.flags.splice(element.id -1, 1)
+            this.api.deleteFlag(element.id).subscribe
+              (
+                data => 
+                  {
+                    console.log(data)
+                  },
+                error => 
+                  {
+                    console.log(error);
+                  }
+              );
+          }
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    );
 
     var urlParams = new URLSearchParams(window.location.search)
     this.code = urlParams.get('code')

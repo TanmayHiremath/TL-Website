@@ -78,6 +78,11 @@ export class ApiService {
       { headers: this.httpHeaders });
   }
 
+  deleteFlag(id): Observable<any> {
+    return this.http.delete(environment.serverUrl + 'flags/' + id + '/',
+      { headers: this.httpHeaders });
+  }
+
   createMail(roll_number):Observable<any> {
     const body = {
       'roll_number':roll_number,subject: 'subject', message: 'message', recipient_list: 'add some default recipient', html_message: 'initialised html_message'
