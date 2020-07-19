@@ -142,4 +142,10 @@ export class ApiService {
 
   removeJdata(key) { localStorage.removeItem(key) }
 
+  authenticate_technician(data):Observable<any>{
+    const body = { username: data.username, password: data.password };
+    return this.http.post(environment.serverUrl + 'auth_technician/', body,
+      { headers: this.httpHeaders });
+  }
+
 }

@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
-
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.models import User
 
 from django.http import HttpResponse,JsonResponse,Http404
 from django.contrib.auth.models import User, Group
@@ -199,3 +200,13 @@ class getMail(APIView):
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             else:
                 print(serializer.errors)
+
+@csrf_exempt
+def authenticate_technician(request):
+    print(request.POST)
+    user = authenticate(username=request.POST.get('username','tanmay'),password=request.POST.get('password','tanu!@#$'))
+    if user is not None and user.is_active:
+        print(True)
+        return HttpResponse(True)
+    print(False)    
+    return HttpResponse(False)    
