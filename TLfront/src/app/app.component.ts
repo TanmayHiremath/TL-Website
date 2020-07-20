@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
           if((this.time-(new Date(element.time)).getTime())>60000)
           {
             console.log(element)
-            this.items[element.item-1].isflagged= false;
+            this.items[element.item-1].is_flagged= false;
             this.api.updateItem(this.items[element.item-1]).subscribe(
               data => {
                 console.log(data)
@@ -82,7 +82,7 @@ export class AppComponent implements OnInit {
       this.router.navigate([''])
       const that = this
       $.post(environment.serverUrl + 'autho/', { code: this.code }, function (data) {
-
+        
         that.api.updateCustomer(data).subscribe(data => { console.log(data), error => { console.log(error) } })
 
         delete data['refresh_token']
@@ -110,7 +110,7 @@ export class AppComponent implements OnInit {
         .subscribe(data => { this.user_data = data; console.log(data), error => { console.log(error) } })
 
     }
-    else { this.router.navigate(['']); }
+    else {  }
 
 
     $(document).ready(function () {
@@ -161,9 +161,6 @@ export class AppComponent implements OnInit {
   logout() {
     this.api.logout()
   }
-
-
-
 
 }
 

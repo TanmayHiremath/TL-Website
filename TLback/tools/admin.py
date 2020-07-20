@@ -41,7 +41,7 @@ returned_status.short_description = 'return' # at admin page
 
 class RequestAdmin(admin.ModelAdmin):
 
-    list_display = ('item', 'roll_number', 'quantity', 'item_details', 'is_issued', 'is_denied', 'is_returned','is_sent')
+    list_display = ('item', 'roll_number', 'quantity', 'item_details', 'is_issued', 'is_denied', 'is_returned','is_sent', 'issued_time', 'returned_time')
     list_editable = ('is_issued', 'is_denied', 'is_returned', 'is_sent')
     search_fields = ['item__name', 'item__colour_code', ]
     actions = [issued_status, denied_status, returned_status]
@@ -69,10 +69,12 @@ class ItemAdmin(admin.ModelAdmin):
     #   date_hierarchy = 'publication_date'
     list_filter = ['category', 'colour_code', 'is_flagged', 'id_required']
 # Register your models here.
+class FlagAdmin(admin.ModelAdmin):
 
+     list_display = ('item', 'roll_number', 'time')
 
 admin.site.register(Item, ItemAdmin)
 admin.site.register(Request, RequestAdmin)
 admin.site.register(Customer)
 admin.site.register(Mail)
-admin.site.register(Flag)
+admin.site.register(Flag, FlagAdmin)

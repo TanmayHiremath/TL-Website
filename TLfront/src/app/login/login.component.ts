@@ -13,10 +13,13 @@ export class LoginComponent implements OnInit {
   username
   password
 
-  constructor(private api: ApiService, private router: Router) { }
+  constructor(private api: ApiService, private router: Router) {
+    this.username = ''
+  }
 
   ngOnInit(): void {
   }
+
   submit() {
     console.log('clicked')
     var data = {}
@@ -26,9 +29,22 @@ export class LoginComponent implements OnInit {
     $.post(environment.serverUrl + 'auth_technician/', data, function (data) {
       console.log(data)
       if (data == 'True') {
-        that.router.navigate(['../technician'])       
+        var user_data = {
+          roll_number: window.btoa("Technician"),
+          first_name: "Technician",
+          last_name: "1",
+          email: "abcd@email.com",
+          username: "technician",
+          access_token: "efvew",
+          refresh_token: "scaaz"
+        }
+
+        that.api.setJdata(environment.jdataKey,JSON.stringify(user_data))
+
+        that.router.navigate(['../technician'])
+
       }
-      else{
+      else {
         alert('Incorrect Username or Password')
       }
     })

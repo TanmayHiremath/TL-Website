@@ -39,6 +39,11 @@ export class FateComponent implements OnInit {
         .subscribe(data => { this.user_data = data; console.log(data), error => { console.log(error) } })
     }
     else { this.router.navigate(['']) }
+    if(this.user_data.roll_number != 'Technician'){
+      this.logged_in = false
+      console.log('not authorised')
+      this.router.navigate([''])
+    }
 
     this.api.rollSearch(this.user_data.roll_number).subscribe(
       data => {

@@ -38,15 +38,9 @@ export class InventoryComponent implements OnInit {
         .subscribe(data => { this.user_data = data; console.log(data), error => { console.log(error) } })
     }
     else { this.router.navigate(['']) }
-
     this.api.rollSearch(this.user_data.roll_number).subscribe(
       data => {
         this.requests = data;
-        // const that = this
-        // this.requests.forEach(repeat)       
-        // function repeat(request){
-        //   that.showAddedToCart(request.item)
-        // }
       },
       error => {
         console.log(error);

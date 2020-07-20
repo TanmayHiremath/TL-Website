@@ -120,18 +120,11 @@ export class ApiService {
     return this.http.put(environment.serverUrl + 'customer/' + data.roll_number, body,
       { headers: this.httpHeaders });
   }
-
-
-
   is_Authenticated() {
-
-
     if (this.getJdata(environment.jdataKey)) { this.logged_in = true }
     else {
       this.logged_in = false
     }
-
-    console.log(this.logged_in)
     return this.logged_in
   }
 

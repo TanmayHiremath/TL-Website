@@ -50,7 +50,9 @@ class Request(models.Model):
     is_sent = models.BooleanField(default=False)
     is_denied = models.BooleanField(default=False)
     is_issued = models.BooleanField(default=False)
+    issued_time = models.DateTimeField(auto_now=True)
     is_returned = models.BooleanField(default=False)
+    returned_time = models.DateTimeField(auto_now=True)
     #date = models.DateField(auto_now=True, default='')
 
     @property
