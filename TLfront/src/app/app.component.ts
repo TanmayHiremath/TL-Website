@@ -31,48 +31,50 @@ export class AppComponent implements OnInit {
     this.api.getItems().subscribe(
       data => {
         this.items = data;
+        this.api.getFlags().subscribe(
+          data => {
+    
+            this.flags = data;
+            this.flags.forEach(element => {
+              console.log(this.time)
+              if((this.time-(new Date(element.time)).getTime())>60000)
+              {
+                console.log(element)
+                this.items[element.item-1].is_flagged= false;
+                this.api.updateItem(this.items[element.item-1]).subscribe(
+                  data => {
+                    console.log(data)
+                  },
+                  error => {
+                    console.log(error);
+                  }
+                );
+                this.flags.splice(element.id -1, 1)
+                this.api.deleteFlag(element.id).subscribe
+                  (
+                    data => 
+                      {
+                        console.log(data)
+                      },
+                    error => 
+                      {
+                        console.log(error);
+                      }
+                  );
+              }
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        );
       },
       error => {
         console.log(error);
       }
     );
 
-    this.api.getFlags().subscribe(
-      data => {
-        this.flags = data;
-        this.flags.forEach(element => {
-          console.log(this.time)
-          if((this.time-(new Date(element.time)).getTime())>60000)
-          {
-            console.log(element)
-            this.items[element.item-1].is_flagged= false;
-            this.api.updateItem(this.items[element.item-1]).subscribe(
-              data => {
-                console.log(data)
-              },
-              error => {
-                console.log(error);
-              }
-            );
-            this.flags.splice(element.id -1, 1)
-            this.api.deleteFlag(element.id).subscribe
-              (
-                data => 
-                  {
-                    console.log(data)
-                  },
-                error => 
-                  {
-                    console.log(error);
-                  }
-              );
-          }
-        });
-      },
-      error => {
-        console.log(error);
-      }
-    );
+   
 
     var urlParams = new URLSearchParams(window.location.search)
     this.code = urlParams.get('code')

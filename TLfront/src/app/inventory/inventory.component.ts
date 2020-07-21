@@ -21,6 +21,8 @@ export class InventoryComponent implements OnInit {
   displaycartbtn: boolean = true
   logged_in
   user_data
+  flags=[]
+  newFlag
   mail = { 'roll_number': '', 'subject': '', 'message': '', 'html_message': '', 'recipient_list': '' }
   constructor(private api: ApiService, private router: Router) {
     this.newRequest = { id: -1, item: -1, roll_number: '123456789', quantity: 1 }
@@ -73,6 +75,16 @@ export class InventoryComponent implements OnInit {
       error => {
         console.log(error);
       });
+
+      this.api.getFlags().subscribe(
+        data => {
+          this.flags = data;
+          console.log(data)
+        },
+        error => {
+          console.log(error);
+        }
+      );
 
     $(document).ready(function () {
       $("i").click(function () {
@@ -255,6 +267,28 @@ export class InventoryComponent implements OnInit {
             error => { document.getElementById('super-overlay').style.display = 'none'; alert('error'); console.log(error); });
       }, error => { console.log(error); });
 
+
+    var newflg = {item:item.id,roll_number:this.user_data.roll_number}
+
+    this.api.createFlag(newflg).subscribe(
+      data => {
+        this.flags.push(newflg)
+        console.log(data)
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+    item.is_flagged= true;
+    this.api.updateItem(item).subscribe(
+      data => {
+        console.log(data)
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   displayArray = ['d-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non']
   categoryArray = ['Sensor', 'PCB', 'Resistor', 'Capacitor', 'Jumper', 'LED', 'd-non', 'Screw', 'Nut', 'Bolt', 'Machine']
