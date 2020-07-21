@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   serverUrl: 'http://127.0.0.1:8000/',
   loginUrl: 'https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=SURfRGPqH2W4dKtnWnE3hX249Tk1XXEZpUhRaX4P&response_type=code&scope=basic profile picture insti_address secondary_emails ldap program',
-  jdataKey:'Kb8VUT3E9q7vshw21'
+  jdataKey:'Kb8VUT3E9q7vshw21',
+  technicians:['tanmay','Technician2','Technician3']
 };
 /*
  * For easier debugging in development mode, you can import the following file

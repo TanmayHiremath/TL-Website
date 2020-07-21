@@ -161,7 +161,9 @@ export class AppComponent implements OnInit {
   logout() {
     this.api.logout()
   }
-
+  Check_Technician(){
+    return this.api.check_technician()
+  }
 }
 
 
