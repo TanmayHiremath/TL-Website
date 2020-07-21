@@ -225,9 +225,18 @@ class getMail(APIView):
 @csrf_exempt
 def authenticate_technician(request):
     print(request.POST)
-    user = authenticate(username=request.POST.get('username','tanmay'),password=request.POST.get('password','tanu!@#$'))
+    user = authenticate(username=request.POST.get('username','tanmay'),password=request.POST.get('password','!@#$'))
     if user is not None and user.is_active:
         print(True)
         return HttpResponse(True)
     print(False)    
+    return HttpResponse(False) 
+@csrf_exempt       
+def change_pwd(request):
+
+    if request.POST['username'] or request.POST['password'] :
+        u = User.objects.get(username=request.POST.get('username'))
+        u.set_password(request.POST.get('password'))
+        u.save()
+        return HttpResponse(True)
     return HttpResponse(False)    

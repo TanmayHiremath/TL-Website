@@ -1,34 +1,76 @@
 <div class="container h-100">
-    <div class="d-flex justify-content-center h-100">
-        <div class="user_card">
-            <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center h-100">
+    <div class="user_card">
+      <div class="d-flex justify-content-center">
 
 
-                <h3 id="form-title">Technician LOGIN</h3>
+        <h3 id="form-title">Technician LOGIN</h3>
+      </div>
+      <div class="d-flex justify-content-center form_container">
+        <form method="POST" action="">
+          <div class="input-group mb-3">
+            <div class="input-group-append">
+              <span *ngIf="username_display && !logged_in" class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
-            <div class="d-flex justify-content-center form_container">
-                <form method="POST" action="">
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                        <input [(ngModel)]="username" type="text" name="username" placeholder="Username..." class="form-control">
-                    </div>
-                    <div class="input-group mb-2">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                            <input [(ngModel)]="password" type="password" name="password" placeholder="Password..." class="form-control" >
-                    </div>
+            <input *ngIf="username_display && !logged_in" [(ngModel)]="username" type="text" name="username"
+              placeholder="Username..." class="form-control">
+          </div>
+          <a *ngIf="logged_in && !password_display" class="btn"
+            style="background-color: white;border-radius: 30px;color: #20c9c3;font-size: 1.5rem;border-width: 0;"
+            routerLink="../technician">Go to
+            Technician
+            Homepage<i class="fas fa-arrow-circle-right ml-1"></i></a>
+          <br>
 
-                        <div class="d-flex justify-content-center mt-3 login_container">
-                             <input [disabled]="username==''" class="btn login_btn" type="submit" value="Login" (click)="submit()">
-                           </div>
-                </form>
-
+          <div *ngIf="password_display" class="input-group mb-2">
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
+            <input [(ngModel)]="password" type="password" name="password" [placeholder]="pwd_placeholder"
+              class="form-control">
 
-        
+          </div>
+          <div id="forgotPassword" *ngIf="!logged_in" class="small text-right text-primary">Forgot Password?</div>
+
+
+          <div *ngIf="password_display && logged_in" class="input-group mb-2">
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
-        </div>
+            <input [(ngModel)]="new_password" type="password" name="password" placeholder="New Password..."
+              class="form-control">
+          </div>
+
+
+
+          <div *ngIf="password_display && logged_in" class="input-group mb-2">
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+            <input [(ngModel)]="new_password_temp" type="password" name="password"
+              placeholder="Enter New Password again..." class="form-control">
+          </div>
+
+
+
+
+          <div class="d-flex justify-content-center mt-3 login_container">
+            <input *ngIf="username_display" [disabled]="username==''" class="btn login_btn mx-1" type="submit"
+              value="Login" (click)="login();">
+            <a (click)="password_display = false;pwd_placeholder ='Old Password...';password='';password_display=true;"
+              *ngIf="logged_in && !password_display" class="btn"
+              style="background-color: white;border-radius: 30px;color: #20c9c3;">Change Password<i
+                class="fas fa-arrow-circle-right ml-1"></i></a>
+
+
+            <input *ngIf="!username_display && password_display" class="btn login_btn mx-1" type="submit"
+              value="Confirm Password Change" (click)="change_pwd();">
+          </div>
+        </form>
+
+      </div>
+
+
     </div>
+  </div>
+</div>

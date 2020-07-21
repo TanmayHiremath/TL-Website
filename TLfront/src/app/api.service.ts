@@ -42,7 +42,7 @@ export class ApiService {
     return this.http.post<request_interface>(environment.serverUrl + 'requests/', body,
       { headers: this.httpHeaders });
   }
-  
+
   createFlag(x): Observable<any> {
     const body = { item: x.item, roll_number: x.roll_number };
     return this.http.post(environment.serverUrl + 'flags/', body,
@@ -87,18 +87,18 @@ export class ApiService {
       { headers: this.httpHeaders });
   }
 
-  createMail(roll_number):Observable<any> {
+  createMail(roll_number): Observable<any> {
     const body = {
-      'roll_number':roll_number,subject: 'subject', message: 'message', recipient_list: 'add some default recipient', html_message: 'initialised html_message'
+      'roll_number': roll_number, subject: 'subject', message: 'message', recipient_list: 'add some default recipient', html_message: 'initialised html_message'
     };
-    return this.http.put(environment.serverUrl + 'mail/' + roll_number , body,
+    return this.http.put(environment.serverUrl + 'mail/' + roll_number, body,
       { headers: this.httpHeaders });
 
   }
   sendMail(roll_number): Observable<any> {
-    
+
     console.log('sending')
-    return this.http.get(environment.serverUrl + 'sendmail/'+ roll_number,{responseType: 'text'})  
+    return this.http.get(environment.serverUrl + 'sendmail/' + roll_number, { responseType: 'text' })
   }
 
   updateMail(mail): Observable<any> {
@@ -106,7 +106,7 @@ export class ApiService {
 
       subject: mail.subject, message: mail.message, recipient_list: mail.recipient_list, html_message: mail.html_message
     };
-    return this.http.patch(environment.serverUrl + 'mails/' + mail.roll_number +'/' , body,
+    return this.http.patch(environment.serverUrl + 'mails/' + mail.roll_number + '/', body,
       { headers: this.httpHeaders });
   }
 
@@ -118,24 +118,17 @@ export class ApiService {
 
   updateCustomer(data): Observable<any> {
     const body = {
-      first_name: data.first_name,last_name:data.last_name, email: data.email, roll_number: data.roll_number, username: data.username,
+      first_name: data.first_name, last_name: data.last_name, email: data.email, roll_number: data.roll_number, username: data.username,
       access_token: data.access_token, refresh_token: data.refresh_token
     };
     return this.http.put(environment.serverUrl + 'customer/' + data.roll_number, body,
       { headers: this.httpHeaders });
   }
-
-
-
   is_Authenticated() {
-
-
     if (this.getJdata(environment.jdataKey)) { this.logged_in = true }
     else {
       this.logged_in = false
     }
-
-    console.log(this.logged_in)
     return this.logged_in
   }
 
@@ -151,10 +144,23 @@ export class ApiService {
 
   removeJdata(key) { localStorage.removeItem(key) }
 
-  authenticate_technician(data):Observable<any>{
+  authenticate_technician(data): Observable<any> {
     const body = { username: data.username, password: data.password };
     return this.http.post(environment.serverUrl + 'auth_technician/', body,
       { headers: this.httpHeaders });
+  }
+
+  check_technician() {
+    if (this.getJdata(environment.jdataKey)) {
+      var x = false
+      var roll_number = window.atob(JSON.parse(this.getJdata(environment.jdataKey)).roll_number);
+      environment.technicians.forEach(repeat)
+      function repeat(technician) {
+        if (roll_number == technician) { x = true }
+      }
+      return x
+    }
+    else return false
   }
 
 }

@@ -46,6 +46,7 @@ urlpatterns = [
     path("customer/<str:roll_number>",views.getCustomer.as_view()),
     path("mail/<str:roll_number>",views.getMail.as_view()),
     path("auth_technician/",views.authenticate_technician),
+    path("change_pwd/",views.change_pwd),
     path('fblinkss/', views.FblinkSearch.as_view()),
 
 

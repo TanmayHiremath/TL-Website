@@ -26,6 +26,7 @@
   <div id="uncheck" class="nav-links ml-auto">
     <a class="text-primary mobile-view" *ngIf="logged_in">{{user_data.first_name}}
       {{user_data.last_name}}-{{user_data.roll_number}}</a>
+      <a *ngIf="Check_Technician()" routerLink="technician" routerLinkActive="active-link">Technician</a>
     <a routerLink="" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
       true}">Home</a>
     <a routerLink="about" routerLinkActive="active-link">About</a>
