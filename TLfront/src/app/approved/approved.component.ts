@@ -21,6 +21,7 @@ export class ApprovedComponent implements OnInit {
   logged_in
   diff
   newFlag
+  mail = { 'roll_number': '', 'subject': '', 'message': '', 'html_message': '', 'recipient_list': '' }
   constructor(private api: ApiService,  private router: Router) { 
     
   }
@@ -95,6 +96,24 @@ export class ApprovedComponent implements OnInit {
         console.log(error);
       }
     );
+
+
+
+    this.mail.roll_number = this.user_data.roll_number
+    this.mail.subject = 'Flagging of ' + this.items[request.item-1].name
+    this.mail.message = this.items[request.item-1].name + ' <h1>has been flagged</h1>'
+    this.mail.recipient_list = "['tanmay.v.hiremath@gmail.com']"
+    var date_time = new Date()
+    this.mail.html_message = '<strong>' + this.items[request.item-1].name + '</strong>' + ' has been flagged on the website by <strong>' + this.user_data.first_name + ' ' + this.user_data.last_name + '-' + this.user_data.roll_number + '</strong> at ' + date_time + '<br><br>Please check the item.'
+
+
+    this.api.updateMail(this.mail).subscribe(
+      data => {
+        console.log(data);
+        this.api.sendMail(this.user_data.roll_number)
+          .subscribe(data => { console.log(data); if (data == 'sent') { document.getElementById('super-overlay').style.display = 'none'; console.log('mail sent successfully') } },
+            error => { document.getElementById('super-overlay').style.display = 'none'; alert('error'); console.log(error); });
+      }, error => { console.log(error); });
   }
 
   
