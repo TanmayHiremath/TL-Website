@@ -66,6 +66,7 @@
       <th class="th-sm">ID required</th>
 
       <th class="th-sm">Status</th>
+
     </tr>
   </thead>
   <tbody>
@@ -78,7 +79,7 @@
       <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{request.id}}</td>
       <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">{{items[request.item-1].id_required}}</td>
       <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) &&(filter_issued==false) && (filter_denied==false)"><button (click)="issue_request(request)">issue</button><button (click)="deny_request(request)">deny</button></td>
-      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) &&(filter_issued==true) && (filter_denied==false) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">issued<button (click)="deny_request(request)">deny anyway</button><button *ngIf="request.is_returned==false" (click)="return_request(request)">return</button>
+      <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) &&(filter_issued==true) && (filter_denied==false) && ((request.is_returned==filter_returned) || (items[request.item-1].is_consumable==filter_consumable))">issued<button *ngIf="request.is_returned==false" (click)="return_request(request)">return</button>
         <!-- <button (click)="deny_request(request)">deny</button> -->
       </td>
       <td *ngIf="(request.is_issued==filter_issued) && (request.is_denied==filter_denied) && (request.is_sent==true) && (filter_issued==false) && (filter_denied==true)">denied<button (click)="issue_request(request)">issue anyway</button>

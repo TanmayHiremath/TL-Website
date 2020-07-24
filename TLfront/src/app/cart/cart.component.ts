@@ -147,6 +147,8 @@ export class CartComponent implements OnInit {
         if( (this.requests[i].is_sent == false) && (this.myVar==0) )
           {
             this.requests[i].is_sent = true;
+            this.requests[i].checkout_time = new Date();
+            console.log(this.requests[i].checkout_time)
             this.mailItems+='<strong>'+this.items[this.requests[i].item-1].name+'</strong>: Quantity = <strong>'+this.requests[i].quantity+'</strong><br>'
             console.log(this.mailItems)
             this.api.updateRequest(this.requests[i]).subscribe
