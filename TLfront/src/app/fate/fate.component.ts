@@ -40,9 +40,6 @@ export class FateComponent implements OnInit {
     }
     else {console.log('NOT AUTHORISED'); this.router.navigate(['']) }
 
-    this.api.rollSearch(this.user_data.roll_number).subscribe(
-      data => { this.requests = data; },
-      error => { console.log(error); });
     this.api.getItems().subscribe(
       data => {
         this.items = data;
@@ -182,6 +179,7 @@ export class FateComponent implements OnInit {
     request.is_issued = true;
     request.is_denied = false;
     request.is_returned = this.items[request.item - 1].is_consumable;
+    request.issued_time = new Date()
     this.items[request.item - 1].quantity -= request.quantity;
     this.api.updateRequest(request).subscribe
       (
@@ -225,6 +223,7 @@ export class FateComponent implements OnInit {
     request.is_issued = false;
     request.is_denied = true;
     request.is_returned = false;
+    request.issued_time = new Date()
     this.api.updateRequest(request).subscribe
       (
         data => {
@@ -246,6 +245,7 @@ export class FateComponent implements OnInit {
     request.is_issued = true;
     request.is_denied = false;
     request.is_returned = true;
+    request.returned_time = new Date();
     this.items[request.item - 1].quantity += request.quantity;
     this.api.updateRequest(request).subscribe
       (

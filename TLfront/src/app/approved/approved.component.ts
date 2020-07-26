@@ -53,8 +53,6 @@ export class ApprovedComponent implements OnInit {
       this.api.getFlags().subscribe(
         data => {
           this.flags = data;
-          console.log(data)
-          this.diff=(new Date(this.flags[1].time)).getTime()-(new Date(this.flags[0].time)).getTime()
         },
         error => {
           console.log(error);
@@ -116,14 +114,5 @@ export class ApprovedComponent implements OnInit {
       }, error => { console.log(error); });
   }
 
-  
-  sendtype(flag)
-  {
-    var dede=(new Date(flag)).getTime()
-    console.log(dede)
-    console.log(this.diff)
-    return this.diff
-
-  }
  
 }

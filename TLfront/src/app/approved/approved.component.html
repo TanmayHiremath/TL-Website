@@ -25,7 +25,8 @@
             <p class="quantity">{{request.quantity}}</p>
           </div>
           <div style="flex:2">
-            <p class="quantity" *ngIf=" (request.is_returned)  " style="color: green;">Returned</p>
+            <p class="quantity" *ngIf=" (request.is_returned) && !(items[request.item-1].is_consumable)  " style="color: green;">Returned</p>
+            <p class="quantity" *ngIf=" (request.is_returned) && (items[request.item-1].is_consumable)  " style="color: green;">Consumable</p>
             <p class="quantity" *ngIf=" (request.is_issued) && !(request.is_returned)  " style="color: rgba(0, 140, 255, 0.959)">Issued</p>
             <p class="quantity" *ngIf=" (request.is_denied)  " style="color: red">Denied</p>
             <p class="quantity" *ngIf=" !(request.is_issued) && !(request.is_denied)  " style="color:salmon">Pending</p>
@@ -45,7 +46,8 @@
               <p class="quantity">{{request.quantity}}</p>
             </div>
             <div style="flex:2">
-              <p class="quantity" *ngIf=" (request.is_returned)  " style="color: green;">Returned</p>
+              <p class="quantity" *ngIf=" (request.is_returned) && !(items[request.item-1].is_consumable)  " style="color: green;">Returned</p>
+            <p class="quantity" *ngIf=" (request.is_returned) && (items[request.item-1].is_consumable)  " style="color: green;">Consumable</p>
               <p class="quantity" *ngIf=" (request.is_issued) && !(request.is_returned)  " style="color: rgba(0, 140, 255, 0.959)">Issued</p>
               <p class="quantity" *ngIf=" (request.is_denied)  " style="color: red">Denied</p>
               <p class="quantity" *ngIf=" !(request.is_issued) && !(request.is_denied)  " style="color:salmon">Pending</p>
@@ -59,13 +61,3 @@
   </div>
   
   
-  
-  <div  *ngFor="let flag of flags">
-    {{flag.time}}|
-    {{flag.roll_number}}
-    <br>
-    Type---
-    <br>
-    {{sendtype(flag.time)}}
-
-  </div>

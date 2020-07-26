@@ -72,7 +72,7 @@ export class ApiService {
 
 
   updateRequest(req): Observable<any> {
-    const body = { item: req.item, quantity: req.quantity, roll: req.roll, is_sent: req.is_sent, is_approved: req.is_approved, is_issued: req.is_issued, is_returned: req.is_returned, is_denied: req.is_denied };
+    const body = { item: req.item, quantity: req.quantity, roll: req.roll, is_sent: req.is_sent, is_approved: req.is_approved, is_issued: req.is_issued, is_returned: req.is_returned, is_denied: req.is_denied, checkout_time:req.checkout_time, issued_time: req.issued_time, returned_time:req.returned_time };
     return this.http.put<request_interface>(environment.serverUrl + 'requests/' + req.id + '/', body,
       { headers: this.httpHeaders });
   }
