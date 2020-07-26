@@ -88,3 +88,11 @@ class Fblink(models.Model):
 
     def __str__(self):
         return self.link
+
+class Machine(models.Model):
+    type = models.ForeignKey(Item, on_delete=models.CASCADE)
+    name = models.CharField(max_length=150)
+    status = models.BooleanField(default= False)
+
+    def __str__(self):
+        return self.name

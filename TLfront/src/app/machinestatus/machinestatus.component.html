@@ -6,10 +6,26 @@
         <th>Machine Name </th>
         <th>Working Status</th>
       </tr>
+
+      <div *ngFor='let machine of machines'>
+        <tr class="table-success">
+          <td>{{items[machine.type-1].name}}</td>
+          <div *ngFor='let type of x'>
+          <td><tr>{{type}}</tr></td>
+            <td>{{machine.status}}</td>
+          </div>
+        </tr>
+      </div>
+
+      
   
       <tr class="table-success">
         <td> 3D PRINTERS</td>
-        <td>WANHAO D7 Plus DLP, WANHAO D9, Flashforge Guider, Flashforge Inventor </td>
+        <td>
+        <tr>WANHAO D7 Plus DLP</tr>
+        <tr> WANHAO D9 </tr>
+        <tr>Flashforge Guider</tr>
+        <tr> Flashforge Inventor </tr></td>
         <td></td>
       </tr>
       

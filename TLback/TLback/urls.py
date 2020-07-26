@@ -29,7 +29,7 @@ router.register(r'requests', views.RequestViewSet)
 router.register(r'mails', views.MailViewSet)
 router.register(r'flags', views.FlagViewSet)
 router.register(r'fblinks', views.FblinkViewSet)
-
+router.register(r'machines', views.MachineViewSet)
 
 admin.site.site_header = 'Tinkerer\'s Lab Admin '
 
@@ -48,6 +48,7 @@ urlpatterns = [
     path("auth_technician/",views.authenticate_technician),
     path("change_pwd/",views.change_pwd),
     path('fblinkss/', views.FblinkSearch.as_view()),
+    path('machiness/', views.MachineSearch.as_view()),
 
 
 ]
