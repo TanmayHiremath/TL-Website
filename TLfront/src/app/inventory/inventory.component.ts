@@ -13,8 +13,11 @@ import { environment } from '../../environments/environment';
 export class InventoryComponent implements OnInit {
 
   items = [{}];
-  tabledisplay: boolean = true;
+  item_query
+  searched: boolean = false;
   id_required_string: string
+  tabledisplay: boolean = true;
+  displayItems=[];
   requests = [];
   ordered = [];
   newRequest: { item: any; quantity: any; id?: number; roll_number?: string; }
@@ -307,6 +310,24 @@ export class InventoryComponent implements OnInit {
 
   }
 
+
+  searchItem() {
+    this.searched=true
+    this.api.itemSearch(this.item_query)
+      .subscribe(
+        data => {
+          this.displayItems = data;
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+      
+  }
+
+  hideSearch(){
+    this.searched=false
+  }
 }
 
 
