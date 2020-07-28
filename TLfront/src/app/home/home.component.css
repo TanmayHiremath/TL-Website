@@ -166,7 +166,11 @@
 }
 
 #myCarousel .card-footer {
-  height: 150px;
+  height: 250px;
+}
+
+#myCarousel .carousel-indicators{
+  margin-top: 30px;
 }
 
 #myCarousel .carousel-indicators li {
@@ -179,6 +183,7 @@
 #myCarousel .carousel-indicators .active {
   background-color: blue;
 }
+
 
 #funFacts {
   background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url("../../assets/Images/bg_1.jpg");
@@ -194,7 +199,9 @@
     width: 100%;
     left: 0;
   }
-
+  #myCarousel .card-footer {
+    height: max-content;
+  }
   #funFacts>h1 {
     font-size: 10vw;
   }
