@@ -166,7 +166,11 @@
 }
 
 #myCarousel .card-footer {
-  height: 150px;
+  height: 250px;
+}
+
+#myCarousel .carousel-indicators{
+  margin-top: 30px;
 }
 
 #myCarousel .carousel-indicators li {
@@ -195,7 +199,9 @@
     width: 100%;
     left: 0;
   }
-
+  #myCarousel .card-footer {
+    height: max-content;
+  }
   #funFacts>h1 {
     font-size: 10vw;
   }
