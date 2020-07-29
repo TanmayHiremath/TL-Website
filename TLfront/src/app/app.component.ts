@@ -1,9 +1,10 @@
-import { Pipe, PipeTransform,Component, OnInit } from '@angular/core';
+import { Pipe, PipeTransform, Component, OnInit } from '@angular/core';
 import { ApiService } from './api.service';
 import { Router } from '@angular/router';
-import {DomSanitizer} from '@angular/platform-browser'
+import { DomSanitizer } from '@angular/platform-browser'
 
 import { environment } from '../environments/environment';
+import { getTranslationDeclStmts } from '@angular/compiler/src/render3/view/template';
 declare var $: any
 
 @Component({
@@ -14,16 +15,20 @@ declare var $: any
 export class AppComponent implements OnInit {
   title = 'TLfront';
   year: string;
-  flags=[]
-  items=[]
+  flags = []
+  items = []
   logged_in: boolean = false
   code
   time
+  customer
+  mail = { 'roll_number': '', 'subject': '', 'message': '', 'html_message': '', 'recipient_list': '' }
+  requests
   user_data = null
   constructor(private api: ApiService, private router: Router) {
 
     this.year = new Date().getFullYear().toString();
-    this.time = new Date().getTime()
+    this.time = (new Date().getTime()) / 1000
+
 
   }
 
@@ -38,11 +43,10 @@ export class AppComponent implements OnInit {
             this.flags = data;
             this.flags.forEach(element => {
               console.log(this.time)
-              if((this.time-(new Date(element.time)).getTime())>60000)
-              {
+              if ((this.time - ((new Date(element.time)).getTime()) / 1000) > 86400) {
                 console.log(element)
-                this.items[element.item-1].is_flagged= false;
-                this.api.updateItem(this.items[element.item-1]).subscribe(
+                this.items[element.item - 1].is_flagged = false;
+                this.api.updateItem(this.items[element.item - 1]).subscribe(
                   data => {
                     console.log(data)
                   },
@@ -50,17 +54,15 @@ export class AppComponent implements OnInit {
                     console.log(error);
                   }
                 );
-                this.flags.splice(element.id -1, 1)
+                this.flags.splice(element.id - 1, 1)
                 this.api.deleteFlag(element.id).subscribe
                   (
-                    data =>
-                      {
-                        console.log(data)
-                      },
-                    error =>
-                      {
-                        console.log(error);
-                      }
+                    data => {
+                      console.log(data)
+                    },
+                    error => {
+                      console.log(error);
+                    }
                   );
               }
             });
@@ -69,12 +71,57 @@ export class AppComponent implements OnInit {
             console.log(error);
           }
         );
+
+        this.api.requestDate().subscribe
+          (
+            data => {
+              this.requests = data;
+              this.requests.forEach(element => {
+                if (((this.time - ((new Date(element.issued_time)).getTime()) / 1000) / 1000) > 2592) {
+                  element.email_sent=true
+                  this.api.updateRequest(element).subscribe(
+                    data => {
+                    },
+                    error => {
+                      console.log(error);
+                    }
+                  );
+
+                  this.api.getCustomer(element.roll_number).subscribe(
+                    data => {
+                      this.customer = data
+                      this.mail.roll_number = element.roll_number
+                      this.mail.subject = 'Item not returned'
+                      this.mail.message = this.items[element.item - 1].name + ' <h1>has not been returned</h1>'
+                      this.mail.recipient_list = "['tanmay.v.hiremath@gmail.com']"//"['"+this.customer.email+"']"
+                      this.mail.html_message = this.customer.first_name + ' ' + this.customer.last_name + ', <br>The following items have not been returned in the past month:<br>' + this.items[element.item - 1].name + ': Quantity = ' + element.quantity + '<br>Detail of student: ' + element.roll_number + '<br><strong>Return the items immediately. Any further delays will result in the matter escalating to the Faculty Advisor and strict action will be taken. </strong><br>Please contact the managers on tinkererslaboratory@gmail.com immediately.'
+                      this.api.updateMail(this.mail).subscribe(
+                        data => {
+                          console.log(data);
+                          this.api.sendMail(element.roll_number)
+                            .subscribe(data => { },
+                              error => { console.log(error); });
+                        }, error => { console.log(error); });
+                    },
+                    error => {
+                      console.log(error);
+                    }
+                  );
+
+
+                }
+              });
+            },
+            error => {
+              console.log(error);
+            }
+          );
+
       },
       error => {
         console.log(error);
       }
     );
-
 
 
     var urlParams = new URLSearchParams(window.location.search)
@@ -108,12 +155,12 @@ export class AppComponent implements OnInit {
 
       this.user_data = JSON.parse(this.api.getJdata(environment.jdataKey));
       this.user_data.roll_number = window.atob(this.user_data.roll_number)
-      this.api.createMail(this.user_data.roll_number).subscribe(data=>{console.log(data)},error=>{console.log(error)})
+      this.api.createMail(this.user_data.roll_number).subscribe(data => { console.log(data) }, error => { console.log(error) })
       this.api.getCustomer(this.user_data.roll_number)
         .subscribe(data => { this.user_data = data; console.log(data), error => { console.log(error) } })
 
     }
-    else {  }
+    else { }
 
 
     $(document).ready(function () {
@@ -124,12 +171,12 @@ export class AppComponent implements OnInit {
       });
 
       $('body').click(function (evt) {
-        if(evt.target.id == "dropdown-toggl" )
-                return;
-            if($(evt.target).closest('#dropdown-toggl').length)
-                return;
+        if (evt.target.id == "dropdown-toggl")
+          return;
+        if ($(evt.target).closest('#dropdown-toggl').length)
+          return;
 
-            $('.dropdown-men').fadeOut(200)
+        $('.dropdown-men').fadeOut(200)
       });
       $(document).scroll(function () {
         if ($(window).scrollTop() > 700) {
@@ -164,7 +211,7 @@ export class AppComponent implements OnInit {
   logout() {
     this.api.logout()
   }
-  Check_Technician(){
+  Check_Technician() {
     return this.api.check_technician()
   }
 }

@@ -41,8 +41,8 @@ returned_status.short_description = 'return' # at admin page
 
 class RequestAdmin(admin.ModelAdmin):
 
-    list_display = ('item', 'roll_number', 'quantity', 'item_details', 'is_issued', 'is_denied', 'is_returned','is_sent', 'issued_time', 'returned_time','checkout_time')
-    list_editable = ('is_issued', 'is_denied', 'is_returned', 'is_sent')
+    list_display = ('item', 'roll_number', 'quantity', 'item_details', 'is_issued', 'is_denied', 'is_returned','is_sent','email_sent', 'issued_time', 'returned_time','checkout_time')
+    list_editable = ('is_issued', 'is_denied', 'is_returned', 'is_sent', 'email_sent')
     search_fields = ['item__name', 'item__colour_code', ]
     actions = [issued_status, denied_status, returned_status]
 

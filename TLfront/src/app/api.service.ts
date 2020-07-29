@@ -37,6 +37,10 @@ export class ApiService {
     return this.http.get(environment.serverUrl + 'requestss' + '?roll_number=' + roll);
   }
 
+  requestDate(): Observable<any> {
+    return this.http.get(environment.serverUrl + 'requestsd/');
+  }
+
   itemSearch(query): Observable<any> {
     return this.http.get(environment.serverUrl + 'itemss' + '?query=' + query);
   }

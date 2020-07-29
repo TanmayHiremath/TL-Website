@@ -54,6 +54,7 @@ class Request(models.Model):
     checkout_time = models.DateTimeField(null=True)
     issued_time = models.DateTimeField(null=True)
     returned_time = models.DateTimeField(null=True)
+    email_sent = models.BooleanField(default=False)
 
     @property
     def item_details(self):
