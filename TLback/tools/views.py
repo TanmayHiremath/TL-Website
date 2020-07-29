@@ -115,6 +115,21 @@ class RequestSearch(generics.ListAPIView):
             ).distinct()
         return queryset
 
+class RequestDate(generics.ListAPIView):
+    serializer_class = RequestSerializer
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `roll` query parameter in the URL.
+        """
+        queryset = Request.objects.filter(
+            Q(email_sent=False) &
+            Q(is_issued=True) &
+            Q(is_returned=False)
+        ).distinct()
+        return queryset
+
 class ItemSearch(generics.ListAPIView):
     serializer_class = ItemSerializer
 
