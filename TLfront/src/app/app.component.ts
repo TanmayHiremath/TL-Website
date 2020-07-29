@@ -6,10 +6,6 @@ import {DomSanitizer} from '@angular/platform-browser'
 import { environment } from '../environments/environment';
 declare var $: any
 
-
-
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

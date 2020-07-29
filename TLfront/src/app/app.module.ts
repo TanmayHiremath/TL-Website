@@ -19,7 +19,7 @@ import { ApprovedComponent } from './approved/approved.component';
 import { LoginComponent } from './login/login.component';
 import { FateComponent } from './fate/fate.component';
 import { MachinestatusComponent } from './machinestatus/machinestatus.component';
-
+import { FacebookModule } from 'ngx-facebook';
 
 
 @NgModule({
@@ -46,7 +46,7 @@ import { MachinestatusComponent } from './machinestatus/machinestatus.component'
       ReactiveFormsModule,
 
       BrowserAnimationsModule,
-
+      FacebookModule.forRoot(),
       ToastrModule.forRoot({
         // preventDuplicates: true
       }), // ToastrModule added

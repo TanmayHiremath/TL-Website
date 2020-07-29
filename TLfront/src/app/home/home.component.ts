@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
-
 declare var $: any
-
+import * as Flickity from 'flickity'
 
 
 declare var rCounter: any;
@@ -34,12 +33,19 @@ export class HomeComponent implements OnInit {
   constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
+    var elem = document.querySelector('.main-carousel');
+    var flkty = new Flickity(elem, {
+      autoPlay: 5000,
+      wrapAround:true,
+      groupCells:false,
+      adaptiveHeight: true
+    });
 
     //authentication code to be copied
     this.logged_in = this.api.is_Authenticated()
     console.log(this.logged_in)
     if (this.logged_in == true) {
-      
+
       this.user_data = JSON.parse(this.api.getJdata(environment.jdataKey));
       console.log(this.user_data)
       this.user_data.roll_number = window.atob(this.user_data.roll_number)
@@ -51,7 +57,6 @@ export class HomeComponent implements OnInit {
 
 
     $(document).ready(function () {
-
       //  overlay start
       $(".card").mouseover(function () {
         $(".card").css("cursor", "pointer")
