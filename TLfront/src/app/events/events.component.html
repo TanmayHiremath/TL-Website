@@ -1,4 +1,5 @@
-<div class="container">
-  <div class="embed-responsive embed-responsive-16by9" *ngFor="let fblink of fblinks">
-    <iframe class="embed-responsive-item" [src]="getUrl(fblink.link)" frameborder="0"></iframe></div>
+<div class="container text-center">
+  <div *ngFor="let fblink of fblinks">
+    <fb-post class="my-3" [attr.href]="getUrl(fblink.link)"></fb-post>
+  </div>
 </div>
