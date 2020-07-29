@@ -13,30 +13,30 @@ export class MachinestatusComponent implements OnInit {
 
   machines= []
   items=[]
-  x=[]
+
 
   constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-
-
-    this.api.getmachine().subscribe(
+    this.api.getMachines().subscribe(
       data => {
         this.machines = data;
-        this.x= data.type;
         console.log(data)
       });
-
       this.api.getItems().subscribe(
         data => {
           this.items = data;
           console.log(data)
         });
 
-
-
-
-
   }
 
+  returnStatus(x:boolean){
+    return x ? 'Working' : 'Not Working'
+  }
+
+
+  reportMachine(machine){
+
+  }
 }

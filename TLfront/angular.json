@@ -26,11 +26,13 @@
             "styles": [
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/flickity/dist/flickity.min.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",  
-              "node_modules/popper.js/dist/umd/popper.min.js",  
+              "node_modules/flickity/dist/flickity.pkgd.min.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },

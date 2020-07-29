@@ -25,7 +25,7 @@ export class ApiService {
     return this.http.get(environment.serverUrl + 'fblinks/',
       { headers: this.httpHeaders });
   }
-  getmachine(): Observable<any> {
+  getMachines(): Observable<any> {
     return this.http.get(environment.serverUrl + 'machines/',
       { headers: this.httpHeaders });
   }

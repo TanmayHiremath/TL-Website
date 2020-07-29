@@ -1,14 +1,5 @@
-<div class="row">
-    <div class="col-sm-4"></div>
-    <div class="col-sm-4">
-        <div *ngFor='let x of srcdoc'>
-            <div [innerHTML]='x'></div>
-        </div>
-    </div>
-    <div class="col-sm-4"></div>
-
+<div class="container text-center">
+  <div *ngFor="let fblink of fblinks">
+    <fb-post class="my-3" [attr.href]="getUrl(fblink.link)"></fb-post>
+  </div>
 </div>
-
-
-
-

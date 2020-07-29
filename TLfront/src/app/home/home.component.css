@@ -1,3 +1,17 @@
+.flickity-viewport {
+  transition: height 1s;
+}
+.carousel {
+  background: #EEE;
+}
+
+.carousel-cell {
+  width: 66%;
+  margin-right: 25px;
+  border-radius: 5px;
+}
+
+
 #initial {
   margin-bottom: 50px;
 }

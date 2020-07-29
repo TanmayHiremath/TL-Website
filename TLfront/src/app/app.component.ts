@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Pipe, PipeTransform,Component, OnInit } from '@angular/core';
 import { ApiService } from './api.service';
 import { Router } from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser'
 
 import { environment } from '../environments/environment';
 declare var $: any
@@ -33,7 +34,7 @@ export class AppComponent implements OnInit {
         this.items = data;
         this.api.getFlags().subscribe(
           data => {
-    
+
             this.flags = data;
             this.flags.forEach(element => {
               console.log(this.time)
@@ -52,11 +53,11 @@ export class AppComponent implements OnInit {
                 this.flags.splice(element.id -1, 1)
                 this.api.deleteFlag(element.id).subscribe
                   (
-                    data => 
+                    data =>
                       {
                         console.log(data)
                       },
-                    error => 
+                    error =>
                       {
                         console.log(error);
                       }
@@ -74,7 +75,7 @@ export class AppComponent implements OnInit {
       }
     );
 
-   
+
 
     var urlParams = new URLSearchParams(window.location.search)
     this.code = urlParams.get('code')
@@ -84,7 +85,7 @@ export class AppComponent implements OnInit {
       this.router.navigate([''])
       const that = this
       $.post(environment.serverUrl + 'autho/', { code: this.code }, function (data) {
-        
+
         that.api.updateCustomer(data).subscribe(data => { console.log(data), error => { console.log(error) } })
 
         delete data['refresh_token']
@@ -123,11 +124,11 @@ export class AppComponent implements OnInit {
       });
 
       $('body').click(function (evt) {
-        if(evt.target.id == "dropdown-toggl" ) 
-                return; 
-            if($(evt.target).closest('#dropdown-toggl').length) 
-                return; 
-              
+        if(evt.target.id == "dropdown-toggl" )
+                return;
+            if($(evt.target).closest('#dropdown-toggl').length)
+                return;
+
             $('.dropdown-men').fadeOut(200)
       });
       $(document).scroll(function () {

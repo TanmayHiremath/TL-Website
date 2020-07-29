@@ -12,7 +12,7 @@ import { environment } from '../../environments/environment';
 })
 export class InventoryComponent implements OnInit {
 
-  items = [{}];
+  items = [];
   item_query
   searched: boolean = false;
   id_required_string: string
@@ -322,7 +322,7 @@ export class InventoryComponent implements OnInit {
         error => {
           console.log(error);
         });
-      
+
   }
 
   hideSearch(){
