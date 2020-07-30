@@ -37,8 +37,8 @@ export class HomeComponent implements OnInit {
     var flkty = new Flickity(testimonials, {
       autoPlay: 5000,
       wrapAround:true,
-      groupCells:false,
-      adaptiveHeight: true
+      groupCells:true,
+      
     });
 
     var projects = document.querySelector('.project-carousel')

@@ -24,8 +24,9 @@ export class AppComponent implements OnInit {
   mail = { 'roll_number': '', 'subject': '', 'message': '', 'html_message': '', 'recipient_list': '' }
   requests
   user_data = null
+  events_href
   constructor(private api: ApiService, private router: Router) {
-
+    this.events_href="events"
     this.year = new Date().getFullYear().toString();
     this.time = (new Date().getTime()) / 1000
 

@@ -22,8 +22,8 @@ export class ApprovedComponent implements OnInit {
   diff
   newFlag
   mail = { 'roll_number': '', 'subject': '', 'message': '', 'html_message': '', 'recipient_list': '' }
-  constructor(private api: ApiService,  private router: Router) { 
-    
+  constructor(private api: ApiService,  private router: Router) {
+
   }
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class ApprovedComponent implements OnInit {
       this.logged_in = this.api.is_Authenticated()
       console.log(this.logged_in)
       if (this.logged_in == true) {
-        
+
         this.user_data = JSON.parse(this.api.getJdata(environment.jdataKey));
         console.log(this.user_data)
         this.user_data.roll_number = window.atob(this.user_data.roll_number)
@@ -41,7 +41,7 @@ export class ApprovedComponent implements OnInit {
       }
       else { this.router.navigate(['']) }
     //authentication code end
-   
+
       this.api.getItems().subscribe(
         data => {
           this.items = data;
@@ -58,7 +58,7 @@ export class ApprovedComponent implements OnInit {
           console.log(error);
         }
       );
-      
+
 
       this.api.rollSearch(this.user_data.roll_number).subscribe(
         data => {
@@ -68,8 +68,8 @@ export class ApprovedComponent implements OnInit {
           console.log(error);
         }
       );
-      
-        
+
+
   }
   flagItem(request)
   {
@@ -100,7 +100,7 @@ export class ApprovedComponent implements OnInit {
     this.mail.roll_number = this.user_data.roll_number
     this.mail.subject = 'Flagging of ' + this.items[request.item-1].name
     this.mail.message = this.items[request.item-1].name + ' <h1>has been flagged</h1>'
-    this.mail.recipient_list = "['tanmay.v.hiremath@gmail.com']"
+    this.mail.recipient_list = environment.technician_mails
     var date_time = new Date()
     this.mail.html_message = '<strong>' + this.items[request.item-1].name + '</strong>' + ' has been flagged on the website by <strong>' + this.user_data.first_name + ' ' + this.user_data.last_name + '-' + this.user_data.roll_number + '</strong> at ' + date_time + '<br><br>Please check the item.'
 
@@ -114,5 +114,5 @@ export class ApprovedComponent implements OnInit {
       }, error => { console.log(error); });
   }
 
- 
+
 }

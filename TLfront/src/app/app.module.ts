@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
-import { EventsComponent, SafePipe } from './events/events.component';
+import { EventsComponent } from './events/events.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
@@ -36,7 +36,6 @@ import { FacebookModule } from 'ngx-facebook';
     FateComponent,
     MachinestatusComponent,
 
-    SafePipe
   ],
   imports: [
       FormsModule,

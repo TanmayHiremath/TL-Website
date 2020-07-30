@@ -24,8 +24,8 @@ export class CartComponent implements OnInit {
   mailItems='';
 
   constructor(private api: ApiService,
-    private router: Router) { 
-    
+    private router: Router) {
+
   }
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class CartComponent implements OnInit {
    this.logged_in = this.api.is_Authenticated()
    console.log(this.logged_in)
    if (this.logged_in == true) {
-     
+
      this.user_data = JSON.parse(this.api.getJdata(environment.jdataKey));
      console.log(this.user_data)
      this.user_data.roll_number = window.atob(this.user_data.roll_number)
@@ -50,7 +50,7 @@ export class CartComponent implements OnInit {
           console.log(error);
         }
       );
-      
+
       this.api.rollSearch(this.user_data.roll_number).subscribe(
         data => {
           this.requests = data;
@@ -58,7 +58,7 @@ export class CartComponent implements OnInit {
         error => {
           console.log(error);
         }
-      ); 
+      );
   }
 
   getReq(){
@@ -128,7 +128,7 @@ export class CartComponent implements OnInit {
   updateRequest()
   {
     var i;
-    for (i = 0; i < this.requests.length; i+=1) 
+    for (i = 0; i < this.requests.length; i+=1)
       {
         console.log(" request quantity"+this.requests[i].quantity)
         console.log(" item quantity"+this.items[this.requests[i].item-1].quantity)
@@ -138,11 +138,11 @@ export class CartComponent implements OnInit {
             this.myVar=1;
           }
         }
-    
+
     console.log(" my var"+this.myVar)
-    
-    
-    for (i = 0; i < this.requests.length; i+=1) 
+
+
+    for (i = 0; i < this.requests.length; i+=1)
       {
         if( (this.requests[i].is_sent == false) && (this.myVar==0) )
           {
@@ -153,40 +153,40 @@ export class CartComponent implements OnInit {
             console.log(this.mailItems)
             this.api.updateRequest(this.requests[i]).subscribe
               (
-                data => 
+                data =>
                   {
                     console.log(data)
                   },
-                error => 
+                error =>
                   {
                     console.log(error);
                   }
               );
           }
-          
+
       }
-      
+
       if(this.myVar==1){
       this.router.navigate(['./cart'])
       console.error("quantity chosen is not available");
     }
-     
+
       else  {this.router.navigate(['./approved'])}
-      
+
       if(this.total_items>0){
         console.log('mailsent')
         this.mail.roll_number=this.user_data.roll_number
         this.mail.subject = 'Student - issue items'
         this.mail.message = ' <h1>to be issued</h1>'
-        this.mail.recipient_list = "['gakshat2207@gmail.com']"
+        this.mail.recipient_list = environment.technician_mails
         var date_time =new Date()
         this.mail.html_message = this.user_data.first_name+' '+this.user_data.last_name+' is trying to issue the following items:<br>'+this.mailItems+'<br>Click on this link to approve or deny  http://localhost:4200/technician<br><br>Details of student: '+this.user_data.roll_number+'<br>Email ID of student: '+this.user_data.email
-    
-    
-        this.api.updateMail(this.mail).subscribe(data => {this.api.sendMail(this.user_data.roll_number); console.log(data) }, error => { console.log(error); });
-    
 
-      } 
+
+        this.api.updateMail(this.mail).subscribe(data => {this.api.sendMail(this.user_data.roll_number); console.log(data) }, error => { console.log(error); });
+
+
+      }
   }
 
   updateQuantityUp(request)
@@ -197,16 +197,16 @@ export class CartComponent implements OnInit {
       }
     this.api.updateRequest(request).subscribe
       (
-        data => 
+        data =>
           {
             console.log(data)
           },
-        error => 
+        error =>
           {
             console.log(error);
           }
       );
-    
+
   }
 
   updateQuantityDown(request)
@@ -217,11 +217,11 @@ export class CartComponent implements OnInit {
       }
     this.api.updateRequest(request).subscribe
       (
-        data => 
+        data =>
           {
             console.log(request.item, this.items[request.item-1])
           },
-        error => 
+        error =>
           {
             console.log(error);
           }
@@ -236,11 +236,11 @@ export class CartComponent implements OnInit {
     this.requests.splice(request.id -1, 1)
     this.api.deleteRequest(request.id).subscribe
       (
-        data => 
+        data =>
           {
              this.getReq();
           },
-        error => 
+        error =>
           {
             console.log(error);
           }
@@ -258,15 +258,15 @@ export class CartComponent implements OnInit {
 
 
       if (this.requests[key].is_sent == false) {
-        
+
     this.requests.splice(this.requests[key].id -1, 1)
     this.api.deleteRequest(this.requests[key].id).subscribe
       (
-        data => 
+        data =>
           {
              this.getReq();
           },
-        error => 
+        error =>
           {
             console.log(error);
           }

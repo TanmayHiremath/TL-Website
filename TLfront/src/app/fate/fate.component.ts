@@ -33,12 +33,12 @@ export class FateComponent implements OnInit {
     this.logged_in = this.api.is_Authenticated()
     console.log(this.logged_in)
     if (this.logged_in == true && this.api.check_technician()) {
-      
+
       this.user_data = JSON.parse(this.api.getJdata(environment.jdataKey));
       this.user_data.roll_number = window.atob(this.user_data.roll_number)
-      
+
     }
-    else {console.log('NOT AUTHORISED'); this.router.navigate(['']) }
+    else { console.log('NOT AUTHORISED'); this.router.navigate(['']) }
 
     this.api.getItems().subscribe(
       data => {
@@ -81,7 +81,7 @@ export class FateComponent implements OnInit {
 
   }
 
-  
+
 
   searchTitle() {
     this.api.rollSearch(this.roll_number)

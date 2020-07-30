@@ -30,7 +30,7 @@
     <a routerLink="" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
       true}">Home</a>
     <a routerLink="about" routerLinkActive="active-link">About</a>
-    <a routerLink="events" routerLinkActive="active-link">Events</a>
+    <a [href]="events_href" routerLinkActive="active-link">Events</a>
     <a routerLink="machinestatus" routerLinkActive="active-link">Machine Status</a>
     <a *ngIf="logged_in" routerLink="inventory" routerLinkActive="active-link">Inventory</a>
     <a routerLink="contact" routerLinkActive="active-link">Contact</a>
