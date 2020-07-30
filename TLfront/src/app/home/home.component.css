@@ -1,16 +1,35 @@
 .flickity-viewport {
   transition: height 1s;
 }
-.carousel {
+.main-carousel .carousel {
   background: #EEE;
 }
 
-.carousel-cell {
-  width: 66%;
+.main-carousel .carousel-cell {
+  width: 60%;
   margin-right: 25px;
   border-radius: 5px;
 }
 
+.project-carousel .carousel-cell{
+  width: 66%;
+  margin: 30px;
+}
+
+.project-carousel img{
+  height:300px;
+  width: auto;
+  max-width: 90%;
+  max-height: auto;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  margin-top: 30px;
+}
+.project-carousel .flickity-viewport{
+  height: 1000px;
+}
 
 #initial {
   margin-bottom: 50px;
@@ -167,35 +186,6 @@
   text-align: center;
   padding: 10px;
   border-radius: 15px;
-}
-
-#myCarousel .card {
-  border-radius: 10px;
-}
-
-#myCarousel .card-header {
-  background-color: #24bdc9;
-  color: white;
-  text-align: center;
-}
-
-#myCarousel .card-footer {
-  height: 250px;
-}
-
-#myCarousel .carousel-indicators{
-  margin-top: 30px;
-}
-
-#myCarousel .carousel-indicators li {
-  background-color: black;
-  border-radius: 50%;
-  height: 10px;
-  width: 10px;
-}
-
-#myCarousel .carousel-indicators .active {
-  background-color: blue;
 }
 
 

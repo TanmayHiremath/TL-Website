@@ -33,12 +33,20 @@ export class HomeComponent implements OnInit {
   constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    var elem = document.querySelector('.main-carousel');
-    var flkty = new Flickity(elem, {
+    var testimonials = document.querySelector('.main-carousel');
+    var flkty = new Flickity(testimonials, {
       autoPlay: 5000,
       wrapAround:true,
       groupCells:false,
       adaptiveHeight: true
+    });
+
+    var projects = document.querySelector('.project-carousel')
+    var flkty2 = new Flickity(projects, {
+      autoPlay: 5000,
+      wrapAround:true,
+      groupCells:false,
+      adaptiveHeight: false
     });
 
     //authentication code to be copied
