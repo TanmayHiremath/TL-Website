@@ -18,6 +18,7 @@ export class EventsComponent implements OnInit, AfterViewChecked {
   fblinks = [];
   srcdoc = [];
   linkk
+   initParams: InitParams
   constructor(private fb: FacebookService, private api: ApiService, private router: Router, public sanitizer: DomSanitizer) {
     this.api.getfblink().subscribe(
       data => {
@@ -30,22 +31,22 @@ export class EventsComponent implements OnInit, AfterViewChecked {
 
 
     this.linkk = 'https://www.facebook.com/tinkererIITB/posts/1768511736622040'
-    const initParams: InitParams = {
+    this.initParams = {
       appId: '763233617543300',
       xfbml: true,
       version: 'v7.0'
     };
-    this.fb.init(initParams);
+    this.fb.init(this.initParams);
   }
 
   ngOnInit(): void {
-
+   
     setTimeout(function () {
       console.log(document.querySelector("iframe"));
       if(document.querySelector("iframe")==null){
-        window.location.reload()
+        window.location.reload(true)
       };
-    }, 1500);
+    }, 3000);
 
 
 
