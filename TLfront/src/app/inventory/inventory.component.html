@@ -9,7 +9,7 @@
 
 
 <!-- Search Bar -->
-<div class="input-group text-center col-md-4 bar-center">
+<div class="input-group text-center container col-md-4 mt-4">
   <input (keydown)="searchButton($event)" type="text" class="form-control " placeholder="Search for items" [(ngModel)]="item_query" />
   <div class="input-group-append ">
     <button class="btn btn-primary" type="button" [disabled]="item_query==''" (click)="searchItem()">
