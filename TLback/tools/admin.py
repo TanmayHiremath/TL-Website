@@ -76,7 +76,6 @@ class FlagAdmin(admin.ModelAdmin):
 admin.site.register(Item, ItemAdmin)
 admin.site.register(Request, RequestAdmin)
 admin.site.register(Customer)
-admin.site.register(Mail)
 admin.site.register(Flag, FlagAdmin)
 admin.site.register(Fblink)
 admin.site.register(Machine)

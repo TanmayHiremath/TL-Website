@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Item(models.Model):
     
     name = models.CharField(max_length=200)
-    category = models.CharField(max_length=50)
+    category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
     level1 = models.CharField(max_length=50)
     level2 = models.CharField(max_length=50)
     description = models.CharField(max_length=2000)
@@ -78,6 +78,7 @@ class Mail(models.Model):
 
     def __str__(self):
         return str(self.roll_number)
+
 class Project(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
@@ -85,15 +86,24 @@ class Project(models.Model):
     
 class Fblink(models.Model):
     link = models.CharField(max_length=1000)
-
-
     def __str__(self):
         return self.link
 
 class Machine(models.Model):
-    type = models.ForeignKey(Item, on_delete=models.CASCADE)
+    type = models.ForeignKey(MachineCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
     status = models.BooleanField(default= False)
 
     def __str__(self):
         return self.name
+
+class MachineCategory(models.Model):
+    name = models.CharField(max_length=150)
+    def __str__(self):
+        return self.name
+
+class ItemCategory(models.Model):
+    name = models.CharField(max_length=150)
+    def __str__(self):
+        return self.name
+    
