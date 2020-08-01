@@ -5,9 +5,8 @@ from django.contrib.auth.models import User
 class Item(models.Model):
     
     name = models.CharField(max_length=200)
-    category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
-    level1 = models.CharField(max_length=50)
-    level2 = models.CharField(max_length=50)
+    division = models.CharField(max_length=50)
+    category = models.CharField(max_length=50)
     description = models.CharField(max_length=2000)
     keywords = models.CharField(max_length=1000)
     picture = models.ImageField(upload_to='images/')
@@ -90,7 +89,7 @@ class Fblink(models.Model):
         return self.link
 
 class Machine(models.Model):
-    type = models.ForeignKey(MachineCategory, on_delete=models.CASCADE)
+    type = models.ForeignKey(Item, on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
     status = models.BooleanField(default= False)
 
@@ -98,12 +97,12 @@ class Machine(models.Model):
         return self.name
 
 class MachineCategory(models.Model):
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150,primary_key=True)
     def __str__(self):
         return self.name
 
 class ItemCategory(models.Model):
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150,primary_key=True)
     def __str__(self):
         return self.name
     

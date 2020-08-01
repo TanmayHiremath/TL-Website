@@ -10,7 +10,8 @@
 
 <!-- Search Bar -->
 <div class="input-group text-center container col-md-4 mt-4">
-  <input (keydown)="searchButton($event)" type="text" class="form-control " placeholder="Search for items" [(ngModel)]="item_query" />
+  <input (keydown)="searchButton($event)" type="text" class="form-control " placeholder="Search for items"
+    [(ngModel)]="item_query" />
   <div class="input-group-append ">
     <button class="btn btn-primary" type="button" [disabled]="item_query==''" (click)="searchItem()">
       Search
@@ -454,7 +455,7 @@
   <h1>MECHANICAL</h1>
   <ul>
     <li>
-      <h3 (click)="display_table(6)">Power Tools</h3>
+      <h3><a (click)="display_table(6)">Power Tools </a></h3>
       <div class="container {{displayArray[6]}}">
         <div class="table-responsive">
           <table class="table table-striped ">
@@ -693,7 +694,7 @@
       </ul>
     </li>
   </ul>
-  <h1 (click)="display_table(10)">MACHINES</h1>
+  <!-- <h1 (click)="display_table(10)">MACHINES</h1>
   <div class="container {{displayArray[10]}}">
     <div class="table-responsive">
       <table class="table table-striped ">
@@ -748,3 +749,4 @@
     </div>
   </div>
 </div>
+-->

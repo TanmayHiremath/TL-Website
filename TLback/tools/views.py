@@ -159,7 +159,8 @@ class MachineSearch(generics.ListAPIView):
         query = self.request.query_params.get('query', None)
         if query:
             queryset = Machine.objects.filter(
-                Q(name__icontains=query)
+                Q(name__icontains=query) |
+                Q(type__icontains=query)
             ).distinct()
         return queryset
 

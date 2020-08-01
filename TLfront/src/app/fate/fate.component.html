@@ -2,7 +2,8 @@
 
   <div class="example-button-row">
     <button type="button" class="btn btn-info btn-lg one" (click)="show_requests()">Requests</button>&nbsp;&nbsp;
-    <button type="button" class="btn btn-warning btn-lg two" (click)="show_items()">Items</button>
+    <button type="button" class="btn btn-warning btn-lg two" (click)="show_items()">Items</button>&nbsp;&nbsp;
+    <button type="button" class="btn btn-success btn-lg three" (click)="show_machines()">Machines</button>
   </div>
 </section>
 
@@ -31,9 +32,9 @@
   <a href="#0" class="cd-close"></a>
 </div> <!-- cd-filter -->
 <div class="input-group col-3 {{filter_1}}">
-  <input type="text" class="form-control" placeholder="Click to Search" [(ngModel)]="roll_number" />
+  <input (keydown)="searchButton1($event)" type="text" class="form-control" placeholder="Search for Requests..." [(ngModel)]="roll_number" />
   <div class="input-group-append ">
-    <button class="btn btn-outline-secondary" type="button" (click)="searchTitle()">
+    <button class="btn btn-primary" type="button" [disabled]="roll_number==''" (click)="searchTitle()">
       Search
     </button>
   </div>
@@ -109,8 +110,8 @@
           (click)="issue_request(request)">issue</button><button (click)="deny_request(request)">deny</button></td>
       <td
         *ngIf="(request.is_issued==true) && (request.is_sent==true) && (request.is_denied==false) && ((request.is_returned==false) || (items[request.item-1].is_consumable==true)) ">
-        issued &nbsp; <button *ngIf="request.is_returned==false"
-          (click)="return_request(request)">return</button>&nbsp;</td>
+        issued &nbsp; <button *ngIf="request.is_returned==false" (click)="return_request(request)">return</button>&nbsp;
+      </td>
       <td *ngIf="(request.is_issued==false) && (request.is_sent==true) && (request.is_denied==true) ">denied</td>
       <td *ngIf="(request.is_returned==true) && (request.is_sent==true) && items[request.item-1].is_consumable==false">
         returned</td>
@@ -139,9 +140,9 @@
 
 <h1 class="{{filter_2}}">ITEMS</h1>
 <div class="input-group col-3 {{filter_2}}">
-  <input type="text" class="form-control" placeholder="Click to Search" [(ngModel)]="item_query" />
+  <input type="text" (keydown)="searchButton1($event)" class="form-control" placeholder="Search for Items..." [(ngModel)]="item_query" />
   <div class="input-group-append ">
-    <button class="btn btn-outline-secondary" type="button" (click)="searchItem()">
+    <button class="btn btn-primary" type="button" [disabled]="item_query==''" (click)="searchItem()">
       Search
     </button>
   </div>
@@ -180,6 +181,69 @@
       <td *ngIf="item.is_consumable==false">Not Consumable</td>
       <td>{{item.id_required}}</td>
       <td><button (click)="save(item)">Save</button></td>
+    </tr>
+  </tbody>
+
+</table>
+
+<h1 class="{{filter_3}}">MACHINES</h1>
+
+<div class="cd-filter {{filter_3}} ">
+  <form>
+    <label class="radio-inline">
+      <input type="radio" name="optradio" (click)="only_working()">working
+    </label>
+    &nbsp;
+    <label class="radio-inline">
+      <input type="radio" name="optradio" (click)="only_defective()">defective
+    </label>&nbsp;
+    <label class="radio-inline">
+      <input type="radio" name="optradio" (click)="all_3()">all
+    </label>&nbsp;
+  </form>
+
+  <a href="#0" class="cd-close"></a>
+</div> <!-- cd-filter -->
+<div class="input-group col-3 {{filter_3}}">
+  <input type="text" (keydown)="searchButton3($event)" class="form-control" placeholder="Search for Machines..." [(ngModel)]="machine_query" />
+  <div class="input-group-append ">
+    <button class="btn btn-primary"  [disabled]="machine_query==''" type="button" (click)="searchMachine()">
+      Search
+    </button>
+  </div>
+</div>
+
+
+
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm  {{filter_3}}" cellspacing="0"
+  width="100%">
+  <thead>
+    <tr>
+      <th class="th-sm">Machine name
+      </th>
+      <th class="th-sm">Type
+      </th>
+      <th class="th-sm">Status
+      </th>
+      <th class="th-sm">Action
+      </th>
+      
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="{{filter_31}}" *ngFor="let machine of machines">
+      <td *ngIf="(machine.status==false)">{{machine.name}}</td>
+      <td *ngIf="(machine.status==false)">{{machine.type}}</td>
+      <td *ngIf="(machine.status==false)" style="color: rgb(231, 57, 14);">Not working</td>
+      <td *ngIf="(machine.status==false)"><button (click)="change_status(machine)">Mark as working</button></td>
+    </tr>
+    
+    <tr class="{{filter_32}}" *ngFor="let machine of machines">
+      <td *ngIf="(machine.status==true)">{{machine.name}}</td>
+      <td *ngIf="(machine.status==true)">{{machine.type}}</td>
+      <td *ngIf="(machine.status==true)" style="color:rgb(20, 194, 20);">Working</td>
+      <td *ngIf="(machine.status==true)"><button (click)="change_status(machine)">Mark as not working</button></td>
     </tr>
   </tbody>
 
