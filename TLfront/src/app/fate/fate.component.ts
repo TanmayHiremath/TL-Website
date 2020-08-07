@@ -15,10 +15,12 @@ import { environment } from '../../environments/environment';
 export class FateComponent implements OnInit {
   requests = []
   items = []
+  machines = []
   quantity;
   roll_number;
   displayItems;
   item_query;
+  machine_query;
   customers;
   x;
   logged_in
@@ -33,12 +35,12 @@ export class FateComponent implements OnInit {
     this.logged_in = this.api.is_Authenticated()
     console.log(this.logged_in)
     if (this.logged_in == true && this.api.check_technician()) {
-      
+
       this.user_data = JSON.parse(this.api.getJdata(environment.jdataKey));
       this.user_data.roll_number = window.atob(this.user_data.roll_number)
-      
+
     }
-    else {console.log('NOT AUTHORISED'); this.router.navigate(['']) }
+    else { console.log('NOT AUTHORISED'); this.router.navigate(['']) }
 
     this.api.getItems().subscribe(
       data => {
@@ -79,16 +81,24 @@ export class FateComponent implements OnInit {
       }
     );
 
+    this.api.getMachines().subscribe(
+      data => {
+        this.machines = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
   }
 
-  
+
 
   searchTitle() {
     this.api.rollSearch(this.roll_number)
       .subscribe(
         data => {
           this.requests = data;
-          console.log(data);
         },
         error => {
           console.log(error);
@@ -100,7 +110,17 @@ export class FateComponent implements OnInit {
       .subscribe(
         data => {
           this.displayItems = data;
-          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  searchMachine() {
+    this.api.machineSearch(this.machine_query)
+      .subscribe(
+        data => {
+          this.machines = data;
         },
         error => {
           console.log(error);
@@ -111,11 +131,17 @@ export class FateComponent implements OnInit {
   filter_denied = false;
   filter_returned = false;
   filter_consumable = true;
+
   filter_11 = 'd-show';
   filter_12 = 'd-none';
   filter_13 = 'd-none';
+
   filter_1 = 'd-none';
   filter_2 = 'd-none';
+  filter_3 = 'd-none';
+
+  filter_31 = 'd-show';
+  filter_32 = 'd-show';
 
 
   only_issued() {
@@ -126,9 +152,6 @@ export class FateComponent implements OnInit {
     this.filter_denied = false;
     this.filter_returned = false;
     this.filter_consumable = true;
-    console.log(this.filter_issued)
-    console.log(this.filter_denied)
-
   }
   only_denied() {
     this.filter_11 = 'd-show';
@@ -138,9 +161,6 @@ export class FateComponent implements OnInit {
     this.filter_denied = true;
     this.filter_returned = false;
     this.filter_consumable = true;
-    console.log(this.filter_issued)
-    console.log(this.filter_denied)
-
   }
   only_returned() {
     this.filter_11 = 'd-none';
@@ -149,10 +169,6 @@ export class FateComponent implements OnInit {
     this.filter_issued = true;
     this.filter_denied = false;
     this.filter_returned = true;
-
-    console.log(this.filter_issued)
-    console.log(this.filter_denied)
-
   }
   only_pending() {
     this.filter_11 = 'd-show';
@@ -161,9 +177,6 @@ export class FateComponent implements OnInit {
     this.filter_issued = false;
     this.filter_denied = false;
     this.filter_returned = false;
-    console.log(this.filter_issued)
-    console.log(this.filter_denied)
-
   }
   all_1() {
     this.filter_11 = 'd-none';
@@ -171,8 +184,22 @@ export class FateComponent implements OnInit {
     this.filter_13 = 'd-none';
     this.filter_issued = true;
     this.filter_denied = false;
-    console.log(this.filter_issued)
 
+  }
+
+  all_3() {
+    this.filter_31 = 'd-show';
+    this.filter_32 = 'd-show';
+  }
+
+  only_working() {
+    this.filter_31 = 'd-none';
+    this.filter_32 = 'd-show';
+  }
+
+  only_defective() {
+    this.filter_31 = 'd-show';
+    this.filter_32 = 'd-none';
   }
 
   issue_request(request) {
@@ -300,6 +327,28 @@ export class FateComponent implements OnInit {
 
   }
 
+  change_status(machine) {
+    if(machine.status){
+      machine.status=false
+    }
+    else{
+      machine.status=true
+    }
+    this.api.updateMachine(machine).subscribe
+      (
+        data => {
+        },
+        error => {
+          console.log(error);
+        }
+      );
+
+      this.toastr.success(machine.name + ' has been updated', 'Updated Successfully',
+      {
+        timeOut: 4000,
+        positionClass: "toast-top-full-width"
+      });
+  }
 
 
 
@@ -338,14 +387,42 @@ export class FateComponent implements OnInit {
   show_requests() {
     this.filter_1 = 'd-show';
     this.filter_2 = 'd-none';
+    this.filter_3 = 'd-none';
+    
   }
 
   show_items() {
     this.filter_1 = 'd-none';
     this.filter_2 = 'd-show';
+    this.filter_3 = 'd-none';
   }
 
+  show_machines(){
+    this.filter_1 = 'd-none';
+    this.filter_2 = 'd-none';
+    this.filter_3 = 'd-show';
+  }
 
+  searchButton1(event) {
+    
+    if (event.keyCode == 13 && this.roll_number != '') {
+      this.searchTitle()
+    }
+  }
+
+  searchButton2(event) {
+    
+    if (event.keyCode == 13 && this.item_query != '') {
+      this.searchItem()
+    }
+  }
+
+  searchButton3(event) {
+    
+    if (event.keyCode == 13 && this.machine_query != '') {
+      this.searchMachine()
+    }
+  }
   // reportItem(item){
   //   this.mail.roll_number=this.user_data.roll_number
   //   this.mail.subject = 'Reporting of '+item.name

@@ -7,14 +7,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser'
 import { FacebookService, InitParams } from 'ngx-facebook';
 
-@Pipe({ name: 'safe' })
-export class SafePipe implements PipeTransform {
-  constructor(private sanitizer: DomSanitizer) { }
-  transform(url) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  }
-}
-
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
@@ -26,32 +18,35 @@ export class EventsComponent implements OnInit, AfterViewChecked {
   fblinks = [];
   srcdoc = [];
   linkk
+   initParams: InitParams
   constructor(private fb: FacebookService, private api: ApiService, private router: Router, public sanitizer: DomSanitizer) {
     this.api.getfblink().subscribe(
       data => {
         this.fblinks = data;
         console.log(data)
+        this.fblinks.forEach(fblink => {
+          fblink.link = this.getUrl(fblink.link)
+        });
       });
 
-    this.fblinks.forEach(fblink => {
-      fblink.link = this.getUrl(fblink.link)
-    });
+
     this.linkk = 'https://www.facebook.com/tinkererIITB/posts/1768511736622040'
-    const initParams: InitParams = {
+    this.initParams = {
       appId: '763233617543300',
       xfbml: true,
       version: 'v7.0'
     };
-    fb.init(initParams);
+    this.fb.init(this.initParams);
   }
 
   ngOnInit(): void {
+   
     setTimeout(function () {
       console.log(document.querySelector("iframe"));
       if(document.querySelector("iframe")==null){
-        window.location.reload()
+        window.location.reload(true)
       };
-    }, 2000);
+    }, 3000);
 
 
 

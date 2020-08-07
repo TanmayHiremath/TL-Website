@@ -41,6 +41,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path("autho/", views.posts),
     path('requestss/', views.RequestSearch.as_view()),
+    path('requestsd/', views.RequestDate.as_view()),
     path('itemss/', views.ItemSearch.as_view()),
     path("sendmail/<str:roll_number>", views.sendMail.as_view()),
     path("customer/<str:roll_number>",views.getCustomer.as_view()),

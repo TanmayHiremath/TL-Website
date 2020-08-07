@@ -5,9 +5,8 @@ from django.contrib.auth.models import User
 class Item(models.Model):
     
     name = models.CharField(max_length=200)
+    division = models.CharField(max_length=50)
     category = models.CharField(max_length=50)
-    level1 = models.CharField(max_length=50)
-    level2 = models.CharField(max_length=50)
     description = models.CharField(max_length=2000)
     keywords = models.CharField(max_length=1000)
     picture = models.ImageField(upload_to='images/')
@@ -54,6 +53,7 @@ class Request(models.Model):
     checkout_time = models.DateTimeField(null=True)
     issued_time = models.DateTimeField(null=True)
     returned_time = models.DateTimeField(null=True)
+    email_sent = models.BooleanField(default=False)
 
     @property
     def item_details(self):
@@ -77,6 +77,7 @@ class Mail(models.Model):
 
     def __str__(self):
         return str(self.roll_number)
+
 class Project(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
@@ -84,8 +85,6 @@ class Project(models.Model):
     
 class Fblink(models.Model):
     link = models.CharField(max_length=1000)
-
-
     def __str__(self):
         return self.link
 
@@ -96,3 +95,14 @@ class Machine(models.Model):
 
     def __str__(self):
         return self.name
+
+class MachineCategory(models.Model):
+    name = models.CharField(max_length=150,primary_key=True)
+    def __str__(self):
+        return self.name
+
+class ItemCategory(models.Model):
+    name = models.CharField(max_length=150,primary_key=True)
+    def __str__(self):
+        return self.name
+    

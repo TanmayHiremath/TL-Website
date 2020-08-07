@@ -37,9 +37,17 @@ export class ApiService {
     return this.http.get(environment.serverUrl + 'requestss' + '?roll_number=' + roll);
   }
 
+  requestDate(): Observable<any> {
+    return this.http.get(environment.serverUrl + 'requestsd/');
+  }
+
   itemSearch(query): Observable<any> {
     return this.http.get(environment.serverUrl + 'itemss' + '?query=' + query);
   }
+
+  machineSearch(query): Observable<any> {
+    return this.http.get(environment.serverUrl + 'machiness' + '?query=' + query);
+  }  
 
   createRequest(x): Observable<any> {
     const body = { item: x.item, quantity: x.quantity, roll_number: x.roll_number };
@@ -59,6 +67,14 @@ export class ApiService {
       quantity: item.quantity, critical_val: item.critical_val, colour_code: item.colour_code, is_flagged: item.is_flagged, price: item.price
     };
     return this.http.patch(environment.serverUrl + 'items/' + item.id + '/', body,
+      { headers: this.httpHeaders });
+  }
+
+  updateMachine(machine): Observable<any> {
+    const body = {
+      status: machine.status
+    };
+    return this.http.patch(environment.serverUrl + 'machines/' + machine.id + '/', body,
       { headers: this.httpHeaders });
   }
 
