@@ -165,57 +165,61 @@ export class InventoryComponent implements OnInit {
 
 
   reportItem(item) {
-    document.getElementById('super-overlay').style.display = 'block'
-    this.mail.roll_number = this.user_data.roll_number
-    this.mail.subject = 'Reporting of ' + item.name
-    this.mail.message = item.name + ' <h1>has been flagged</h1>'
-    this.mail.recipient_list = environment.technician_mails
-    var date_time = new Date()
-    this.mail.html_message = '<strong>' + item.name + '</strong>' + ' has been reported on the website by <strong>' + this.user_data.first_name + ' ' + this.user_data.last_name + '-' + this.user_data.roll_number + '</strong> at ' + date_time + '<br><br>Please check the item.'
+    if (confirm('This will send a mail to the admins. Are you sure you want to continue?')) {
+      document.getElementById('super-overlay').style.display = 'block'
+      this.mail.roll_number = this.user_data.roll_number
+      this.mail.subject = 'Reporting of ' + item.name
+      this.mail.message = item.name + ' <h1>has been flagged</h1>'
+      this.mail.recipient_list = environment.technician_mails
+      var date_time = new Date()
+      this.mail.html_message = '<strong>' + item.name + '</strong>' + ' has been reported on the website by <strong>' + this.user_data.first_name + ' ' + this.user_data.last_name + '-' + this.user_data.roll_number + '</strong> at ' + date_time + '<br><br>Please check the item.'
 
 
-    this.api.updateMail(this.mail).subscribe(
-      data => {
-        console.log(data);
-        this.api.sendMail(this.user_data.roll_number).subscribe(data => { console.log(data); if (data == 'sent') { document.getElementById('super-overlay').style.display = 'none'; console.log('mail sent successfully') } },
-          error => { document.getElementById('super-overlay').style.display = 'none'; alert('error'); console.log(error); });
-      }, error => { console.log(error); });
+      this.api.updateMail(this.mail).subscribe(
+        data => {
+          console.log(data);
+          this.api.sendMail(this.user_data.roll_number).subscribe(data => { console.log(data); if (data == 'sent') { document.getElementById('super-overlay').style.display = 'none'; console.log('mail sent successfully') } },
+            error => { document.getElementById('super-overlay').style.display = 'none'; alert('error'); console.log(error); });
+        }, error => { console.log(error); });
+    }
   }
 
   flagItem(item) {
-    document.getElementById('super-overlay').style.display = 'block'
-    this.mail.roll_number = this.user_data.roll_number
-    this.mail.subject = 'Flagging of ' + item.name
-    this.mail.message = item.name + ' <h1>has been flagged</h1>'
-    this.mail.recipient_list = environment.technician_mails
-    var date_time = new Date()
-    this.mail.html_message = '<strong>' + item.name + '</strong>' + ' has been flagged on the website by <strong>' + this.user_data.first_name + ' ' + this.user_data.last_name + '-' + this.user_data.roll_number + '</strong> at ' + date_time + '<br><br>Please check the item.'
+    if (confirm('This will send a mail to the admins. Are you sure you want to continue?')) {
+      document.getElementById('super-overlay').style.display = 'block'
+      this.mail.roll_number = this.user_data.roll_number
+      this.mail.subject = 'Flagging of ' + item.name
+      this.mail.message = item.name + ' <h1>has been flagged</h1>'
+      this.mail.recipient_list = environment.technician_mails
+      var date_time = new Date()
+      this.mail.html_message = '<strong>' + item.name + '</strong>' + ' has been flagged on the website by <strong>' + this.user_data.first_name + ' ' + this.user_data.last_name + '-' + this.user_data.roll_number + '</strong> at ' + date_time + '<br><br>Please check the item.'
 
 
-    this.api.updateMail(this.mail).subscribe(
-      data => {
-        console.log(data);
-        this.api.sendMail(this.user_data.roll_number)
-          .subscribe(data => { console.log(data); if (data == 'sent') { document.getElementById('super-overlay').style.display = 'none'; console.log('mail sent successfully') } },
-            error => { document.getElementById('super-overlay').style.display = 'none'; alert('error'); console.log(error); });
-      }, error => { console.log(error); });
+      this.api.updateMail(this.mail).subscribe(
+        data => {
+          console.log(data);
+          this.api.sendMail(this.user_data.roll_number)
+            .subscribe(data => { console.log(data); if (data == 'sent') { document.getElementById('super-overlay').style.display = 'none'; console.log('mail sent successfully') } },
+              error => { document.getElementById('super-overlay').style.display = 'none'; alert('error'); console.log(error); });
+        }, error => { console.log(error); });
 
 
-    var newflg = { item: item.id, roll_number: this.user_data.roll_number }
+      var newflg = { item: item.id, roll_number: this.user_data.roll_number }
 
-    this.api.createFlag(newflg).subscribe(
-      data => {
-        this.flags.push(newflg)
-        console.log(data)
-      },
-      error => {
-        console.log(error);
-      });
+      this.api.createFlag(newflg).subscribe(
+        data => {
+          this.flags.push(newflg)
+          console.log(data)
+        },
+        error => {
+          console.log(error);
+        });
 
-    item.is_flagged = true;
-    this.api.updateItem(item).subscribe(
-      data => { console.log(data) },
-      error => { console.log(error); });
+      item.is_flagged = true;
+      this.api.updateItem(item).subscribe(
+        data => { console.log(data) },
+        error => { console.log(error); });
+    }
   }
   displayArray = ['d-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non', 'd-non']
   categoryArray = ['Sensor', 'PCB', 'Resistor', 'Capacitor', 'Jumper', 'LED', 'd-non', 'Screw', 'Nut', 'Bolt', 'Machine']
@@ -259,7 +263,7 @@ export class InventoryComponent implements OnInit {
     this.searched = false
   }
   searchButton(event) {
-    
+
     if (event.keyCode == 13 && this.item_query != '') {
       this.searchItem()
     }
