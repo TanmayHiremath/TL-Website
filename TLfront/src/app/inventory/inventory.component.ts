@@ -84,10 +84,6 @@ export class InventoryComponent implements OnInit {
     );
 
     $(document).ready(function () {
-      $("i").click(function () {
-        $(this).toggleClass("far")
-        $(this).toggleClass("fas")
-      });
     });
 
   }
