@@ -11,6 +11,7 @@ djangorestframework = "*"
 django-cors-headers = "*"
 celery = "*"
 pillow = "*"
+django = "*"
 
 [requires]
 python_version = "3.8"
